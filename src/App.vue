@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <query>
       <condition id="firstName" type="text">
         <does-not-equal value="four" />
