@@ -14,9 +14,9 @@ const createClause = (name, id, type, requires) => {
   };
 };
 
-export default textClauses.reduce((clauseComponents = {}, { id, component, requires }) => {
+export default textClauses.reduce((clauseComponents, { id, component, requires }) => {
   return {
     [component]: createClause(component, id, 'text', requires),
     ...clauseComponents,
   };
-});
+}, {});
