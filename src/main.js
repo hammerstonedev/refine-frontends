@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
 import App from './App.vue';
 
+import './assets/styles/index.css';
+
 Vue.use(VueCompositionAPI);
 
 Vue.config.productionTip = false;
