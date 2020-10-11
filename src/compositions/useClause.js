@@ -11,7 +11,7 @@ export default (id, type, props, context) => {
   }
 
   if (condition.type !== type) {
-    throw new Error(`Clause of type "${type}" must be used within a "${condition.type}" condition.`);
+    throw new Error(`Clause "${id}" must be used within a "${type}" condition. It's currently within a "${condition.type}" condition`);
   }
 
   condition.selectClause(id);
