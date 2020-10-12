@@ -2,23 +2,21 @@
   <div id="app">
     <query>
       <text-condition id="firstName">
-        <does-not-equal value="four" />
+        <equals value="four" />
       </text-condition>
     </query>
   </div>
 </template>
 
 <script>
- import clauses from './components/renderless/clauses/text';
+ import Equals from './components/tailwind/clauses/text/text-equals';
  import { TextCondition } from './components/renderless/conditions';
  import Query from './components/renderless/query';
-
- const { DoesNotEqual } = clauses;
 
  export default {
    name: 'App',
    components: {
-     DoesNotEqual,
+     Equals,
      TextCondition,
      Query,
    },
