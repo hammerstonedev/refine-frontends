@@ -3,20 +3,19 @@ import config from '@/config/clauses-config';
 
 const { text: textClauses } = config;
 
-const createClause = (name, id, type, requires) => {
+const createClause = (name, id, type, props) => {
   return {
     name,
-    props: requires,
+    props,
     setup(props, context) {
-      const render = useClause(id, type, props, context);
-      return render;
+      return useClause(id, type, props, context);
     },
   };
 };
 
-export default textClauses.reduce((clauseComponents, { id, component, requires }) => {
+export default textClauses.reduce((clauseComponents, { id, component, requires: props }) => {
   return {
-    [component]: createClause(component, id, 'text', requires),
+    [component]: createClause(component, id, 'text', props),
     ...clauseComponents,
   };
 }, {});

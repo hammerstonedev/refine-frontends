@@ -1,4 +1,4 @@
-import Condition from '@/components/renderless/condition';
+import { TextCondition } from '@/components/renderless/conditions';
 import Query from '@/components/renderless/query';
 import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
@@ -7,14 +7,13 @@ Vue.use(VueCompositionAPI);
 
 let blueprint = [];
 
-export { blueprint };
-export default {
-  name: 'mock-condition',
+const TextQuery = {
+  name: 'text-query',
   props: {
     required: true,
     type: String,
   },
-  template: '<query v-on:change="onChange"><condition id="name" :type="type"><slot></slot></condition></query>',
+  template: '<query v-on:change="onChange"><text-condition id="name" :type="type"><slot></slot></text-condition></query>',
   methods: {
     onChange(updatedBlueprint) {
       blueprint = updatedBlueprint;
@@ -22,6 +21,8 @@ export default {
   },
   components: {
     Query,
-    Condition,
+    TextCondition,
   },
 };
+
+export { blueprint, TextQuery };
