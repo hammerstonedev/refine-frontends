@@ -1,6 +1,6 @@
 <template>
-  <equals :value="value" v-slot="{ setValue }">
-    <input type="text" value="value" @input="setValue($event.target.value)" />
+  <equals v-slot="{ setValue, value }">
+    <input type="text" :value="value" @input="setValue($event.target.value)" />
   </equals>
 </template>
 
@@ -10,11 +10,10 @@
  const { Equals } = clauses;
 
  export default {
-   name: 'text-equals',
    props: {
-     value: {
-       required: true,
-       type: String,
+     selected: {
+       type: Boolean,
+       default: false,
      },
    },
    components: {

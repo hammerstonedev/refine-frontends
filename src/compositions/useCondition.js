@@ -29,10 +29,7 @@ export default (id, type, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({
-        selectClause,
-        updateValue,
-      });
+      return context.slots.default();
     }
     return null;
   };
