@@ -10,7 +10,7 @@
  const { Equals } = clauses;
 
  export default {
-   inject: ['registerClause', 'selectedClauseId'],
+   inject: ['clauseSelector', 'registerClause'],
    props: {
      value: {
        type: String,
@@ -27,7 +27,8 @@
    },
    computed: {
      isSelected: function() {
-       return this.selectedClauseId === 'eq' || this.selected;
+       const { selectedClauseId } = this.clauseSelector;
+       return selectedClauseId === 'eq';
      },
    },
    created() {
