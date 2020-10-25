@@ -1,43 +1,58 @@
 <template>
   <div>
-    <!-- Pick the tailwind clause component based on selected clause -->
-    <component
-      :is="selectedClause.component"
-      v-bind="selectedClause"
-      v-slot="{setValue, value}"
+    <select
+      @input="selectClause($event.target.value)"
     >
-      <select
-        @input="selectClause($event.target.value)"
+      <option
+        v-for="clause in clauses"
+        :key="clause.id"
+        :value="clause.id"
+        :selected="selectedClauseId && (clause.id === selectedClauseId)"
       >
-        <option
-          v-for="clause in clauses"
-          :key="clause.id"
-          :value="clause.id"
-          :selected="selectedClause && (clause.id === selectedClause.id)"
-        >
-          {{ display }}
-        </option>
-      </select>
-    </component>
+        {{ clause.display }}
+      </option>
+    </select>
+    <slot></slot>
   </div>
 </template>
 
 <script>
+ import Vue from 'vue';
 
  export default {
    name: 'clause-selector',
+   provide() {
+     return Vue.observable({
+       registerClause: this.registerClause,
+       selectedClauseId: this.selectedClauseId,
+     });
+   },
+   data() {
+     return {
+       clauses: {},
+       selectedClauseId: null,
+     };
+   },
    props: {
-     selectedClause: {
-       required: true,
-       type: Object,
+     initialValue: {
+       required: false,
+       type: String,
+       default: '',
      },
-     selectClause: {
-       required: true,
-       type: function,
+   },
+   methods: {
+     registerClause(clause) {
+       const { id: clauseId } = clause;
+       if (this.clauses[clauseId]) {
+         throw new Error(`A clause with id ${clauseId} has already been registered for condition ${this.id}.`);
+       }
+       this.clauses = {
+         ...this.clauses,
+         [clauseId]: clause,
+       };
      },
-     clauses: {
-       required: true,
-       type: Array,
+     selectClause(clauseId) {
+       this.selectedClauseId = clauseId;
      },
    },
  }

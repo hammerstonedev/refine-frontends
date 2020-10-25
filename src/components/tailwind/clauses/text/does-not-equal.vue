@@ -1,13 +1,13 @@
 <template>
-  <equals v-if="isSelected" :value="value" v-slot="{ setValue, value }">
+  <does-not-equal v-if="isSelected" :value="value" v-slot="{ setValue, value }">
     <input type="text" :value="value" @input="setValue($event.target.value)" />
-  </equals>
+  </does-not-equal>
 </template>
 
 <script>
  import clauses from '@/components/renderless/clauses/text';
 
- const { Equals } = clauses;
+ const { DoesNotEqual } = clauses;
 
  export default {
    inject: ['registerClause', 'selectedClauseId'],
@@ -23,15 +23,15 @@
      },
    },
    components: {
-     Equals,
+     DoesNotEqual,
    },
    computed: {
      isSelected: function() {
-       return this.selectedClauseId === 'eq' || this.selected;
+       return this.selectedClauseId === 'dne' || this.selected;
      },
    },
    created() {
-     this.registerClause({id: 'eq', display: 'equals'});
+     this.registerClause({id: 'dne', display: 'Does not equal'});
    },
  };
 </script>
