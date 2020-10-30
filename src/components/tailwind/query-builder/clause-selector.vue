@@ -17,20 +17,19 @@
 </template>
 
 <script>
+ import Vue from 'vue';
+ import ClauseSelector from '@/stores/clause-selector';
+
  export default {
    name: 'clause-selector',
    provide() {
      return {
-       registerClause: this.registerClause,
        clauseSelector: this.clauseSelector,
      }
    },
    data() {
      return {
-       clauseSelector: {
-         clauses: {},
-         selectedClauseId: '',
-       },
+       clauseSelector: Vue.observable(new ClauseSelector()),
      };
    },
    computed: {
@@ -43,25 +42,7 @@
        return Object.values(clauses);
      },
    },
-   props: {
-     initialValue: {
-       required: false,
-       type: String,
-       default: '',
-     },
-   },
    methods: {
-     registerClause(clause) {
-       const { id: clauseId } = clause;
-       if (this.clauses[clauseId]) {
-         throw new Error(`A clause with id ${clauseId} has already been registered for condition ${this.id}.`);
-       }
-       const { clauses } = this.clauseSelector;
-       this.clauseSelector.clauses = {
-         ...clauses,
-         [clauseId]: clause,
-       };
-     },
      selectClause(clauseId) {
        this.clauseSelector.selectedClauseId = clauseId;
      },

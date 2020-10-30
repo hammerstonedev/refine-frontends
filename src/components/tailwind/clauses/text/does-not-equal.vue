@@ -10,15 +10,11 @@
  const { DoesNotEqual } = clauses;
 
  export default {
-   inject: ['clauseSelector', 'registerClause'],
+   inject: ['clauseSelector'],
    props: {
-     value: {
-       type: String,
-       required: false,
-       default: '',
-     },
      selected: {
        type: Boolean,
+       required: false,
        default: false,
      },
    },
@@ -32,7 +28,10 @@
      },
    },
    created() {
-     this.registerClause({id: 'dne', display: 'Does not equal'});
+     if (this.selected) {
+       this.clauseSelector.selectClause('eq');
+     }
+     this.clauseSelector.registerClause({id: 'dne', display: 'Does not equal'});
    },
  };
 </script>

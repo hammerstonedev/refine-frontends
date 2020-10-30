@@ -1,5 +1,5 @@
 <template>
-  <equals v-if="isSelected" :value="value" v-slot="{ setValue, value }">
+  <equals v-if="isSelected" v-slot="{ setValue, value }">
     <input type="text" :value="value" @input="setValue($event.target.value)" />
   </equals>
 </template>
@@ -10,15 +10,11 @@
  const { Equals } = clauses;
 
  export default {
-   inject: ['clauseSelector', 'registerClause'],
+   inject: ['clauseSelector'],
    props: {
-     value: {
-       type: String,
-       required: false,
-       default: '',
-     },
      selected: {
        type: Boolean,
+       required: false,
        default: false,
      },
    },
@@ -32,7 +28,10 @@
      },
    },
    created() {
-     this.registerClause({id: 'eq', display: 'equals'});
+     this.clauseSelector.registerClause({id: 'eq', display: 'equals'});
+     if (this.selected) {
+       this.clauseSelector.selectClause('eq');
+     }
    },
  };
 </script>
