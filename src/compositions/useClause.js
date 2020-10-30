@@ -15,13 +15,15 @@ export default (id, type, props, context) => {
   }
 
   condition.selectClause(id);
-  condition.updateValue(props.value);
+  if (props.value !== undefined) {
+    condition.updateValue(props.value);
+  }
 
   return () => {
     if (context.slots.default) {
       return context.slots.default({
         setValue,
-        value: props.value,
+        value: condition.data.input.value,
       });
     }
     return null;

@@ -1,5 +1,5 @@
 <template>
-  <does-not-equal v-if="isSelected" :value="value" v-slot="{ setValue, value }">
+  <does-not-equal v-if="isSelected" v-slot="{ setValue, value }">
     <input type="text" :value="value" @input="setValue($event.target.value)" />
   </does-not-equal>
 </template>

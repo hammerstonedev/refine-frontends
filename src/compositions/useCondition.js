@@ -17,6 +17,8 @@ export default (id, type, context) => {
     blueprint.updateInput(id, { value });
   };
 
+  // todo: rename to something like changeClause, otherwise
+  // confusing with clause selector
   const selectClause = (clause) => {
     blueprint.updateInput(id, { clause });
   };
@@ -25,6 +27,7 @@ export default (id, type, context) => {
     selectClause,
     type,
     updateValue,
+    data: blueprint.findCondition(id),
   });
 
   return () => {
