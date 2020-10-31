@@ -2,6 +2,7 @@ import { inject } from '@vue/composition-api';
 
 export default (id, type, props, context) => {
   const condition = inject('condition');
+
   const setValue = (newValue) => {
     condition.updateValue(newValue);
   };
@@ -15,7 +16,7 @@ export default (id, type, props, context) => {
   }
 
   condition.selectClause(id);
-  if (props.value !== undefined) {
+  if (props.value !== undefined && condition.data.input.value === undefined) {
     condition.updateValue(props.value);
   }
 

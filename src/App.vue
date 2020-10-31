@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <query>
-      <text-condition id="firstName" />
+      <text-condition id="firstName" value="bob" />
     </query>
   </div>
 </template>

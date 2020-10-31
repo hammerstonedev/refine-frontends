@@ -1,5 +1,5 @@
 <template>
-  <equals v-if="isSelected" v-slot="{ setValue, value }">
+  <equals :value="initialValue" v-if="isSelected" v-slot="{ setValue, value }">
     <input type="text" :value="value" @input="setValue($event.target.value)" />
   </equals>
 </template>
@@ -16,6 +16,10 @@
        type: Boolean,
        required: false,
        default: false,
+     },
+     initialValue: {
+       type: String,
+       required: false,
      },
    },
    components: {

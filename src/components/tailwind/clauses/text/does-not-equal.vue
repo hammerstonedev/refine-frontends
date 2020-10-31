@@ -1,5 +1,5 @@
 <template>
-  <does-not-equal v-if="isSelected" v-slot="{ setValue, value }">
+  <does-not-equal :value="initialValue" v-if="isSelected" v-slot="{ setValue, value }">
     <input type="text" :value="value" @input="setValue($event.target.value)" />
   </does-not-equal>
 </template>
@@ -17,6 +17,10 @@
        required: false,
        default: false,
      },
+     initialValue: {
+       type: String,
+       required: false,
+     },
    },
    components: {
      DoesNotEqual,
@@ -28,10 +32,10 @@
      },
    },
    created() {
-     if (this.selected) {
-       this.clauseSelector.selectClause('eq');
-     }
      this.clauseSelector.registerClause({id: 'dne', display: 'Does not equal'});
+     if (this.selected) {
+       this.clauseSelector.selectClause('dne');
+     }
    },
  };
 </script>
