@@ -23,6 +23,7 @@ class Blueprint {
         conditionId,
         type,
         depth,
+        input: {},
       });
     }
     this.blueprintChanged();
@@ -30,13 +31,18 @@ class Blueprint {
 
   updateInput(conditionId, updates) {
     const condition = this.findCondition(conditionId);
-    const { input } = condition;
 
     if (!condition) {
       throw new Error(`Can't find the condition with conditionId: ${conditionId} in the blueprint`);
     }
 
-    condition.input = { ...input, ...updates };
+    // Do the update iteratively on the input object to preserve it
+    // as an observable to anything that references it. Swapping it out
+    // means you can't pass it directly to anything you would always have
+    // to reference condition.input everywhere versus just passing input.
+    Object.keys(updates).forEach((key) => {
+      condition.input[key] = updates[key];
+    });
 
     if (this.onChange) {
       this.onChange([...this.conditions]);

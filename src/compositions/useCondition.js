@@ -27,7 +27,7 @@ export default (id, type, context) => {
     selectClause,
     type,
     updateValue,
-    data: blueprint.findCondition(id),
+    input: blueprint.findCondition(id).input,
   });
 
   return () => {

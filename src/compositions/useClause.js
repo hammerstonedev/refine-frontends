@@ -16,7 +16,8 @@ export default (id, type, props, context) => {
   }
 
   condition.selectClause(id);
-  if (props.value !== undefined && condition.data.input.value === undefined) {
+
+  if (props.value !== undefined && condition.input.value === undefined) {
     condition.updateValue(props.value);
   }
 
@@ -24,7 +25,7 @@ export default (id, type, props, context) => {
     if (context.slots.default) {
       return context.slots.default({
         setValue,
-        value: condition.data.input.value,
+        ...condition.input,
       });
     }
     return null;
