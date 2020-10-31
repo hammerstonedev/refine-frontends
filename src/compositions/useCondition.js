@@ -3,31 +3,30 @@ import { inject, provide } from '@vue/composition-api';
 export default (id, type, context) => {
   const blueprint = inject('blueprint');
 
-  if (!blueprint) {
-    throw new Error('Condition must be used within a query.');
+  if (!id || !type) {
+    throw new Error('useCondition requires an id and a type.');
   }
 
-  blueprint.addCondition({
+  if (!context) {
+    throw new Error('useCondition requires a Vue context.');
+  }
+
+  if (!blueprint) {
+    throw new Error('Conditions must be rendered within a query.');
+  }
+
+  const condition = blueprint.addCondition({
     conditionId: id,
     type,
     depth: 0,
   });
 
-  const updateValue = (value) => {
-    blueprint.updateInput(id, { value });
-  };
-
-  // todo: rename to something like setClause, otherwise
-  // confusing with clause selector
-  const selectClause = (clause) => {
-    blueprint.updateInput(id, { clause });
-  };
+  const { input } = condition;
 
   provide('condition', {
-    selectClause,
     type,
-    updateValue,
-    input: blueprint.findCondition(id).input,
+    updateInput: updates => blueprint.updateInput(id, updates),
+    input,
   });
 
   return () => {

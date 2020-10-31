@@ -3,8 +3,8 @@ import { inject } from '@vue/composition-api';
 export default (id, type, props, context) => {
   const condition = inject('condition');
 
-  const setValue = (newValue) => {
-    condition.updateValue(newValue);
+  const setValue = (value) => {
+    condition.updateInput({ value });
   };
 
   if (!condition) {
@@ -15,10 +15,13 @@ export default (id, type, props, context) => {
     throw new Error(`Clause "${id}" must be used within a "${type}" condition. It's currently within a "${condition.type}" condition`);
   }
 
-  condition.selectClause(id);
+  // Set the clause id on the blueprint input when this clause is rendered
+  condition.updateInput({ clause: id });
 
-  if (props.value !== undefined && condition.input.value === undefined) {
-    condition.updateValue(props.value);
+  // eslint-disable-next-line no-unused-vars
+  const { clause, ...values } = condition.input;
+  if (Object.keys(props).length > 0 && Object.keys(values).length === 0) {
+    condition.updateInput({ ...props });
   }
 
   return () => {

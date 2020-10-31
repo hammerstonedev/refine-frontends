@@ -27,6 +27,7 @@ class Blueprint {
       });
     }
     this.blueprintChanged();
+    return this.findCondition(conditionId);
   }
 
   updateInput(conditionId, updates) {
