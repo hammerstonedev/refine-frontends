@@ -32,6 +32,10 @@
      },
    },
    created() {
+     if (this.initialValue && !this.selected) {
+       throw new Error('You can only set the intial value for a clause that is selected by default.');
+     }
+
      this.clauseSelector.registerClause({id: 'eq', display: 'equals'});
      if (this.selected) {
        this.clauseSelector.selectClause('eq');

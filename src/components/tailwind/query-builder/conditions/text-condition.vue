@@ -2,8 +2,8 @@
   <text-condition :id="id">
     <clause-selector>
       <slot>
-        <does-not-equal />
-        <equals selected :initialValue="value" />
+        <does-not-equal selected />
+        <equals :initialValue="value" />
       </slot>
     </clause-selector>
   </text-condition>
