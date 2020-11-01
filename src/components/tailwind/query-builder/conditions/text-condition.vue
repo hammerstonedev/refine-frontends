@@ -1,17 +1,5 @@
 <template>
-  <text-condition :id="id">
-    <clause-selector>
-      <slot>
-        <component
-          v-for="(clause, key, index) in defaultClauses"
-          :is="clause"
-          :key="key"
-          :initialValue="index === 0 ? initialValue : undefined"
-          :selected="index === 0"
-        />
-      </slot>
-    </clause-selector>
-  </text-condition>
+  <condition :condition="TextCondition" :defaultClauses="defaultClauses" :initialValue="initialValue" :id="id" />
 </template>
 
 <script>
@@ -19,7 +7,7 @@
 
  import * as defaultClauses from '@/components/tailwind/clauses/text';
 
- import ClauseSelector from '@/components/tailwind/query-builder/clause-selector';
+import Condition from './condition';
 
  export default {
    props: {
@@ -34,12 +22,12 @@
    },
    data() {
      return {
-       defaultClauses,
+       defaultClauses: { ...defaultClauses },
+       TextCondition,
      };
    },
    components: {
-     TextCondition,
-     ClauseSelector,
+     Condition,
      ...defaultClauses,
    },
  };
