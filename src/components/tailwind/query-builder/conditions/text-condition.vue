@@ -2,8 +2,13 @@
   <text-condition :id="id">
     <clause-selector>
       <slot>
-        <does-not-equal selected />
-        <equals :initialValue="value" />
+        <component
+          v-for="(clause, index) in defaultClauses"
+          :is="clause"
+          :key="clause.name"
+          :initialValue="index === 0 ? initialValue : undefined"
+          :selected="index === 0"
+        />
       </slot>
     </clause-selector>
   </text-condition>
@@ -12,7 +17,7 @@
 <script>
  import { TextCondition } from '@/components/renderless/conditions';
 
- import { Equals, DoesNotEqual } from '@/components/tailwind/clauses/text';
+ import * as defaultClauses from '@/components/tailwind/clauses/text';
 
  import ClauseSelector from '@/components/tailwind/query-builder/clause-selector';
 
@@ -22,20 +27,20 @@
        type: String,
        required: true,
      },
-     value: {
+     initialValue: {
        type: String,
        required: false,
      },
-     selectedClause: {
-       type: Number,
-       required: false,
-     },
+   },
+   data() {
+     return {
+       defaultClauses,
+     };
    },
    components: {
      TextCondition,
-     Equals,
-     DoesNotEqual,
      ClauseSelector,
+     ...defaultClauses,
    },
  };
 </script>
