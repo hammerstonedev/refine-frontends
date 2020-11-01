@@ -1,5 +1,6 @@
+import Contains from './contains';
 import Equals from './equals';
 import DoesNotEqual from './does-not-equal';
 import StartsWith from './starts-with';
 
-export { Equals, DoesNotEqual, StartsWith };
+export { Contains, DoesNotEqual, StartsWith, Equals };

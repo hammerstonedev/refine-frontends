@@ -3,9 +3,9 @@
     <clause-selector>
       <slot>
         <component
-          v-for="(clause, index) in defaultClauses"
+          v-for="(clause, key, index) in defaultClauses"
           :is="clause"
-          :key="clause.name"
+          :key="key"
           :initialValue="index === 0 ? initialValue : undefined"
           :selected="index === 0"
         />
