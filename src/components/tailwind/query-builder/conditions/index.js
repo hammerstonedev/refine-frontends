@@ -46,7 +46,6 @@ const TextCondition = {
     TextCondition: RenderlessConditions.TextCondition,
   },
   setup(props, context) {
-    console.log(props);
     return useCondition(
       RenderlessConditions.TextCondition,
       textClauses,
