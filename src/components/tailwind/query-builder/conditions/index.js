@@ -6,7 +6,8 @@ import * as RenderlessConditions from '@/components/renderless/conditions';
 
 // todo: jsx. this is hard to read.
 const useCondition = (condition, clauses, props, context) => {
-  const { id, ...input } = props;
+  const { id } = props;
+  const { attrs: input } = context;
 
   return () => {
     return h(
@@ -22,8 +23,8 @@ const useCondition = (condition, clauses, props, context) => {
                 props: {
                   key,
                   selected,
-                  ...input,
-                }
+                  ...(selected ? input : null),
+                },
               });
           }),
          )
@@ -39,16 +40,13 @@ const TextCondition = {
       type: String,
       required: true,
     },
-    initialValue: {
-      type: String,
-      required: false,
-    },
   },
   components: {
     ...textClauses,
     TextCondition: RenderlessConditions.TextCondition,
   },
   setup(props, context) {
+    console.log(props);
     return useCondition(
       RenderlessConditions.TextCondition,
       textClauses,

@@ -1,5 +1,5 @@
 <template>
-  <contains :value="initialValue" v-if="isSelected" v-slot="{ setValue, value }">
+  <contains :value="value" v-if="isSelected" v-slot="{ setValue, value }">
     <input type="text" :value="value" @input="setValue($event.target.value)" />
   </contains>
 </template>
@@ -17,7 +17,7 @@
        required: false,
        default: false,
      },
-     initialValue: {
+     value: {
        type: String,
        required: false,
      },
@@ -32,7 +32,7 @@
      },
    },
    created() {
-     if (this.initialValue && !this.selected) {
+     if (this.value && !this.selected) {
        throw new Error('You can only set the intial value for a clause that is selected by default.');
      }
 
