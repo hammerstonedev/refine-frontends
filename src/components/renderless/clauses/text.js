@@ -1,4 +1,4 @@
-import useClause from '@/compositions/useClause';
+import useClause from '@/compositions/renderless/useClause';
 import config from '@/config/clauses-config';
 
 const { text: textClauses } = config;

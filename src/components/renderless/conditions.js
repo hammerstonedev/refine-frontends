@@ -1,4 +1,4 @@
-import useCondition from '@/compositions/useCondition';
+import useCondition from '@/compositions/renderless/useCondition';
 
 const TextCondition = {
   name: 'text-condition',
