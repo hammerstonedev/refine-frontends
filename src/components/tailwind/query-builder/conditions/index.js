@@ -4,7 +4,7 @@ import * as textClauses from '@/components/tailwind/clauses/text';
 import * as RenderlessConditions from '@/components/renderless/conditions';
 //import * as textClauses from '@/components/tailwind/query-builder/clauses';
 
-// todo: jsx. this is hard to read.
+// TODO: jsx. this is hard to read.
 const useCondition = (condition, clauses, props, context) => {
   const { id } = props;
   const { attrs: input } = context;
