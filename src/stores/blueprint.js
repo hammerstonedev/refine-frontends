@@ -2,7 +2,7 @@ class Blueprint {
   constructor(initialBlueprint, onChange) {
     this.conditions = initialBlueprint || [];
     this.blueprintChanged = () => {
-      console.log(JSON.parse(JSON.stringify(this.conditions)));
+//      console.log(JSON.parse(JSON.stringify(this.conditions)));
       if (onChange) {
         onChange([...this.conditions]);
       }

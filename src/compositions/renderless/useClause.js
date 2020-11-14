@@ -1,4 +1,4 @@
-import { inject } from '@vue/composition-api';
+import { inject, onUnmounted, onDeactivated } from '@vue/composition-api';
 
 export default (id, type, props, context) => {
   const condition = inject('condition');
@@ -23,6 +23,10 @@ export default (id, type, props, context) => {
   if (Object.keys(props).length > 0 && Object.keys(values).length === 0) {
     condition.updateInput({ ...props });
   }
+
+  onUnmounted(() => {
+    condition.updateInput({ clause: undefined });
+  });
 
   return () => {
     if (context.slots.default) {

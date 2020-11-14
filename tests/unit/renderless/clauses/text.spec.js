@@ -15,6 +15,35 @@ describe('Text clauses update blueprint', () => {
     },
   };
 
+  it('udpates blueprint when unmounted', () => {
+    const [{ component, id }] = textConfig;
+    const TestedClause = clauses[component];
+    const WrappedClause = {
+      name: 'clause-wrapper',
+      template: '<tested-clause value="Aaron" />',
+      components: {
+        TestedClause,
+      },
+    };
+
+    const wrapper = mount(TestTextClause, {
+      propsData: {
+        shouldRender: true,
+      },
+      slots: {
+        default: [WrappedClause],
+      },
+    });
+
+    let { input } = blueprint[0];
+    expect(input.clause).toBe(id);
+
+    wrapper.destroy();
+
+    input = blueprint[0].input;
+    expect(input.clause).toBe(undefined);
+  });
+
   it('updates blueprint when created', () => {
     textConfig.forEach(({ component, id, requires }) => {
       const WrappedClause = {
