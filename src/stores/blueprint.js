@@ -37,6 +37,13 @@ class Blueprint {
       throw new Error(`Can't find the condition with conditionId: ${conditionId} in the blueprint`);
     }
 
+    if (updates.clause && condition.input.clause) {
+      throw new Error(
+        `You must unmount the clause with id '${condition.input.clause}'` +
+          `before you can mount the clause with id '${updates.clause}'`
+      );
+    }
+
     // Do the update iteratively on the input object to preserve it
     // as an observable to anything that references it. Swapping it out
     // means you can't pass it directly to anything you would always have
