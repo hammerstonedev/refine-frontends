@@ -1,4 +1,4 @@
-import { inject, onUnmounted, onDeactivated } from '@vue/composition-api';
+import { inject, onUnmounted } from '@vue/composition-api';
 
 export default (id, type, props, context) => {
   const condition = inject('condition');
