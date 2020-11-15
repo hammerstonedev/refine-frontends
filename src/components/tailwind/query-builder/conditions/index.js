@@ -1,8 +1,7 @@
 import { h } from '@vue/composition-api';
 import ClauseSelector from '@/components/tailwind/query-builder/clause-selector';
-import * as textClauses from '@/components/tailwind/clauses/text';
 import * as RenderlessConditions from '@/components/renderless/conditions';
-//import * as textClauses from '@/components/tailwind/query-builder/clauses';
+import * as textClauses from '@/components/tailwind/query-builder/option-clauses/text';
 
 // TODO: jsx. this is hard to read.
 const useCondition = (condition, clauses, props, context) => {
