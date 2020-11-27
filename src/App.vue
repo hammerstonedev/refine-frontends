@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <query>
-      <text-condition id="firstName" value="bob is cool" />
-    </query>
-  </div>
+  <query>
+    <div>
+      <label>First Name
+        <text-condition id="first-name" value="Bob" />
+      </label>
+    </div>
+  </query>
 </template>
 
 <script>

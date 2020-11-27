@@ -42,7 +42,6 @@ const DoesNotStartWith = createTextClause(renderless.DoesNotStartWith);
 const DoesNotEndWith = createTextClause(renderless.DoesNotEndWith);
 const Contains = createTextClause(renderless.Contains);
 const DoesNotContain = createTextClause(renderless.DoesNotContain);
-// TODO: IsSet, IsNotSet
 
 export {
   Contains,
