@@ -24,9 +24,10 @@ export default (id, type, context) => {
   const { input } = condition;
 
   provide('condition', {
+    id,
+    input,
     type,
     updateInput: updates => blueprint.updateInput(id, updates),
-    input,
   });
 
   return () => {

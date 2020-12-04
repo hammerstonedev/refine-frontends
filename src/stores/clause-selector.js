@@ -1,7 +1,8 @@
 class ClauseSelector {
-  constructor() {
+  constructor(id) {
     this.clauses = {};
     this.selectedClauseId = '';
+    this.id = id;
   }
 
   registerClause(clause) {

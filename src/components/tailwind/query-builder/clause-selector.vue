@@ -27,9 +27,11 @@
        clauseSelector: this.clauseSelector,
      }
    },
+   inject: ['condition'],
    data() {
+     const { condition } = this;
      return {
-       clauseSelector: Vue.observable(new ClauseSelector()),
+       clauseSelector: Vue.observable(new ClauseSelector(condition.id)),
      };
    },
    computed: {
