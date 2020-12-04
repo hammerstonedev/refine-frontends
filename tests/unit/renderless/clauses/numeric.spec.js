@@ -1,32 +1,32 @@
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
-import clauses from '@/components/renderless/clauses/text';
+import clauses from '@/components/renderless/clauses/numeric';
 import config from '@/config/clauses-config';
-import { blueprint, TextQuery } from '../mock-query';
+import { blueprint, NumericQuery } from '../mock-query';
 
-describe('Text clauses update blueprint', () => {
+describe('Numeric clauses update blueprint', () => {
 
-  const { text: textConfig } = config;
-  const TestTextClause = {
-    name: 'test-text-clause',
-    template: '<text-query type="text"><slot></slot></text-query>',
+  const { numeric: numericConfig } = config;
+  const TestNumericClause = {
+    name: 'test-numeric-clause',
+    template: '<numeric-query><slot></slot></numeric-query>',
     components: {
-      TextQuery,
+      NumericQuery,
     },
   };
 
   it('udpates blueprint when unmounted', () => {
-    const [{ component, id }] = textConfig;
+    const [{ component, id }] = numericConfig;
     const TestedClause = clauses[component];
     const WrappedClause = {
       name: 'clause-wrapper',
-      template: '<tested-clause value="Aaron" />',
+      template: '<tested-clause value1="32" />',
       components: {
         TestedClause,
       },
     };
 
-    const wrapper = mount(TestTextClause, {
+    const wrapper = mount(TestNumericClause, {
       slots: {
         default: [WrappedClause],
       },
@@ -42,16 +42,16 @@ describe('Text clauses update blueprint', () => {
   });
 
   it('updates blueprint when created', () => {
-    textConfig.forEach(({ component, id, requires }) => {
+    numericConfig.forEach(({ component, id, requires }) => {
       const WrappedClause = {
         name: 'clause-wrapper',
-        template: '<tested-clause value="Aaron" />',
+        template: '<tested-clause value1="32" />',
         components: {
           TestedClause: clauses[component],
         },
       };
 
-      mount(TestTextClause, {
+      mount(TestNumericClause, {
         slots: {
           default: [WrappedClause],
         },
@@ -61,7 +61,7 @@ describe('Text clauses update blueprint', () => {
       const { input } = blueprint[0];
       expect(input.clause).toBe(id);
       if (requires.length > 0) {
-        expect(input.value).toBe('Aaron');
+        expect(input.value1).toBe('32');
       }
     });
   });

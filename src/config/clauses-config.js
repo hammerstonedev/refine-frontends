@@ -53,45 +53,56 @@ export default {
   numeric: [{
     id: "eq",
     display: "Is Equal To",
-    requires: ["value1"]
+    requires: ["value1"],
+    component: 'IsEqualTo',
   }, {
     id: "dne",
     display: "Is Not Equal To",
-    requires: ["value1"]
+    requires: ["value1"],
+    component: 'IsNotEqualTo',
   }, {
     id: "gt",
     display: "Is Greater Than",
-    requires: ["value1"]
+    requires: ["value1"],
+    component: 'IsGreaterThan',
   }, {
     id: "gte",
     display: "Is Greater Than Or Equal To",
-    requires: ["value1"]
+    requires: ["value1"],
+    component: 'IsGreaterThanOrEqualTo',
   }, {
     id: "lt",
     display: "Is Less Than",
-    requires: ["value1"]
+    requires: ["value1"],
+    component: 'IsLessThan',
   }, {
     id: "lte",
     display: "Is Less Than Or Equal To",
-    requires: ["value1"]
+    requires: ["value1"],
+    component: 'IsLessThanOrEqualTo',
   }, {
     id: "btwn",
     display: "Is Between",
     requires: ["value1",
-               "value2"]
+               "value2"],
+    component: 'IsBetween',
   }, {
     id: "nbtwn",
     display: "Is Not Between",
     requires: ["value1",
-               "value2"]
+               "value2"],
+    component: 'IsNotBetween',
   }, {
     id: "st",
     display: "Is Set",
-    requires: []
+    requires: [],
+    component: 'IsSet',
   }, {
     id: "nst",
     display: "Is Not Set",
-    requires: []}],
+    requires: [],
+    component: 'IsNotSet',
+  }],
   date: [{
     id: "eq",
     display: "Is Equal To",

@@ -1,4 +1,4 @@
 import config from '@/config/clauses-config';
 import { generateClauses } from '.';
 
-export default generateClauses('text', config.text);
+export default generateClauses('numeric', config.numeric);
