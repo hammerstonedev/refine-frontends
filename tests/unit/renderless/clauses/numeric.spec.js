@@ -43,9 +43,16 @@ describe('Numeric clauses update blueprint', () => {
 
   it('updates blueprint when created', () => {
     numericConfig.forEach(({ component, id, requires }) => {
+      let template = '<tested-clause />';
+      if (requires.length === 1) {
+        template = '<tested-clause value1="32" />';
+      } else if (requires.length === 2) {
+        template = '<tested-clause value1="32" value2="34" />';
+      }
+
       const WrappedClause = {
         name: 'clause-wrapper',
-        template: '<tested-clause value1="32" />',
+        template,
         components: {
           TestedClause: clauses[component],
         },
@@ -60,8 +67,16 @@ describe('Numeric clauses update blueprint', () => {
       expect(blueprint.length).toBe(1);
       const { input } = blueprint[0];
       expect(input.clause).toBe(id);
-      if (requires.length > 0) {
+      if (requires.length === 0 ) {
+        expect(input.value1).toBe(undefined);
+        expect(input.value2).toBe(undefined);
+      }
+      if (requires.length === 1) {
         expect(input.value1).toBe('32');
+      }
+      if (requires.length === 2) {
+        expect(input.value1).toBe('32');
+        expect(input.value2).toBe('34');
       }
     });
   });
