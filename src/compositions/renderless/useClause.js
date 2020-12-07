@@ -8,7 +8,7 @@ export default (id, type, props, context) => {
   };
 
   if (!condition) {
-    throw new Error('Text clause must be used within a condition.');
+    throw new Error('A clause must be used within a condition.');
   }
 
   if (condition.type !== type) {
