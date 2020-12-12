@@ -1,4 +1,8 @@
-import { TextCondition } from './conditions';
+import { TextCondition, NumericCondition } from './conditions';
 import Query from '@/components/renderless/query';
 
-export { TextCondition, Query };
+export {
+  NumericCondition,
+  TextCondition,
+  Query
+};
