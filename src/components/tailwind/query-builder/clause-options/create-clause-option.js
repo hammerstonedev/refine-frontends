@@ -11,10 +11,6 @@ const createClauseOption = (ClauseComponent, clauses) => {
         type: Boolean,
         required: false,
       },
-      value: {
-        type: String,
-        required: false,
-      },
     },
     render(h) {
       return h(ClauseOption, {
@@ -26,7 +22,7 @@ const createClauseOption = (ClauseComponent, clauses) => {
         scopedSlots: {
           default: () => {
             return h(ClauseComponent, {
-              props: { value: this.$props.value },
+              props: this.$attrs,
             });
           }
         },

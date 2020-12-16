@@ -1,6 +1,5 @@
 <template>
   <clause-option
-    :value="value"
     :id="id"
     :display="display"
     :selected="selected"
@@ -22,10 +21,6 @@
        required: true,
      },
      display: {
-       type: String,
-       required: false,
-     },
-     value: {
        type: String,
        required: false,
      },

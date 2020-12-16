@@ -22,7 +22,7 @@ const createNumericClause = (ClauseComponent) => {
             default: ({ value1, setValue }) => {
               return h(NumberInput, {
                 props: {
-                  value1,
+                  value: value1,
                 },
                 on: {
                   input: setValue,
