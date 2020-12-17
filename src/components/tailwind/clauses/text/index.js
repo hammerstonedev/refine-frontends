@@ -23,7 +23,7 @@ const createTextClause = (ClauseComponent) => {
                   value,
                 },
                 on: {
-                  input: setValue,
+                  input: value => setValue({ value }),
                 },
               });
             },

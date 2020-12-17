@@ -3,8 +3,8 @@ import { inject, onUnmounted } from '@vue/composition-api';
 export default (id, type, props, context) => {
   const condition = inject('condition');
 
-  const setValue = (value) => {
-    condition.updateInput({ value });
+  const setValue = (input) => {
+    condition.updateInput(input);
   };
 
   if (!condition) {
