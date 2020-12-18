@@ -25,7 +25,12 @@ export default (id, type, props, context) => {
   }
 
   onUnmounted(() => {
-    condition.updateInput({ clause: undefined });
+    // only mark the clause as empty if when unmounting no other
+    // clause has been selected. Mounting/unmounting happens in the
+    // order that the components were rendered.
+    if (condition.input.clause === id) {
+      condition.updateInput({ clause: undefined });
+    }
   });
 
   return () => {

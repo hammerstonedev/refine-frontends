@@ -25,7 +25,7 @@ const createNumericClause = (ClauseComponent) => {
                   value: value1,
                 },
                 on: {
-                  input: value1 => setValue({ value1 }),
+                  input: value => setValue({ value1: value }),
                 },
               });
             },

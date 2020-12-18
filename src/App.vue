@@ -6,9 +6,9 @@
       </label>
 
       <label>Age
-        <numeric-condition id="age" :value="32" />
+        <numeric-condition id="age" :from="32" :to="34" />
       </label>
-           <!--
+      <!--
            <label>Age
            <numeric-condition id="age" :from="32" :to="37" />
            </label>

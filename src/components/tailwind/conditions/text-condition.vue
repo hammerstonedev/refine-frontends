@@ -3,9 +3,7 @@
     <base-condition
       :clauseOptions="{...$options.clauseOptions}"
       :value="value"
-    >
-      <slot></slot>
-    </base-condition>
+    />
   </renderless-text-condition>
 </template>
 
