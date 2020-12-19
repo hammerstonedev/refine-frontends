@@ -1,21 +1,8 @@
+import { clauseOptionProps } from '@/mixins';
+
 export default {
   inject: ['clauseSelector'],
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-    display: {
-      type: String,
-      required: false,
-      default: null,
-    },
-    selected: {
-      type: Boolean,
-      required: false,
-      default: null,
-    },
-  },
+  mixins: [clauseOptionProps],
   computed: {
     isSelected: function() {
       const { selectedClauseId } = this.clauseSelector;

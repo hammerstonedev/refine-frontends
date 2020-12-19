@@ -14,7 +14,7 @@
 </template>
 
 <script>
- import ClauseSelector from '@/components/tailwind/query-builder/clause-selector';
+ import ClauseSelector from '@/components/tailwind/clause-selector';
 
  export default {
    name: 'base-condition',
