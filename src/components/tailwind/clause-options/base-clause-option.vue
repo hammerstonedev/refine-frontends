@@ -5,10 +5,12 @@
     :selected="selected"
   >
     <div>
-      <component
-        :is="ClauseComponent"
-        v-bind="$attrs"
-      />
+      <slot>
+        <component
+          :is="ClauseComponent"
+          v-bind="$attrs"
+        />
+      </slot>
     </div>
   </clause-option>
 </template>
@@ -22,7 +24,7 @@
    props: {
      ClauseComponent: {
        type: Object,
-       required: true,
+       required: false,
      },
    },
    components: {
