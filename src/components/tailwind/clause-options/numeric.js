@@ -8,6 +8,8 @@ import {
   IsGreaterThanOrEqualTo,
   IsLessThan,
   IsLessThanOrEqualTo,
+  IsBetween,
+  IsNotBetween
 } from '@/components/tailwind/clauses/numeric';
 
 // Lookup by component name
@@ -17,6 +19,32 @@ const config = clausesConfig.numeric.reduce((clauses, { id, display, component }
     ...clauses,
   };
 }, {});
+
+const IsBetweenOption = {
+  name: 'is-between-option',
+  mixins: [clauseSelectedProp],
+  setup(props, context) {
+    return useClauseOption(
+      props,
+      context,
+      config.IsBetween,
+      IsBetween,
+    );
+  },
+};
+
+const IsNotBetweenOption = {
+  name: 'is-not-between-option',
+  mixins: [clauseSelectedProp],
+  setup(props, context) {
+    return useClauseOption(
+      props,
+      context,
+      config.IsNotBetween,
+      IsNotBetween,
+    );
+  },
+};
 
 const IsEqualToOption = {
   name: 'is-equal-to-option',
@@ -97,6 +125,8 @@ const IsLessThanOption = {
 };
 
 export {
+  IsBetweenOption,
+  IsNotBetweenOption,
   IsEqualToOption,
   IsNotEqualToOption,
   IsGreaterThanOption,

@@ -7,7 +7,14 @@ import {
   IsLessThanOrEqualTo,
 } from './numeric-single-clauses';
 
+import {
+  IsBetween,
+  IsNotBetween,
+} from './numeric-double-clauses';
+
 export {
+  IsBetween,
+  IsNotBetween,
   IsEqualTo,
   IsNotEqualTo,
   IsGreaterThan,

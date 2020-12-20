@@ -3,8 +3,8 @@
     <base-condition
       :clauseOptions="{...$options.clauseOptions}"
       :to="to"
-      :from="from"
-      :value="value"
+      :from="from || value"
+      :value="value || to"
     >
       <slot></slot>
     </base-condition>
