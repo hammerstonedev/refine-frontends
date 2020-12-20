@@ -2,8 +2,9 @@
   <renderless-numeric-condition :id="id">
     <base-condition
       :clauseOptions="{...$options.clauseOptions}"
-      :value1="from || value"
-      :value2="to"
+      :to="to"
+      :from="from"
+      :value="value"
     >
       <slot></slot>
     </base-condition>
