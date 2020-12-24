@@ -16,11 +16,11 @@
 </template>
 
 <script>
- import ClauseOption from '@/components/renderless/clause-option';
- import { clauseOptionProps } from '@/mixins';
+ import ClauseOption from '@/components/renderless/selector/option';
+ import { optionProps } from '@/mixins';
 
  export default {
-   mixins: [clauseOptionProps],
+   mixins: [optionProps],
    props: {
      ClauseComponent: {
        type: Object,

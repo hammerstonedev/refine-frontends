@@ -1,3 +1,3 @@
-import { clauseOptionProps } from './clause-option';
+import { optionProps } from './option';
 
-export { clauseOptionProps };
+export { optionProps };

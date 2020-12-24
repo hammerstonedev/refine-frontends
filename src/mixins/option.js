@@ -1,4 +1,4 @@
-const clauseOptionProps = {
+const optionProps = {
   props: {
     id: {
       type: String,
@@ -16,4 +16,4 @@ const clauseOptionProps = {
   }
 };
 
-export { clauseOptionProps };
+export { optionProps };
