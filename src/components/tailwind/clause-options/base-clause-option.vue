@@ -1,5 +1,5 @@
 <template>
-  <clause-option
+  <renderless-option
     :id="id"
     :display="display"
     :selected="selected"
@@ -12,11 +12,11 @@
         />
       </slot>
     </div>
-  </clause-option>
+  </renderless-option>
 </template>
 
 <script>
- import ClauseOption from '@/components/renderless/selector/option';
+ import RenderlessOption from '@/components/renderless/renderless-option';
  import { optionProps } from '@/mixins';
 
  export default {
@@ -28,7 +28,7 @@
      },
    },
    components: {
-     ClauseOption,
+     RenderlessOption,
    },
  };
 </script>

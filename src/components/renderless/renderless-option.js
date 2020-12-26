@@ -1,6 +1,7 @@
 import { optionProps } from '@/mixins';
 
 export default {
+  name: 'renderless-option',
   inject: ['selector'],
   mixins: [optionProps],
   computed: {
