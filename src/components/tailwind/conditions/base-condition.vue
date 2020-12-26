@@ -1,6 +1,5 @@
 <template>
-  <!-- clause selector should pass down selected clause ID? I thought it handled this internally... -->
-  <clause-selector>
+  <selector>
     <slot>
       <component
         v-for="(clauseOption, key, index) in clauseOptions"
@@ -10,16 +9,16 @@
         v-bind="$attrs"
       />
     </slot>
-  </clause-selector>
+  </selector>
 </template>
 
 <script>
- import ClauseSelector from '@/components/tailwind/clause-selector';
+ import Selector from '@/components/tailwind/selector';
 
  export default {
    name: 'base-condition',
    components: {
-     ClauseSelector
+     Selector
    },
    props: {
      clauseOptions: {
