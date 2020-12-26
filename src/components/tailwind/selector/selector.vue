@@ -9,7 +9,7 @@
       @click="toggle()"
     >
       <span class="block truncate">
-        {{  selectedOption && selectedOption.display }}
+        {{  selector.selectedOption && selector.selectedOption.display }}
       </span>
       <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
         <!-- Heroicon name: selector -->
@@ -29,10 +29,10 @@
         :class="{ hidden: closed }"
       >
         <selector-option
-          v-for="option in options"
+          v-for="option in selector.options"
           :key="option.id"
           :option="option"
-          :selected="option === selectedOption"
+          :selected="option === selector.selectedOption"
           @click="selectOption(option.id)"
         />
       </ul>
@@ -42,14 +42,17 @@
 </template>
 
 <script>
+ import Vue from 'vue';
  import SelectorOption from './selector-option';
+ import SelectorStore from '@/stores/selector';
 
  export default {
    name: 'selector',
+   inject: ['condition'],
    data() {
+     const { condition } = this;
      return {
-       selectedOption: null,
-       options: [],
+       selector: Vue.observable(new SelectorStore(condition.id)),
        closed: true,
      };
    },
@@ -58,19 +61,9 @@
        selector: this.selector,
      };
    },
-   computed: {
-     selector: function() {
-       const { registerOption, selectOption, selectedOption } = this;
-       return {
-         registerOption,
-         selectedOption,
-         selectOption,
-       };
-     },
-   },
    methods: {
      registerOption(option) {
-       this.options.push(option);
+       this.selector.registerOption(option);
      },
      close() {
        this.closed = true;
@@ -82,15 +75,7 @@
        this.closed = !this.closed;
      },
      selectOption(optionId) {
-       let option;
-       for (var i = 0; i < this.options.length; i++) {
-         const currentOption = this.options[i];
-         if (currentOption.id === optionId) {
-           option = currentOption;
-           break;
-         }
-       }
-       this.selectedOption = option;
+       this.selector.selectOption(optionId);
        this.close();
      },
    },
