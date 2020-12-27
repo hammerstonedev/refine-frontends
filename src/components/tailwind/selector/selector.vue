@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-start">
+  <div>
     <!-- Select dropdown -->
-    <div class="relative">
+    <div class="relative sm:inline-block w-56 mr-4">
       <button
         type="button"
         aria-haspopup="listbox"
@@ -41,7 +41,7 @@
       </div>
     </div>
     <!-- Custom options -->
-    <div class="pl-4">
+    <div class="sm:inline-block w-full pt-4 md:w-auto md:pt-0">
       <slot></slot>
     </div>
   </div>

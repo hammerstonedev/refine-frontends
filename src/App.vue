@@ -1,6 +1,6 @@
 <template>
   <query>
-    <div class="w-1/2 p-4">
+    <div class="p-4">
       <div class="pt-4">
         <label>Age
           <text-condition id="first-name" value="Bob" class="pt-2" />
