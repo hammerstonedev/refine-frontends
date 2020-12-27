@@ -1,17 +1,20 @@
 <template>
   <query>
-    <div class="w-1/2">
-      <div class="flex justify-start items-center pt-4">
-        <label class="pr-4 w-40">Age</label>
-        <text-condition id="first-name" value="Bob" />
+    <div class="w-1/2 p-4">
+      <div class="pt-4">
+        <label>Age
+          <text-condition id="first-name" value="Bob" class="pt-2" />
+        </label>
       </div>
-      <div class="flex justify-start items-center pt-4">
-        <label class="pr-4 w-40">Age</label>
-        <numeric-condition id="age" :value="32" />
+      <div class="pt-4">
+        <label>Age
+          <numeric-condition id="age" :value="32" class="pt-2" />
+        </label>
       </div>
-      <div class="flex justify-start items-center pt-4">
-        <label class="pr-4 w-40">Hotness</label>
-        <numeric-condition id="hotness" :from="7" :to="10" />
+      <div class="pt-4">
+        <label>Hotness
+          <numeric-condition id="hotness" :from="7" :to="10" class="pt-2" />
+        </label>
       </div>
     </div>
   </query>
