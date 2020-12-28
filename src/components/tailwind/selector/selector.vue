@@ -6,7 +6,6 @@
         type="button"
         aria-haspopup="listbox"
         :aria-expanded="open"
-        aria-labelledby="listbox-label"
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         @click="toggle()"
       >
@@ -25,7 +24,6 @@
         <ul
           tabindex="-1"
           role="listbox"
-          aria-labelledby="listbox-label"
           aria-activedescendant="listbox-item-3"
           class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
           :class="{ hidden: closed }"
@@ -35,7 +33,7 @@
             :key="option.id"
             :option="option"
             :selected="option === selector.selectedOption"
-            @click="selectOption(option.id)"
+            @click.native="selectOption(option.id)"
           />
         </ul>
       </div>
