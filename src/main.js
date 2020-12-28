@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
+import './directives';
 import App from './App.vue';
 
 import './assets/styles/index.css';

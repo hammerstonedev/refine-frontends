@@ -1,7 +1,11 @@
 <template>
   <div>
     <!-- Select dropdown -->
-    <div class="relative sm:inline-block w-56 mr-4">
+    <div
+      class="relative sm:inline-block w-56 mr-4"
+      :id="`listbox-selector-${selectorId}`"
+      v-click-away="close"
+    >
       <button
         type="button"
         aria-haspopup="listbox"
