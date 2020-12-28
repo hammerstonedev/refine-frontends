@@ -50,7 +50,7 @@ const IsLessThan = {
   name: 'is-less-than',
   mixins: [numericSingleProps],
   setup(props) {
-    return numericSingleProps(
+    return useNumericSingleClause(
       props,
       renderless.IsLessThan,
     );
@@ -61,7 +61,7 @@ const IsLessThanOrEqualTo = {
   name: 'is-less-than-or-equal-to',
   mixins: [numericSingleProps],
   setup(props) {
-    return numericSingleProps(
+    return useNumericSingleClause(
       props,
       renderless.IsLessThanOrEqualTo,
     );
