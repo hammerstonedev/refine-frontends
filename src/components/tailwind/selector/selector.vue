@@ -30,6 +30,7 @@
         >
           <selector-option
             v-for="option in selector.options"
+            :id="`list-box-${selectorId}-${option.id}`"
             :key="option.id"
             :option="option"
             :selected="option === selector.selectedOption"
@@ -58,6 +59,7 @@
      return {
        selector: Vue.observable(new SelectorStore(condition.id)),
        closed: true,
+       selectorId: condition.id,
      };
    },
    provide() {
