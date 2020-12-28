@@ -21,7 +21,7 @@
         </span>
       </button>
 
-      <div class="absolute mt-1 w-full rounded-md bg-white shadow-lg">
+      <div class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10">
         <ul
           tabindex="-1"
           role="listbox"
