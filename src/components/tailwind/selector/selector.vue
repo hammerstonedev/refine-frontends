@@ -2,7 +2,7 @@
   <div>
     <!-- Select dropdown -->
     <div
-      class="relative sm:inline-block w-56 mr-4"
+      class="relative sm:inline-block w-60 mr-4"
       :id="`listbox-selector-${selectorId}`"
       v-click-away="close"
     >
@@ -11,7 +11,8 @@
         aria-haspopup="listbox"
         :aria-expanded="open"
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        @click="toggle()"
+        @click="toggle"
+        @keydown.arrow-down.stop.prevent="open"
       >
         <span class="block truncate">
           {{  selector.selectedOption && selector.selectedOption.display }}

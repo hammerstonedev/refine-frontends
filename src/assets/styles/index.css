@@ -4,6 +4,6 @@
 
 @layer components {
   .text-input {
-    @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-56 border-gray-300 rounded-md sm:text-sm
+    @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-60 border-gray-300 rounded-md sm:text-sm
   }
 }
