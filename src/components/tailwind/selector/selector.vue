@@ -43,7 +43,8 @@
             :optionId="option.id"
             :optionDisplay="option.display"
             :selected="option === selector.selectedOption"
-            :highlighted="option === highlightedOption"
+            :isHighlighted="option === highlightedOption"
+            :ref="option.id"
             @mouseenter.native="highlightedOption = option"
             @mouseleave.native="highlightedOption = null"
             @click.native="selectOption(option.id)"
@@ -117,12 +118,20 @@
        this.close();
      },
      highlightNextOption() {
-       this.highlightedOption = this.highlightedOption?.nextOption;
-       console.log(this.highlightedOption);
+       const nextOption = this.highlightedOption?.nextOption;
+       if (nextOption) {
+         this.highlightedOption = nextOption;
+         const listItem = this.$refs[this.highlightedOption.id][0];
+         listItem.scrollIntoView();
+       }
      },
      highlightPreviousOption() {
-       this.highlightedOption = this.highlightedOption?.previousOption;
-       console.log(this.highlightedOption);
+       const previousOption = this.highlightedOption?.previousOption;
+       if (previousOption) {
+         this.highlightedOption = previousOption;
+         const listItem = this.$refs[this.highlightedOption.id][0];
+         listItem.scrollIntoView();
+       }
      },
    },
    components: {

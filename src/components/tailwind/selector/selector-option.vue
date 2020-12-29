@@ -2,8 +2,9 @@
   <li
     role="option"
     class="cursor-default select-none relative py-2 pl-3 pr-9"
-    :class="{'text-white bg-indigo-600': highlighted, 'text-gray-900': !highlighted }"
+    :class="{'text-white bg-indigo-600': isHighlighted, 'text-gray-900': !isHighlighted }"
     :key="optionId"
+    ref="listItem"
   >
     <span
       class="font-normal block truncate"
@@ -13,7 +14,7 @@
     </span>
 
     <span
-      :class="{ 'text-white': highlighted, 'text-indigo-600': !highlighted }"
+      :class="{ 'text-white': isHighlighted, 'text-indigo-600': !isHighlighted }"
       class="absolute inset-y-0 right-0 flex items-center pr-4"
     >
       <!-- Heroicon name: check -->
@@ -48,10 +49,15 @@
        required: false,
        default: false,
      },
-     highlighted: {
+     isHighlighted: {
        type: Boolean,
        required: false,
        default: false,
+     },
+   },
+   methods: {
+     scrollIntoView: function() {
+       this.$refs.listItem.scrollIntoView(false);
      },
    },
  };
