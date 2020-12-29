@@ -1,6 +1,7 @@
 <template>
   <li
-    id="listbox-option-0" role="option"
+    :id="`listbox-option-${option.id}`"
+    role="option"
     class="cursor-default select-none relative py-2 pl-3 pr-9"
     :class="{'text-white bg-indigo-600': highlighted, 'text-gray-900': !highlighted }"
     :key="option.id"

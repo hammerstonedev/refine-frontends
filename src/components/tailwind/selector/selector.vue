@@ -11,7 +11,7 @@
         aria-haspopup="listbox"
         :aria-expanded="open"
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        @click="toggle"
+        @click.prevent.stop="toggle"
         @keydown.arrow-down.stop.prevent="open"
       >
         <span class="block truncate">
@@ -29,9 +29,10 @@
         <ul
           tabindex="-1"
           role="listbox"
-          aria-activedescendant="listbox-item-3"
+          :aria-activedescendant="selector.selectedOption ? `listbox-option-${selector.selectedOption.id}` : null"
           class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
           :class="{ hidden: closed }"
+          ref="listBox"
         >
           <selector-option
             v-for="option in selector.options"
@@ -81,9 +82,16 @@
      },
      open() {
        this.closed = false;
+       Vue.nextTick(() => {
+         this.$refs.listBox.focus();
+       });
      },
      toggle() {
-       this.closed = !this.closed;
+       if (this.closed) {
+         this.open();
+       } else {
+         this.close();
+       }
      },
      selectOption(optionId) {
        this.selector.selectOption(optionId);
