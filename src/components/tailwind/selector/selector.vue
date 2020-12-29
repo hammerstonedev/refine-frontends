@@ -9,13 +9,13 @@
       <button
         type="button"
         aria-haspopup="listbox"
-        :aria-expanded="open"
+        :aria-expanded="isOpen"
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         @click.prevent.stop="toggle"
         @keydown.arrow-down.stop.prevent="open"
       >
         <span class="block truncate">
-          {{  selector.selectedOption && selector.selectedOption.display }}
+          {{  selectedOptionDisplay }}
         </span>
         <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
           <!-- Heroicon name: selector -->
@@ -29,17 +29,21 @@
         <ul
           tabindex="-1"
           role="listbox"
-          :aria-activedescendant="selector.selectedOption ? `listbox-option-${selector.selectedOption.id}` : null"
+          :aria-activedescendant="selector.selectedOption ? `listbox-option-${selectedOptionId}` : null"
           class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
-          :class="{ hidden: closed }"
+          :class="{ hidden: isClosed }"
           ref="listBox"
         >
           <selector-option
             v-for="option in selector.options"
             :id="`list-box-${selectorId}-${option.id}`"
             :key="option.id"
-            :option="option"
+            :optionId="option.id"
+            :optionDisplay="option.display"
             :selected="option === selector.selectedOption"
+            :highlighted="option.id === highlightedOptionId"
+            @mouseenter.native="highlightedOptionId = option.id"
+            @mouseleave.native="highlightedOptionId = ''"
             @click.native="selectOption(option.id)"
           />
         </ul>
@@ -64,7 +68,8 @@
      const { condition } = this;
      return {
        selector: Vue.observable(new SelectorStore(condition.id)),
-       closed: true,
+       isClosed: true,
+       highlightedOptionId: '',
        selectorId: condition.id,
      };
    },
@@ -73,21 +78,32 @@
        selector: this.selector,
      };
    },
-   methods: {
-     registerOption(option) {
-       this.selector.registerOption(option);
+   computed: {
+     selectedOption() {
+       return this.selector.selectedOption;
      },
+     selectedOptionId() {
+       return this.selectedOption && this.selectedOption.id;
+     },
+     selectedOptionDisplay() {
+       return this.selectedOption && this.selectedOption.display;
+     },
+     isOpen() {
+       return !this.isClosed;
+     },
+   },
+   methods: {
      close() {
-       this.closed = true;
+       this.isClosed = true;
      },
      open() {
-       this.closed = false;
+       this.isClosed = false;
        Vue.nextTick(() => {
          this.$refs.listBox.focus();
        });
      },
      toggle() {
-       if (this.closed) {
+       if (this.isClosed) {
          this.open();
        } else {
          this.close();

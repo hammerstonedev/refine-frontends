@@ -1,18 +1,15 @@
 <template>
   <li
-    :id="`listbox-option-${option.id}`"
     role="option"
     class="cursor-default select-none relative py-2 pl-3 pr-9"
     :class="{'text-white bg-indigo-600': highlighted, 'text-gray-900': !highlighted }"
-    :key="option.id"
-    @mouseenter="highlighted = true"
-    @mouseleave="highlighted = false"
+    :key="optionId"
   >
     <span
       class="font-normal block truncate"
       :class="{ 'font-semibold': selected }"
     >
-      {{ option.display }}
+      {{ optionDisplay }}
     </span>
 
     <span
@@ -37,17 +34,21 @@
 <script>
  export default {
    name: 'selector-option',
-   data() {
-     return {
-       highlighted: false,
-     };
-   },
    props: {
-     option: {
-       type: Object,
+     optionId: {
+       type: String,
+       required: true,
+     },
+     optionDisplay: {
+       type: String,
        required: true,
      },
      selected: {
+       type: Boolean,
+       required: false,
+       default: false,
+     },
+     highlighted: {
        type: Boolean,
        required: false,
        default: false,
