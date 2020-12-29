@@ -5,13 +5,16 @@
       class="relative sm:inline-block w-60 mr-4"
       :id="`listbox-selector-${selectorId}`"
       v-click-away="close"
+      :aria-labelledby="`button-${selectorId}`"
     >
       <button
+        :id="`button-${selectorId}`"
         type="button"
         aria-haspopup="listbox"
         :aria-expanded="isOpen"
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        @click.prevent.stop="toggle"
+        ref="button"
+        @click.prevent="toggle"
         @keydown.arrow-down.stop.prevent="open"
       >
         <span class="block truncate">
@@ -36,6 +39,8 @@
           @keydown.arrow-down.stop.prevent="highlightNextOption"
           @keydown.arrow-up.stop.prevent="highlightPreviousOption"
           @keydown.enter.stop.prevent="selectOption(highlightedOption.id)"
+          @keydown.escape.stop.prevent="close"
+          @keydown.tab.stop.prevent="close"
         >
           <selector-option
             v-for="option in selector.options"
@@ -98,13 +103,21 @@
    },
    methods: {
      close() {
-       this.isClosed = true;
+       // conditionally call this otherwise
+       // the button will refocus over and over again
+       if(!this.isClosed) {
+         this.isClosed = true;
+         Vue.nextTick(() => {
+           this.$refs.button.focus();
+         });
+       }
      },
      open() {
        this.isClosed = false;
        this.highlightedOption = this.selectedOption;
        Vue.nextTick(() => {
          this.$refs.listBox.focus();
+         this.scrollIntoView(this.highlightedOption?.id);
        });
      },
      toggle() {
@@ -118,20 +131,22 @@
        this.selector.selectOption(optionId);
        this.close();
      },
+     scrollIntoView(optionId) {
+       const listItem = this.$refs[optionId][0];
+       listItem.scrollIntoView();
+     },
      highlightNextOption() {
        const nextOption = this.highlightedOption?.nextOption;
        if (nextOption) {
          this.highlightedOption = nextOption;
-         const listItem = this.$refs[this.highlightedOption.id][0];
-         listItem.scrollIntoView();
+         this.scrollIntoView(this.highlightedOption.id);
        }
      },
      highlightPreviousOption() {
        const previousOption = this.highlightedOption?.previousOption;
        if (previousOption) {
          this.highlightedOption = previousOption;
-         const listItem = this.$refs[this.highlightedOption.id][0];
-         listItem.scrollIntoView();
+         this.scrollIntoView(this.highlightedOption.id);
        }
      },
    },
