@@ -33,6 +33,8 @@
           class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
           :class="{ hidden: isClosed }"
           ref="listBox"
+          @keydown.arrow-down.stop.prevent="highlightNextOption"
+          @keydown.arrow-up.stop.prevent="highlightPreviousOption"
         >
           <selector-option
             v-for="option in selector.options"
@@ -41,9 +43,9 @@
             :optionId="option.id"
             :optionDisplay="option.display"
             :selected="option === selector.selectedOption"
-            :highlighted="option.id === highlightedOptionId"
-            @mouseenter.native="highlightedOptionId = option.id"
-            @mouseleave.native="highlightedOptionId = ''"
+            :highlighted="option === highlightedOption"
+            @mouseenter.native="highlightedOption = option"
+            @mouseleave.native="highlightedOption = null"
             @click.native="selectOption(option.id)"
           />
         </ul>
@@ -69,7 +71,7 @@
      return {
        selector: Vue.observable(new SelectorStore(condition.id)),
        isClosed: true,
-       highlightedOptionId: '',
+       highlightedOption: null,
        selectorId: condition.id,
      };
    },
@@ -98,6 +100,7 @@
      },
      open() {
        this.isClosed = false;
+       this.highlightedOption = this.selectedOption;
        Vue.nextTick(() => {
          this.$refs.listBox.focus();
        });
@@ -112,6 +115,14 @@
      selectOption(optionId) {
        this.selector.selectOption(optionId);
        this.close();
+     },
+     highlightNextOption() {
+       this.highlightedOption = this.highlightedOption?.nextOption;
+       console.log(this.highlightedOption);
+     },
+     highlightPreviousOption() {
+       this.highlightedOption = this.highlightedOption?.previousOption;
+       console.log(this.highlightedOption);
      },
    },
    components: {

@@ -21,7 +21,19 @@ class Selector {
       throw new Error(`An option with id ${optionId} has already been registered for condition ${this.conditionId}.`);
     }
 
-    this.options.push(newOption);
+    const previousOption = this.options[this.options.length - 1] || null;
+
+    const currentOption = {
+      previousOption,
+      nextOption: null,
+      ...newOption,
+    };
+
+    if (previousOption) {
+      previousOption.nextOption = currentOption;
+    }
+
+    this.options.push(currentOption);
   }
 
   selectOption(optionId) {
