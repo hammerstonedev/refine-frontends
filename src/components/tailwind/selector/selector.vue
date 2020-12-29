@@ -35,6 +35,7 @@
           ref="listBox"
           @keydown.arrow-down.stop.prevent="highlightNextOption"
           @keydown.arrow-up.stop.prevent="highlightPreviousOption"
+          @keydown.enter.stop.prevent="selectOption(highlightedOption.id)"
         >
           <selector-option
             v-for="option in selector.options"
