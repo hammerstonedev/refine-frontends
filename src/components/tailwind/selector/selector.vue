@@ -35,9 +35,9 @@
           :selected="option === selectedOption"
           :isHighlighted="option === highlightedOption"
           :ref="option.id"
-          @mouseenter.native="highlightedOption = option"
-          @mouseleave.native="highlightedOption = null"
-          @click.native="selectOption(option.id)"
+          @mouseenter="highlightedOption = option"
+          @mouseleave="highlightedOption = null"
+          @click="selectOption(option.id)"
         />
       </selector-listbox>
     </div>

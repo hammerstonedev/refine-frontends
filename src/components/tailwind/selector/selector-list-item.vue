@@ -5,6 +5,9 @@
     :class="{'text-white bg-indigo-600': isHighlighted, 'text-gray-900': !isHighlighted }"
     :key="optionId"
     ref="listItem"
+    @mouseenter="$emit('mouseenter')"
+    @mouseleave="$emit('mouseleave')"
+    @click="$emit('click')"
   >
     <span
       class="font-normal block truncate"
