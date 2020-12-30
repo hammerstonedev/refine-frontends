@@ -1,14 +1,14 @@
 <template>
   <renderless-selector
     :selectorId="selectorId"
-    v-slot="{ close, open, toggle, isOpen, isClosed, selectedOption, highlightedOption, selectOption, selectHighlightedOption, options, highlightNextOption, highlightPreviousOption, highlightOption }"
+    v-slot="{ actions, isOpen, isClosed, selectedOption, highlightedOption, options }"
   >
     <div>
       <!-- Select dropdown -->
       <div
         class="relative sm:inline-block w-60 mr-4"
         :id="`listbox-${selectorId}`"
-        v-click-away="clickAway(close)"
+        v-click-away="actions.close"
         :aria-labelledby="buttonId"
       >
         <selector-button
@@ -16,18 +16,18 @@
           :selectorId="selectorId"
           :isOpen="isOpen"
           :display="selectedOption ? selectedOption.display : ''"
-          @toggle="toggle(focusListbox, focusButton)"
-          @open="open(focusListbox)"
+          @toggle="toggle(actions)"
+          @open="open(actions)"
           ref="button"
         />
         <selector-listbox
           :selectedOption="selectedOption"
           :isClosed="isClosed"
           ref="listBox"
-          @highlightNextOption="highlightNextOption"
-          @highlightPreviousOption="highlightPreviousOption"
-          @selectOption="selectHighlightedOption"
-          @close="close(focusButton)"
+          @highlightNextOption="highlightNextOption(actions)"
+          @highlightPreviousOption="highlightPreviousOption(actions)"
+          @selectOption="actions.selectOption(highlightedOption.id)"
+          @close="close(actions)"
           v-slot="{ itemIdGenerator }"
         >
           <selector-list-item
@@ -39,9 +39,9 @@
             :selected="option === selectedOption"
             :isHighlighted="option === highlightedOption"
             :ref="option.id"
-            @mouseenter="highlightOption"
-            @mouseleave="highlightOption(null)"
-            @click="selectOption(option.id)"
+            @mouseenter="highlightOption(actions, option)"
+            @mouseleave="highlightOption(actions, null)"
+            @click="actions.selectOption(option.id)"
           />
         </selector-listbox>
       </div>
@@ -73,31 +73,50 @@
      },
    },
    methods: {
-     clickAway(close) {
-       return () => close(this.focusButton);
-     },
      scrollIntoView(optionId) {
        if (optionId) {
          const listItem = this.$refs[optionId][0];
          listItem.scrollIntoView();
        }
      },
-     focusListbox() {
-       this.$refs.listBox.focus();
-       // how?
-       // this.scrollIntoView(this.highlightedOption?.id);
+     close({ close }) {
+       close().then(({ isClosed }) => {
+         if (isClosed) {
+           this.$refs.button.focus();
+         }
+       });
      },
-     focusButton() {
-       this.$refs.button.focus();
+     open({ open }) {
+       open().then(({ selectedOption }) => {
+         this.$refs.listBox.focus();
+         this.scrollIntoView(selectedOption?.id);
+       });
      },
-/*     highlightNextOption() {
-       const option = this.$slots.default.highlightNextOption();
-       this.scrollIntoView(option && option.id);
+     toggle({ toggle }) {
+       toggle().then(({ isOpen, selectedOption }) => {
+         if (isOpen) {
+           this.$refs.listBox.focus();
+           this.scrollIntoView(selectedOption?.id);
+         } else {
+           this.$refs.button.focus();
+         }
+       });
      },
-     highlightPreviousOption() {
-       const option = this.$slots.default.highlightPreviousOption();
-       this.scrollIntoView(option && option.id);
-     },*/
+     highlightOption({ highlightOption }, option) {
+       highlightOption(option).then(({ highlightedOption }) => {
+         this.scrollIntoView(highlightedOption?.id);
+       })
+     },
+     highlightNextOption({ highlightNextOption }) {
+       highlightNextOption().then(({ highlightedOption }) => {
+         this.scrollIntoView(highlightedOption?.id);
+       });
+     },
+     highlightPreviousOption({ highlightPreviousOption }) {
+       highlightPreviousOption().then(({ highlightedOption }) => {
+         this.scrollIntoView(highlightedOption?.id);
+       });
+     },
    },
    components: {
      RenderlessSelector,
