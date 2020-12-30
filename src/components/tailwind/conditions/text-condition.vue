@@ -1,6 +1,7 @@
 <template>
   <renderless-text-condition :id="id">
     <base-condition
+      :conditionId="id"
       :clauseOptions="{...$options.clauseOptions}"
       :value="value"
     >

@@ -1,6 +1,7 @@
 <template>
   <renderless-numeric-condition :id="id">
     <base-condition
+      :conditionId="id"
       :clauseOptions="{...$options.clauseOptions}"
       :to="to"
       :from="from || value"

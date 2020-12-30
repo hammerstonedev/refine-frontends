@@ -72,14 +72,17 @@
 
  export default {
    name: 'selector',
-   inject: ['condition'],
+   props: {
+     selectorId: {
+       type: String,
+       required: true,
+     },
+   },
    data() {
-     const { condition } = this;
      return {
-       selector: Vue.observable(new SelectorStore(condition.id)),
+       selector: Vue.observable(new SelectorStore(this.selectorId)),
        isClosed: true,
        highlightedOption: null,
-       selectorId: condition.id,
      };
    },
    provide() {

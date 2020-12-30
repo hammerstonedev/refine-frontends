@@ -1,5 +1,5 @@
 <template>
-  <selector>
+  <selector :selectorId="conditionId">
     <slot>
       <component
         v-for="(clauseOption, key, index) in clauseOptions"
@@ -21,9 +21,14 @@
      Selector
    },
    props: {
+     conditionId: {
+       type: String,
+       required: true,
+     },
      clauseOptions: {
        type: Object,
        required: false,
+       default: () => { return {}; },
      },
    },
  };
