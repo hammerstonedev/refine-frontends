@@ -15,23 +15,18 @@
         @open="open"
         ref="button"
       />
-      <div class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10">
-        <ul
-          tabindex="-1"
-          role="listbox"
-          :aria-activedescendant="selector.selectedOption ? `listbox-option-${selectedOptionId}` : null"
-          class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
-          :class="{ hidden: isClosed }"
-          ref="listBox"
-          @keydown.arrow-down.stop.prevent="highlightNextOption"
-          @keydown.arrow-up.stop.prevent="highlightPreviousOption"
-          @keydown.enter.stop.prevent="selectOption(highlightedOption.id)"
-          @keydown.escape.stop.prevent="close"
-          @keydown.tab.stop.prevent="close"
-        >
+      <selector-listbox
+        :selectedOption="selector.selectedOption"
+        :isClosed="isClosed"
+        ref="listBox"
+        @highlightNextOption="highlightNextOption"
+        @highlightPreviousOption="highlightPreviousOption"
+        @selectOption="selectHighlightedOption"
+        @close="close"
+      >
           <list-item
             v-for="option in selector.options"
-            :id="`list-box-${selectorId}-${option.id}`"
+            :id="`listbox-option-${selectorId}-${option.id}`"
             :key="option.id"
             :optionId="option.id"
             :optionDisplay="option.display"
@@ -42,8 +37,7 @@
             @mouseleave.native="highlightedOption = null"
             @click.native="selectOption(option.id)"
           />
-        </ul>
-      </div>
+      </selector-listbox>
     </div>
     <!-- Custom options -->
     <div class="sm:inline-block w-full pt-4 md:w-auto md:pt-0">
@@ -57,6 +51,7 @@
  import ListItem from './list-item';
  import SelectorStore from '@/stores/selector';
  import SelectorButton from './selector-button';
+ import SelectorListbox from './selector-listbox';
 
  export default {
    name: 'selector',
@@ -118,6 +113,10 @@
          this.close();
        }
      },
+     selectHighlightedOption() {
+       this.selector.selectOption(this.highlightedOption.id);
+       this.close();
+     },
      selectOption(optionId) {
        this.selector.selectOption(optionId);
        this.close();
@@ -144,6 +143,7 @@
    components: {
      ListItem,
      SelectorButton,
+     SelectorListbox,
    },
  }
 </script>
