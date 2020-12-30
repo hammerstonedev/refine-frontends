@@ -39,8 +39,8 @@
             :selected="option === selectedOption"
             :isHighlighted="option === highlightedOption"
             :ref="option.id"
-            @mouseenter="highlightOption(actions, option)"
-            @mouseleave="highlightOption(actions, null)"
+            @mouseenter="actions.highlightOption(option)"
+            @mouseleave="actions.highlightOption(null)"
             @click="actions.selectOption(option.id)"
           />
         </selector-listbox>
@@ -101,11 +101,6 @@
            this.$refs.button.focus();
          }
        });
-     },
-     highlightOption({ highlightOption }, option) {
-       highlightOption(option).then(({ highlightedOption }) => {
-         this.scrollIntoView(highlightedOption?.id);
-       })
      },
      highlightNextOption({ highlightNextOption }) {
        highlightNextOption().then(({ highlightedOption }) => {
