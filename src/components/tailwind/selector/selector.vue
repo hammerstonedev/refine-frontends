@@ -3,20 +3,21 @@
     <!-- Select dropdown -->
     <div
       class="relative sm:inline-block w-60 mr-4"
-      :id="`listbox-selector-${selectorId}`"
+      :id="`listbox-${selectorId}`"
       v-click-away="close"
-      :aria-labelledby="`button-${selectorId}`"
+      :aria-labelledby="buttonId"
     >
       <selector-button
+        :id="buttonId"
         :selectorId="selectorId"
         :isOpen="isOpen"
-        :display="selectedOptionDisplay || ''"
+        :display="selectedOption ? selectedOption.display : ''"
         @toggle="toggle"
         @open="open"
         ref="button"
       />
       <selector-listbox
-        :selectedOption="selector.selectedOption"
+        :selectedOption="selectedOption"
         :isClosed="isClosed"
         ref="listBox"
         @highlightNextOption="highlightNextOption"
@@ -30,7 +31,7 @@
             :key="option.id"
             :optionId="option.id"
             :optionDisplay="option.display"
-            :selected="option === selector.selectedOption"
+            :selected="option === selectedOption"
             :isHighlighted="option === highlightedOption"
             :ref="option.id"
             @mouseenter.native="highlightedOption = option"
@@ -74,14 +75,11 @@
      };
    },
    computed: {
+     buttonId() {
+       return `button-${this.selectorId}`;
+     },
      selectedOption() {
        return this.selector.selectedOption;
-     },
-     selectedOptionId() {
-       return this.selectedOption && this.selectedOption.id;
-     },
-     selectedOptionDisplay() {
-       return this.selectedOption && this.selectedOption.display;
      },
      isOpen() {
        return !this.isClosed;

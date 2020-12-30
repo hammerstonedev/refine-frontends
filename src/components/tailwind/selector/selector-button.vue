@@ -1,6 +1,6 @@
 <template>
   <button
-    :id="`button-${selectorId}`"
+    :id="id"
     type="button"
     aria-haspopup="listbox"
     :aria-expanded="isOpen"
@@ -25,6 +25,10 @@
  export default {
    name: 'selector-button',
    props: {
+     id: {
+       type: String,
+       required: true,
+     },
      selectorId: {
        type: String,
        required: true,
