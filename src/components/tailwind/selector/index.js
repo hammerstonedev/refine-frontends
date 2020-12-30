@@ -1,6 +1,6 @@
 import Selector from './selector';
-import SelectorOption from './selector-option';
+import ListItem from './list-item';
 
 export default Selector;
 
-export { SelectorOption };
+export { ListItem };

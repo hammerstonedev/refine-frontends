@@ -42,7 +42,7 @@
           @keydown.escape.stop.prevent="close"
           @keydown.tab.stop.prevent="close"
         >
-          <selector-option
+          <list-item
             v-for="option in selector.options"
             :id="`list-box-${selectorId}-${option.id}`"
             :key="option.id"
@@ -67,7 +67,7 @@
 
 <script>
  import Vue from 'vue';
- import SelectorOption from './selector-option';
+ import ListItem from './list-item';
  import SelectorStore from '@/stores/selector';
 
  export default {
@@ -154,7 +154,7 @@
      },
    },
    components: {
-     SelectorOption,
+     ListItem,
    },
  }
 </script>
