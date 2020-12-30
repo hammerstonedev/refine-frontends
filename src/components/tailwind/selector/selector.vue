@@ -25,19 +25,19 @@
         @selectOption="selectHighlightedOption"
         @close="close"
       >
-          <list-item
-            v-for="option in selector.options"
-            :id="`listbox-option-${selectorId}-${option.id}`"
-            :key="option.id"
-            :optionId="option.id"
-            :optionDisplay="option.display"
-            :selected="option === selectedOption"
-            :isHighlighted="option === highlightedOption"
-            :ref="option.id"
-            @mouseenter.native="highlightedOption = option"
-            @mouseleave.native="highlightedOption = null"
-            @click.native="selectOption(option.id)"
-          />
+        <selector-list-item
+          v-for="option in selector.options"
+          :id="`listbox-option-${selectorId}-${option.id}`"
+          :key="option.id"
+          :optionId="option.id"
+          :optionDisplay="option.display"
+          :selected="option === selectedOption"
+          :isHighlighted="option === highlightedOption"
+          :ref="option.id"
+          @mouseenter.native="highlightedOption = option"
+          @mouseleave.native="highlightedOption = null"
+          @click.native="selectOption(option.id)"
+        />
       </selector-listbox>
     </div>
     <!-- Custom options -->
@@ -49,10 +49,10 @@
 
 <script>
  import Vue from 'vue';
- import ListItem from './list-item';
  import SelectorStore from '@/stores/selector';
  import SelectorButton from './selector-button';
  import SelectorListbox from './selector-listbox';
+ import SelectorListItem from './selector-list-item';
 
  export default {
    name: 'selector',
@@ -139,7 +139,7 @@
      },
    },
    components: {
-     ListItem,
+     SelectorListItem,
      SelectorButton,
      SelectorListbox,
    },
