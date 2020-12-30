@@ -3,7 +3,7 @@
     <ul
       tabindex="-1"
       role="listbox"
-      :aria-activedescendant="selectedOption ? `listbox-option-${selectedOption.id}` : ''"
+      :aria-activedescendant="selectedOption ? itemIdGenerator(selectedOption.id) : ''"
       class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
       :class="{ hidden: isClosed }"
       ref="listBox"
@@ -13,7 +13,7 @@
       @keydown.escape.stop.prevent="$emit('close')"
       @keydown.tab.stop.prevent="$emit('close')"
     >
-      <slot></slot>
+      <slot :itemIdGenerator="itemIdGenerator"></slot>
     </ul>
   </div>
 </template>
@@ -35,6 +35,9 @@
    methods: {
      focus: function() {
        this.$refs.listBox.focus();
+     },
+     itemIdGenerator: function(optionId) {
+       return `listbox-option-${optionId}`
      },
    },
  };

@@ -24,10 +24,11 @@
         @highlightPreviousOption="highlightPreviousOption"
         @selectOption="selectHighlightedOption"
         @close="close"
+        v-slot="{ itemIdGenerator }"
       >
         <selector-list-item
           v-for="option in selector.options"
-          :id="`listbox-option-${selectorId}-${option.id}`"
+          :id="itemIdGenerator(option.id)"
           :key="option.id"
           :optionId="option.id"
           :optionDisplay="option.display"
