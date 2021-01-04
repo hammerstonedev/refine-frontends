@@ -1,12 +1,12 @@
 import { h } from '@vue/composition-api';
-import BaseNumericSingle from '@/components/tailwind/clauses/numeric/base-numeric-single';
+import BaseNumericSingleClause from '@/components/tailwind/clauses/numeric/base-numeric-single-clause';
 
 export default (
   props,
   ClauseComponent
 ) => {
   return () => {
-    return h(BaseNumericSingle, {
+    return h(BaseNumericSingleClause, {
       props: {
         value: props.value,
         ClauseComponent,

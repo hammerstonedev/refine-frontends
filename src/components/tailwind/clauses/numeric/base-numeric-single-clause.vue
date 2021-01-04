@@ -18,7 +18,7 @@
  import NumberInput from '@/components/tailwind/inputs/number-input'
 
  export default {
-   name: 'base-numeric-clause',
+   name: 'base-numeric-single-clause',
    mixins: [numericSingleProps],
    props: {
      ClauseComponent: {
