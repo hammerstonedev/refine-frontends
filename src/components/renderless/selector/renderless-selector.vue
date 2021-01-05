@@ -24,7 +24,8 @@
    },
    computed: {
      selectedOption() {
-       return this.selector.selectedOption;
+       const firstOption = this.selector.options[0] || null;
+       return this.selector.selectedOption ? this.selector.selectedOption : firstOption;
      },
      isOpen() {
        return !this.isClosed;

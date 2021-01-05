@@ -7,18 +7,11 @@ class Selector {
 
   registerOption(newOption) {
     const { id: optionId } = newOption;
-    let isOptionAlreadyRegistered = false;
-
     for (var i = 0; i < this.options.length; i++) {
       const currentOption = this.options[i];
       if (currentOption.id === optionId) {
-        isOptionAlreadyRegistered = true;
-        break;
+        throw new Error(`An option with id ${optionId} has already been registered for condition ${this.conditionId}.`);
       }
-    }
-
-    if (isOptionAlreadyRegistered) {
-      throw new Error(`An option with id ${optionId} has already been registered for condition ${this.conditionId}.`);
     }
 
     const previousOption = this.options[this.options.length - 1] || null;
@@ -34,6 +27,11 @@ class Selector {
     }
 
     this.options.push(currentOption);
+
+    // select the first option by default
+    if (this.options.length === 1) {
+      this.selectedOption = currentOption;
+    }
   }
 
   selectOption(optionId) {
