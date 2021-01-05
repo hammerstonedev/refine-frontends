@@ -1,4 +1,4 @@
-import { inject, provide } from '@vue/composition-api';
+import { inject, provide, onUnmounted } from '@vue/composition-api';
 
 export default (id, type, context) => {
   const blueprint = inject('blueprint');
@@ -29,6 +29,11 @@ export default (id, type, context) => {
     type,
     updateInput: updates => blueprint.updateInput(id, updates),
   });
+
+  onUnmounted(() => {
+    blueprint.removeCondition(id);
+  });
+
 
   return () => {
     if (context.slots.default) {

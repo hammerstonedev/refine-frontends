@@ -15,6 +15,13 @@ class Blueprint {
     return this.conditions[conditionIndex];
   }
 
+  removeCondition(conditionId) {
+    const conditionIds = this.conditions.map(({ conditionId }) => conditionId);
+    const conditionIndex = conditionIds.indexOf(conditionId);
+    this.conditions.splice(conditionIndex, 1);
+    this.blueprintChanged();
+  }
+
   addCondition({ conditionId, type, depth }) {
     const condition = this.findCondition(conditionId);
 
