@@ -4,15 +4,9 @@
 
  export default {
    name: 'renderless-selector',
-   props: {
-     selectorId: {
-       type: String,
-       required: true,
-     },
-   },
    data() {
      return {
-       selector: Vue.observable(new SelectorStore(this.selectorId)),
+       selector: Vue.observable(new SelectorStore()),
        isClosed: true,
        highlightedOption: null,
      };

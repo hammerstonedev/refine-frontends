@@ -29,10 +29,6 @@
        type: String,
        required: true,
      },
-     selectorId: {
-       type: String,
-       required: true,
-     },
      isOpen: {
        type: Boolean,
        required: true,

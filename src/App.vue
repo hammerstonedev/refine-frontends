@@ -1,12 +1,10 @@
 <template>
   <query>
     <div class="p-4">
-      <div>
-        <condition-selector selectorId="condition-id-here">
-          <text-condition-option id="last-name" display="Last Name" />
-          <numeric-condition-option id="years-of-experience" display="Years of Experience" />
-        </condition-selector>
-      </div>
+      <condition-selector>
+        <text-condition-option id="last-name" display="Last Name" />
+        <numeric-condition-option id="years-of-experience" display="Years of Experience" />
+      </condition-selector>
       <div class="pt-4">
         <label>Name</label>
         <text-condition id="first-name" value="Bob" class="pt-2" />

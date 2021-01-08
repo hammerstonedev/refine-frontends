@@ -1,8 +1,7 @@
 class Selector {
-  constructor(id) {
+  constructor() {
     this.options = [];
     this.selectedOption = null;
-    this.conditionId = id;
   }
 
   registerOption(newOption) {
@@ -10,7 +9,7 @@ class Selector {
     for (var i = 0; i < this.options.length; i++) {
       const currentOption = this.options[i];
       if (currentOption.id === optionId) {
-        throw new Error(`An option with id ${optionId} has already been registered for condition ${this.conditionId}.`);
+        throw new Error('An option with id ${optionId} has already been registered for this selector.');
       }
     }
 

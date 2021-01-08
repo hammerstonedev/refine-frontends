@@ -1,5 +1,5 @@
 <template>
-  <selector :selectorId="selectorId">
+  <selector>
     <slot>
       <component
         v-for="(conditionOption, key, index) in $options.conditionOptions"
@@ -20,12 +20,6 @@
    name: 'condition-selector',
    components: {
      Selector
-   },
-   props: {
-     selectorId: {
-       type: String,
-       required: true,
-     },
    },
    conditionOptions,
  };

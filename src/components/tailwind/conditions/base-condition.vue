@@ -1,5 +1,5 @@
 <template>
-  <selector :selectorId="conditionId">
+  <selector>
     <slot>
       <component
         v-for="(clauseOption, key, index) in clauseOptions"

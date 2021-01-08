@@ -1,6 +1,5 @@
 <template>
   <renderless-selector
-    :selectorId="selectorId"
     v-slot="{ actions, isOpen, isClosed, selectedOption, highlightedOption, options }"
   >
     <div>
@@ -13,7 +12,6 @@
       >
         <selector-button
           :id="buttonId"
-          :selectorId="selectorId"
           :isOpen="isOpen"
           :display="selectedOption ? selectedOption.display : ''"
           @toggle="toggle(actions)"
@@ -28,11 +26,11 @@
           @highlightPreviousOption="highlightPreviousOption(actions)"
           @selectOption="actions.selectOption(highlightedOption.id)"
           @close="close(actions)"
-          v-slot="{ itemIdGenerator }"
+          v-slot="{ createItemId }"
         >
           <selector-list-item
             v-for="option in options"
-            :id="itemIdGenerator(option.id)"
+            :id="createItemId(option.id)"
             :key="option.id"
             :optionId="option.id"
             :optionDisplay="option.display"
@@ -55,19 +53,18 @@
 
 <script>
  import RenderlessSelector from '@/components/renderless/selector';
+ import { uid } from '@/mixins';
  import SelectorButton from './selector-button';
  import SelectorListbox from './selector-listbox';
  import SelectorListItem from './selector-list-item';
 
  export default {
    name: 'selector',
-   props: {
-     selectorId: {
-       type: String,
-       required: true,
-     },
-   },
+   mixins: [uid],
    computed: {
+     selectorId() {
+       return this.uid
+     },
      buttonId() {
        return `button-${this.selectorId}`;
      },

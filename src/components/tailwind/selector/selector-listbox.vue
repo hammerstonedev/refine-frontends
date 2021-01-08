@@ -3,7 +3,7 @@
     <ul
       tabindex="-1"
       role="listbox"
-      :aria-activedescendant="selectedOption ? itemIdGenerator(selectedOption.id) : ''"
+      :aria-activedescendant="selectedOption ? createItemId(selectedOption.id) : ''"
       class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
       :class="{ hidden: isClosed }"
       ref="listBox"
@@ -13,14 +13,17 @@
       @keydown.escape.stop.prevent="$emit('close')"
       @keydown.tab.stop.prevent="$emit('close')"
     >
-      <slot :itemIdGenerator="itemIdGenerator"></slot>
+      <slot :createItemId="createItemId"></slot>
     </ul>
   </div>
 </template>
 
 <script>
+ import { uid } from '@/mixins';
+
  export default {
    name: 'selector-listbox',
+   mixins: [uid],
    props: {
      isClosed: {
        type: Boolean,
@@ -36,8 +39,8 @@
      focus: function() {
        this.$refs.listBox.focus();
      },
-     itemIdGenerator: function(optionId) {
-       return `listbox-option-${optionId}`
+     createItemId: function(optionId) {
+       return `listbox-option-${this.uid}-${optionId}`
      },
    },
  };
