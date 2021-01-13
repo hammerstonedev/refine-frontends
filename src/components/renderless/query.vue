@@ -7,13 +7,6 @@
      prop: 'blueprint',
      event: 'change'
    },
-   props: {
-     value: {
-       required: false,
-       default: () => [],
-       type: Array,
-     },
-   },
    provide() {
      const { blueprint } = this;
      return {
