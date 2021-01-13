@@ -27,11 +27,11 @@ export default (id, type, context) => {
     id,
     input,
     type,
-    updateInput: updates => blueprint.updateInput(id, updates),
+    updateInput: updates => blueprint.updateInput(condition, updates),
   });
 
   onUnmounted(() => {
-    blueprint.removeCondition(id);
+    blueprint.removeCondition(condition);
   });
 
 

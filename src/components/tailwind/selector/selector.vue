@@ -2,7 +2,7 @@
   <renderless-selector
     v-slot="{ actions, isOpen, isClosed, selectedOption, highlightedOption, options }"
   >
-    <div>
+    <div class="py-1">
       <!-- Select dropdown -->
       <div
         class="relative sm:inline-block w-60 mr-4"

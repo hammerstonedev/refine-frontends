@@ -9,39 +9,28 @@ class Blueprint {
     };
   }
 
-  findCondition(conditionId) {
-    const conditionIds = this.conditions.map(({ conditionId }) => conditionId);
-    const conditionIndex = conditionIds.indexOf(conditionId);
-    return this.conditions[conditionIndex];
-  }
-
-  removeCondition(conditionId) {
-    const conditionIds = this.conditions.map(({ conditionId }) => conditionId);
-    const conditionIndex = conditionIds.indexOf(conditionId);
+  removeCondition(condition) {
+    const conditionIndex = this.conditions.indexOf(condition);
     this.conditions.splice(conditionIndex, 1);
     this.blueprintChanged();
   }
 
   addCondition({ conditionId, type, depth }) {
-    const condition = this.findCondition(conditionId);
+    const condition = {
+      conditionId,
+      type,
+      depth,
+      input: {},
+    };
 
-    if (!condition) {
-      this.conditions.push({
-        conditionId,
-        type,
-        depth,
-        input: {},
-      });
-    }
+    this.conditions.push(condition);
     this.blueprintChanged();
-    return this.findCondition(conditionId);
+    return condition;
   }
 
-  updateInput(conditionId, updates) {
-    const condition = this.findCondition(conditionId);
-
+  updateInput(condition, updates) {
     if (!condition) {
-      throw new Error(`Can't find the condition with conditionId: ${conditionId} in the blueprint`);
+      throw new Error(`Can't find the condition with conditionId: ${condition.id} in the blueprint`);
     }
 
     // Do the update iteratively on the input object to preserve it

@@ -5,6 +5,10 @@
         <text-condition-option id="last-name" display="Last Name" />
         <numeric-condition-option id="years-of-experience" display="Years of Experience" />
       </condition-selector>
+      <condition-selector>
+        <numeric-condition-option id="years-of-experience" display="Years of Experience" />
+        <text-condition-option id="last-name" display="Last Name" />
+      </condition-selector>
       <div class="pt-4">
         <label>Name</label>
         <text-condition id="first-name" value="Bob" class="pt-2" />
