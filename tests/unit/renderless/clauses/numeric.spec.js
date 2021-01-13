@@ -32,16 +32,19 @@ describe('Numeric clauses update blueprint', () => {
       },
     });
 
-    let { input } = blueprint[0];
+    const { input } = blueprint[0];
+    expect(blueprint.length).toBe(1);
     expect(input.clause).toBe(id);
+
+    wrapper.findComponent(WrappedClause).destroy();
+    expect(blueprint[0].input.clause).toBe(undefined);
 
     wrapper.destroy();
 
-    input = blueprint[0].input;
-    expect(input.clause).toBe(undefined);
+    expect(blueprint.length).toBe(0);
   });
 
-  it('updates blueprint when created', () => {
+  it('updates blueprint clause when created', () => {
     numericConfig.forEach(({ component, id, requires }) => {
       let template = '<tested-clause />';
       if (requires.length === 1) {

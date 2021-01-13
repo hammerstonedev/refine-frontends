@@ -15,7 +15,7 @@ describe('Text clauses update blueprint', () => {
     },
   };
 
-  it('udpates blueprint when unmounted', () => {
+  it('udpates blueprint clause value when unmounted', () => {
     const [{ component, id }] = textConfig;
     const TestedClause = clauses[component];
     const WrappedClause = {
@@ -32,13 +32,17 @@ describe('Text clauses update blueprint', () => {
       },
     });
 
-    let { input } = blueprint[0];
+    const { input } = blueprint[0];
     expect(input.clause).toBe(id);
+    expect(blueprint.length).toBe(1);
+
+    wrapper.findComponent(WrappedClause).destroy();
+    expect(blueprint.length).toBe(1);
+    expect(blueprint[0].input.clause).toBe(undefined);
+    expect(blueprint[0].input.value).toBe('Aaron');
 
     wrapper.destroy();
-
-    input = blueprint[0].input;
-    expect(input.clause).toBe(undefined);
+    expect(blueprint.length).toBe(0);
   });
 
   it('updates blueprint when created', () => {
