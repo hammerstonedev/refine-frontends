@@ -13,7 +13,11 @@ const TextCondition = {
   name: 'text-condition',
   mixins: [conditionMixin],
   setup(props, context) {
-    return useCondition(props.id, 'text', context);
+    return useCondition(
+      props.id,
+      'text',
+      context
+    );
   },
 };
 
