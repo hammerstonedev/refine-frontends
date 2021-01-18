@@ -13,7 +13,7 @@ const optionProps = {
       required: false,
       default: false,
     },
-  }
+  },
 };
 
 export { optionProps };

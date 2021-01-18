@@ -2,7 +2,7 @@
   <renderless-text-condition :id="id">
     <base-condition
       :conditionId="id"
-      :clauseOptions="{...$options.clauseOptions}"
+      :clauseOptions="clauseOptions"
       :value="value"
     >
       <slot></slot>
@@ -25,7 +25,21 @@
        required: false,
      },
    },
-   clauseOptions: textClauseOptions,
+   computed: {
+     clauseOptions() {
+       if (this.meta && this.meta.clauses) {
+         return this.meta.clauses.reduce((clauses, clause) => {
+           return {
+             [`${clause.component}Option`]: textClauseOptions[`${clause.component}Option`],
+             ...clauses,
+           };
+         }, {});
+         return reduced;
+       }
+       console.log({...textClauseOptions});
+       return {...textClauseOptions};
+     }
+   },
    components: {
      BaseCondition,
      RenderlessTextCondition,

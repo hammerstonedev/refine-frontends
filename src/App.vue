@@ -47,37 +47,30 @@
      "meta": {
        "clauses": [
          {
-           "id": "equals",
-           "display": "Equals"
-         },
-         {
            "id": "doesnt_equal",
-           "display": "Does Not Equal"
+           "display": "Does Not Equal",
+           "component": "DoesNotEqual",
          },
          {
            "id": "starts_with",
-           "display": "Starts With"
+           "display": "Starts With",
+           "component": "StartsWith",
          },
          {
            "id": "ends_with",
-           "display": "Ends With"
+           "display": "Ends With",
+           "component": "EndsWith",
          },
          {
            "id": "contains",
-           "display": "Contains"
+           "display": "Contains",
+           "component": "Contains",
          },
          {
            "id": "doesnt_contain",
-           "display": "Does Not Contain"
+           "display": "Does Not Contain",
+           "component": "DoesNotContain",
          },
-         {
-           "id": "is_set",
-           "display": "Is Set"
-         },
-         {
-           "id": "is_not_set",
-           "display": "Is Not Set"
-         }
        ]
      }
    },

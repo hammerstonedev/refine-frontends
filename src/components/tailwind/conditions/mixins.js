@@ -4,6 +4,10 @@ const conditionProps = {
       type: String,
       required: true,
     },
+    meta: {
+      type: Object,
+      required: false,
+    },
   },
 };
 

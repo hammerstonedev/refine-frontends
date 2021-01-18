@@ -5,12 +5,13 @@
       :key="key"
     >
       <component
-        v-for="({component, id, display}, key) in conditionOptions"
+        v-for="({component, id, display, meta}, key) in conditionOptions"
         :is="component"
         :selected="selectedCondition.conditionId == id"
         :id="id"
         :display="display"
         :key="key"
+        :meta="meta"
       />
     </condition-selector>
   </query>
@@ -20,7 +21,8 @@
  import { Query, ConditionSelector } from '.';
  import Blueprint from '@/stores/blueprint';
  import * as conditionOptions from './condition-options';
-// import * as clauseOptions from './clause-options';
+ import * as numericOptions from './clause-options/numeric';
+ import * as textOptions from './clause-options/text';
 
  export default {
    name: 'query-builder',
@@ -73,6 +75,8 @@
      Query,
      ConditionSelector,
      ...conditionOptions,
+     ...textOptions,
+     ...numericOptions,
    },
  };
 </script>

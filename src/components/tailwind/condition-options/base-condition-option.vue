@@ -5,12 +5,11 @@
     :selected="selected"
   >
     <div>
-      <slot>
-        <component
-          :is="ConditionComponent"
-          :id="id"
-        />
-      </slot>
+      <component
+        :is="ConditionComponent"
+        :id="id"
+        :meta="meta"
+      />
     </div>
   </renderless-option>
 </template>
@@ -23,6 +22,10 @@
    mixins: [optionProps],
    props: {
      ConditionComponent: {
+       type: Object,
+       required: false,
+     },
+     meta: {
        type: Object,
        required: false,
      },
