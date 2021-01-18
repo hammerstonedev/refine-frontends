@@ -34,7 +34,6 @@
              ...clauses,
            };
          }, {});
-         return reduced;
        }
        console.log({...textClauseOptions});
        return {...textClauseOptions};
