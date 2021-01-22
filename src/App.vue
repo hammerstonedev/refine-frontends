@@ -1,6 +1,6 @@
 <template>
   <div>
-    <query-builder :conditions="conditions" />
+    <query-builder :conditions="conditions" class="p-4" />
     <query>
       <div class="p-4">
         <condition-selector>
