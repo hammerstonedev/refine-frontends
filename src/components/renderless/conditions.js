@@ -1,21 +1,14 @@
 import useCondition from '@/compositions/renderless/useCondition';
-
-const conditionMixin = {
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-  },
-};
+import { conditionProps } from '@/mixins/condition';
 
 const TextCondition = {
   name: 'text-condition',
-  mixins: [conditionMixin],
+  mixins: [conditionProps],
   setup(props, context) {
     return useCondition(
       props.id,
       'text',
+      props,
       context
     );
   },
@@ -23,9 +16,9 @@ const TextCondition = {
 
 const NumericCondition = {
   name: 'numeric-condition',
-  mixins: [conditionMixin],
+  mixins: [conditionProps],
   setup(props, context) {
-    return useCondition(props.id, 'numeric', context);
+    return useCondition(props.id, 'numeric', props, context);
   },
 };
 

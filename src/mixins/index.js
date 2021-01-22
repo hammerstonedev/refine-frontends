@@ -1,4 +1,5 @@
 import { optionProps } from './option';
+import { conditionProps } from './condition';
 import uid from './uid';
 
-export { optionProps, uid };
+export { conditionProps, optionProps, uid };
