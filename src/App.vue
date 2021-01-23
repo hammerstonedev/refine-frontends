@@ -82,36 +82,39 @@
        "clauses": [
          {
            "id": "eq",
-           "display": "Is Equal To"
+           "display": "Is Equal To",
+           "component": 'IsEqualTo',
          },
          {
            "id": "gt",
-           "display": "Is Greater Than"
+           "display": "Is Greater Than",
+           component: 'IsGreaterThan',
          },
          {
            "id": "gte",
-           "display": "Is Greater Than Or Equal To"
+           "display": "Is Greater Than Or Equal To",
+           component: 'IsGreaterThanOrEqualTo',
          },
          {
            "id": "lt",
-           "display": "Is Less Than"
+           "display": "Is Less Than",
+           component: 'IsLessThan',
          },
          {
            "id": "lte",
-           "display": "Is Less Than Or Equal To"
+           "display": "Is Less Than Or Equal To",
+           "component": "IsLessThanOrEqualTo",
          },
          {
            "id": "between",
-           "display": "Is Between"
+           "display": "Is Between",
+           "component": "IsBetween",
          },
          {
-           "id": "set",
-           "display": "Is Set"
+           "id": "notbetween",
+           "display": "Is Not Between",
+           "component": "IsNotBetween",
          },
-         {
-           "id": "not_set",
-           "display": "Is Not Set"
-         }
        ]
      }
    },
