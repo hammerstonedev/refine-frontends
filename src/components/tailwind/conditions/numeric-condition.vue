@@ -1,8 +1,13 @@
 <template>
-  <renderless-numeric-condition :id="id">
+  <renderless-numeric-condition
+    :id="id"
+    :meta="meta"
+    v-slot="{ clauses }"
+  >
     <base-condition
       :conditionId="id"
-      :clauseOptions="{...$options.clauseOptions}"
+      :clauses="clauses"
+      :defaultClauseOptions="$options.defaultClauseOptions"
       :to="to"
       :from="from || value"
       :value="value || to"
@@ -21,6 +26,7 @@
  export default {
    name: 'numeric-condition',
    mixins: [conditionProps],
+   defaultClauseOptions: {...numericClauseOptions},
    props: {
      value: {
        type: Number,
@@ -35,7 +41,6 @@
        required: false,
      }
    },
-   clauseOptions: numericClauseOptions,
    components: {
      BaseCondition,
      RenderlessNumericCondition,

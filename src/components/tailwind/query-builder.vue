@@ -1,4 +1,4 @@
-<template>
+ <template>
   <query>
     <condition-selector
       v-for="(selectedCondition, key) in selectedConditions"

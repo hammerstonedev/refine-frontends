@@ -34,23 +34,16 @@ export default (id, type, props, context) => {
     blueprint.removeCondition(condition);
   });
 
-/*  const { meta } = props;
-
-  const clauseOptions = computed(() => {
-    if (meta && meta.clauses) {
-      return meta.clauses.reduce((clauses, clause) => {
-        return {
-          [`${clause.component}Option`]: textClauseOptions[`${clause.component}Option`],
-          ...clauses,
-        };
-      }, {});
-    }
-    return {...textClauseOptions};
-  });*/
+  let clauses = null;
+  if (props.meta && props.meta.clauses) {
+    clauses = props.meta.clauses.map((clause) => {
+      return clause.component;
+    });
+  }
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default();
+      return context.slots.default({ clauses });
     }
     return null;
   };

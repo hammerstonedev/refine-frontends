@@ -5,12 +5,7 @@ const TextCondition = {
   name: 'text-condition',
   mixins: [conditionProps],
   setup(props, context) {
-    return useCondition(
-      props.id,
-      'text',
-      props,
-      context
-    );
+    return useCondition(props.id, 'text', props, context);
   },
 };
 

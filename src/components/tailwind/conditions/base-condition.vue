@@ -20,15 +20,29 @@
    components: {
      Selector
    },
+   data() {
+     let clauseOptions;
+     if (this.clauses) {
+       clauseOptions = this.clauses.map((clauseName) => {
+         return this.defaultClauseOptions[`${clauseName}Option`];
+       });
+     } else {
+       clauseOptions = Object.values({ ...this.defaultClauseOptions });
+     }
+
+     return {
+       clauseOptions,
+     };
+   },
    props: {
-     conditionId: {
-       type: String,
+     defaultClauseOptions: {
+       type: Object,
        required: true,
      },
-     clauseOptions: {
-       type: Object,
+     clauses: {
+       type: Array,
        required: false,
-       default: () => { return {}; },
+       default: () => { return []; },
      },
    },
  };
