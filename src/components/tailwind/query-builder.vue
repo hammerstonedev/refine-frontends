@@ -29,8 +29,8 @@
    props: {
      blueprint: {
        required: false,
-       type: Object,
-       default: () => { return {}; },
+       type: Array,
+       default: () => { return []; },
      },
      conditions: {
        required: true,
@@ -45,7 +45,7 @@
        return this.conditions.map((condition) => {
          const { type } = condition;
          return {
-           component: this.getOptionComponent(type),
+           component: this.optionComponentFor(type),
            ...condition,
          };
        });
@@ -53,11 +53,23 @@
    },
    data() {
      return {
-       activeBlueprint: new Blueprint([{ conditionId: 'text_condition' }]),
+       activeBlueprint: new Blueprint(this.blueprint),
      };
    },
+   created() {
+     if (this.conditions.length === 0) {
+       throw new Error('You must provide at least one condition to the query builder.');
+     }
+
+     if ([...this.activeBlueprint.conditions].length === 0) {
+       this.activeBlueprint.addCondition({
+         ...this.conditions[0],
+         depth: 0,
+       });
+     }
+   },
    methods: {
-     getOptionComponent(type) {
+     optionComponentFor(type) {
        const {
          TextConditionOption,
          NumericConditionOption,
