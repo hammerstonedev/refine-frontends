@@ -2,7 +2,7 @@
   <renderless-selector
     v-slot="{ actions, isOpen, isClosed, selectedOption, highlightedOption, options }"
   >
-    <div class="py-1">
+    <div class="py-1 md:flex md:items-center">
       <!-- Select dropdown -->
       <div
         class="relative sm:inline-block w-60 mr-4"
@@ -44,7 +44,7 @@
         </selector-listbox>
       </div>
       <!-- Custom options -->
-      <div class="sm:inline-block w-full pt-4 md:w-auto md:pt-0">
+      <div class="md:flex w-auto pt-4 md:pt-0">
         <slot></slot>
       </div>
     </div>

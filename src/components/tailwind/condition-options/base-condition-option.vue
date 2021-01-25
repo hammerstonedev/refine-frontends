@@ -4,7 +4,7 @@
     :display="display"
     :selected="selected"
   >
-    <div>
+    <div class="flex">
       <component
         :is="ConditionComponent"
         :id="id"

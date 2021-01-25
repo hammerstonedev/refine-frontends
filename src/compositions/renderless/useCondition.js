@@ -43,7 +43,7 @@ export default (id, type, props, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({ clauses });
+      return context.slots.default({ clauses, condition });
     }
     return null;
   };
