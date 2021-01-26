@@ -1,11 +1,10 @@
 <template>
   <renderless-text-condition
-    :id="id"
-    :meta="meta"
+    :id="id || condition.id"
+    :condition="condition"
     v-slot="{ clauses }"
   >
     <base-condition
-      :conditionId="id"
       :clauses="clauses"
       :defaultClauseOptions="$options.defaultClauseOptions"
       :value="value"

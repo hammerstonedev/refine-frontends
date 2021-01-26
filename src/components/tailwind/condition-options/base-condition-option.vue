@@ -8,7 +8,7 @@
       <component
         :is="ConditionComponent"
         :id="id"
-        :meta="meta"
+        :condition="condition"
       />
     </div>
   </renderless-option>
@@ -25,7 +25,7 @@
        type: Object,
        required: false,
      },
-     meta: {
+     condition: {
        type: Object,
        required: false,
      },

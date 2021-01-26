@@ -1,24 +1,26 @@
 <template>
   <query
+    :initialBlueprint="blueprint"
+    v-slot="{ blueprint }"
   >
     <div
       class="font-sans"
     >
       <condition-selector
-        v-for="(selectedCondition, key) in selectedConditions"
-        :key="key"
+        v-for="condition in blueprint.conditions"
+        :key="condition.uid"
       >
         <component
-          v-for="({component, id, display, meta}, key) in conditionOptions"
+          v-for="{ component, id, display, uid } in conditionOptions"
           :is="component"
-          :selected="selectedCondition.conditionId == id"
+          :selected="condition.id === id"
+          :condition="condition"
           :id="id"
           :display="display"
-          :key="key"
-          :meta="meta"
+          :key="uid"
         />
         <button
-          @click.prevent="removeCondition(selectedCondition)"
+          @click.prevent="blueprint.removeCondition(condition)"
           type="button"
           class="inline-flex items-center py-1 px-3 text-grey-700"
         >
@@ -29,7 +31,7 @@
       </condition-selector>
       <div class="lg:flex lg:items-center pt-2">
         <button
-          @click="addCondition"
+          @click="blueprint.addCondition({ ...conditions[0] })"
           type="button"
           class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
@@ -46,7 +48,6 @@
 
 <script>
  import { Query, ConditionSelector } from '.';
- import Blueprint from '@/stores/blueprint';
  import * as conditionOptions from './condition-options';
  import * as numericOptions from './clause-options/numeric';
  import * as textOptions from './clause-options/text';
@@ -65,9 +66,6 @@
      },
    },
    computed: {
-     selectedConditions() {
-       return this.activeBlueprint.conditions;
-     },
      conditionOptions() {
        return this.conditions.map((condition) => {
          const { type } = condition;
@@ -78,31 +76,12 @@
        });
      },
    },
-   data() {
-     return {
-       activeBlueprint: new Blueprint(this.blueprint),
-     };
-   },
    created() {
      if (this.conditions.length === 0) {
        throw new Error('You must provide at least one condition to the query builder.');
      }
-
-     if ([...this.activeBlueprint.conditions].length === 0) {
-       this.addCondition();
-     }
    },
    methods: {
-     removeCondition(condition) {
-       this.activeBlueprint.removeCondition(condition);
-     },
-     addCondition() {
-       this.activeBlueprint.addCondition({
-         ...this.conditions[0],
-         conditionId: this.conditions[0].id,
-         depth: 0,
-       });
-     },
      optionComponentFor(type) {
        const {
          TextConditionOption,

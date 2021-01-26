@@ -15,8 +15,8 @@ export default (id, type, props, context) => {
     throw new Error('Conditions must be rendered within a query.');
   }
 
-  const condition = blueprint.addCondition({
-    conditionId: id,
+  const condition = props.condition || blueprint.addCondition({
+    id,
     type,
     depth: 0,
   });
@@ -31,12 +31,17 @@ export default (id, type, props, context) => {
   });
 
   onUnmounted(() => {
-    blueprint.removeCondition(condition);
+    // If a condition is provided via prop
+    // then the blueprint is being updated via
+    // the builder, so don't do anything here.
+    if(!props.condition) {
+      blueprint.removeCondition(condition);
+    }
   });
 
   let clauses = null;
-  if (props.meta && props.meta.clauses) {
-    clauses = props.meta.clauses.map((clause) => {
+  if (props?.condition?.meta?.clauses) {
+    clauses = props.condition.meta.clauses.map((clause) => {
       return clause.component;
     });
   }

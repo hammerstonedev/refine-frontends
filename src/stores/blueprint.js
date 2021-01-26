@@ -1,3 +1,5 @@
+let uid = 1;
+
 class Blueprint {
   constructor(initialBlueprint, onChange) {
     this.conditions = initialBlueprint || [];
@@ -15,24 +17,24 @@ class Blueprint {
     this.blueprintChanged();
   }
 
-  addCondition({ conditionId, type, depth }) {
+  addCondition({ id, type, depth }) {
     const condition = {
-      conditionId,
+      id,
       type,
       depth,
       input: {},
+      uid,
     };
 
     this.conditions.push(condition);
+
+    uid = uid + 1;
+
     this.blueprintChanged();
     return condition;
   }
 
   updateInput(condition, updates) {
-    if (!condition) {
-      throw new Error(`Can't find the condition with conditionId: ${condition.id} in the blueprint`);
-    }
-
     // Do the update iteratively on the input object to preserve it
     // as an observable to anything that references it. Swapping it out
     // means you can't pass it directly to anything you would always have

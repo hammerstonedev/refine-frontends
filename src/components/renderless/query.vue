@@ -3,9 +3,11 @@
  import Vue from 'vue';
 
  export default {
-   model: {
-     prop: 'blueprint',
-     event: 'change'
+   props: {
+     initialBlueprint: {
+       type: Array,
+       required: false,
+     },
    },
    provide() {
      const { blueprint } = this;
@@ -17,7 +19,7 @@
      return {
        blueprint: Vue.observable(
          new Blueprint(
-           this.blueprint,
+           this.initialBlueprint,
            (updatedBlueprint) => {
              this.$emit('change', updatedBlueprint)
            },
