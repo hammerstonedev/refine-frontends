@@ -1,6 +1,7 @@
 <template>
   <query
-    :initialBlueprint="blueprint"
+    :blueprint="blueprint"
+    builder-mode-active
     v-slot="{ blueprint }"
   >
     <div
