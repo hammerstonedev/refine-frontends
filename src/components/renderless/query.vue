@@ -1,33 +1,32 @@
 <script>
  import Blueprint from '@/stores/blueprint';
- import Vue from 'vue';
 
  export default {
    props: {
-     initialBlueprint: {
+     blueprint: {
        type: Array,
        required: false,
      },
+
    },
    provide() {
-     const { blueprint } = this;
+     const { blueprintStore } = this;
      return {
-       blueprint,
+       blueprint: blueprintStore,
      }
    },
    data() {
      return {
-       blueprint: Vue.observable(
-         new Blueprint(
-           this.initialBlueprint,
+       blueprintStore: new Blueprint(
+           this.blueprint,
            (updatedBlueprint) => {
              this.$emit('change', updatedBlueprint)
            },
-       )),
+       ),
      };
    },
    render() {
-     const { blueprint } = this;
+     const { blueprintStore: blueprint } = this;
      if (this.$scopedSlots?.default) {
        return this.$scopedSlots.default({ blueprint });
      }
