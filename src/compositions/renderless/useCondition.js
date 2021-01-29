@@ -34,12 +34,9 @@ export default (id, type, props, context) => {
       depth: 0,
     });
   }
-  const { input } = condition;
 
   provide('condition', {
-    id,
-    input,
-    type,
+    ...condition,
     updateInput: updates => blueprint.updateInput(condition, updates),
   });
 
