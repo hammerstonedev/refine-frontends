@@ -7,9 +7,9 @@
       class="max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
       :class="{ hidden: isClosed }"
       ref="listBox"
-      @keydown.arrow-down.stop.prevent="$emit('highlightNextOption')"
-      @keydown.arrow-up.stop.prevent="$emit('highlightPreviousOption')"
-      @keydown.enter.stop.prevent="$emit('selectOption')"
+      @keydown.arrow-down.stop.prevent="$emit('highlight-next-option')"
+      @keydown.arrow-up.stop.prevent="$emit('highlight-previous-option')"
+      @keydown.enter.stop.prevent="$emit('select-option')"
       @keydown.escape.stop.prevent="$emit('close')"
       @keydown.tab.stop.prevent="$emit('close')"
     >

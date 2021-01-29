@@ -22,9 +22,9 @@
           :selectedOption="selectedOption"
           :isClosed="isClosed"
           ref="listBox"
-          @highlightNextOption="highlightNextOption(actions)"
-          @highlightPreviousOption="highlightPreviousOption(actions)"
-          @selectOption="actions.selectOption(highlightedOption.id)"
+          @highlight-next-option="highlightNextOption(actions)"
+          @highlight-previous-option="highlightPreviousOption(actions)"
+          @select-option="actions.selectOption(highlightedOption.id)"
           @close="close(actions)"
           v-slot="{ createItemId }"
         >
