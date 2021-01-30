@@ -10,12 +10,13 @@
       <condition-selector
         v-for="condition in blueprint.conditions"
         :key="condition.uid"
+        @select-condition="blueprint.replaceCondition"
       >
         <component
           v-for="{ component, id, display, uid } in conditionOptions"
           :is="component"
           :selected="condition.id === id"
-          :condition="condition"
+          :condition="condition.id === id ? condition : null"
           :id="id"
           :display="display"
           :key="uid"
