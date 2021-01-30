@@ -2,6 +2,7 @@ class Selector {
   constructor() {
     this.options = [];
     this.selectedOption = null;
+    this.previousOption = null;
   }
 
   registerOption(newOption) {
@@ -33,16 +34,19 @@ class Selector {
     }
   }
 
-  selectOption(optionId) {
-    let option;
+  findOption(optionId) {
     for (var i = 0; i < this.options.length; i++) {
       const currentOption = this.options[i];
       if (currentOption.id === optionId) {
-        option = currentOption;
-           break;
+        return currentOption;
       }
     }
+    return null;
+  }
 
+  selectOption(optionId) {
+    const option = this.findOption(optionId);
+    this.previousOption = this.selectedOption;
     this.selectedOption = option;
     return option;
   }
