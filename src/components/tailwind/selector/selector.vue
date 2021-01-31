@@ -1,6 +1,7 @@
 <template>
   <renderless-selector
     v-slot="{ actions, isOpen, isClosed, selectedOption, highlightedOption, options }"
+    @select-option="selectOption"
   >
     <div class="py-1 md:flex md:items-center">
       <!-- Select dropdown -->
@@ -70,6 +71,9 @@
      },
    },
    methods: {
+     selectOption(...args) {
+       this.$emit('select-option', ...args);
+     },
      scrollIntoView(optionId) {
        if (optionId) {
          const listItem = this.$refs[optionId][0];

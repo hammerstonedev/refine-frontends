@@ -1,5 +1,7 @@
 <template>
-  <selector>
+  <selector
+    @select-option="selectOption"
+  >
     <slot>
     </slot>
   </selector>
@@ -10,6 +12,11 @@
 
  export default {
    name: 'condition-selector',
+   methods: {
+     selectOption(...args) {
+       this.$emit('select-condition', ...args)
+     },
+   },
    components: {
      Selector
    }

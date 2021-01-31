@@ -4,6 +4,7 @@
 
  export default {
    name: 'renderless-selector',
+   inject: ['builderModeActive'],
    data() {
      return {
        selector: Vue.observable(new SelectorStore()),
@@ -91,7 +92,20 @@
        return this.nextTick();
      },
      selectOption(optionId) {
-       this.selector.selectOption(optionId);
+       if (!this.builderModeActive) {
+         this.selector.selectOption(optionId);
+         this.$emit(
+           'select-option',
+           this.selector.previousOption,
+           this.selector.selectedOption,
+         )
+       } else {
+         this.$emit(
+           'select-option',
+           this.selector.selectedOption,
+           this.selector.findOption(optionId),
+         );
+       }
        return this.close();
      },
      highlightOption(option) {

@@ -4,14 +4,14 @@ class Blueprint {
   constructor(initialBlueprint, onChange) {
     this.conditions = initialBlueprint || [];
     this.blueprintChanged = () => {
-      console.log(JSON.parse(JSON.stringify(this.conditions)));
+      // console.log(JSON.parse(JSON.stringify(this.conditions)));
       if (onChange) {
         onChange([...this.conditions]);
       }
     };
   }
 
-  replaceCondition() {
+  replaceCondition(...args) {
     console.log('replace');
 //    const previousIndex = this.conditions.indexOf(previousCondition);
 //    this.conditions.splice(previousIndex, 1, newCondition);
