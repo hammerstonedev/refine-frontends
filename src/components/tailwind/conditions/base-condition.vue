@@ -18,7 +18,7 @@
  export default {
    name: 'base-condition',
    components: {
-     Selector
+     Selector,
    },
    data() {
      let clauseOptions;

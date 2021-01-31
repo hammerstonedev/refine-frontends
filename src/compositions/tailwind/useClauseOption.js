@@ -17,6 +17,6 @@ export default (
         ClauseComponent,
       },
       attrs: context.attrs,
-    });
+    }, context.slots.default ? context.slots.default() : null);
   };
 };

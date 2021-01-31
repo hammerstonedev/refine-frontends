@@ -9,7 +9,9 @@
         :is="ConditionComponent"
         :id="id"
         :condition="condition"
-      />
+      >
+        <slot></slot>
+      </component>
     </div>
   </renderless-option>
 </template>

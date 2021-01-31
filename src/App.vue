@@ -5,7 +5,10 @@
       <div class="p-4">
         <condition-selector>
           <text-condition-option id="last-name" display="Last Name" />
-          <numeric-condition-option id="years-of-experience" display="Years of Experience" />
+          <numeric-condition-option id="years-of-experience" display="Years of Experience">
+            <is-between-option />
+            <is-not-between-option />
+          </numeric-condition-option>
         </condition-selector>
         <condition-selector>
           <numeric-condition-option id="years-of-experience" display="Years of Experience" />
@@ -38,6 +41,11 @@
    NumericConditionOption,
    QueryBuilder,
  } from './components/tailwind';
+
+ import {
+   IsBetweenOption,
+   IsNotBetweenOption,
+ } from './components/tailwind/clause-options/numeric';
 
  const conditions = [
    {
@@ -129,6 +137,8 @@
      };
    },
    components: {
+     IsBetweenOption,
+     IsNotBetweenOption,
      ConditionSelector,
      TextConditionOption,
      NumericConditionOption,

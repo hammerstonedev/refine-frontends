@@ -15,6 +15,6 @@ export default (
         ConditionComponent,
       },
       attrs: context.attrs,
-    });
+    }, context.slots.default ? context.slots.default() : null);
   };
 };
