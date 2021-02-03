@@ -4,7 +4,7 @@ class Blueprint {
   constructor(initialBlueprint, onChange) {
     this.conditions = initialBlueprint || [];
     this.blueprintChanged = () => {
-      // console.log(JSON.parse(JSON.stringify(this.conditions)));
+      console.log(JSON.parse(JSON.stringify(this.conditions)));
       if (onChange) {
         onChange([...this.conditions]);
       }
@@ -23,7 +23,7 @@ class Blueprint {
     this.blueprintChanged();
   }
 
-  addCondition({ id, type, depth }) {
+  generateCondition({ id, type, depth }) {
     const condition = {
       id,
       type,
@@ -31,11 +31,13 @@ class Blueprint {
       input: {},
       uid,
     };
-
-    this.conditions.push(condition);
-
     uid = uid + 1;
+    return condition;
+  }
 
+  addCondition({ id, type, depth }) {
+    const condition = this.generateCondition({ id, type, depth });
+    this.conditions.push(condition);
     this.blueprintChanged();
     return condition;
   }

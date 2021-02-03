@@ -16,19 +16,17 @@ export default (id, type, props, context) => {
     throw new Error('Conditions must be rendered within a query.');
   }
 
-  // If builder mode is active conditions have to
-  // be provided to the condition components.
-  if (builderModeActive && !props.condition) {
-    throw new Error('This query is in builder mode so the condition prop must be used to render this condition component');
-  }
-
   // in builder mode we don't add/remove/update conditions on lifecycle methods
   // instead this behavior is delegated to the query builder.
   let condition;
-  if (builderModeActive) {
-    condition = props.condition;
-  } else {
+  if (!builderModeActive) {
     condition = blueprint.addCondition({
+      id,
+      type,
+      depth: 0,
+    });
+  } else {
+    condition = blueprint.generateCondition({
       id,
       type,
       depth: 0,

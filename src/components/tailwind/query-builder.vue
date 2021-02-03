@@ -8,21 +8,30 @@
       class="font-sans"
     >
       <condition-selector
-        v-for="condition in blueprint.conditions"
-        :key="condition.uid"
+        v-for="{ uid, id, type, input } in blueprint.conditions"
+        :key="uid"
         @select-condition="blueprint.replaceCondition"
       >
         <component
-          v-for="{ component, id, display, uid } in conditionOptions"
+          v-for="{ component, id: optionId, display } in conditionOptions"
           :is="component"
-          :selected="condition.id === id"
-          :condition="condition.id === id ? condition : null"
-          :id="id"
+          :selected="id === optionId"
+          :id="optionId"
           :display="display"
-          :key="uid"
-        />
+          :key="optionId"
+        >
+          <component
+            v-for="({ id, display, component}, index) in clauseOptionsFor(type)"
+            :is="component"
+            :id="id"
+            :key="id"
+            :display="display"
+            :selected="isClauseSelected(id, input, index)"
+            v-bind="isClauseSelected(id, input, index) ? input : null"
+          />
+        </component>
         <button
-          @click.prevent="blueprint.removeCondition(condition)"
+          @click.prevent="blueprint.removeCondition(uid)"
           type="button"
           class="inline-flex items-center py-1 px-3 text-grey-700"
         >
@@ -51,8 +60,7 @@
 <script>
  import { Query, ConditionSelector } from '.';
  import * as conditionOptions from './condition-options';
- import * as numericOptions from './clause-options/numeric';
- import * as textOptions from './clause-options/text';
+ import * as clauseOptions from './clause-options';
 
  export default {
    name: 'query-builder',
@@ -69,13 +77,21 @@
    },
    computed: {
      conditionOptions() {
-       return this.conditions.map((condition) => {
+       const options = this.conditions.map((condition) => {
          const { type } = condition;
          return {
-           component: this.optionComponentFor(type),
+           component: this.conditionOptionFor(type),
            ...condition,
          };
        });
+       return options;
+     },
+     metaByType() {
+       const metaByType = {};
+       this.conditions.forEach((condition) => {
+         metaByType[condition.type] = condition.meta;
+       });
+       return metaByType;
      },
    },
    created() {
@@ -84,7 +100,25 @@
      }
    },
    methods: {
-     optionComponentFor(type) {
+     isClauseSelected(id, input, index) {
+       // if there's no input, default to first in the index
+       if (!input) {
+         return index === 0;
+       }
+       return id === input.clause;
+     },
+     clauseOptionsFor(type) {
+       const options = clauseOptions[type];
+       const meta = this.metaByType[type]
+       return meta.clauses.map(({ id, display, component }) => {
+         return {
+           id,
+           display,
+           component: options[`${component}Option`]
+         };
+       });
+     },
+     conditionOptionFor(type) {
        const {
          TextConditionOption,
          NumericConditionOption,
@@ -102,8 +136,6 @@
      Query,
      ConditionSelector,
      ...conditionOptions,
-     ...textOptions,
-     ...numericOptions,
    },
  };
 </script>
