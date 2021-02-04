@@ -8,30 +8,33 @@
       class="font-sans"
     >
       <condition-selector
-        v-for="{ uid, id, type, input } in blueprint.conditions"
-        :key="uid"
-        @select-condition="blueprint.replaceCondition"
+        v-for="(condition, index) in blueprint.conditions"
+        :key="condition.uid"
+        @select-condition="(previous, next) => blueprint.replaceCondition(previous, next)"
       >
+        <p>{{ condition.type }}</p>
         <component
-          v-for="{ component, id: optionId, display } in conditionOptions"
+          v-for="{ component, id: optionId, display, type } in conditionOptions"
           :is="component"
-          :selected="id === optionId"
+          :selected="condition.id === optionId"
           :id="optionId"
+          :type="type"
           :display="display"
           :key="optionId"
+          :condition="condition"
         >
           <component
-            v-for="({ id, display, component}, index) in clauseOptionsFor(type)"
+            v-for="({ id: clauseId, display, component}, index) in clauseOptionsFor(condition.type)"
             :is="component"
-            :id="id"
-            :key="id"
+            :id="clauseId"
+            :key="clauseId"
             :display="display"
-            :selected="isClauseSelected(id, input, index)"
-            v-bind="isClauseSelected(id, input, index) ? input : null"
+            :selected="isClauseSelected(clauseId, condition.input, index)"
+            v-bind="isClauseSelected(clauseId, condition.input, index) ? condition.input : null"
           />
         </component>
         <button
-          @click.prevent="blueprint.removeCondition(uid)"
+          @click.prevent="blueprint.removeCondition(component)"
           type="button"
           class="inline-flex items-center py-1 px-3 text-grey-700"
         >

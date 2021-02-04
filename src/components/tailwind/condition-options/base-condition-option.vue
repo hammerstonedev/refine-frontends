@@ -3,12 +3,12 @@
     :id="id"
     :display="display"
     :selected="selected"
+    v-bind="$attrs"
   >
     <div class="flex">
       <component
         :is="ConditionComponent"
         :id="id"
-        :condition="condition"
       >
         <slot></slot>
       </component>
@@ -24,10 +24,6 @@
    mixins: [optionProps],
    props: {
      ConditionComponent: {
-       type: Object,
-       required: false,
-     },
-     condition: {
        type: Object,
        required: false,
      },

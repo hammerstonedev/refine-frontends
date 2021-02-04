@@ -15,7 +15,8 @@ export default {
     const { id, display, selected, selector } = this;
     selector.registerOption({
       id,
-      display: display || id
+      display: display || id,
+      ...this.$attrs,
     });
     if (selected) {
       selector.selectOption(id);

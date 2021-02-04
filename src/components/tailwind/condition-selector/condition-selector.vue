@@ -13,8 +13,10 @@
  export default {
    name: 'condition-selector',
    methods: {
-     selectOption(...args) {
-       this.$emit('select-condition', ...args)
+     selectOption(previousOption, nextOption) {
+       const { condition } = previousOption;
+       const { id, type } = nextOption;
+       this.$emit('select-condition', condition, { id, type })
      },
    },
    components: {

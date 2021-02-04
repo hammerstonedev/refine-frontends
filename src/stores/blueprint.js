@@ -11,10 +11,11 @@ class Blueprint {
     };
   }
 
-  replaceCondition(...args) {
-    console.log(args);
-//    const previousIndex = this.conditions.indexOf(previousCondition);
-//    this.conditions.splice(previousIndex, 1, newCondition);
+  replaceCondition(previousCondition, { id, type, depth }) {
+    depth = depth || 0;
+    const previousIndex = this.conditions.indexOf(previousCondition);
+    const newCondition = this.generateCondition({ id, type, depth });
+    this.conditions.splice(previousIndex, 1, newCondition);
   }
 
   removeCondition(condition) {
