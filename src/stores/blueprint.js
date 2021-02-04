@@ -11,8 +11,8 @@ class Blueprint {
     };
   }
 
-  replaceCondition() {
-    console.log('replace');
+  replaceCondition(...args) {
+    console.log(args);
 //    const previousIndex = this.conditions.indexOf(previousCondition);
 //    this.conditions.splice(previousIndex, 1, newCondition);
   }
