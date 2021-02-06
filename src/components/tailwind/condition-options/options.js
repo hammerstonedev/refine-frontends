@@ -2,15 +2,6 @@ import { NumericCondition, TextCondition } from '@/components/tailwind/condition
 import useConditionOption from '@/compositions/tailwind/useConditionOption';
 import { optionProps } from '@/mixins';
 
-const conditionOptionProps = {
-  props: {
-    type: {
-      type: String,
-      required: true,
-    },
-  },
-};
-
 const TextConditionOption = {
   name: 'text-condition-option',
   mixins: [optionProps],
