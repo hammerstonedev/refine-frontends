@@ -57,27 +57,27 @@
          {
            "id": "doesnt_equal",
            "display": "Does Not Equal",
-           "component": "DoesNotEqual",
+           "component": "TextInput",
          },
          {
            "id": "starts_with",
            "display": "Starts With",
-           "component": "StartsWith",
+           "component": "TextInput",
          },
          {
            "id": "ends_with",
            "display": "Ends With",
-           "component": "EndsWith",
+           "component": "TextInput",
          },
          {
            "id": "contains",
            "display": "Contains",
-           "component": "Contains",
+           "component": "TextInput",
          },
          {
            "id": "doesnt_contain",
            "display": "Does Not Contain",
-           "component": "DoesNotContain",
+           "component": "TextInput",
          },
        ]
      }
@@ -91,37 +91,37 @@
          {
            "id": "eq",
            "display": "Is Equal To",
-           "component": 'IsEqualTo',
+           "component": 'NumberInput',
          },
          {
            "id": "gt",
            "display": "Is Greater Than",
-           component: 'IsGreaterThan',
+           component: 'NumberInput',
          },
          {
            "id": "gte",
            "display": "Is Greater Than Or Equal To",
-           component: 'IsGreaterThanOrEqualTo',
+           component: 'NumberInput',
          },
          {
            "id": "lt",
            "display": "Is Less Than",
-           component: 'IsLessThan',
+           component: 'NumberInput',
          },
          {
            "id": "lte",
            "display": "Is Less Than Or Equal To",
-           "component": "IsLessThanOrEqualTo",
+           "component": "NumberInput",
          },
          {
            "id": "between",
            "display": "Is Between",
-           "component": "IsBetween",
+           "component": "DoubleNumberInput",
          },
          {
            "id": "notbetween",
            "display": "Is Not Between",
-           "component": "IsNotBetween",
+           "component": "DoubleNumberInput",
          },
        ]
      }
