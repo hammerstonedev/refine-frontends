@@ -1,3 +1,4 @@
+import Selector from './selector';
 import { TextConditionOption, NumericConditionOption } from './condition-options';
 import { TextCondition, NumericCondition } from './conditions';
 import ConditionSelector from './condition-selector';
@@ -10,6 +11,7 @@ export {
   TextCondition,
   Query,
   QueryBuilder,
+  Selector,
   TextConditionOption,
   NumericConditionOption,
 };
