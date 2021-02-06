@@ -15,16 +15,21 @@ export default {
   provide() {
     const {
       blueprintStore: blueprint,
-      builderModeActive,
     } = this;
 
     return {
       blueprint,
-      builderModeActive,
+      builderModeActive: true,
     };
   },
   data() {
+    const conditionsLookup = this.conditions.reduce((lookup, condition) => {
+      lookup[condition.id] = condition;
+      return lookup;
+    }, {});
+
     return {
+      conditionsLookup,
       blueprintStore: new Blueprint(
         this.blueprint,
         (updatedBlueprint) => {
@@ -43,13 +48,18 @@ export default {
     removeCondition(...args) {
       console.log(args);
     },
+    conditionPropsFor({ id: conditionId }) {
+      const { id, type, display } = this.conditionsLookup[conditionId];
+      return { id, type, display };
+    },
   },
   render() {
     const {
+      addCondition,
       blueprintStore: blueprint,
       builderModeActive,
+      conditionPropsFor,
       replaceCondition,
-      addCondition,
       removeCondition,
     } = this;
 
@@ -58,6 +68,7 @@ export default {
         addCondition,
         blueprint,
         builderModeActive,
+        conditionPropsFor,
         removeCondition,
         replaceCondition,
         selectedConditions: blueprint.conditions,

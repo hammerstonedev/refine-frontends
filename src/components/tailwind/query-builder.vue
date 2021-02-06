@@ -2,7 +2,7 @@
   <renderless-query-builder
     :blueprint="blueprint"
     :conditions="conditions"
-    v-slot="{ selectedConditions, replaceCondition, addCondition, removeCondition }"
+    v-slot="{ selectedConditions, replaceCondition, addCondition, removeCondition, conditionPropsFor }"
   >
     <div
       class="font-sans"
@@ -12,7 +12,7 @@
         :key="selectedCondition.uid"
       >
         <renderless-condition
-          v-bind="selectedCondition"
+          v-bind="conditionPropsFor(selectedCondition)"
           v-slot="{ condition: { input }, updateInput }"
         >
           <!-- condition selector -->
@@ -77,7 +77,10 @@
 
 <script>
  import { Selector } from '.';
- import RenderlessQueryBuilder from '@/components/renderless/renderless-query-builder';
+ import {
+   RenderlessQueryBuilder,
+   RenderlessCondition,
+ } from '@/components/renderless';
 
  export default {
    name: 'query-builder',
@@ -98,6 +101,7 @@
      }
    },
    components: {
+     RenderlessCondition,
      RenderlessQueryBuilder,
      Selector,
    },
