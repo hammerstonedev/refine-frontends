@@ -37,14 +37,14 @@
 s                    @select-option="({ id: clause }) => updateInput({ clause })"
                   >
                     <selector-option
-                      v-for="{ id: clauseId, type, display, Component } in meta.clauses"
+                      v-for="{ id: clauseId, type, display, component } in meta.clauses"
                       :key="clauseId"
                       :id="clauseId"
                       :display="display"
                       :selected="input.clause == clauseId"
                     >
                       <component
-                        :is="Component"
+                        :is="component"
                         v-bind="input"
                         @input="setValue"
                       />
@@ -86,6 +86,7 @@ s                    @select-option="({ id: clause }) => updateInput({ clause })
    RenderlessCondition,
    RenderlessClause,
  } from '@/components/renderless';
+ import * as inputs from './inputs';
 
  export default {
    name: 'query-builder',
@@ -111,6 +112,7 @@ s                    @select-option="({ id: clause }) => updateInput({ clause })
      RenderlessQueryBuilder,
      RenderlessClause,
      Selector,
+     ...inputs,
    },
  };
 </script>
