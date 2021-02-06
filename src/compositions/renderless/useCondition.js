@@ -26,16 +26,13 @@ export default (id, type, props, context) => {
       depth: 0,
     });
   } else {
-    condition = blueprint.generateCondition({
-      id,
-      type,
-      depth: 0,
-    });
+    condition = blueprint.findCondition(props.uid);
   }
 
+  const updateInput = updates => blueprint.updateInput(condition, updates);
   provide('condition', {
     ...condition,
-    updateInput: updates => blueprint.updateInput(condition, updates),
+    updateInput,
   });
 
   onUnmounted(() => {
@@ -55,7 +52,7 @@ export default (id, type, props, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({ clauses, condition });
+      return context.slots.default({ clauses, condition, updateInput });
     }
     return null;
   };

@@ -13,21 +13,22 @@
       >
         <renderless-condition
           v-bind="conditionPropsFor(selectedCondition)"
-          v-slot="{ condition: { input }, updateInput }"
+          v-slot="{ updateInput, condition: { input, type, uid, id: selectedConditionId } }"
         >
           <div>
             <!-- condition selector -->
             <selector
-              @select-option="({ id: newConditionId }) => replaceCondition(selectedCondition.uid, newConditionId)"
+              @select-option="({ id: newConditionId }) => replaceCondition(uid, newConditionId)"
             >
               <selector-option
                 v-for="{id, type, display, meta } in conditions"
                 :key="id"
                 :id="id"
                 :display="display"
-                :selected="selectedCondition.id === id"
+                :selected="selectedConditionId === id"
               >
                 <renderless-clause
+                  :type="type"
                   v-bind="input"
                   v-slot="setValue"
                 >
@@ -36,13 +37,15 @@
 s                    @select-option="({ id: clause }) => updateInput({ clause })"
                   >
                     <selector-option
-                      v-for="{ id: clauseId, type, Component } in meta.clauses"
+                      v-for="{ id: clauseId, type, display, Component } in meta.clauses"
                       :key="clauseId"
+                      :id="clauseId"
+                      :display="display"
                       :selected="input.clause == clauseId"
                     >
                       <component
                         :is="Component"
-                        v-bind="selectedCondition.input"
+                        v-bind="input"
                         @input="setValue"
                       />
                     </selector-option>
@@ -51,7 +54,7 @@ s                    @select-option="({ id: clause }) => updateInput({ clause })
               </selector-option>
             </selector>
             <button
-              @click.prevent="removeCondition(selectedCondition.uid)"
+              @click.prevent="removeCondition(uid)"
               type="button"
               class="inline-flex items-center py-1 px-3 text-grey-700"
             >
@@ -81,6 +84,7 @@ s                    @select-option="({ id: clause }) => updateInput({ clause })
  import {
    RenderlessQueryBuilder,
    RenderlessCondition,
+   RenderlessClause,
  } from '@/components/renderless';
 
  export default {
@@ -105,6 +109,7 @@ s                    @select-option="({ id: clause }) => updateInput({ clause })
      SelectorOption,
      RenderlessCondition,
      RenderlessQueryBuilder,
+     RenderlessClause,
      Selector,
    },
  };

@@ -3,7 +3,7 @@ import useClause from '@/compositions/renderless/useClause';
 export default {
   name: 'renderless-clause',
   props: {
-    id: {
+    clause: {
       type: String,
       required: true,
     },
@@ -11,12 +11,9 @@ export default {
       type: String,
       required: true,
     },
-    display: {
-      type: String,
-      required: true,
-    },
+
   },
   setup(props, context) {
-    return useClause(props.id, props.type, props, context);
+    return useClause(props.clause, props.type, props, context);
   },
 };

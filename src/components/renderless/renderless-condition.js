@@ -15,6 +15,10 @@ export default {
       type: String,
       required: true,
     },
+    uid: {
+      type: Number,
+      required: true,
+    },
   },
   setup(props, context) {
     return useCondition(props.id, props.type, props, context);

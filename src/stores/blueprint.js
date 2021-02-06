@@ -52,14 +52,14 @@ class Blueprint {
     this.blueprintChanged();
   }
 
-  generateCondition({ id, type, depth }) {
+  generateCondition({ id, type, depth, input }) {
     const uid = getNextUid();
 
     const condition = {
       id,
       type,
       depth,
-      input: {},
+      input: input || {},
       uid,
     };
     return condition;
@@ -70,8 +70,8 @@ class Blueprint {
     return this.conditions[conditionIndex];
   }
 
-  addCondition({ id, type, depth }) {
-    const condition = this.generateCondition({ id, type, depth });
+  addCondition({ id, type, depth, input }) {
+    const condition = this.generateCondition({ id, type, depth, input });
     this.conditions.push(condition);
     this.blueprintChanged();
     return condition;

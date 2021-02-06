@@ -43,14 +43,20 @@ export default {
       console.log(args);
     },
     addCondition() {
-      this.blueprintStore.addCondition({ ...this.conditions[0] });
+      const firstCondition = this.conditions[0];
+      const { id, type, meta } = firstCondition;
+      const firstClause = meta.clauses[0];
+      const input = {
+        clause: firstClause.id,
+      };
+      this.blueprintStore.addCondition({ id, type, input, depth: 0 });
     },
     removeCondition(...args) {
       console.log(args);
     },
-    conditionPropsFor({ id: conditionId }) {
+    conditionPropsFor({ id: conditionId, uid }) {
       const { id, type, display } = this.conditionsLookup[conditionId];
-      return { id, type, display };
+      return { id, type, display, uid };
     },
   },
   render() {
