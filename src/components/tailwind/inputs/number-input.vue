@@ -4,7 +4,7 @@
     type="text"
     :value="currentValue"
     @input="handleInputChange"
-  >
+  />
 </template>
 
 <script>
