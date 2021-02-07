@@ -36,7 +36,11 @@
      },
    },
    props: {
-     value: {
+     value1: {
+       type: Number,
+       required: false,
+     },
+     value2: {
        type: Number,
        required: false,
      },

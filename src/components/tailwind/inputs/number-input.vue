@@ -26,7 +26,7 @@
          this.currentValue = inputValue;
        } else {
          this.currentValue = newValue;
-         this.$emit('input', newValue)
+         this.$emit('input', { value: newValue })
        }
 
      },

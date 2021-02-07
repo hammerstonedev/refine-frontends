@@ -30,7 +30,7 @@
                 <renderless-clause
                   :type="type"
                   v-bind="input"
-                  v-slot="setValue"
+                  v-slot="{ setValue }"
                 >
                   <!-- clause selector -->
                   <selector
