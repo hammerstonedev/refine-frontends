@@ -39,8 +39,16 @@ export default {
     };
   },
   methods: {
-    replaceCondition(...args) {
-      console.log(args);
+    replaceCondition(previousConditionUid, newCondition) {
+      const { meta } = this.conditionsLookup[newCondition.id];
+      const firstClause = meta.clauses[0];
+      const input = {
+        clause: firstClause.id,
+      };
+
+      this.blueprintStore.replaceCondition({
+        uid: previousConditionUid,
+      }, { input, depth: 0, ...newCondition });
     },
     addCondition() {
       const firstCondition = this.conditions[0];

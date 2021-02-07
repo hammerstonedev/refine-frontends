@@ -18,7 +18,7 @@
           <div>
             <!-- condition selector -->
             <selector
-              @select-option="({ id: newConditionId }) => replaceCondition(uid, newConditionId)"
+              @select-option="(previousCondition, nextCondition) => replaceCondition(uid, conditionPropsFor(nextCondition))"
             >
               <selector-option
                 v-for="{id, type, display, meta } in conditions"
