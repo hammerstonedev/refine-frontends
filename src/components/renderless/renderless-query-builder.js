@@ -59,8 +59,8 @@ export default {
       };
       this.blueprintStore.addCondition({ id, type, input, depth: 0 });
     },
-    removeCondition(...args) {
-      console.log(args);
+    removeCondition(uid) {
+      this.blueprintStore.removeCondition({ uid });
     },
     conditionPropsFor({ id: conditionId, uid }) {
       const { id, type, display } = this.conditionsLookup[conditionId];
