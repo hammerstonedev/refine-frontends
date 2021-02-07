@@ -47,105 +47,123 @@
    IsNotBetweenOption,
  } from './components/tailwind/clause-options/numeric';
 
- const conditions = [
-   {
-     "id": "text_condition",
-     "type": "text",
-     "display": "Text Condition",
-     "meta": {
-       "clauses": [
-         {
-           "id": "doesnt_equal",
-           "display": "Does Not Equal",
-           "component": "TextInput",
-         },
-         {
-           "id": "starts_with",
-           "display": "Starts With",
-           "component": "TextInput",
-         },
-         {
-           "id": "ends_with",
-           "display": "Ends With",
-           "component": "TextInput",
-         },
-         {
-           "id": "contains",
-           "display": "Contains",
-           "component": "TextInput",
-         },
-         {
-           "id": "doesnt_contain",
-           "display": "Does Not Contain",
-           "component": "TextInput",
-         },
-       ]
-     }
+ const conditions = [{
+   "id": "name",
+   "type": "text",
+   "display": "Name",
+   "meta": {
+     "clauses": [{
+       "id": "eq",
+       "display": "Equals",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "dne",
+       "display": "Does Not Equal",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "sw",
+       "display": "Starts With",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "ew",
+       "display": "Ends With",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "dsw",
+       "display": "Does Not Start With",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "dew",
+       "display": "Does Not End With",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "cont",
+       "display": "Contains",
+       "requires": ["value"],
+       "component": "TextInput",
+     }, {
+       "id": "dcont",
+       "display": "Does Not Contain",
+       "requires": ["value"],
+       "component": "TextInput",
+     }],
    },
-   {
-     "id": "numeric_condition",
-     "type": "numeric",
-     "display": "Numeric Condition",
-     "meta": {
-       "clauses": [
-         {
-           "id": "eq",
-           "display": "Is Equal To",
-           "component": 'NumberInput',
-         },
-         {
-           "id": "gt",
-           "display": "Is Greater Than",
-           component: 'NumberInput',
-         },
-         {
-           "id": "gte",
-           "display": "Is Greater Than Or Equal To",
-           component: 'NumberInput',
-         },
-         {
-           "id": "lt",
-           "display": "Is Less Than",
-           component: 'NumberInput',
-         },
-         {
-           "id": "lte",
-           "display": "Is Less Than Or Equal To",
-           "component": "NumberInput",
-         },
-         {
-           "id": "between",
-           "display": "Is Between",
-           "component": "DoubleNumberInput",
-         },
-         {
-           "id": "notbetween",
-           "display": "Is Not Between",
-           "component": "DoubleNumberInput",
-         },
-       ]
-     }
+ }, {
+   "id": "tracked_count",
+   "type": "numeric",
+   "component": "numeric-condition",
+   "display": "Employee Count",
+   "meta": {
+     "clauses": [{
+       "id": "eq",
+       "display": "Is Equal To",
+       "requires": ["value1"],
+       component: 'NumberInput',
+     }, {
+       "id": "dne",
+       "display": "Is Not Equal To",
+       "requires": ["value1"],
+       component: 'NumberInput',
+     }, {
+       "id": "gt",
+       "display": "Is Greater Than",
+       "requires": ["value1"],
+       component: 'NumberInput',
+     }, {
+       "id": "gte",
+       "display": "Is Greater Than Or Equal To",
+       "requires": ["value1"],
+       component: 'NumberInput',
+     }, {
+       "id": "lt",
+       "display": "Is Less Than",
+       "requires": ["value1"],
+       component: 'NumberInput',
+     }, {
+       "id": "lte",
+       "display": "Is Less Than Or Equal To",
+       "requires": ["value1"],
+       component: 'NumberInput',
+     }, {
+       "id": "btwn",
+       "display": "Is Between",
+       "requires": ["value1",
+                    "value2"],
+       component: 'DoubleNumberInput',
+     }, {
+       "id": "nbtwn",
+       "display": "Is Not Between",
+       "requires": ["value1",
+                    "value2"],
+       component: 'DoubleNumberInput',
+     }],
    },
- ];
+ }];
 
 
- export default {
-   name: 'App',
-   data() {
-     return {
-       conditions,
-     };
-   },
-   components: {
-     IsBetweenOption,
-     IsNotBetweenOption,
-     ConditionSelector,
-     TextConditionOption,
-     NumericConditionOption,
-     NumericCondition,
-     TextCondition,
-     Query,
-     QueryBuilder,
-   },
- }
+   export default {
+     name: 'App',
+     data() {
+       return {
+         conditions,
+       };
+     },
+     components: {
+       IsBetweenOption,
+       IsNotBetweenOption,
+       ConditionSelector,
+       TextConditionOption,
+       NumericConditionOption,
+       NumericCondition,
+       TextCondition,
+       Query,
+       QueryBuilder,
+     },
+   }
 </script>
