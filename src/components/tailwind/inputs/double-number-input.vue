@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="flex align-items">
     <number-input
+      class="mr-3"
       :value="currentValue"
       @input="updateFirstValue"
     />
@@ -12,6 +13,8 @@
 </template>
 
 <script>
+ import NumberInput from './number-input';
+
  export default {
    data() {
      return {
@@ -19,20 +22,11 @@
      };
    },
    methods: {
-     handleInputChange: function(event) {
-       const inputValue = event.target.value;
-       const newValue = Number(inputValue);
-
-       if (isNaN(newValue)) {
-         // don't emit. Only update with valid inputs so
-         // the blueprint won't be updated with garbage and
-         // we won't throw proptype errors
-         this.currentValue = inputValue;
-       } else {
-         this.currentValue = newValue;
-         this.$emit('input', newValue)
-       }
-
+     updateFirstValue: function({ value }) {
+       this.$emit('input', { value1: value })
+     },
+     updateSecondValue: function({ value }) {
+       this.$emit('input', { value2: value })
      },
    },
    props: {
@@ -44,6 +38,9 @@
        type: Number,
        required: false,
      },
+   },
+   components: {
+     NumberInput,
    },
  };
 </script>

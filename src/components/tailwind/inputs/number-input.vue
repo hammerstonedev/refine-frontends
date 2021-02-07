@@ -9,6 +9,7 @@
 
 <script>
  export default {
+   name: 'number-input',
    data() {
      return {
        currentValue: this.value,
