@@ -12,7 +12,7 @@ export default (id, type, props, context) => {
     throw new Error('A clause must be used within a condition.');
   }
 
-  if (condition.type !== type) {
+  if (!builderModeActive && condition.type !== type) {
     throw new Error(`Clause "${id}" must be used within a "${type}" condition. It's currently within a "${condition.type}" condition`);
   }
 

@@ -13,7 +13,7 @@
       >
         <renderless-condition
           v-bind="conditionPropsFor(selectedCondition)"
-          v-slot="{ updateInput, condition: { input, type, uid, id: selectedConditionId } }"
+          v-slot="{ updateInput, condition: { input, uid, id: selectedConditionId } }"
         >
           <div>
             <!-- condition selector -->
@@ -34,10 +34,10 @@
                 >
                   <!-- clause selector -->
                   <selector
-s                    @select-option="({ id: clause }) => updateInput({ clause })"
+                    @select-option="({ id: clause }) => updateInput({ clause })"
                   >
                     <selector-option
-                      v-for="{ id: clauseId, type, display, component } in meta.clauses"
+                      v-for="{ id: clauseId, display, component } in meta.clauses"
                       :key="clauseId"
                       :id="clauseId"
                       :display="display"
