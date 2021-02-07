@@ -15,7 +15,7 @@
           v-bind="conditionPropsFor(selectedCondition)"
           v-slot="{ updateInput, condition: { input, uid, id: selectedConditionId } }"
         >
-          <div>
+          <div class="flex items-center">
             <!-- condition selector -->
             <selector
               @select-option="(previousCondition, nextCondition) => replaceCondition(uid, conditionPropsFor(nextCondition))"
