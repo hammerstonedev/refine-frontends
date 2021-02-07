@@ -9,13 +9,13 @@
       <div class="sm:mr-2">
         <number-input
           :value="value1"
-          @input="value => setValue({ value1: value })"
+          @input="({ value }) => setValue({ value1: value })"
         />
       </div>
       <div class="pt-4 sm:pt-0">
         <number-input
           :value="value2"
-          @input="value => setValue({ value2: value })"
+          @input="({ value }) => setValue({ value2: value })"
         />
       </div>
     </div>

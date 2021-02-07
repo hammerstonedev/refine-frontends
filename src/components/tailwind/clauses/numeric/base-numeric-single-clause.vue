@@ -7,7 +7,7 @@
     <div>
       <number-input
         :value="value1"
-        @input="value => setValue({ value1: value })"
+        @input="setValue"
       />
     </div>
   </component>
