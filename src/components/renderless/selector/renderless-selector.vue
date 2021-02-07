@@ -92,20 +92,12 @@
        return this.nextTick();
      },
      selectOption(optionId) {
-       if (!this.builderModeActive) {
-         this.selector.selectOption(optionId);
-         this.$emit(
-           'select-option',
-           this.selector.previousOption,
-           this.selector.selectedOption,
-         )
-       } else {
-         this.$emit(
-           'select-option',
-           this.selector.selectedOption,
-           this.selector.findOption(optionId),
-         );
-       }
+       this.selector.selectOption(optionId);
+       this.$emit(
+         'select-option',
+         this.selector.previousOption,
+         this.selector.selectedOption,
+       )
        return this.close();
      },
      highlightOption(option) {

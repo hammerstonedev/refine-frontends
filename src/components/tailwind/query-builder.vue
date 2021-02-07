@@ -34,14 +34,14 @@
                 >
                   <!-- clause selector -->
                   <selector
-                    @select-option="({ id: clause }) => updateInput({ clause })"
+                    @select-option="(previousClause, { id: clause }) => updateInput({ clause })"
                   >
                     <selector-option
                       v-for="{ id: clauseId, display, component } in meta.clauses"
                       :key="clauseId"
                       :id="clauseId"
                       :display="display"
-                      :selected="input.clause == clauseId"
+                      :selected="input.clause === clauseId"
                     >
                       <component
                         :is="component"
