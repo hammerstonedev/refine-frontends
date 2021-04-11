@@ -12,7 +12,8 @@
   "dependencies": {
     "@vue/composition-api": "^1.0.0-beta.15",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue2-datepicker": "^3.9.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.2.1",
