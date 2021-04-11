@@ -1,11 +1,11 @@
 import { inject, provide, onUnmounted } from '@vue/composition-api';
 
-export default (id, type, props, context) => {
+export default (id, props, context) => {
   const blueprint = inject('blueprint');
   const builderModeActive = inject('builderModeActive');
 
-  if (!id || !type) {
-    throw new Error('useCondition requires an id and a type.');
+  if (!id) {
+    throw new Error('useCondition requires an id.');
   }
 
   if (!context) {
@@ -22,7 +22,6 @@ export default (id, type, props, context) => {
   if (!builderModeActive) {
     condition = blueprint.addCondition({
       id,
-      type,
       depth: 0,
     });
   } else {

@@ -7,10 +7,6 @@ export default {
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-      required: true,
-    },
     display: {
       type: String,
       required: true,
@@ -21,6 +17,6 @@ export default {
     },
   },
   setup(props, context) {
-    return useCondition(props.id, props.type, props, context);
+    return useCondition(props.id, props, context);
   },
 };

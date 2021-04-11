@@ -21,14 +21,13 @@
               @select-option="(previousCondition, nextCondition) => replaceCondition(uid, conditionPropsFor(nextCondition))"
             >
               <selector-option
-                v-for="{id, type, display, meta } in conditions"
+                v-for="{id, display, meta } in conditions"
                 :key="id"
                 :id="id"
                 :display="display"
                 :selected="selectedConditionId === id"
               >
                 <renderless-clause
-                  :type="type"
                   v-bind="input"
                   v-slot="{ setValue }"
                 >

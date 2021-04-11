@@ -7,12 +7,8 @@ export default {
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-      required: true,
-    },
   },
   setup(props, context) {
-    return useClause(props.clause, props.type, props, context);
+    return useClause(props.clause, props, context);
   },
 };

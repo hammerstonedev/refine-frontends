@@ -47,104 +47,374 @@
    IsNotBetweenOption,
  } from './components/tailwind/clause-options/numeric';
 
- const conditions = [{
-   "id": "name",
-   "type": "text",
-   "display": "Name",
-   "meta": {
-     "clauses": [{
-       "id": "eq",
-       "display": "Equals",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "dne",
-       "display": "Does Not Equal",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "sw",
-       "display": "Starts With",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "ew",
-       "display": "Ends With",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "dsw",
-       "display": "Does Not Start With",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "dew",
-       "display": "Does Not End With",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "cont",
-       "display": "Contains",
-       "requires": ["value"],
-       "component": "TextInput",
-     }, {
-       "id": "dcont",
-       "display": "Does Not Contain",
-       "requires": ["value"],
-       "component": "TextInput",
-     }],
-   },
- }, {
-   "id": "tracked_count",
-   "type": "numeric",
-   "component": "numeric-condition",
-   "display": "Employee Count",
-   "meta": {
-     "clauses": [{
-       "id": "eq",
-       "display": "Is Equal To",
-       "requires": ["value1"],
-       component: 'NumberInput',
-     }, {
-       "id": "dne",
-       "display": "Is Not Equal To",
-       "requires": ["value1"],
-       component: 'NumberInput',
-     }, {
-       "id": "gt",
-       "display": "Is Greater Than",
-       "requires": ["value1"],
-       component: 'NumberInput',
-     }, {
-       "id": "gte",
-       "display": "Is Greater Than Or Equal To",
-       "requires": ["value1"],
-       component: 'NumberInput',
-     }, {
-       "id": "lt",
-       "display": "Is Less Than",
-       "requires": ["value1"],
-       component: 'NumberInput',
-     }, {
-       "id": "lte",
-       "display": "Is Less Than Or Equal To",
-       "requires": ["value1"],
-       component: 'NumberInput',
-     }, {
-       "id": "btwn",
-       "display": "Is Between",
-       "requires": ["value1",
-                    "value2"],
-       component: 'DoubleNumberInput',
-     }, {
-       "id": "nbtwn",
-       "display": "Is Not Between",
-       "requires": ["value1",
-                    "value2"],
-       component: 'DoubleNumberInput',
-     }],
-   },
- }];
+ const conditions = [
+        {
+            "id": "text",
+            "component": "text-condition",
+            "display": "Text",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "eq",
+                        "display": "Equals",
+                        "meta": []
+                    },
+                    {
+                        "id": "dne",
+                        "display": "Does Not Equal",
+                        "meta": []
+                    },
+                    {
+                        "id": "sw",
+                        "display": "Starts With",
+                        "meta": []
+                    },
+                    {
+                        "id": "ew",
+                        "display": "Ends With",
+                        "meta": []
+                    },
+                    {
+                        "id": "dsw",
+                        "display": "Does Not Start With",
+                        "meta": []
+                    },
+                    {
+                        "id": "dew",
+                        "display": "Does Not End With",
+                        "meta": []
+                    },
+                    {
+                        "id": "cont",
+                        "display": "Contains",
+                        "meta": []
+                    },
+                    {
+                        "id": "dcont",
+                        "display": "Does Not Contain",
+                        "meta": []
+                    },
+                    {
+                        "id": "st",
+                        "display": "Is Set",
+                        "meta": []
+                    },
+                    {
+                        "id": "nst",
+                        "display": "Is Not Set",
+                        "meta": []
+                    }
+                ]
+            },
+            "refinements": []
+        },
+        {
+            "id": "bool",
+            "component": "boolean-condition",
+            "display": "Bool",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "true",
+                        "display": "Is True",
+                        "meta": []
+                    },
+                    {
+                        "id": "false",
+                        "display": "Is False",
+                        "meta": []
+                    }
+                ]
+            },
+            "refinements": []
+        },
+        {
+            "id": "date",
+            "component": "date-condition",
+            "display": "Date",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "eq",
+                        "display": "Is Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "dne",
+                        "display": "Is Not Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "lte",
+                        "display": "Is On or Before",
+                        "meta": []
+                    },
+                    {
+                        "id": "gte",
+                        "display": "Is On or After",
+                        "meta": []
+                    },
+                    {
+                        "id": "btwn",
+                        "display": "Is Between",
+                        "meta": []
+                    },
+                    {
+                        "id": "gt",
+                        "display": "Is More Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "exct",
+                        "display": "Is Exactly",
+                        "meta": []
+                    },
+                    {
+                        "id": "lt",
+                        "display": "Is Less Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "st",
+                        "display": "Is Set",
+                        "meta": []
+                    },
+                    {
+                        "id": "nst",
+                        "display": "Is Not Set",
+                        "meta": []
+                    }
+                ]
+            },
+            "refinements": []
+        },
+        {
+            "id": "date_with_time",
+            "component": "date-condition",
+            "display": "Date With Time",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "eq",
+                        "display": "Is Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "dne",
+                        "display": "Is Not Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "lte",
+                        "display": "Is On or Before",
+                        "meta": []
+                    },
+                    {
+                        "id": "gte",
+                        "display": "Is On or After",
+                        "meta": []
+                    },
+                    {
+                        "id": "btwn",
+                        "display": "Is Between",
+                        "meta": []
+                    },
+                    {
+                        "id": "gt",
+                        "display": "Is More Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "exct",
+                        "display": "Is Exactly",
+                        "meta": []
+                    },
+                    {
+                        "id": "lt",
+                        "display": "Is Less Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "st",
+                        "display": "Is Set",
+                        "meta": []
+                    },
+                    {
+                        "id": "nst",
+                        "display": "Is Not Set",
+                        "meta": []
+                    }
+                ]
+            },
+            "refinements": []
+        },
+        {
+            "id": "timestamp",
+            "component": "date-condition",
+            "display": "Timestamp",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "eq",
+                        "display": "Is Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "dne",
+                        "display": "Is Not Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "lte",
+                        "display": "Is On or Before",
+                        "meta": []
+                    },
+                    {
+                        "id": "gte",
+                        "display": "Is On or After",
+                        "meta": []
+                    },
+                    {
+                        "id": "btwn",
+                        "display": "Is Between",
+                        "meta": []
+                    },
+                    {
+                        "id": "gt",
+                        "display": "Is More Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "exct",
+                        "display": "Is Exactly",
+                        "meta": []
+                    },
+                    {
+                        "id": "lt",
+                        "display": "Is Less Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "st",
+                        "display": "Is Set",
+                        "meta": []
+                    },
+                    {
+                        "id": "nst",
+                        "display": "Is Not Set",
+                        "meta": []
+                    }
+                ]
+            },
+            "refinements": []
+        },
+        {
+            "id": "numeric",
+            "component": "numeric-condition",
+            "display": "Numeric",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "eq",
+                        "display": "Is Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "dne",
+                        "display": "Is Not Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "gt",
+                        "display": "Is Greater Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "gte",
+                        "display": "Is Greater Than Or Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "lt",
+                        "display": "Is Less Than",
+                        "meta": []
+                    },
+                    {
+                        "id": "lte",
+                        "display": "Is Less Than Or Equal To",
+                        "meta": []
+                    },
+                    {
+                        "id": "btwn",
+                        "display": "Is Between",
+                        "meta": []
+                    },
+                    {
+                        "id": "nbtwn",
+                        "display": "Is Not Between",
+                        "meta": []
+                    },
+                    {
+                        "id": "st",
+                        "display": "Is Set",
+                        "meta": []
+                    },
+                    {
+                        "id": "nst",
+                        "display": "Is Not Set",
+                        "meta": []
+                    }
+                ]
+            },
+            "refinements": []
+        },
+        {
+            "id": "option",
+            "component": "option-condition",
+            "display": "Option",
+            "meta": {
+                "clauses": [
+                    {
+                        "id": "eq",
+                        "display": "Is",
+                        "meta": []
+                    },
+                    {
+                        "id": "dne",
+                        "display": "Is Not",
+                        "meta": []
+                    },
+                    {
+                        "id": "in",
+                        "display": "Is One Of",
+                        "meta": []
+                    },
+                    {
+                        "id": "nin",
+                        "display": "Is Not One Of",
+                        "meta": []
+                    },
+                    {
+                        "id": "st",
+                        "display": "Is Set",
+                        "meta": []
+                    },
+                    {
+                        "id": "nst",
+                        "display": "Is Not Set",
+                        "meta": []
+                    }
+                ],
+                "options": [
+                    {
+                        "id": "foo",
+                        "display": "Foo"
+                    }
+                ]
+            },
+            "refinements": []
+        }
+    ];
 
 
    export default {

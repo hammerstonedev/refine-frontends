@@ -1,6 +1,6 @@
 import { inject, onUnmounted } from '@vue/composition-api';
 
-export default (id, type, props, context) => {
+export default (id, props, context) => {
   const condition = inject('condition');
   const builderModeActive = inject('builderModeActive');
 
@@ -10,10 +10,6 @@ export default (id, type, props, context) => {
 
   if (!condition) {
     throw new Error('A clause must be used within a condition.');
-  }
-
-  if (!builderModeActive && condition.type !== type) {
-    throw new Error(`Clause "${id}" must be used within a "${type}" condition. It's currently within a "${condition.type}" condition`);
   }
 
   // Set the clause id on the blueprint input when this clause is rendered

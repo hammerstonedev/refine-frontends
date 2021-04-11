@@ -1,19 +1,19 @@
 import useClause from '@/compositions/renderless/useClause';
 
-export const createClause = (name, id, type, props) => {
+export const createClause = (name, id, props) => {
   return {
     name,
     props,
     setup(props, context) {
-      return useClause(id, type, props, context);
+      return useClause(id, props, context);
     },
   };
 };
 
-export const generateClauses = (type, clauses) => {
+export const generateClauses = (clauses) => {
   return clauses.reduce((clauseComponents, { id, component, requires: props }) => {
     return {
-      [component]: createClause(component, id, type, props),
+      [component]: createClause(component, id, props),
       ...clauseComponents,
     };
   }, {});

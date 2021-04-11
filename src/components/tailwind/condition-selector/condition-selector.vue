@@ -15,8 +15,8 @@
    methods: {
      selectOption(previousOption, nextOption) {
        const { condition } = previousOption;
-       const { id, type } = nextOption;
-       this.$emit('select-condition', condition, { id, type })
+       const { id } = nextOption;
+       this.$emit('select-condition', condition, { id })
      },
    },
    components: {
