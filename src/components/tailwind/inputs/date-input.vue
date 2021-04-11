@@ -2,7 +2,8 @@
   <div>
     <date-picker
       v-model="time"
-      valueType="YYYY-MM-DD"
+      valueType="format"
+      format="MM/DD/YYYY"
       @input="handleInput"
       @input-error="handleInputError"
       :input-class="hasError ? inputClass + errorClass : inputClass"
@@ -43,6 +44,8 @@
 <script>
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import parse from 'date-fns/parse';
+import format from 'date-fns/format';
 
 export default {
   components: { DatePicker },
@@ -62,7 +65,8 @@ export default {
     },
     handleInput: function () {
       this.hasError = false;
-      this.$emit("input", { value: this.time });
+      const utc = format(parse(this.time, 'MM/dd/yyyy', new Date()), 'yyyy-MM-dd');
+      this.$emit("input", { value: utc });
     },
   },
 };
