@@ -2,10 +2,7 @@
   <div class="flex items-center">
     <!-- condition selector -->
     <selector
-      @select-option="
-        (previousCondition, nextCondition) =>
-          this.$emit('switch-condition', previousCondition, nextCondition)
-      "
+      @select-option="switchCondition"
     >
       <selector-option
         v-for="{ id, display, meta } in conditions"
@@ -17,10 +14,7 @@
         <renderless-clause v-bind="input" v-slot="{ setValue }">
           <!-- clause selector -->
           <selector
-            @select-option="
-              (previousClause, nextClause) =>
-                this.$emit('switch-clause', previousClause, nextClause)
-            "
+            @select-option="switchClause"
           >
             <selector-option
               v-for="{ id: clauseId, display, component } in meta.clauses"
@@ -29,14 +23,14 @@
               :display="display"
               :selected="input.clause === clauseId"
             >
-              <component :is="component" v-bind="input" @input="setValue" />
+              <component v-if="component" :is="component" v-bind="input" @input="setValue" />
             </selector-option>
           </selector>
         </renderless-clause>
       </selector-option>
     </selector>
     <button
-      @click.prevent="this.$emit('remove-condition')"
+      @click.prevent="$emit('remove-condition')"
       type="button"
       class="inline-flex items-center py-1 px-3 text-grey-700"
     >
@@ -77,6 +71,14 @@ export default {
     input: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    switchClause: function(previousClause, nextClause) {
+      this.$emit('switch-clause', previousClause, nextClause)
+    },
+    switchCondition: function(previousCondition, nextCondition) {
+      this.$emit('switch-condition', previousCondition, nextCondition);
     },
   },
   components: {
