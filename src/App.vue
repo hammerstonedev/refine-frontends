@@ -145,51 +145,61 @@
                     {
                         "id": "eq",
                         "display": "Is Equal To",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "dne",
                         "display": "Is Not Equal To",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "lte",
                         "display": "Is On or Before",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "gte",
                         "display": "Is On or After",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "btwn",
                         "display": "Is Between",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "gt",
                         "display": "Is More Than",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "exct",
                         "display": "Is Exactly",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "lt",
                         "display": "Is Less Than",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "st",
                         "display": "Is Set",
+                        "component": "date-input",
                         "meta": []
                     },
                     {
                         "id": "nst",
                         "display": "Is Not Set",
+                        "component": "date-input",
                         "meta": []
                     }
                 ]
