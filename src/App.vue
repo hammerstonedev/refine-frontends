@@ -63,36 +63,43 @@
                     {
                         "id": "dne",
                         "display": "Does Not Equal",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
                         "id": "sw",
                         "display": "Starts With",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
                         "id": "ew",
                         "display": "Ends With",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
                         "id": "dsw",
                         "display": "Does Not Start With",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
                         "id": "dew",
                         "display": "Does Not End With",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
                         "id": "cont",
                         "display": "Contains",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
                         "id": "dcont",
                         "display": "Does Not Contain",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
@@ -318,41 +325,49 @@
                     {
                         "id": "eq",
                         "display": "Is Equal To",
+                        "component": "number-input",
                         "meta": []
                     },
                     {
                         "id": "dne",
                         "display": "Is Not Equal To",
+                        "component": "number-input",
                         "meta": []
                     },
                     {
                         "id": "gt",
                         "display": "Is Greater Than",
+                        "component": "number-input",
                         "meta": []
                     },
                     {
                         "id": "gte",
                         "display": "Is Greater Than Or Equal To",
+                        "component": "number-input",
                         "meta": []
                     },
                     {
                         "id": "lt",
                         "display": "Is Less Than",
+                        "component": "number-input",
                         "meta": []
                     },
                     {
                         "id": "lte",
                         "display": "Is Less Than Or Equal To",
+                        "component": "number-input",
                         "meta": []
                     },
                     {
                         "id": "btwn",
                         "display": "Is Between",
+                        "component": "double-number-input",
                         "meta": []
                     },
                     {
                         "id": "nbtwn",
                         "display": "Is Not Between",
+                        "component": "double-number-input",
                         "meta": []
                     },
                     {
