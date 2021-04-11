@@ -1,5 +1,5 @@
 import QueryBuilder from './query-builder';
-import Condition from './condition';
+import ConditionRow from './condition-row';
 
-export { Condition };
+export { ConditionRow };
 export default QueryBuilder;

@@ -59,21 +59,25 @@
 </template>
 
 <script>
-import { Selector, SelectorOption } from ".";
+import { Selector, SelectorOption } from "..";
 import { RenderlessClause } from "@/components/renderless";
 import * as inputs from "../inputs";
 
 export default {
   name: "condition",
   props: {
+    conditions: {
+      required: true,
+      type: Array,
+    },
     selectedConditionId: {
       type: String,
       required: true,
     },
     input: {
-        type: Object,
-        required: true,
-    }
+      type: Object,
+      required: true,
+    },
   },
   components: {
     SelectorOption,

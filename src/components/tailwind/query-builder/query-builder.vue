@@ -31,8 +31,8 @@
               (previousCondition, nextCondition) =>
                 replaceCondition(uid, conditionPropsFor(nextCondition))
             "
-            :is="condition"
-            v-bind="{input, selectedConditionId}"
+            :is="'ConditionRow'"
+            v-bind="{input, selectedConditionId, conditions}"
           />
         </renderless-condition>
       </div>
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { Condition } from ".";
+import ConditionRow from "./condition-row";
 import {
   RenderlessQueryBuilder,
   RenderlessCondition,
@@ -92,7 +92,7 @@ export default {
     }
   },
   components: {
-    Condition,
+    ConditionRow,
     RenderlessCondition,
     RenderlessQueryBuilder,
   },

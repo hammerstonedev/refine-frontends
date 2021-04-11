@@ -57,6 +57,7 @@
                     {
                         "id": "eq",
                         "display": "Equals",
+                        "component": "text-input",
                         "meta": []
                     },
                     {
