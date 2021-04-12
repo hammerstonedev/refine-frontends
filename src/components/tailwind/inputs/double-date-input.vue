@@ -20,11 +20,11 @@ export default {
   },
   props: {
     date1: {
-      type: Number,
+      type: String,
       required: false,
     },
     date2: {
-      type: Number,
+      type: String,
       required: false,
     },
   },
