@@ -37,7 +37,7 @@
 
 <script>
  export default {
-   name: 'selector-option',
+   name: 'selector-list-item',
    props: {
      optionId: {
        type: String,
