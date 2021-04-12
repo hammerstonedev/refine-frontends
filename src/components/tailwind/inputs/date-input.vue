@@ -44,14 +44,23 @@
 <script>
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
-import parse from 'date-fns/parse';
-import format from 'date-fns/format';
+import parse from "date-fns/parse";
+import format from "date-fns/format";
 
 export default {
   components: { DatePicker },
+  props: {
+    value: {
+      type: String,
+      required: false,
+    },
+  },
   data() {
+    const { value } = this;
     return {
-      time: null,
+      time: value
+        ? format(parse(value, "yyyy-MM-dd", new Date()), "MM/dd/yyyy")
+        : null,
       hasError: false,
       inputClass:
         "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
@@ -65,7 +74,10 @@ export default {
     },
     handleInput: function () {
       this.hasError = false;
-      const utc = format(parse(this.time, 'MM/dd/yyyy', new Date()), 'yyyy-MM-dd');
+      const utc = format(
+        parse(this.time, "MM/dd/yyyy", new Date()),
+        "yyyy-MM-dd"
+      );
       this.$emit("input", { value: utc });
     },
   },
