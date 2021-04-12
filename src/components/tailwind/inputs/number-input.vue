@@ -1,7 +1,7 @@
 <template>
   <input
     class="text-input"
-    type="text"
+    type="number"
     :value="currentValue"
     @input="handleInputChange"
   />
