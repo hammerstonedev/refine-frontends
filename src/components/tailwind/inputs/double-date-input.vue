@@ -1,7 +1,7 @@
 <template>
   <div class="flex align-items">
     <date-picker :date="date1" @input="updateFirstDate" />
-    <p class="px-3">and</p>
+    <p class="px-3 self-center">and</p>
     <date-picker :date="date2" @input="updateSecondDate" />
   </div>
 </template>
