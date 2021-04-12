@@ -169,7 +169,7 @@
                     {
                         "id": "btwn",
                         "display": "Is Between",
-                        "component": "date-input",
+                        "component": "double-date-input",
                         "meta": []
                     },
                     {
