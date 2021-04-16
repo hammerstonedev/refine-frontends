@@ -1,7 +1,11 @@
 class Selector {
   constructor() {
     this.options = [];
-    this.selectedOption = null;
+    this.selectedOptions = [];
+  }
+
+  get selectedOption() {
+    return this.selectedOptions[0];
   }
 
   registerOption(newOption) {
@@ -29,7 +33,7 @@ class Selector {
 
     // select the first option by default
     if (this.options.length === 1) {
-      this.selectedOption = currentOption;
+      this.selectedOptions = [currentOption];
     }
   }
 
@@ -45,7 +49,7 @@ class Selector {
 
   selectOption(optionId) {
     const option = this.findOption(optionId);
-    this.selectedOption = option;
+    this.selectedOptions = [option];
     return option;
   }
 }
