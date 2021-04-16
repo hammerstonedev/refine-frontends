@@ -24,11 +24,11 @@
         >
           <component
             @switch-clause="
-              (previousClause, {id: clause}) => updateInput({ clause })
+              ({id: clause}) => updateInput({ clause })
             "
             @remove-condition="removeCondition(uid)"
             @switch-condition="
-              (previousCondition, nextCondition) =>
+              (nextCondition) =>
                 replaceCondition(uid, conditionPropsFor(nextCondition))
             "
             :is="'ConditionRow'"

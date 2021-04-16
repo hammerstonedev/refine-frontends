@@ -36,7 +36,7 @@ export default {
     this.$emit('input', { modifier });
   },
   methods: {
-    updateModifer: function (previousOption, nextOption) {
+    updateModifer: function (nextOption) {
       this.$emit('input', { modifier: nextOption.id })
     },
     updateDays: function (event) {

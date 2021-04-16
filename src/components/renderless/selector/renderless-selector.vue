@@ -95,7 +95,6 @@
        this.selector.selectOption(optionId);
        this.$emit(
          'select-option',
-         this.selector.previousOption,
          this.selector.selectedOption,
        )
        return this.close();

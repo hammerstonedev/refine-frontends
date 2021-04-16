@@ -73,11 +73,11 @@ export default {
     },
   },
   methods: {
-    switchClause: function (previousClause, nextClause) {
-      this.$emit("switch-clause", previousClause, nextClause);
+    switchClause: function (nextClause) {
+      this.$emit("switch-clause", nextClause);
     },
-    switchCondition: function (previousCondition, nextCondition) {
-      this.$emit("switch-condition", previousCondition, nextCondition);
+    switchCondition: function (nextCondition) {
+      this.$emit("switch-condition", nextCondition);
     },
   },
   components: {
