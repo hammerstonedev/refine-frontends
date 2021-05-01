@@ -409,21 +409,25 @@ const conditions = [
       clauses: [
         {
           id: "eq",
+          component: "option-input",
           display: "Is",
           meta: [],
         },
         {
           id: "dne",
+          component: "option-input",
           display: "Is Not",
           meta: [],
         },
         {
           id: "in",
+          component: "option-input",
           display: "Is One Of",
           meta: [],
         },
         {
           id: "nin",
+          component: "option-input",
           display: "Is Not One Of",
           meta: [],
         },

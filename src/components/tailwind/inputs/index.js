@@ -4,12 +4,14 @@ import TextInput from './text-input';
 import DateInput from './date-input';
 import DoubleDateInput from './double-date-input';
 import RelativeDateInput from './relative-date-input';
+import OptionInput from './option-input';
 
 export default {
   DateInput,
   DoubleDateInput,
   DoubleNumberInput,
   NumberInput,
+  OptionInput,
   RelativeDateInput,
   TextInput,
 };
@@ -19,6 +21,7 @@ export {
   DoubleDateInput,
   DoubleNumberInput,
   NumberInput,
+  OptionInput,
   RelativeDateInput,
   TextInput,
 };
