@@ -18,11 +18,11 @@ export default {
     };
   },
   computed: {
-    selectedOption() {
-      const firstOption = this.selector.options[0] || null;
-      return this.selector.selectedOption
-        ? this.selector.selectedOption
-        : firstOption;
+    selectedOptions() {
+      return this.selector.selectedOptions;
+    },
+    firstSelectedOption() {
+      return this.selectedOptions[0];
     },
     isOpen() {
       return !this.isClosed;
@@ -36,6 +36,7 @@ export default {
         highlightOption,
         open,
         selectOption,
+        selectedOptions,
         toggle,
       } = this;
 
@@ -47,16 +48,17 @@ export default {
         highlightOption,
         open,
         selectOption,
+        selectedOptions,
         toggle,
       };
     },
     state: function () {
-      const { isClosed, isOpen, selectedOption, highlightedOption } = this;
+      const { isClosed, isOpen, selectedOptions, highlightedOption } = this;
 
       return {
         isClosed,
         isOpen,
-        selectedOption,
+        selectedOptions,
         highlightedOption,
         options: this.selector.options,
       };
@@ -79,7 +81,7 @@ export default {
     },
     open() {
       this.isClosed = false;
-      this.highlightedOption = this.selectedOption;
+      this.highlightedOption = this.firstSelectedOption;
       return this.nextTick();
     },
     toggle() {

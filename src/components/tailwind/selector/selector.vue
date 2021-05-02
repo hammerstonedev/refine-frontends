@@ -4,7 +4,7 @@
       actions,
       isOpen,
       isClosed,
-      selectedOption,
+      selectedOptions,
       highlightedOption,
       options,
     }"
@@ -21,13 +21,13 @@
         <selector-button
           :id="buttonId"
           :isOpen="isOpen"
-          :display="selectedOption ? selectedOption.display : ''"
+          :display="selectedOptions[0] ? selectedOptions[0].display : ''"
           @toggle="toggle(actions)"
           @open="open(actions)"
           ref="button"
         />
         <selector-listbox
-          :selectedOption="selectedOption"
+          :selectedOption="selectedOptions[0]"
           :isClosed="isClosed"
           ref="listBox"
           @highlight-next-option="highlightNextOption(actions)"
@@ -42,7 +42,7 @@
             :key="option.id"
             :optionId="option.id"
             :optionDisplay="option.display"
-            :selected="option === selectedOption"
+            :selected="isSelected(option, selectedOptions)"
             :isHighlighted="option === highlightedOption"
             :ref="option.id"
             @mouseenter="actions.highlightOption(option)"
@@ -78,6 +78,17 @@ export default {
     },
   },
   methods: {
+    isSelected(option, selectedOptions) {
+      let selected = false;
+
+      selectedOptions.forEach((selectedOption) => {
+        if (option === selectedOption) {
+          selected = true;
+        }
+      });
+
+      return selected;
+    },
     selectOption(optionId, actions) {
       const { clearOptions, selectOption, close } = actions;
       clearOptions();
