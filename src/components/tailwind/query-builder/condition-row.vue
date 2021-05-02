@@ -23,6 +23,7 @@
                 v-if="component"
                 :is="component"
                 v-bind="input"
+                :meta="meta"
                 @input="setValue"
               />
             </selector-option>

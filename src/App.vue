@@ -449,6 +449,10 @@ const conditions = [
           id: "foo",
           display: "Foo",
         },
+        {
+          id: "bar",
+          display: "Bar",
+        },
       ],
     },
     refinements: [],
