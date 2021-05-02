@@ -90,7 +90,6 @@ export default {
         listItem.scrollIntoView();
       }
     },
-    /* eslint-disable no-debugger, no-console */
     close({ close }) {
       close().then(({ isClosed }) => {
         if (isClosed) {
