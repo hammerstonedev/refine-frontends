@@ -1,7 +1,14 @@
 <template>
   <renderless-selector
-    v-slot="{ actions, isOpen, isClosed, selectedOption, highlightedOption, options }"
-    @select-option="selectOption"
+    v-slot="{
+      actions,
+      isOpen,
+      isClosed,
+      selectedOption,
+      highlightedOption,
+      options,
+    }"
+    @select-option="$emit('select-option', arguments[0])"
   >
     <div class="py-1 md:flex md:items-center">
       <!-- Select dropdown -->
@@ -25,7 +32,7 @@
           ref="listBox"
           @highlight-next-option="highlightNextOption(actions)"
           @highlight-previous-option="highlightPreviousOption(actions)"
-          @select-option="actions.selectOption(highlightedOption.id)"
+          @select-option="selectOption(highlightedOption.id, actions)"
           @close="close(actions)"
           v-slot="{ createItemId }"
         >
@@ -40,7 +47,7 @@
             :ref="option.id"
             @mouseenter="actions.highlightOption(option)"
             @mouseleave="actions.highlightOption(null)"
-            @click="actions.selectOption(option.id)"
+            @click="selectOption(option.id, actions)"
           />
         </selector-listbox>
       </div>
@@ -53,72 +60,76 @@
 </template>
 
 <script>
- import RenderlessSelector from '@/components/renderless/selector';
- import { uid } from '@/mixins';
- import SelectorButton from './selector-button';
- import SelectorListbox from './selector-listbox';
- import SelectorListItem from './selector-list-item';
+import RenderlessSelector from "@/components/renderless/selector";
+import { uid } from "@/mixins";
+import SelectorButton from "./selector-button";
+import SelectorListbox from "./selector-listbox";
+import SelectorListItem from "./selector-list-item";
 
- export default {
-   name: 'selector',
-   mixins: [uid],
-   computed: {
-     selectorId() {
-       return this.uid
-     },
-     buttonId() {
-       return `button-${this.selectorId}`;
-     },
-   },
-   methods: {
-     selectOption(...args) {
-       this.$emit('select-option', ...args);
-     },
-     scrollIntoView(optionId) {
-       if (optionId) {
-         const listItem = this.$refs[optionId][0];
-         listItem.scrollIntoView();
-       }
-     },
-     close({ close }) {
-       close().then(({ isClosed }) => {
-         if (isClosed) {
-           this.$refs.button.focus();
-         }
-       });
-     },
-     open({ open }) {
-       open().then(({ selectedOption }) => {
-         this.$refs.listBox.focus();
-         this.scrollIntoView(selectedOption?.id);
-       });
-     },
-     toggle({ toggle }) {
-       toggle().then(({ isOpen, selectedOption }) => {
-         if (isOpen) {
-           this.$refs.listBox.focus();
-           this.scrollIntoView(selectedOption?.id);
-         } else {
-           this.$refs.button.focus();
-         }
-       });
-     },
-     highlightNextOption({ highlightNextOption }) {
-       highlightNextOption().then(({ highlightedOption }) => {
-         this.scrollIntoView(highlightedOption?.id);
-       });
-     },
-     highlightPreviousOption({ highlightPreviousOption }) {
-       highlightPreviousOption().then(({ highlightedOption }) => {
-         this.scrollIntoView(highlightedOption?.id);
-       });
-     },
-   },
-   components: {
-     RenderlessSelector,
-     SelectorListItem,
-     SelectorButton,
-     SelectorListbox,
-   },
- }
+export default {
+  name: "selector",
+  mixins: [uid],
+  computed: {
+    selectorId() {
+      return this.uid;
+    },
+    buttonId() {
+      return `button-${this.selectorId}`;
+    },
+  },
+  methods: {
+    selectOption(optionId, actions) {
+      const { clearOptions, selectOption, close } = actions;
+      clearOptions();
+      selectOption(optionId);
+      close();
+    },
+    scrollIntoView(optionId) {
+      if (optionId) {
+        const listItem = this.$refs[optionId][0];
+        listItem.scrollIntoView();
+      }
+    },
+    /* eslint-disable no-debugger, no-console */
+    close({ close }) {
+      close().then(({ isClosed }) => {
+        if (isClosed) {
+          this.$refs.button.focus();
+        }
+      });
+    },
+    open({ open }) {
+      open().then(({ selectedOption }) => {
+        this.$refs.listBox.focus();
+        this.scrollIntoView(selectedOption?.id);
+      });
+    },
+    toggle({ toggle }) {
+      toggle().then(({ isOpen, selectedOption }) => {
+        if (isOpen) {
+          this.$refs.listBox.focus();
+          this.scrollIntoView(selectedOption?.id);
+        } else {
+          this.$refs.button.focus();
+        }
+      });
+    },
+    highlightNextOption({ highlightNextOption }) {
+      highlightNextOption().then(({ highlightedOption }) => {
+        this.scrollIntoView(highlightedOption?.id);
+      });
+    },
+    highlightPreviousOption({ highlightPreviousOption }) {
+      highlightPreviousOption().then(({ highlightedOption }) => {
+        this.scrollIntoView(highlightedOption?.id);
+      });
+    },
+  },
+  components: {
+    RenderlessSelector,
+    SelectorListItem,
+    SelectorButton,
+    SelectorListbox,
+  },
+};
 </script>

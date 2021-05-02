@@ -7,8 +7,7 @@ export default {
   computed: {
     isSelected: function() {
       const { selector, id } = this;
-      const { selectedOption } = selector;
-      return selectedOption && selectedOption.id === id;
+      return selector.isSelected(id);
     },
   },
   created() {

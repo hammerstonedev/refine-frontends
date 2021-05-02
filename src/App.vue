@@ -8,6 +8,7 @@
           <numeric-condition-option
             id="years-of-experience"
             display="Years of Experience"
+            :selected="true"
           >
             <is-between-option />
             <is-not-between-option />
@@ -17,6 +18,7 @@
           <numeric-condition-option
             id="years-of-experience"
             display="Years of Experience"
+            :selected="true"
           />
           <text-condition-option id="last-name" display="Last Name" />
         </condition-selector>

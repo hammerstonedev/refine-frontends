@@ -30,11 +30,16 @@ class Selector {
     }
 
     this.options.push(currentOption);
+  }
 
-    // select the first option by default
-    if (this.options.length === 1) {
-      this.selectedOptions = [currentOption];
-    }
+  isSelected(optionId) {
+    let isSelected = false;
+    this.selectedOptions.forEach((option) => {
+      if (option.id === optionId) {
+        isSelected = true;
+      }
+    })
+    return isSelected;
   }
 
   findOption(optionId) {
@@ -47,9 +52,32 @@ class Selector {
     return null;
   }
 
+  toggleOption(optionId) {
+    if (this.isSelected(optionId)) {
+      return this.deselectOption(optionId);
+    } else {
+      return this.selectedOption(optionId);
+    }
+  }
+
+  clearSelectedOptions() {
+    this.selectedOptions.splice(0, this.selectedOptions.length)
+  }
+
+  deselectOption(optionId) {
+    this.selectedOptions = this.selectedOptions.filter((option) => {
+      option.id !== optionId;
+    });
+  }
+
   selectOption(optionId) {
     const option = this.findOption(optionId);
-    this.selectedOptions = [option];
+
+    if (!this.isSelected(optionId)) {
+      this.selectedOptions.push(option);
+      return option;
+    }
+
     return option;
   }
 }
