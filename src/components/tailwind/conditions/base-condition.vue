@@ -21,13 +21,13 @@
      Selector,
    },
    data() {
-     let clauseOptions;
+     let clauseOptions = {};
      if (this.clauses) {
-       clauseOptions = this.clauses.map((clauseName) => {
-         return this.defaultClauseOptions[`${clauseName}Option`];
+       this.clauses.forEach((clauseName) => {
+         clauseOptions[clauseName] = this.defaultClauseOptions[`${clauseName}Option`];
        });
      } else {
-       clauseOptions = Object.values({ ...this.defaultClauseOptions });
+       clauseOptions = { ...this.defaultClauseOptions };
      }
 
      return {

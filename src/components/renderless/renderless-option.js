@@ -17,6 +17,7 @@ export default {
       display: display || id,
       ...this.$attrs,
     });
+
     if (selected) {
       selector.selectOption(id);
     }
