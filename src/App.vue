@@ -10,7 +10,7 @@
             display="Years of Experience"
             :selected="true"
           >
-            <is-between-option />
+            <is-between-option :selected="true" />
             <is-not-between-option />
           </numeric-condition-option>
         </condition-selector>
