@@ -1,5 +1,9 @@
 <template>
-  <selector @toggle-option="toggleOption" multiselect>
+  <selector
+    multiselect
+    @select-option="selectOption"
+    @deselect-option="deselectOption"
+  >
     <selector-option
       v-for="{ id, display } in meta.options"
       :key="id"
@@ -16,7 +20,7 @@ import { Selector, SelectorOption } from "..";
 export default {
   name: "option-input",
   components: {
-    Selector, 
+    Selector,
     SelectorOption,
   },
   props: {
@@ -30,21 +34,19 @@ export default {
       required: true,
     },
   },
-  data() {
-    const { selected, meta } = this;
-    const { options } = meta;
-    return {
-      selectedOptions: selected.length > 0 ? [...selected] : [options[0]],
-    };
-  },
   methods: {
-    toggleOption() {
-
+    selectOption({ selectedOptions }) {
+      const selected = selectedOptions.map(({ id }) => id);
+      this.$emit('input', { selected });
+    },
+    deselectOption({ selectedOptions }) {
+      const selected = selectedOptions.map(({ id }) => id);
+      this.$emit('input', { selected })
     },
     isSelected(id) {
       let selected = false;
-      console.log(this.selectedOptions)
-      this.selectedOptions.forEach(({ id: selectedId }) => {
+
+      this.selected.forEach(({ id: selectedId }) => {
         if (selectedId === id) {
           selected = true;
         }

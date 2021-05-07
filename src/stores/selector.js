@@ -56,7 +56,7 @@ class Selector {
     if (this.isSelected(optionId)) {
       return this.deselectOption(optionId);
     } else {
-      return this.selectedOption(optionId);
+      return this.selectOption(optionId);
     }
   }
 
@@ -65,20 +65,26 @@ class Selector {
   }
 
   deselectOption(optionId) {
+    const deselectedOption = {...this.findOption(optionId)};
+
     this.selectedOptions = this.selectedOptions.filter((option) => {
       option.id !== optionId;
     });
+
+    return { deselectedOption, selectedOptions: this.selectedOptions };
   }
 
   selectOption(optionId) {
-    const option = this.findOption(optionId);
+    const selectedOption = {...this.findOption(optionId)};
 
     if (!this.isSelected(optionId)) {
-      this.selectedOptions.push(option);
-      return option;
+      this.selectedOptions.push(selectedOption);
     }
 
-    return option;
+    return { 
+      selectedOption, 
+      selectedOptions: this.selectedOptions,
+    };
   }
 }
 

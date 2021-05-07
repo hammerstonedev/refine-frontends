@@ -9,6 +9,7 @@
       options,
     }"
     @select-option="$emit('select-option', arguments[0])"
+    @deselect-option="$emit('deselect-option', arguments[0])"
   >
     <div class="py-1 md:flex md:items-center">
       <!-- Select dropdown -->
@@ -69,6 +70,13 @@ import SelectorListItem from "./selector-list-item";
 export default {
   name: "selector",
   mixins: [uid],
+  props: {
+    multiselect: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
   computed: {
     selectorId() {
       return this.uid;
@@ -90,10 +98,15 @@ export default {
       return selected;
     },
     selectOption(optionId, actions) {
-      const { clearOptions, selectOption, close } = actions;
-      clearOptions();
-      selectOption(optionId);
-      close();
+      const { clearOptions, selectOption, close, toggleOption } = actions;
+      const { multiselect } = this;
+      if (multiselect) {
+        toggleOption(optionId);
+      } else {
+        clearOptions();
+        selectOption(optionId);
+        close();
+      }
     },
     scrollIntoView(optionId) {
       if (optionId) {

@@ -74,10 +74,10 @@ export default {
     },
   },
   methods: {
-    switchClause: function (nextClause) {
+    switchClause: function ({ selectedOption: nextClause }) {
       this.$emit("switch-clause", nextClause);
     },
-    switchCondition: function (nextCondition) {
+    switchCondition: function ({ selectedOption: nextCondition }) {
       this.$emit("switch-condition", nextCondition);
     },
   },

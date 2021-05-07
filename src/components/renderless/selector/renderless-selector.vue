@@ -38,6 +38,7 @@ export default {
         selectOption,
         selectedOptions,
         toggle,
+        toggleOption,
       } = this;
 
       return {
@@ -50,6 +51,7 @@ export default {
         selectOption,
         selectedOptions,
         toggle,
+        toggleOption,
       };
     },
     state: function () {
@@ -93,23 +95,25 @@ export default {
       return this.nextTick();
     },
     toggleOption(optionId) {
-      const selectedOption = this.selector.toggleOption(optionId);
+      const { 
+        selectedOption, 
+        deselectedOption, 
+        selectedOptions,
+         } = this.selector.toggleOption(optionId);
       if (selectedOption) {
-        this.$emit("select-option", selectedOption);
+        this.$emit("select-option", { selectedOption, selectedOptions });
       } else {
-        this.$emit("deselect-option");
+        this.$emit("deselect-option", { deselectedOption, selectedOption });
       }
     },
     clearOptions(){
       this.selector.clearSelectedOptions();
     },
     deselectOption(optionId) {
-      this.selector.deselectOption(optionId);
-      this.$emit("deselect-option");
+      this.$emit("deselect-option", this.selector.deselectOption(optionId));
     },
     selectOption(optionId) {
-      const selectedOption = this.selector.selectOption(optionId);
-      this.$emit("select-option", selectedOption);
+      this.$emit("select-option", this.selector.selectOption(optionId));
     },
     highlightOption(option) {
       this.highlightedOption = option;
