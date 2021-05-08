@@ -100,6 +100,7 @@ export default {
     selectOption(optionId, actions) {
       const { clearOptions, selectOption, close, toggleOption } = actions;
       const { multiselect } = this;
+      
       if (multiselect) {
         toggleOption(optionId);
       } else {

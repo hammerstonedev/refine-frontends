@@ -29,10 +29,9 @@ export default (id, props, context) => {
   }
 
   const updateInput = updates => blueprint.updateInput(condition, updates);
-  provide('condition', {
-    ...condition,
-    updateInput,
-  });
+
+  provide('condition', condition);
+  provide('updateInput', updateInput);
 
   onUnmounted(() => {
     // Again, in builder mode adding/removing conditions

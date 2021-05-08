@@ -19,20 +19,22 @@
           v-bind="conditionPropsFor(selectedCondition)"
           v-slot="{
             updateInput,
-            condition: { input, uid, id: selectedConditionId },
+            condition,
           }"
         >
           <component
             @switch-clause="
               ({id: clause}) => updateInput({ clause })
             "
-            @remove-condition="removeCondition(uid)"
+            @remove-condition="removeCondition(condition.uid)"
             @switch-condition="
               (nextCondition) =>
-                replaceCondition(uid, conditionPropsFor(nextCondition))
+                replaceCondition(condition.uid, conditionPropsFor(nextCondition))
             "
             :is="'ConditionRow'"
-            v-bind="{input, selectedConditionId, conditions}"
+            :selectedConditionId="condition.id"
+            :conditions="conditions"
+            v-bind="{input: condition && {...condition.input}}"
           />
         </renderless-condition>
       </div>

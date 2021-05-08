@@ -2,10 +2,11 @@ import { inject, onUnmounted } from '@vue/composition-api';
 
 export default (id, props, context) => {
   const condition = inject('condition');
+  const updateInput = inject('updateInput');
   const builderModeActive = inject('builderModeActive');
 
   const setValue = (input) => {
-    condition.updateInput(input);
+    updateInput(input);
   };
 
   if (!condition) {
@@ -13,13 +14,13 @@ export default (id, props, context) => {
   }
 
   // Set the clause id on the blueprint input when this clause is rendered
-  condition.updateInput({ clause: id });
+  updateInput({ clause: id });
 
   if (!builderModeActive) {
     // eslint-disable-next-line no-unused-vars
     const { clause, ...values } = condition.input;
     if (Object.keys(props).length > 0 && Object.keys(values).length === 0) {
-      condition.updateInput({ ...props });
+      updateInput({ ...props });
     }
   }
 
@@ -29,7 +30,7 @@ export default (id, props, context) => {
       // clause has been selected. Mounting/unmounting happens in the
       // order that the components were rendered.
       if (condition.input.clause === id) {
-        condition.updateInput({ clause: undefined });
+        updateInput({ clause: undefined });
       }
     }
   });

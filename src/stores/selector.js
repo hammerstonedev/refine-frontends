@@ -4,10 +4,6 @@ class Selector {
     this.selectedOptions = [];
   }
 
-  get selectedOption() {
-    return this.selectedOptions[0];
-  }
-
   registerOption(newOption) {
     const { id: optionId } = newOption;
     for (var i = 0; i < this.options.length; i++) {
