@@ -103,7 +103,7 @@ export default {
       if (selectedOption) {
         this.$emit("select-option", { selectedOption, selectedOptions });
       } else {
-        this.$emit("deselect-option", { deselectedOption, selectedOption });
+        this.$emit("deselect-option", { deselectedOption, selectedOptions });
       }
     },
     clearOptions(){
