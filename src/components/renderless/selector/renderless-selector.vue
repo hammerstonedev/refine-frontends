@@ -4,7 +4,6 @@ import SelectorStore from "@/stores/selector";
 
 export default {
   name: "renderless-selector",
-  inject: ["builderModeActive"],
   data() {
     return {
       selector: Vue.observable(new SelectorStore()),

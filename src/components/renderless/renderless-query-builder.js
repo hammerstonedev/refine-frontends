@@ -71,7 +71,6 @@ export default {
     const {
       addCondition,
       blueprintStore: blueprint,
-      builderModeActive,
       conditionPropsFor,
       replaceCondition,
       removeCondition,
@@ -81,7 +80,6 @@ export default {
       return this.$scopedSlots.default({
         addCondition,
         blueprint,
-        builderModeActive,
         conditionPropsFor,
         removeCondition,
         replaceCondition,

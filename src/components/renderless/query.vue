@@ -7,16 +7,12 @@
        type: Array,
        required: false,
      },
-     builderModeActive: {
-       type: Boolean,
-       required: false,
-     },
    },
    provide() {
-     const { blueprintStore, builderModeActive } = this;
+     const { blueprintStore } = this;
      return {
        blueprint: blueprintStore,
-       builderModeActive,
+       builderModeActive: false,
      }
    },
    data() {
