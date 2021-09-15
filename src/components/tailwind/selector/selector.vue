@@ -115,38 +115,33 @@ export default {
         listItem.scrollIntoView();
       }
     },
-    close({ close }) {
-      close().then(({ isClosed }) => {
-        if (isClosed) {
-          this.$refs.button.focus();
-        }
-      });
+    async close({ close }) {
+      const { isClosed } = await close();
+      if (isClosed) { 
+        this.$refs.button.focus();
+      }
     },
-    open({ open }) {
-      open().then(({ selectedOption }) => {
+    async open({ open }) {
+      const { selectedOption } = await open();
+      this.$refs.listBox.focus();
+      this.scrollIntoView(selectedOption?.id);
+    },
+    async toggle({ toggle }) {
+      const { isOpen, selectedOption } = await toggle();
+      if (isOpen) {
         this.$refs.listBox.focus();
         this.scrollIntoView(selectedOption?.id);
-      });
+      } else {
+        this.$refs.button.focus();
+      }
     },
-    toggle({ toggle }) {
-      toggle().then(({ isOpen, selectedOption }) => {
-        if (isOpen) {
-          this.$refs.listBox.focus();
-          this.scrollIntoView(selectedOption?.id);
-        } else {
-          this.$refs.button.focus();
-        }
-      });
+    async highlightNextOption({ highlightNextOption }) {
+      const { highlightedOption } = await highlightNextOption();
+      this.scrollIntoView(highlightedOption?.id);
     },
-    highlightNextOption({ highlightNextOption }) {
-      highlightNextOption().then(({ highlightedOption }) => {
-        this.scrollIntoView(highlightedOption?.id);
-      });
-    },
-    highlightPreviousOption({ highlightPreviousOption }) {
-      highlightPreviousOption().then(({ highlightedOption }) => {
-        this.scrollIntoView(highlightedOption?.id);
-      });
+    async highlightPreviousOption({ highlightPreviousOption }) {
+      const { highlightedOption } = await highlightPreviousOption();
+      this.scrollIntoView(highlightedOption?.id);
     },
   },
   components: {
