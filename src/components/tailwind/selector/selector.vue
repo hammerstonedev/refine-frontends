@@ -90,7 +90,7 @@ export default {
       let selected = false;
 
       selectedOptions.forEach((selectedOption) => {
-        if (option === selectedOption) {
+        if (option.id === selectedOption.id) {
           selected = true;
         }
       });
@@ -128,6 +128,7 @@ export default {
     },
     async toggle({ toggle }) {
       const { isOpen, selectedOption } = await toggle();
+
       if (isOpen) {
         this.$refs.listBox.focus();
         this.scrollIntoView(selectedOption?.id);
