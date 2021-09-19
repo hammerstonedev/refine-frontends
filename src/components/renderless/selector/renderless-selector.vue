@@ -97,13 +97,11 @@ export default {
       const { selector, highlightOption } = this;
       const { 
         selectedOption, 
-        deselectedOption, 
-        selectedOptions,
          } = selector.toggleOption(optionId);
       if (selectedOption) {
-        this.$emit("select-option", { selectedOption, selectedOptions });
+        this.selectOption(optionId);
       } else {
-        this.$emit("deselect-option", { deselectedOption, selectedOptions });
+        this.deselectOption(optionId);
       }
       return highlightOption(selector.findOption(optionId));
     },

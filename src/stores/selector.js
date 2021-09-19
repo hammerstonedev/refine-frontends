@@ -64,7 +64,7 @@ class Selector {
     const deselectedOption = this.findOption(optionId);
 
     this.selectedOptions = this.selectedOptions.filter((option) => {
-      option.id !== optionId;
+      return option.id !== optionId;
     });
 
     return { deselectedOption, selectedOptions: this.selectedOptions };
