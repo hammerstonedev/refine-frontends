@@ -57,6 +57,60 @@ import {
 
 const conditions = [
   {
+    id: "option",
+    component: "option-condition",
+    display: "Option",
+    meta: {
+      clauses: [
+        {
+          id: "in",
+          component: "option-input",
+          display: "Is One Of",
+          meta: [],
+        },
+        {
+          id: "eq",
+          component: "option-input",
+          display: "Is",
+          meta: [],
+        },
+        {
+          id: "dne",
+          component: "option-input",
+          display: "Is Not",
+          meta: [],
+        },
+        {
+          id: "nin",
+          component: "option-input",
+          display: "Is Not One Of",
+          meta: [],
+        },
+        {
+          id: "st",
+          display: "Is Set",
+          meta: [],
+        },
+        {
+          id: "nst",
+          display: "Is Not Set",
+          meta: [],
+        },
+      ],
+      options: [
+        {
+          id: "foo",
+          display: "Foo",
+        },
+        {
+          id: "bar",
+          display: "Bar",
+        },
+      ],
+    },
+    refinements: [],
+  },
+  {
     id: "text",
     component: "text-condition",
     display: "Text",
@@ -340,7 +394,7 @@ const conditions = [
     component: "numeric-condition",
     display: "Numeric",
     meta: {
-      clauses: [
+      clauses: [        
         {
           id: "eq",
           display: "Is Equal To",
@@ -398,60 +452,6 @@ const conditions = [
           id: "nst",
           display: "Is Not Set",
           meta: [],
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: "option",
-    component: "option-condition",
-    display: "Option",
-    meta: {
-      clauses: [
-        {
-          id: "eq",
-          component: "option-input",
-          display: "Is",
-          meta: [],
-        },
-        {
-          id: "dne",
-          component: "option-input",
-          display: "Is Not",
-          meta: [],
-        },
-        {
-          id: "in",
-          component: "option-input",
-          display: "Is One Of",
-          meta: [],
-        },
-        {
-          id: "nin",
-          component: "option-input",
-          display: "Is Not One Of",
-          meta: [],
-        },
-        {
-          id: "st",
-          display: "Is Set",
-          meta: [],
-        },
-        {
-          id: "nst",
-          display: "Is Not Set",
-          meta: [],
-        },
-      ],
-      options: [
-        {
-          id: "foo",
-          display: "Foo",
-        },
-        {
-          id: "bar",
-          display: "Bar",
         },
       ],
     },

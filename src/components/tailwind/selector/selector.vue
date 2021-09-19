@@ -19,7 +19,17 @@
         v-click-away="actions.close"
         :aria-labelledby="buttonId"
       >
+        <multi-selector-button
+          v-if="multiselect"
+          :id="buttonId"
+          :isOpen="isOpen"
+          :display="selectedOptions[0] ? selectedOptions[0].display : ''"
+          @toggle="toggle(actions)"
+          @open="open(actions)"
+          ref="button"
+        />
         <selector-button
+          v-else
           :id="buttonId"
           :isOpen="isOpen"
           :display="selectedOptions[0] ? selectedOptions[0].display : ''"
@@ -66,6 +76,7 @@ import { uid } from "@/mixins";
 import SelectorButton from "./selector-button";
 import SelectorListbox from "./selector-listbox";
 import SelectorListItem from "./selector-list-item";
+import MultiSelectorButton from './multi-selector-button.vue';
 
 export default {
   name: "selector",
@@ -152,6 +163,7 @@ export default {
     },
   },
   components: {
+    MultiSelectorButton,
     RenderlessSelector,
     SelectorListItem,
     SelectorButton,
@@ -159,3 +171,5 @@ export default {
   },
 };
 </script>
+
+    MultiSelectorButton
