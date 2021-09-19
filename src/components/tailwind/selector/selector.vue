@@ -23,7 +23,7 @@
           v-if="isMultiSelect"
           :id="buttonId"
           :isOpen="isOpen"
-          :display="selectedOptions[0] ? selectedOptions[0].display : ''"
+          :selectedOptions="selectedOptions"
           @toggle="toggle(actions)"
           @open="open(actions)"
           ref="button"
