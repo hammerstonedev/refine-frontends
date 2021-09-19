@@ -11,6 +11,13 @@
     tabindex="0"
   >
     <span 
+      class="block truncate text-gray-400"
+      v-if="selectedOptions.length === 0"
+    >
+      Choose an option
+    </span>
+    <span 
+      v-else
       v-for="{ id, display } in selectedOptions"
       class="block truncate"
       :key="id"
