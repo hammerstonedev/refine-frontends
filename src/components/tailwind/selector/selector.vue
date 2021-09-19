@@ -44,7 +44,7 @@
             :optionId="option.id"
             :optionDisplay="option.display"
             :selected="isSelected(option, selectedOptions)"
-            :isHighlighted="option === highlightedOption"
+            :isHighlighted="highlightedOption && option.id === highlightedOption.id"
             :ref="option.id"
             @mouseenter="actions.highlightOption(option)"
             @mouseleave="actions.highlightOption(null)"

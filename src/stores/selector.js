@@ -61,7 +61,7 @@ class Selector {
   }
 
   deselectOption(optionId) {
-    const deselectedOption = {...this.findOption(optionId)};
+    const deselectedOption = this.findOption(optionId);
 
     this.selectedOptions = this.selectedOptions.filter((option) => {
       option.id !== optionId;
@@ -71,7 +71,7 @@ class Selector {
   }
 
   selectOption(optionId) {
-    const selectedOption = {...this.findOption(optionId)};
+    const selectedOption = this.findOption(optionId);
 
     if (!this.isSelected(optionId)) {
       this.selectedOptions.push(selectedOption);

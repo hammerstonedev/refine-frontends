@@ -120,6 +120,7 @@ export default {
     },
     highlightNextOption() {
       const nextOption = this.highlightedOption?.nextOption;
+
       if (nextOption) {
         this.highlightedOption = nextOption;
       }
