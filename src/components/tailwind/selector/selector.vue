@@ -70,6 +70,7 @@ import SelectorListItem from "./selector-list-item";
 export default {
   name: "selector",
   mixins: [uid],
+  inject: ['builderModeActive'],
   props: {
     multiselect: {
       type: Boolean,
@@ -86,7 +87,9 @@ export default {
     },
   },
   mounted() {
-    this.$refs.button.focus();
+    if (this.builderModeActive) {
+      this.$refs.button.focus();
+    }
   },
   methods: {
     isSelected(option, selectedOptions) {
