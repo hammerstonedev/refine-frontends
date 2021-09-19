@@ -21,7 +21,7 @@ export default {
       return this.selector.selectedOptions;
     },
     firstSelectedOption() {
-      return this.selectedOptions[0];
+      return this.selectedOptions[0] || this.selector.options[0];
     },
     isOpen() {
       return !this.isClosed;
