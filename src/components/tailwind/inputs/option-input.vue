@@ -1,6 +1,6 @@
 <template>
   <selector
-    :multiselect="isMulti"
+    :isMultiSelect="isMulti"
     @select-option="selectOption"
     @deselect-option="deselectOption"
   >

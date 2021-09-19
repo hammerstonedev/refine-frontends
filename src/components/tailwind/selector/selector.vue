@@ -20,7 +20,7 @@
         :aria-labelledby="buttonId"
       >
         <multi-selector-button
-          v-if="multiselect"
+          v-if="isMultiSelect"
           :id="buttonId"
           :isOpen="isOpen"
           :display="selectedOptions[0] ? selectedOptions[0].display : ''"
@@ -83,7 +83,7 @@ export default {
   mixins: [uid],
   inject: ['builderModeActive'],
   props: {
-    multiselect: {
+    isMultiSelect: {
       type: Boolean,
       required: false,
       default: false,
@@ -116,9 +116,9 @@ export default {
     },
     async selectOption(optionId, actions) {
       const { clearOptions, selectOption, toggleOption } = actions;
-      const { multiselect } = this;
+      const { isMultiSelect } = this;
       
-      if (multiselect) {
+      if (isMultiSelect) {
         toggleOption(optionId);
       } else {
         clearOptions();
