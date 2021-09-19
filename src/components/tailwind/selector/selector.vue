@@ -97,8 +97,8 @@ export default {
 
       return selected;
     },
-    selectOption(optionId, actions) {
-      const { clearOptions, selectOption, close, toggleOption } = actions;
+    async selectOption(optionId, actions) {
+      const { clearOptions, selectOption, toggleOption } = actions;
       const { multiselect } = this;
       
       if (multiselect) {
@@ -106,7 +106,7 @@ export default {
       } else {
         clearOptions();
         selectOption(optionId);
-        close();
+        this.close(actions);
       }
     },
     scrollIntoView(optionId) {
