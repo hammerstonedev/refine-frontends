@@ -94,16 +94,18 @@ export default {
       return this.nextTick();
     },
     toggleOption(optionId) {
+      const { selector, highlightOption } = this;
       const { 
         selectedOption, 
         deselectedOption, 
         selectedOptions,
-         } = this.selector.toggleOption(optionId);
+         } = selector.toggleOption(optionId);
       if (selectedOption) {
         this.$emit("select-option", { selectedOption, selectedOptions });
       } else {
         this.$emit("deselect-option", { deselectedOption, selectedOptions });
       }
+      return highlightOption(selector.findOption(optionId));
     },
     clearOptions(){
       this.selector.clearSelectedOptions();
