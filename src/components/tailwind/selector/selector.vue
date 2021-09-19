@@ -85,6 +85,9 @@ export default {
       return `button-${this.selectorId}`;
     },
   },
+  mounted() {
+    this.$refs.button.focus();
+  },
   methods: {
     isSelected(option, selectedOptions) {
       let selected = false;
@@ -118,7 +121,7 @@ export default {
     async close({ close }) {
       const { isClosed } = await close();
       if (isClosed) { 
-        this.$refs.button.focus();
+        this.$refs.button?.focus();
       }
     },
     async open({ open }) {
