@@ -106,6 +106,14 @@ const conditions = [
           id: "bar",
           display: "Bar",
         },
+        {
+          id: "foo2",  
+          display: "Foo2",
+        },
+        {
+          id: "bar2",
+          display: "Bar2",
+        },
       ],
     },
     refinements: [],
