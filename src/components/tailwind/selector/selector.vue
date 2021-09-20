@@ -26,6 +26,7 @@
           :selectedOptions="selectedOptions"
           @toggle="toggle(actions)"
           @open="open(actions)"
+          @deselect-option="deselectOption(...arguments, actions)"
           ref="button"
         />
         <selector-button
@@ -113,6 +114,9 @@ export default {
       });
 
       return selected;
+    },
+    deselectOption(optionId, { toggleOption }) {
+      toggleOption(optionId);
     },
     async selectOption(optionId, actions) {
       const { clearOptions, selectOption, toggleOption } = actions;

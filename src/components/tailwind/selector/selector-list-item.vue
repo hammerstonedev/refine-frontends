@@ -1,7 +1,7 @@
 <template>
   <li
     role="option"
-    class="cursor-default select-none relative py-2 pl-3 pr-9"
+    class="cursor-pointer select-none relative py-2 pl-3 pr-9"
     :class="{'text-white bg-indigo-600': isHighlighted, 'text-gray-900': !isHighlighted }"
     :key="optionId"
     ref="listItem"
