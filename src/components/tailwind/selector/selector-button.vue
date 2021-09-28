@@ -9,7 +9,16 @@
     @click.prevent="$emit('toggle')"
     @keydown.arrow-down.stop.prevent="$emit('open')"
   >
-    <span class="block truncate">
+    <span 
+      class="block truncate text-gray-300"
+      v-if="display.length === 0"
+    >
+      Choose an option
+    </span>
+    <span 
+      class="block truncate"
+      v-else
+    >
       {{  display }}
     </span>
     <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
