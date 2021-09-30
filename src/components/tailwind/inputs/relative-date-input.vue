@@ -51,7 +51,7 @@ export default {
       default: "ago",
     },
     days: {
-      type: Number,
+      type: String,
       required: false,
     },
   },
