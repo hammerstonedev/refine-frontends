@@ -6,6 +6,36 @@ const getNextUid = (function() {
   };
 })();
 
+const criterion = ({ id, depth, input }) => {
+  const uid = getNextUid();
+
+  const condition = {
+    id,
+    depth,
+    input: input || {},
+    uid,
+  };
+  return condition;
+}
+
+const or = function(depth) {
+  depth = depth === undefined ? 0 : depth;
+  return {
+    depth,
+    type: 'conjunction',
+    word: 'or',
+  };
+};
+
+const and = function(depth) {
+  depth = depth === undefined ? 1 : depth;
+  return {
+    depth,
+    type: 'conjunction',
+    word: 'and',
+  };
+};
+
 class Blueprint {
   constructor(initialBlueprint, onChange) {
     initialBlueprint = initialBlueprint || [];
@@ -41,8 +71,8 @@ class Blueprint {
 
   replaceCondition(previousCondition, nextCondition) {
     const previousIndex = this.indexOfCondition(previousCondition);
-    const newCondition = this.generateCondition(nextCondition);
-    this.conditions.splice(previousIndex, 1, newCondition);
+    const newCriterion = criterion(nextCondition);
+    this.conditions.splice(previousIndex, 1, newCriterion);
     this.blueprintChanged();
   }
 
@@ -52,28 +82,16 @@ class Blueprint {
     this.blueprintChanged();
   }
 
-  generateCondition({ id, depth, input }) {
-    const uid = getNextUid();
-
-    const condition = {
-      id,
-      depth,
-      input: input || {},
-      uid,
-    };
-    return condition;
-  }
-
   findCondition(uid) {
     const conditionIndex = this.indexOfCondition({ uid });
     return this.conditions[conditionIndex];
   }
 
   addCriterion({ id, depth, input }) {
-    const condition = this.generateCondition({ id, depth, input });
-    this.conditions.push(condition);
+    const newCriterion = criterion({ id, depth, input });
+    this.conditions.push(newCriterion);
     this.blueprintChanged();
-    return condition;
+    return newCriterion;
   }
 
   updateInput({ uid }, updates) {
