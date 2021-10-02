@@ -54,7 +54,7 @@ export default {
     // default to the first. Also if there are no
     // selected options, add the first one to the input
     // debatable whether this should be here or further
-    // up in the builder, e.g. addCondition method.
+    // up in the builder, e.g. addCriterion method.
     if (!this.isMulti && this.selected.length !== 1) {
       this.$emit("input", { selected: [firstOptionId] });
     }

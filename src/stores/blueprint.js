@@ -69,7 +69,7 @@ class Blueprint {
     return this.conditions[conditionIndex];
   }
 
-  addCondition({ id, depth, input }) {
+  addCriterion({ id, depth, input }) {
     const condition = this.generateCondition({ id, depth, input });
     this.conditions.push(condition);
     this.blueprintChanged();

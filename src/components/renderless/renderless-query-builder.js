@@ -50,14 +50,14 @@ export default {
         uid: previousConditionUid,
       }, { input, depth: 0, ...newCondition });
     },
-    addCondition() {
+    addCriterion() {
       const firstCondition = this.conditions[0];
       const { id, type, meta } = firstCondition;
       const firstClause = meta.clauses[0];
       const input = {
         clause: firstClause.id,
       };
-      this.blueprintStore.addCondition({ id, type, input, depth: 0 });
+      this.blueprintStore.addCriterion({ id, type, input, depth: 0 });
     },
     removeCondition(uid) {
       this.blueprintStore.removeCondition({ uid });
@@ -69,7 +69,7 @@ export default {
   },
   render() {
     const {
-      addCondition,
+      addCriterion,
       blueprintStore: blueprint,
       conditionPropsFor,
       replaceCondition,
@@ -78,7 +78,7 @@ export default {
 
     if (this.$scopedSlots?.default) {
       return this.$scopedSlots.default({
-        addCondition,
+        addCriterion,
         blueprint,
         conditionPropsFor,
         removeCondition,

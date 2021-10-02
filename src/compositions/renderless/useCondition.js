@@ -20,7 +20,7 @@ export default (id, props, context) => {
   // instead this behavior is delegated to the query builder.
   let condition;
   if (!builderModeActive) {
-    condition = blueprint.addCondition({
+    condition = blueprint.addCriterion({
       id,
       depth: 0,
     });
