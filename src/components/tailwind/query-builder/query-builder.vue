@@ -4,7 +4,7 @@
     :conditions="conditions"
     v-slot="{
       groupedBlueprint,
-      replaceCondition,
+      replaceCriterion,
       addCriterion,
       addGroup,
       removeCriterion,
@@ -35,10 +35,10 @@
               @remove-condition="removeCriterion(selectedCondition.position)"
               @switch-condition="
                 (nextCondition) =>
-                  replaceCondition(condition.uid, conditionPropsFor(nextCondition))
+                  replaceCriterion(selectedCondition.position, conditionPropsFor(nextCondition))
               "
               :is="'ConditionRow'"
-              :selectedConditionId="condition.condition_id"
+              :selectedConditionId="condition.id"
               :conditions="conditions"
               v-bind="{input: condition && {...condition.input}}"
             />

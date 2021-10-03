@@ -174,9 +174,6 @@ export default {
       this.scrollIntoView(highlightedOption?.id);
     },
   },
-  created() {
-    console.log(this.innerClass)
-  },
   components: {
     MultiSelectorButton,
     RenderlessSelector,

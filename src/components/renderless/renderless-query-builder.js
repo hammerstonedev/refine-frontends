@@ -40,16 +40,8 @@ export default {
     };
   },
   methods: {
-    replaceCondition(previousConditionUid, newCondition) {
-      const { meta } = this.conditionsLookup[newCondition.id];
-      const firstClause = meta.clauses[0];
-      const input = {
-        clause: firstClause.id,
-      };
-
-      this.blueprintStore.replaceCondition({
-        uid: previousConditionUid,
-      }, { input, depth: 0, ...newCondition });
+    replaceCriterion(previousPosition, newCriterion) {
+      this.blueprintStore.replaceCriterion(previousPosition, newCriterion);
     },
     addCriterion(position) {
       this.blueprintStore.addCriterion(position);
@@ -61,7 +53,7 @@ export default {
       this.blueprintStore.addGroup();
     },
     conditionPropsFor(condition) {
-      const { condition_id: conditionId, uid } = condition;
+      const { id: conditionId, uid } = condition;
       const { id, type, display } = this.conditionsLookup[conditionId];
       return { id, type, display, uid };
     },
@@ -72,7 +64,7 @@ export default {
       addGroup,
       blueprintStore: blueprint,
       conditionPropsFor,
-      replaceCondition,
+      replaceCriterion,
       removeCriterion,
     } = this;
 
@@ -83,7 +75,7 @@ export default {
         blueprint,
         conditionPropsFor,
         removeCriterion,
-        replaceCondition,
+        replaceCriterion,
         groupedBlueprint: blueprint.groupedBlueprint(),
       });
     }
