@@ -57,7 +57,10 @@ export default {
     removeCriterion(position) {
       this.blueprintStore.removeCriterion(position);
     },
-  conditionPropsFor(condition) {
+    addGroup() {
+      this.blueprintStore.addGroup();
+    },
+    conditionPropsFor(condition) {
       const { condition_id: conditionId, uid } = condition;
       const { id, type, display } = this.conditionsLookup[conditionId];
       return { id, type, display, uid };
@@ -66,6 +69,7 @@ export default {
   render() {
     const {
       addCriterion,
+      addGroup,
       blueprintStore: blueprint,
       conditionPropsFor,
       replaceCondition,
@@ -75,6 +79,7 @@ export default {
     if (this.$scopedSlots?.default) {
       return this.$scopedSlots.default({
         addCriterion,
+        addGroup,
         blueprint,
         conditionPropsFor,
         removeCriterion,

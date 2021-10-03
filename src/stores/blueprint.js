@@ -155,6 +155,19 @@ class Blueprint {
     return this.blueprint[conditionIndex];
   }
 
+  addGroup() {
+    const { blueprint, conditions } = this;
+    const condition = conditions[0];
+    const { meta } = condition;
+
+    if(blueprint.length > 0) {
+      blueprint.push(or());
+    }
+    blueprint.push(
+      criterion(condition.id, 1, meta)
+    );
+  }
+
   addCriterion(previousPosition) {
     const { blueprint, conditions } = this;
     const condition = conditions[0];
