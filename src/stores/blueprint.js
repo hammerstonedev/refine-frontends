@@ -41,13 +41,10 @@ class Blueprint {
     initialBlueprint = initialBlueprint || [];
 
     this.conditions = initialBlueprint.map((condition) => {
-      const uid = getNextUid();
-      return [
-        uid, {
+      return {
           ...condition,
           uid: getNextUid(),
-        }
-      ];
+        };
     });
 
     this.blueprintChanged = () => {
@@ -56,6 +53,32 @@ class Blueprint {
         onChange([...this.conditions]);
       }
     };
+  }
+
+  groupedBlueprint() {
+    if (this.conditions.length === 0) {
+      return [];
+    }
+
+    const groupedBlueprint = [];
+
+    // start with an empty group
+    groupedBlueprint.push([]);
+
+    this.conditions.forEach((piece, index) => {
+      if (piece.word === 'or') {
+        groupedBlueprint.push([]);
+      } else if (piece.word === 'and') {
+        return;
+      } else {
+        groupedBlueprint[groupedBlueprint.length - 1].push({
+          ...piece,
+          position: index,
+        })
+      }
+    })
+
+    return groupedBlueprint;
   }
 
   indexOfCondition({ uid }) {

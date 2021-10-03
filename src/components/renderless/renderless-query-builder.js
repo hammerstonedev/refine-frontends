@@ -62,7 +62,8 @@ export default {
     removeCondition(uid) {
       this.blueprintStore.removeCondition({ uid });
     },
-    conditionPropsFor({ id: conditionId, uid }) {
+  conditionPropsFor(condition) {
+      const { condition_id: conditionId, uid } = condition;
       const { id, type, display } = this.conditionsLookup[conditionId];
       return { id, type, display, uid };
     },
@@ -83,7 +84,7 @@ export default {
         conditionPropsFor,
         removeCondition,
         replaceCondition,
-        selectedConditions: blueprint.conditions,
+        groupedBlueprint: blueprint.groupedBlueprint(),
       });
     }
     return null;

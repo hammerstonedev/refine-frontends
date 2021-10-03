@@ -3,7 +3,7 @@
     :blueprint="blueprint"
     :conditions="conditions"
     v-slot="{
-      selectedConditions,
+      groupedBlueprint,
       replaceCondition,
       addCriterion,
       removeCondition,
@@ -11,33 +11,36 @@
     }"
   >
     <div class="font-sans">
-      <div
-        v-for="selectedCondition in selectedConditions"
-        :key="selectedCondition.uid"
-      >
-        <renderless-condition
-          v-bind="conditionPropsFor(selectedCondition)"
-          v-slot="{
-            updateInput,
-            condition,
-          }"
+      <div v-for="(group, index) in groupedBlueprint" :key="index">
+        <div
+          v-for="selectedCondition in group"
+          :key="selectedCondition.uid"
         >
-          <component
-            @switch-clause="
-              ({id: clause}) => updateInput({ clause })
-            "
-            @remove-condition="removeCondition(condition.uid)"
-            @switch-condition="
-              (nextCondition) =>
-                replaceCondition(condition.uid, conditionPropsFor(nextCondition))
-            "
-            :is="'ConditionRow'"
-            :selectedConditionId="condition.id"
-            :conditions="conditions"
-            v-bind="{input: condition && {...condition.input}}"
-          />
-        </renderless-condition>
+          <renderless-condition
+            v-bind="conditionPropsFor(selectedCondition)"
+            v-slot="{
+              updateInput,
+              condition,
+            }"
+          >
+            <component
+              @switch-clause="
+                ({id: clause}) => updateInput({ clause })
+              "
+              @remove-condition="removeCondition(condition.uid)"
+              @switch-condition="
+                (nextCondition) =>
+                  replaceCondition(condition.uid, conditionPropsFor(nextCondition))
+              "
+              :is="'ConditionRow'"
+              :selectedConditionId="condition.condition_id"
+              :conditions="conditions"
+              v-bind="{input: condition && {...condition.input}}"
+            />
+          </renderless-condition>
+        </div>
       </div>
+      
       <!-- condition row div -->
       <button
         @click="addCriterion"
