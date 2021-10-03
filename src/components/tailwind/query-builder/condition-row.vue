@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center py-2">
+  <div class="flex items-start py-2">
     <!-- condition selector -->
     <selector 
       @select-option="switchCondition" 
