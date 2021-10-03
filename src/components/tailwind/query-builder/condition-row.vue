@@ -1,7 +1,10 @@
 <template>
-  <div class="flex items-center py-1">
+  <div class="flex items-center py-2">
     <!-- condition selector -->
-    <selector @select-option="switchCondition">
+    <selector 
+      @select-option="switchCondition" 
+      innerClass="mr-4"
+    >
       <selector-option
         v-for="{ id, display, meta } in conditions"
         :key="id"
@@ -11,7 +14,10 @@
       >
         <renderless-clause v-bind="input" v-slot="{ setValue }">
           <!-- clause selector -->
-          <selector @select-option="switchClause" class="ml-4">
+          <selector 
+            @select-option="switchClause"
+            innerClass="mr-4"
+          >
             <selector-option
               v-for="{ id: clauseId, display, component } in meta.clauses"
               :key="clauseId"
@@ -25,7 +31,6 @@
                 v-bind="input"
                 :meta="meta"
                 @input="setValue"
-                class="ml-4"
               />
             </selector-option>
           </selector>
@@ -35,7 +40,7 @@
     <button
       @click.prevent="$emit('remove-condition')"
       type="button"
-      class="inline-flex items-center py-1 px-3 text-gray-500"
+      class="inline-flex items-center py-1 px-3 text-gray-500 ml-auto"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

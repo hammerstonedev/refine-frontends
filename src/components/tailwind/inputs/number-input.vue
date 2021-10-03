@@ -34,7 +34,7 @@
    },
    props: {
      value: {
-       type: Number,
+       type: String,
        required: false,
      },
    },

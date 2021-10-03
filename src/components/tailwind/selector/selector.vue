@@ -16,6 +16,7 @@
         <!-- Select dropdown -->
         <div
           class="relative sm:inline-block w-60"
+          :class="innerClass"
           :id="`listbox-${selectorId}`"
           v-click-away="actions.close"
           :aria-labelledby="buttonId"
@@ -90,6 +91,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    innerClass: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
   computed: {
@@ -167,6 +173,9 @@ export default {
       const { highlightedOption } = await highlightPreviousOption();
       this.scrollIntoView(highlightedOption?.id);
     },
+  },
+  created() {
+    console.log(this.innerClass)
   },
   components: {
     MultiSelectorButton,
