@@ -12,7 +12,11 @@
     }"
   >
     <div class="font-sans">
-      <div v-for="(group, index) in groupedBlueprint" :key="index">
+      <div 
+        class="bg-gray-50 w-max p-4 mb-4 rounded"
+        v-for="(group, index) in groupedBlueprint" 
+        :key="index"
+      >
         <div
           v-for="selectedCondition in group"
           :key="selectedCondition.uid"
@@ -42,9 +46,9 @@
         </div>
         <button
           @click="addCriterion(group[group.length -1].position)"
+          class="background-transparent text-blue-600 text-xs outline-none focus:outline-none flex items-center pt-3"
           type="button"
-          class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
+         >
           <!-- Heroicon name: plus -->
           <svg
             class="h-5 w-5"
@@ -59,6 +63,7 @@
               clip-rule="evenodd"
             />
           </svg>
+          <span>And</span>
         </button>
       </div>
       <button

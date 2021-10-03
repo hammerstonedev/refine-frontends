@@ -12,7 +12,7 @@
       @select-option="$emit('select-option', arguments[0])"
       @deselect-option="$emit('deselect-option', arguments[0])"
     >
-      <div class="py-1 md:flex md:items-center">
+      <div class="md:flex md:items-center">
         <!-- Select dropdown -->
         <div
           class="relative sm:inline-block w-60"
