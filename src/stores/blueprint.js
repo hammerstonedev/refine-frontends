@@ -6,15 +6,16 @@ const getNextUid = (function() {
   };
 })();
 
-const criterion = ({ id, depth, input }) => {
+const criterion = ( id, depth, meta ) => {
   const uid = getNextUid();
 
   const condition = {
-    id,
+    condition_id: id,
     depth,
-    input: input || {},
+    input: { clause: meta.clauses[0].id },
     uid,
   };
+
   return condition;
 }
 
@@ -37,10 +38,13 @@ const and = function(depth) {
 };
 
 class Blueprint {
-  constructor(initialBlueprint, onChange) {
+  constructor(initialBlueprint, conditions, onChange) {
     initialBlueprint = initialBlueprint || [];
+    conditions = conditions || [];
 
-    this.conditions = initialBlueprint.map((condition) => {
+    this.conditions = conditions;
+
+    this.blueprint = initialBlueprint.map((condition) => {
       return {
           ...condition,
           uid: getNextUid(),
@@ -48,15 +52,15 @@ class Blueprint {
     });
 
     this.blueprintChanged = () => {
-      console.log(JSON.parse(JSON.stringify(this.conditions)));
+      console.log(JSON.parse(JSON.stringify(this.blueprint)));
       if (onChange) {
-        onChange([...this.conditions]);
+        onChange([...this.blueprint]);
       }
     };
   }
 
   groupedBlueprint() {
-    if (this.conditions.length === 0) {
+    if (this.blueprint.length === 0) {
       return [];
     }
 
@@ -65,7 +69,7 @@ class Blueprint {
     // start with an empty group
     groupedBlueprint.push([]);
 
-    this.conditions.forEach((piece, index) => {
+    this.blueprint.forEach((piece, index) => {
       if (piece.word === 'or') {
         groupedBlueprint.push([]);
       } else if (piece.word === 'and') {
@@ -83,8 +87,8 @@ class Blueprint {
 
   indexOfCondition({ uid }) {
     let index = -1;
-    for (let i = 0; i < this.conditions.length; i++) {
-      if (this.conditions[i].uid === uid) {
+    for (let i = 0; i < this.blueprint.length; i++) {
+      if (this.blueprint[i].uid === uid) {
         index = i;
         break;
       }
@@ -95,26 +99,35 @@ class Blueprint {
   replaceCondition(previousCondition, nextCondition) {
     const previousIndex = this.indexOfCondition(previousCondition);
     const newCriterion = criterion(nextCondition);
-    this.conditions.splice(previousIndex, 1, newCriterion);
+    this.blueprint.splice(previousIndex, 1, newCriterion);
     this.blueprintChanged();
   }
 
   removeCondition(condition) {
     const conditionIndex = this.indexOfCondition(condition);
-    this.conditions.splice(conditionIndex, 1);
+    this.blueprint.splice(conditionIndex, 1);
     this.blueprintChanged();
   }
 
   findCondition(uid) {
     const conditionIndex = this.indexOfCondition({ uid });
-    return this.conditions[conditionIndex];
+    return this.blueprint[conditionIndex];
   }
 
-  addCriterion({ id, depth, input }) {
-    const newCriterion = criterion({ id, depth, input });
-    this.conditions.push(newCriterion);
+  addCriterion(previousPosition) {
+    const { blueprint, conditions } = this;
+    const condition = conditions[0];
+    const { meta } = condition;
+
+    blueprint.splice(
+      previousPosition + 1,
+      0,
+      and(),
+      criterion(condition.id, 1, meta),
+    );
+
     this.blueprintChanged();
-    return newCriterion;
+    return blueprint[previousPosition + 1];
   }
 
   updateInput({ uid }, updates) {
@@ -128,7 +141,7 @@ class Blueprint {
     });
 
     if (this.onChange) {
-      this.onChange([...this.conditions]);
+      this.onChange([...this.blueprint]);
     }
     this.blueprintChanged();
   }

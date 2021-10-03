@@ -32,6 +32,7 @@ export default {
       conditionsLookup,
       blueprintStore: new Blueprint(
         this.blueprint,
+        this.conditions,
         (updatedBlueprint) => {
           this.$emit('change', updatedBlueprint);
         },
@@ -50,14 +51,8 @@ export default {
         uid: previousConditionUid,
       }, { input, depth: 0, ...newCondition });
     },
-    addCriterion() {
-      const firstCondition = this.conditions[0];
-      const { id, type, meta } = firstCondition;
-      const firstClause = meta.clauses[0];
-      const input = {
-        clause: firstClause.id,
-      };
-      this.blueprintStore.addCriterion({ id, type, input, depth: 0 });
+    addCriterion(position) {
+      this.blueprintStore.addCriterion(position);
     },
     removeCondition(uid) {
       this.blueprintStore.removeCondition({ uid });

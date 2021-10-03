@@ -7,6 +7,10 @@
        type: Array,
        required: false,
      },
+     conditions: {
+       type: Array,
+       required: false,
+     },
    },
    provide() {
      const { blueprintStore } = this;
@@ -19,6 +23,7 @@
      return {
        blueprintStore: new Blueprint(
            this.blueprint,
+           this.conditions,
            (updatedBlueprint) => {
              this.$emit('change', updatedBlueprint)
            },
