@@ -1,74 +1,76 @@
 <template>
-  <renderless-selector
-    v-slot="{
-      actions,
-      isOpen,
-      isClosed,
-      selectedOptions,
-      highlightedOption,
-      options,
-    }"
-    @select-option="$emit('select-option', arguments[0])"
-    @deselect-option="$emit('deselect-option', arguments[0])"
-  >
-    <div class="py-1 md:flex md:items-center">
-      <!-- Select dropdown -->
-      <div
-        class="relative sm:inline-block w-60 mr-4"
-        :id="`listbox-${selectorId}`"
-        v-click-away="actions.close"
-        :aria-labelledby="buttonId"
-      >
-        <multi-selector-button
-          v-if="isMultiSelect"
-          :id="buttonId"
-          :isOpen="isOpen"
-          :selectedOptions="selectedOptions"
-          @toggle="toggle(actions)"
-          @open="open(actions)"
-          @deselect-option="deselectOption(...arguments, actions)"
-          ref="button"
-        />
-        <selector-button
-          v-else
-          :id="buttonId"
-          :isOpen="isOpen"
-          :display="selectedOptions[0] ? selectedOptions[0].display : ''"
-          @toggle="toggle(actions)"
-          @open="open(actions)"
-          ref="button"
-        />
-        <selector-listbox
-          :selectedOption="selectedOptions[0]"
-          :isClosed="isClosed"
-          ref="listBox"
-          @highlight-next-option="highlightNextOption(actions)"
-          @highlight-previous-option="highlightPreviousOption(actions)"
-          @select-option="selectOption(highlightedOption.id, actions)"
-          @close="close(actions)"
-          v-slot="{ createItemId }"
+  <div>
+    <renderless-selector
+      v-slot="{
+        actions,
+        isOpen,
+        isClosed,
+        selectedOptions,
+        highlightedOption,
+        options,
+      }"
+      @select-option="$emit('select-option', arguments[0])"
+      @deselect-option="$emit('deselect-option', arguments[0])"
+    >
+      <div class="py-1 md:flex md:items-center">
+        <!-- Select dropdown -->
+        <div
+          class="relative sm:inline-block w-60"
+          :id="`listbox-${selectorId}`"
+          v-click-away="actions.close"
+          :aria-labelledby="buttonId"
         >
-          <selector-list-item
-            v-for="option in options"
-            :id="createItemId(option.id)"
-            :key="option.id"
-            :optionId="option.id"
-            :optionDisplay="option.display"
-            :selected="isSelected(option, selectedOptions)"
-            :isHighlighted="highlightedOption && option.id === highlightedOption.id"
-            :ref="option.id"
-            @mouseenter="actions.highlightOption(option)"
-            @mouseleave="actions.highlightOption(null)"
-            @click="selectOption(option.id, actions)"
+          <multi-selector-button
+            v-if="isMultiSelect"
+            :id="buttonId"
+            :isOpen="isOpen"
+            :selectedOptions="selectedOptions"
+            @toggle="toggle(actions)"
+            @open="open(actions)"
+            @deselect-option="deselectOption(...arguments, actions)"
+            ref="button"
           />
-        </selector-listbox>
+          <selector-button
+            v-else
+            :id="buttonId"
+            :isOpen="isOpen"
+            :display="selectedOptions[0] ? selectedOptions[0].display : ''"
+            @toggle="toggle(actions)"
+            @open="open(actions)"
+            ref="button"
+          />
+          <selector-listbox
+            :selectedOption="selectedOptions[0]"
+            :isClosed="isClosed"
+            ref="listBox"
+            @highlight-next-option="highlightNextOption(actions)"
+            @highlight-previous-option="highlightPreviousOption(actions)"
+            @select-option="selectOption(highlightedOption.id, actions)"
+            @close="close(actions)"
+            v-slot="{ createItemId }"
+          >
+            <selector-list-item
+              v-for="option in options"
+              :id="createItemId(option.id)"
+              :key="option.id"
+              :optionId="option.id"
+              :optionDisplay="option.display"
+              :selected="isSelected(option, selectedOptions)"
+              :isHighlighted="highlightedOption && option.id === highlightedOption.id"
+              :ref="option.id"
+              @mouseenter="actions.highlightOption(option)"
+              @mouseleave="actions.highlightOption(null)"
+              @click="selectOption(option.id, actions)"
+            />
+          </selector-listbox>
+        </div>
+        <!-- Custom options -->
+        <div class="md:flex w-auto pt-4 md:pt-0">
+          <slot></slot>
+        </div>
       </div>
-      <!-- Custom options -->
-      <div class="md:flex w-auto pt-4 md:pt-0">
-        <slot></slot>
-      </div>
-    </div>
-  </renderless-selector>
+    </renderless-selector>
+  </div>
 </template>
 
 <script>
