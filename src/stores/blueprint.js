@@ -103,10 +103,51 @@ class Blueprint {
     this.blueprintChanged();
   }
 
-  removeCondition(condition) {
-    const conditionIndex = this.indexOfCondition(condition);
-    this.blueprint.splice(conditionIndex, 1);
-    this.blueprintChanged();
+  removeCriterion(position) {
+    /**
+       To support 'groups' there is some complicated logic for deleting criterion.
+
+       Imagine this simplified blueprint: [eq, and, sw, or, eq]
+
+       User clicks to delete the last eq. We also have to delete the preceding or
+       otherwise we're left with a hanging empty group
+
+       What if the user deletes the sw? We have to clean up the preceding and.
+
+       Imagine another scenario: [eq or sw and ew]
+       Now we delete the first eq but this time we need to clean up the or.
+
+       These conditionals cover these cases.
+    **/
+      const { blueprint } = this;
+      const previous = blueprint[position - 1];
+      const next = blueprint[position + 1];
+  
+      const nextIsOr = next && next.word === 'or';
+      const previousIsOr = previous && previous.word === 'or';
+  
+      const nextIsRightParen = nextIsOr || !next;
+      const previousIsLeftParen = previousIsOr || !previous;
+  
+      const isFirstInGroup = previousIsLeftParen && !nextIsRightParen;
+      const isLastInGroup = previousIsLeftParen && nextIsRightParen;
+      const isLastCriterion = !previous && !next;
+  
+      if (isLastCriterion) {
+        this.blueprint = [];
+  
+      } else if (isLastInGroup && previousIsOr) {
+        blueprint.splice(position - 1, 2);
+  
+      } else if (isLastInGroup && !previous) {
+        blueprint.splice(position, 2);
+  
+      } else if (isFirstInGroup) {
+        blueprint.splice(position, 2);
+  
+      } else {
+        blueprint.splice(position - 1, 2);
+      }
   }
 
   findCondition(uid) {

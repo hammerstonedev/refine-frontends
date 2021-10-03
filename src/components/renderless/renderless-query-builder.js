@@ -54,8 +54,8 @@ export default {
     addCriterion(position) {
       this.blueprintStore.addCriterion(position);
     },
-    removeCondition(uid) {
-      this.blueprintStore.removeCondition({ uid });
+    removeCriterion(position) {
+      this.blueprintStore.removeCriterion(position);
     },
   conditionPropsFor(condition) {
       const { condition_id: conditionId, uid } = condition;
@@ -69,7 +69,7 @@ export default {
       blueprintStore: blueprint,
       conditionPropsFor,
       replaceCondition,
-      removeCondition,
+      removeCriterion,
     } = this;
 
     if (this.$scopedSlots?.default) {
@@ -77,7 +77,7 @@ export default {
         addCriterion,
         blueprint,
         conditionPropsFor,
-        removeCondition,
+        removeCriterion,
         replaceCondition,
         groupedBlueprint: blueprint.groupedBlueprint(),
       });

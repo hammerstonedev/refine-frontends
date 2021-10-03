@@ -6,7 +6,7 @@
       groupedBlueprint,
       replaceCondition,
       addCriterion,
-      removeCondition,
+      removeCriterion,
       conditionPropsFor,
     }"
   >
@@ -27,7 +27,7 @@
               @switch-clause="
                 ({id: clause}) => updateInput({ clause })
               "
-              @remove-condition="removeCondition(condition.uid)"
+              @remove-condition="removeCriterion(selectedCondition.position)"
               @switch-condition="
                 (nextCondition) =>
                   replaceCondition(condition.uid, conditionPropsFor(nextCondition))
