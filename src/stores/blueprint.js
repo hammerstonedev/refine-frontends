@@ -10,6 +10,7 @@ const criterion = ( id, depth, meta ) => {
   const uid = getNextUid();
 
   const condition = {
+    id,
     condition_id: id,
     depth,
     input: { clause: meta.clauses[0].id },
@@ -47,6 +48,7 @@ class Blueprint {
     this.blueprint = initialBlueprint.map((condition) => {
       return {
           ...condition,
+          id: condition.condition_id,
           uid: getNextUid(),
         };
     });
@@ -96,9 +98,9 @@ class Blueprint {
     return index;
   }
 
-  replaceCondition(previousCondition, nextCondition) {
-    const previousIndex = this.indexOfCondition(previousCondition);
-    const newCriterion = criterion(nextCondition);
+  replaceCriterion(previousIndex, nextCriterion) {
+    const { meta, id } = this.findCondition(nextCriterion.id);
+    const newCriterion = criterion(id, 1, meta)
     this.blueprint.splice(previousIndex, 1, newCriterion);
     this.blueprintChanged();
   }
@@ -148,9 +150,10 @@ class Blueprint {
       } else {
         blueprint.splice(position - 1, 2);
       }
+      this.blueprintChanged();
   }
 
-  findCondition(uid) {
+  findCriterion(uid) {
     const conditionIndex = this.indexOfCondition({ uid });
     return this.blueprint[conditionIndex];
   }
@@ -165,7 +168,7 @@ class Blueprint {
     }
     blueprint.push(
       criterion(condition.id, 1, meta)
-    );
+    );    
   }
 
   addCriterion(previousPosition) {
@@ -184,12 +187,24 @@ class Blueprint {
     return blueprint[previousPosition + 1];
   }
 
+  findCondition(conditionId) {
+    let foundCondition = this.conditions[0];
+
+    this.conditions.forEach((condition) => {
+      if (condition.id === conditionId) {
+        foundCondition = condition; 
+      }
+    });
+
+    return foundCondition;
+  }
+
   updateInput({ uid }, updates) {
     // Do the update iteratively on the input object to preserve it
     // as an observable to anything that references it. Swapping it out
     // means you can't pass it directly to anything you would always have
     // to reference condition.input everywhere versus just passing input.
-    const condition = this.findCondition(uid);
+    const condition = this.findCriterion(uid);
     Object.keys(updates).forEach((key) => {
       condition.input[key] = updates[key];
     });

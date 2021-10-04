@@ -25,7 +25,7 @@ export default (id, props, context) => {
       depth: 0,
     });
   } else {
-    condition = blueprint.findCondition(props.uid);
+    condition = blueprint.findCriterion(props.uid);
   }
 
   const updateInput = updates => blueprint.updateInput(condition, updates);
