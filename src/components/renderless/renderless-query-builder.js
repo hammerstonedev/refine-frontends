@@ -43,8 +43,8 @@ export default {
     replaceCriterion(previousPosition, newCriterion) {
       this.blueprintStore.replaceCriterion(previousPosition, newCriterion);
     },
-    addCriterion(position) {
-      this.blueprintStore.addCriterion(position);
+    insertCriterion(position) {
+      this.blueprintStore.insertCriterion(position);
     },
     removeCriterion(position) {
       this.blueprintStore.removeCriterion(position);
@@ -60,7 +60,7 @@ export default {
   },
   render() {
     const {
-      addCriterion,
+      insertCriterion,
       addGroup,
       blueprintStore: blueprint,
       conditionPropsFor,
@@ -70,7 +70,7 @@ export default {
 
     if (this.$scopedSlots?.default) {
       return this.$scopedSlots.default({
-        addCriterion,
+        insertCriterion,
         addGroup,
         blueprint,
         conditionPropsFor,

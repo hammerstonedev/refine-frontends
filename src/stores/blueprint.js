@@ -13,7 +13,7 @@ const criterion = ( id, depth, meta ) => {
     id,
     condition_id: id,
     depth,
-    input: { clause: meta.clauses[0].id },
+    input: { clause: meta?.clauses[0].id },
     uid,
   };
 
@@ -87,7 +87,7 @@ class Blueprint {
     return groupedBlueprint;
   }
 
-  indexOfCondition({ uid }) {
+  indexOfCriterion({ uid }) {
     let index = -1;
     for (let i = 0; i < this.blueprint.length; i++) {
       if (this.blueprint[i].uid === uid) {
@@ -154,7 +154,7 @@ class Blueprint {
   }
 
   findCriterion(uid) {
-    const conditionIndex = this.indexOfCondition({ uid });
+    const conditionIndex = this.indexOfCriterion({ uid });
     return this.blueprint[conditionIndex];
   }
 
@@ -171,7 +171,25 @@ class Blueprint {
     );    
   }
 
-  addCriterion(previousPosition) {
+  addCriterion(newCriterion) {
+    const { id, depth } = newCriterion;
+    const { blueprint } = this;
+    const generatedCriterion = criterion(id, depth);
+    if (blueprint.length === 0) {
+      blueprint.push(generatedCriterion)
+    } else {
+      blueprint.splice(
+        blueprint.length,
+        0,
+        and(),
+        generatedCriterion,
+      );
+    }
+    
+    return generatedCriterion;
+  }
+
+  insertCriterion(previousPosition) {
     const { blueprint, conditions } = this;
     const condition = conditions[0];
     const { meta } = condition;

@@ -37,7 +37,7 @@ export default (id, props, context) => {
     // Again, in builder mode adding/removing conditions
     // is relegated to the query builder.
     if(!builderModeActive) {
-      blueprint.removeCondition(condition);
+      blueprint.removeCriterion(blueprint.indexOfCriterion(condition));
     }
   });
 

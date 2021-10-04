@@ -5,7 +5,7 @@
     v-slot="{
       groupedBlueprint,
       replaceCriterion,
-      addCriterion,
+      insertCriterion,
       addGroup,
       removeCriterion,
       conditionPropsFor,
@@ -45,7 +45,7 @@
           </renderless-condition>
         </div>
         <button
-          @click="addCriterion(group[group.length -1].position)"
+          @click="insertCriterion(group[group.length -1].position)"
           class="background-transparent text-blue-600 text-xs outline-none focus:outline-none flex items-center pt-3"
           type="button"
          >
