@@ -31,11 +31,11 @@
    },
    props: {
      value1: {
-       type: Number,
+       type: String,
        required: false,
      },
      value2: {
-       type: Number,
+       type: String,
        required: false,
      },
    },

@@ -1,7 +1,7 @@
 const numericSingleProps = {
   props: {
     value: {
-      type: Number,
+      type: String,
       required: false,
     },
   },
@@ -10,11 +10,11 @@ const numericSingleProps = {
 const numericDoubleProps = {
   props: {
     from: {
-      type: Number,
+      type: String,
       required: false,
     },
     to: {
-      type: Number,
+      type: String,
       required: false,
     },
   },

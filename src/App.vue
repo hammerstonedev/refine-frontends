@@ -1,6 +1,8 @@
 <template>
   <div>
-    <query-builder :conditions="conditions" class="p-4" />
+    <div class="w-max">
+      <query-builder :conditions="conditions" :blueprint="groupedBlueprint" class="p-4 w-100" />
+    </div>
     <query>
       <div class="p-4">
         <condition-selector>
@@ -28,11 +30,11 @@
         </div>
         <div class="pt-4">
           <label>Age</label>
-          <numeric-condition id="age" :value="32" class="pt-2" />
+          <numeric-condition id="age" value="32" class="pt-2" />
         </div>
         <div class="pt-4">
           <label>Hotness</label>
-          <numeric-condition id="hotness" :from="7" :to="10" class="pt-2" />
+          <numeric-condition id="hotness" from="7" to="10" class="pt-2" />
         </div>
       </div>
     </query>
@@ -54,6 +56,45 @@ import {
   IsBetweenOption,
   IsNotBetweenOption,
 } from "./components/tailwind/clause-options/numeric";
+
+const groupedBlueprint = [
+    {
+        "depth": 1,
+        "type": "criterion",
+        "condition_id": "option",
+        "input": {
+            "clause": "eq"
+        }
+    },
+    {
+        "depth": 1,
+        "type": "conjunction",
+        "word": "and"
+    },
+    {
+        "depth": 1,
+        "type": "criterion",
+        "condition_id": "text",
+        "input": {
+            "clause": "eq",
+            "value": "123"
+        }
+    },
+    {
+        "depth": 0,
+        "type": "conjunction",
+        "word": "or"
+    },
+    {
+        "depth": 1,
+        "type": "criterion",
+        "condition_id": "numeric",
+        "input": {
+            "clause": "eq",
+            "value": "123"
+        }
+    }
+];
 
 const conditions = [
   {
@@ -486,6 +527,7 @@ export default {
   data() {
     return {
       conditions,
+      groupedBlueprint,
     };
   },
   components: {
