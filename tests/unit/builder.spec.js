@@ -1,10 +1,6 @@
-import Vue from 'vue';
-import VueCompositionAPI from '@vue/composition-api';
 import { mount } from '@vue/test-utils';
 import QueryBuilder from '@/components/tailwind/query-builder';
 import conditions from './conditions';
-
-Vue.use(VueCompositionAPI);
 
 describe('Query builder', () => {
   let blueprint;
