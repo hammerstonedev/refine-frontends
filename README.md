@@ -2,6 +2,8 @@
 
 Porting [@hammerstone/vue-query-builder](https://github.com/hammerstonedev/query-builder) to React.
 
+<img width="786" alt="Screenshot 2021-10-05 at 23 00 50" src="https://user-images.githubusercontent.com/23709612/136109019-fe64476b-07ae-4d24-a129-8244cb8a31d4.png">
+
 ## Todo
 
 - [x] Begin rendering query builder based on a provided blueprint
