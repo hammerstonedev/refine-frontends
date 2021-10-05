@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="w-max">
-      <query-builder :conditions="conditions" :blueprint="groupedBlueprint" class="p-4 w-100" />
+      <query-builder :conditions="conditions" v-model="groupedBlueprint" class="p-4 w-100" />
     </div>
+    <div>{{ groupedBlueprint }}</div>
     <query>
       <div class="p-4">
         <condition-selector>

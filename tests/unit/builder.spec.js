@@ -7,37 +7,29 @@ describe('Query builder', () => {
 
   const TestQueryBuilder = {
     name: 'test-text-clause',
-    template: '<query-builder :conditions="conditions" :blueprint="blueprint" @change="onChange" />',
-    props: ['conditions', 'blueprint'],
-    methods: {
-      onChange(updatedBlueprint) {
-        blueprint = updatedBlueprint;
-      },
-    },
+    template: '<query-builder :conditions="conditions" v-model="blueprint" />',
+    props: ['conditions'],
     components: {
       QueryBuilder,
     },
   };
 
   it('renders an empty blueprint', () => {
-    blueprint = [];
-
     const wrapper = mount(TestQueryBuilder, {
-      propsData: {
-        blueprint: [],
-        conditions,
+      data() {
+        return {
+          blueprint: [],
+        };
       },
-      global: {
-        directives: {
-          'click-away': () => {},
-        },
+      propsData: {
+        conditions,
       },
     });
 
     const buttonWrapper = wrapper.find('button');
     buttonWrapper.trigger('click');
-    expect(blueprint.length).toBe(1);
+    expect(wrapper.vm.blueprint.length).toBe(1);
     buttonWrapper.trigger('click');
-    expect(blueprint.length).toBe(3);
+    expect(wrapper.vm.blueprint.length).toBe(3);
   });
 });

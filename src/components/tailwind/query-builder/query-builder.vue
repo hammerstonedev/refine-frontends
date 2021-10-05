@@ -88,6 +88,10 @@ import {
 
 export default {
   name: "query-builder",
+  model: {
+    prop: 'blueprint',
+    event: 'change'
+  },
   props: {
     blueprint: {
       required: false,
