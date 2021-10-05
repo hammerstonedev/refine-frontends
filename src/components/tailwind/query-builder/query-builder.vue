@@ -2,6 +2,7 @@
   <renderless-query-builder
     :blueprint="blueprint"
     :conditions="conditions"
+    @change="onChange"
     v-slot="{
       groupedBlueprint,
       replaceCriterion,
@@ -98,6 +99,12 @@ export default {
     conditions: {
       required: true,
       type: Array,
+    },
+  },
+  methods: {
+    onChange(newBlueprint) {
+      // bubble up the change event.
+      this.$emit('change', newBlueprint);
     },
   },
   created() {

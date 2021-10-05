@@ -169,6 +169,8 @@ class Blueprint {
     blueprint.push(
       criterion(condition.id, 1, meta)
     );    
+    
+    this.blueprintChanged();
   }
 
   addCriterion(newCriterion) {
