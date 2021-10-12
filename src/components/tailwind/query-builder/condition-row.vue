@@ -12,29 +12,7 @@
         :display="display"
         :selected="selectedConditionId === id"
       >
-        <renderless-clause v-bind="input" v-slot="{ setValue }">
-          <!-- clause selector -->
-          <selector 
-            @select-option="switchClause"
-            innerClass="mr-4"
-          >
-            <selector-option
-              v-for="{ id: clauseId, display, component } in meta.clauses"
-              :key="clauseId"
-              :id="clauseId"
-              :display="display"
-              :selected="input.clause === clauseId"
-            >
-              <component
-                v-if="component"
-                :is="component"
-                v-bind="input"
-                :meta="meta"
-                @input="setValue"
-              />
-            </selector-option>
-          </selector>
-        </renderless-clause>
+        <clause :input="input" :meta="meta" @switch-clause="switchClause" />
       </selector-option>
     </selector>
     <button
@@ -60,8 +38,7 @@
 
 <script>
 import { Selector, SelectorOption } from "..";
-import { RenderlessClause } from "@/components/renderless";
-import * as inputs from "../inputs";
+import Clause from './clause';
 
 export default {
   name: "condition",
@@ -80,18 +57,17 @@ export default {
     },
   },
   methods: {
-    switchClause: function ({ selectedOption: nextClause }) {
-      this.$emit("switch-clause", nextClause);
-    },
     switchCondition: function ({ selectedOption: nextCondition }) {
       this.$emit("switch-condition", nextCondition);
     },
+    switchClause: function (nextClause) {
+      this.$emit("switch-clause", nextClause);
+    },
   },
   components: {
+    Clause,
     SelectorOption,
-    RenderlessClause,
     Selector,
-    ...inputs,
   },
 };
 </script>

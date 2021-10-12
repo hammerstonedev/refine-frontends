@@ -29,7 +29,7 @@
               condition,
             }"
           >
-            <component
+            <condition-row
               @switch-clause="
                 ({id: clause}) => updateInput({ clause })
               "
@@ -38,11 +38,30 @@
                 (nextCondition) =>
                   replaceCriterion(selectedCondition.position, conditionPropsFor(nextCondition))
               "
-              :is="'ConditionRow'"
               :selectedConditionId="condition.id"
               :conditions="conditions"
               v-bind="{input: condition && {...condition.input}}"
             />
+
+             <!-- Refinements -->
+             <!-- <condition-row
+               :key="refinement.id"
+               v-for="refinement in selectedCondition.refinements"
+
+             >
+
+             </div>
+            <% condition_for_criterion(criterion)[:refinements].each do |refinement|%>
+              <div class="w-full pt-3 sm:w-auto sm:flex-shrink-0 sm:mr-3">
+                <%= render partial: 'hammerstone/refine_blueprints/clause_select', locals: {
+                  meta: refinement[:meta], input_id: refinement[:id], input: criterion[refinement[:id].to_sym] || {} } %>
+              </div>
+              <%= render partial: "hammerstone/refine_blueprints/clauses/#{refinement[:component].underscore}", locals: {
+                condition: refinement, input: criterion[refinement[:id].to_sym] || {}, criterion_id: criterion_id,
+                input_id: refinement[:id] } %>
+
+            <% end %> -->
+            <!-- End Refinements -->
           </renderless-condition>
         </div>
         <button

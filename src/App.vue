@@ -100,7 +100,6 @@ const conditions = [
       "refinements": [
         {
           "id": "count_refinement",
-          "component": "numeric-condition",
           "display": "Count Refinement",
           "meta": {
             "clauses": [
