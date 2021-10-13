@@ -13,16 +13,16 @@
         :selected="conditionId === id"
       >
         <div>
-        <clause :input="input" :meta="meta" @switch-clause="switchClause" />
-         <!-- Refinements -->
-        <clause
-          :key="refinement.id"
-          v-for="refinement in refinements"
-          :meta="refinement.meta"
-          :input="input[refinement.id]"
-        />
+          <clause :input="input" :meta="meta" @switch-clause="switchClause" />
+          <!-- Refinements -->
+          <clause
+            :key="refinement.id"
+            v-for="refinement in refinements"
+            :meta="refinement.meta"
+            :input="input[refinement.id]"
+          />
+          <!-- End Refinements -->
         </div>
-            <!-- End Refinements -->
       </selector-option>
     </selector>
     <button

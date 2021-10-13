@@ -23,7 +23,7 @@
             v-bind="conditionPropsFor(criterion)"
             v-slot="{ updateInput, condition }"
           >
-            <condition-row
+            <criterion
               @switch-clause="({ id: clause }) => updateInput({ clause })"
               @remove-condition="removeCriterion(criterion.position)"
               @switch-condition="
@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import ConditionRow from "./condition-row";
+import Criterion from "./criterion";
 import {
   RenderlessQueryBuilder,
   RenderlessCondition,
@@ -135,7 +135,7 @@ export default {
     }
   },
   components: {
-    ConditionRow,
+    Criterion,
     RenderlessCondition,
     RenderlessQueryBuilder,
   },
