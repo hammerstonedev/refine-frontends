@@ -31,7 +31,7 @@ export default {
   props: {
     input: {
       type: Object,
-      required: true,
+      default: () => { return {}; },
     },
     meta: {
       type: Object,

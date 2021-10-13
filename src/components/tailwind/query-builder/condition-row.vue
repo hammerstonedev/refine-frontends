@@ -6,13 +6,23 @@
       innerClass="mr-4"
     >
       <selector-option
-        v-for="{ id, display, meta } in conditions"
+        v-for="{ id, display, meta, refinements } in conditions"
         :key="id"
         :id="id"
         :display="display"
         :selected="selectedConditionId === id"
       >
+        <div>
         <clause :input="input" :meta="meta" @switch-clause="switchClause" />
+         <!-- Refinements -->
+        <clause
+          :key="refinement.id"
+          v-for="refinement in refinements"
+          :meta="refinement.meta"
+          :input="input[refinement.id]"
+        />
+        </div>
+            <!-- End Refinements -->
       </selector-option>
     </selector>
     <button

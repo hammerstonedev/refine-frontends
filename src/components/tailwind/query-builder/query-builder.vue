@@ -13,62 +13,45 @@
     }"
   >
     <div class="font-sans">
-      <div 
+      <div
         class="bg-gray-50 p-4 mb-4 rounded"
-        v-for="(group, index) in groupedBlueprint" 
+        v-for="(group, index) in groupedBlueprint"
         :key="index"
       >
-        <div
-          v-for="selectedCondition in group"
-          :key="selectedCondition.uid"
-        >
+        <div v-for="selectedCondition in group" :key="selectedCondition.uid">
           <renderless-condition
             v-bind="conditionPropsFor(selectedCondition)"
-            v-slot="{
-              updateInput,
-              condition,
-            }"
+            v-slot="{ updateInput, condition }"
           >
             <condition-row
-              @switch-clause="
-                ({id: clause}) => updateInput({ clause })
-              "
+              @switch-clause="({ id: clause }) => updateInput({ clause })"
               @remove-condition="removeCriterion(selectedCondition.position)"
               @switch-condition="
                 (nextCondition) =>
-                  replaceCriterion(selectedCondition.position, conditionPropsFor(nextCondition))
+                  replaceCriterion(
+                    selectedCondition.position,
+                    conditionPropsFor(nextCondition)
+                  )
               "
               :selectedConditionId="condition.id"
               :conditions="conditions"
-              v-bind="{input: condition && {...condition.input}}"
-            />
-
-             <!-- Refinements -->
-             <!-- <condition-row
-               :key="refinement.id"
-               v-for="refinement in selectedCondition.refinements"
-
-             >
-
-             </div>
-            <% condition_for_criterion(criterion)[:refinements].each do |refinement|%>
-              <div class="w-full pt-3 sm:w-auto sm:flex-shrink-0 sm:mr-3">
-                <%= render partial: 'hammerstone/refine_blueprints/clause_select', locals: {
-                  meta: refinement[:meta], input_id: refinement[:id], input: criterion[refinement[:id].to_sym] || {} } %>
-              </div>
-              <%= render partial: "hammerstone/refine_blueprints/clauses/#{refinement[:component].underscore}", locals: {
-                condition: refinement, input: criterion[refinement[:id].to_sym] || {}, criterion_id: criterion_id,
-                input_id: refinement[:id] } %>
-
-            <% end %> -->
-            <!-- End Refinements -->
+              v-bind="{ input: condition && { ...condition.input } }"
+            />           
           </renderless-condition>
         </div>
         <button
-          @click="insertCriterion(group[group.length -1].position)"
-          class="background-transparent text-blue-600 text-xs outline-none focus:outline-none flex items-center pt-3"
+          @click="insertCriterion(group[group.length - 1].position)"
+          class="
+            background-transparent
+            text-blue-600 text-xs
+            outline-none
+            focus:outline-none
+            flex
+            items-center
+            pt-3
+          "
           type="button"
-         >
+        >
           <!-- Heroicon name: plus -->
           <svg
             class="h-5 w-5"
@@ -88,8 +71,22 @@
       </div>
       <button
         @click="addGroup"
-        type="button" 
-        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        type="button"
+        class="
+          inline-flex
+          items-center
+          px-4
+          py-2
+          border border-transparent
+          text-sm
+          font-medium
+          rounded-md
+          text-indigo-700
+          bg-indigo-100
+          hover:bg-indigo-200
+          focus:outline-none
+          focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+        "
       >
         Add an 'Or'
       </button>
@@ -108,8 +105,8 @@ import {
 export default {
   name: "query-builder",
   model: {
-    prop: 'blueprint',
-    event: 'change'
+    prop: "blueprint",
+    event: "change",
   },
   props: {
     blueprint: {
@@ -127,7 +124,7 @@ export default {
   methods: {
     onChange(newBlueprint) {
       // bubble up the change event.
-      this.$emit('change', newBlueprint);
+      this.$emit("change", newBlueprint);
     },
   },
   created() {
