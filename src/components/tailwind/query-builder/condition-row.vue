@@ -10,7 +10,7 @@
         :key="id"
         :id="id"
         :display="display"
-        :selected="selectedConditionId === id"
+        :selected="conditionId === id"
       >
         <div>
         <clause :input="input" :meta="meta" @switch-clause="switchClause" />
@@ -57,7 +57,7 @@ export default {
       required: true,
       type: Array,
     },
-    selectedConditionId: {
+    conditionId: {
       type: String,
       required: true,
     },

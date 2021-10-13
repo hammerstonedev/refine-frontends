@@ -18,22 +18,22 @@
         v-for="(group, index) in groupedBlueprint"
         :key="index"
       >
-        <div v-for="selectedCondition in group" :key="selectedCondition.uid">
+        <div v-for="criterion in group" :key="criterion.uid">
           <renderless-condition
-            v-bind="conditionPropsFor(selectedCondition)"
+            v-bind="conditionPropsFor(criterion)"
             v-slot="{ updateInput, condition }"
           >
             <condition-row
               @switch-clause="({ id: clause }) => updateInput({ clause })"
-              @remove-condition="removeCriterion(selectedCondition.position)"
+              @remove-condition="removeCriterion(criterion.position)"
               @switch-condition="
                 (nextCondition) =>
                   replaceCriterion(
-                    selectedCondition.position,
+                    criterion.position,
                     conditionPropsFor(nextCondition)
                   )
               "
-              :selectedConditionId="condition.id"
+              :conditionId="condition.id"
               :conditions="conditions"
               v-bind="{ input: condition && { ...condition.input } }"
             />           
