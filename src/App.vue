@@ -103,26 +103,26 @@ const conditions = [
           "display": "Count Refinement",
           "meta": {
             "clauses": [
-              { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "numeric-input" },
-              { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "numeric-input" },
-              { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "numeric-input" },
+              { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "number-input" },
+              { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "number-input" },
+              { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "number-input" },
               {
                 "id": "gte",
                 "display": "Is Greater Than Or Equal To",
                 "meta": {}, 
-                "component": "numeric-input"
+                "component": "number-input"
               },
               { "id": "lt", "display": "Is Less Than", "meta": {} },
               {
                 "id": "lte",
                 "display": "Is Less Than Or Equal To",
                 "meta": {}, 
-                "component": "numeric-input"
+                "component": "number-input"
               },
-              { "id": "btwn", "display": "Is Between", "meta": {}, "component": "numeric-input" },
-              { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "numeric-input" },
-              { "id": "st", "display": "Is Set", "meta": {}, "component": "numeric-input" },
-              { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "numeric-input" }
+              { "id": "btwn", "display": "Is Between", "meta": {}, "component": "number-input" },
+              { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "number-input" },
+              { "id": "st", "display": "Is Set", "meta": {}, "component": "number-input" },
+              { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "number-input" }
             ]
           },
           "refinements": []
