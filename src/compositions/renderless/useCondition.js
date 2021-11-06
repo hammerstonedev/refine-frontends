@@ -28,10 +28,13 @@ export default (id, props, context) => {
     condition = blueprint.findCriterion(props.uid);
   }
 
-  const updateInput = updates => blueprint.updateInput(condition, updates);
+  const updateInput = (updates, refinementId) => blueprint.updateInput(condition, updates, refinementId);
 
   provide('condition', condition);
   provide('updateInput', updateInput);
+
+  // This is overriden by refinement components
+  provide('refinementId', null);
 
   onUnmounted(() => {
     // Again, in builder mode adding/removing conditions

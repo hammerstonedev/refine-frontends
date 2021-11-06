@@ -14,14 +14,7 @@
       >
         <div>
           <clause :input="input" :meta="meta" @switch-clause="switchClause" />
-          <!-- Refinements -->
-          <clause
-            :key="refinement.id"
-            v-for="refinement in refinements"
-            :meta="refinement.meta"
-            :input="input[refinement.id]"
-          />
-          <!-- End Refinements -->
+          <refinements v-if="refinements && refinements.length > 0" :input="input" :refinements="refinements" />
         </div>
       </selector-option>
     </selector>
@@ -49,9 +42,10 @@
 <script>
 import { Selector, SelectorOption } from "..";
 import Clause from './clause';
+import Refinements from './refinements.vue';
 
 export default {
-  name: "condition",
+  name: "criterion",
   props: {
     conditions: {
       required: true,
@@ -76,8 +70,11 @@ export default {
   },
   components: {
     Clause,
+    Refinements,
     SelectorOption,
     Selector,
   },
 };
 </script>
+
+    Refinements

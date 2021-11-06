@@ -6,14 +6,21 @@ const getNextUid = (function() {
   };
 })();
 
-const criterion = ( id, depth, meta ) => {
+const criterion = ( id, depth, meta, refinements ) => {
   const uid = getNextUid();
+  const [firstRefinement] = refinements || [];
 
   const condition = {
     id,
     condition_id: id,
     depth,
-    input: { clause: meta?.clauses[0].id },
+    input: { 
+      clause: meta?.clauses[0].id,
+      ...( firstRefinement && { 
+        [firstRefinement.id]: {
+          clause: firstRefinement?.meta?.clauses[0]?.id,
+        }}),
+    },
     uid,
   };
 
@@ -99,8 +106,8 @@ class Blueprint {
   }
 
   replaceCriterion(previousIndex, nextCriterion) {
-    const { meta, id } = this.findCondition(nextCriterion.id);
-    const newCriterion = criterion(id, 1, meta)
+    const { meta, id, refinements, } = this.findCondition(nextCriterion.id);
+    const newCriterion = criterion(id, 1, meta, refinements)
     this.blueprint.splice(previousIndex, 1, newCriterion);
     this.blueprintChanged();
   }
@@ -161,13 +168,13 @@ class Blueprint {
   addGroup() {
     const { blueprint, conditions } = this;
     const condition = conditions[0];
-    const { meta } = condition;
+    const { meta, refinements } = condition;
 
     if(blueprint.length > 0) {
       blueprint.push(or());
     }
     blueprint.push(
-      criterion(condition.id, 1, meta)
+      criterion(condition.id, 1, meta, refinements)
     );    
     
     this.blueprintChanged();
@@ -194,13 +201,13 @@ class Blueprint {
   insertCriterion(previousPosition) {
     const { blueprint, conditions } = this;
     const condition = conditions[0];
-    const { meta } = condition;
+    const { meta, refinements } = condition;
 
     blueprint.splice(
       previousPosition + 1,
       0,
       and(),
-      criterion(condition.id, 1, meta),
+      criterion(condition.id, 1, meta, refinements),
     );
 
     this.blueprintChanged();
@@ -219,14 +226,18 @@ class Blueprint {
     return foundCondition;
   }
 
-  updateInput({ uid }, updates) {
+  updateInput({ uid }, updates, refinementId) {
     // Do the update iteratively on the input object to preserve it
     // as an observable to anything that references it. Swapping it out
     // means you can't pass it directly to anything you would always have
     // to reference condition.input everywhere versus just passing input.
     const condition = this.findCriterion(uid);
     Object.keys(updates).forEach((key) => {
-      condition.input[key] = updates[key];
+      if (refinementId){
+        condition.input[refinementId][key] = updates[key];
+      } else {
+        condition.input[key] = updates[key];
+      }
     });
 
     if (this.onChange) {

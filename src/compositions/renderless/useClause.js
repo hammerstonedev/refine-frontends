@@ -3,10 +3,10 @@ import { inject, onUnmounted } from '@vue/composition-api';
 export default (id, props, context) => {
   const condition = inject('condition');
   const updateInput = inject('updateInput');
+  const refinementId = inject('refinementId');
   const builderModeActive = inject('builderModeActive');
-
   const setValue = (input) => {
-    updateInput(input);
+    updateInput(input, refinementId);
   };
 
   if (!condition) {
@@ -14,7 +14,11 @@ export default (id, props, context) => {
   }
 
   // Set the clause id on the blueprint input when this clause is rendered
-  updateInput({ clause: id });
+  if (refinementId) {
+    updateInput({ [refinementId]: { clause: id }});
+  } else {
+    updateInput({ clause: id });
+  }
 
   if (!builderModeActive) {
     // eslint-disable-next-line no-unused-vars
