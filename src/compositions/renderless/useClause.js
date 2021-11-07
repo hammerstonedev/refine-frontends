@@ -29,7 +29,9 @@ export default (id, props, context) => {
   }
 
   onUnmounted(() => {
-    if (!builderModeActive) {
+    if (refinementId) {
+      updateInput({ [refinementId]: undefined });
+    } else if (!builderModeActive) {
       // only mark the clause as empty if when unmounting no other
       // clause has been selected. Mounting/unmounting happens in the
       // order that the components were rendered.

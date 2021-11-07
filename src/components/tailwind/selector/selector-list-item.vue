@@ -8,6 +8,7 @@
     @mouseenter="$emit('mouseenter')"
     @mouseleave="$emit('mouseleave')"
     @click="$emit('click')"
+    :aria-label="optionDisplay"
   >
     <span
       class="font-normal block truncate"

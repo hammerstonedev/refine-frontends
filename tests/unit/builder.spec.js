@@ -12,9 +12,9 @@ describe('Query builder', () => {
       QueryBuilder,
     },
   };
-
-  it('renders an empty blueprint', () => {
-    const wrapper = mount(TestQueryBuilder, {
+  
+  const buildWrapper = () => {
+    return mount(TestQueryBuilder, {
       data() {
         return {
           blueprint: [],
@@ -24,7 +24,10 @@ describe('Query builder', () => {
         conditions,
       },
     });
+  }
 
+  it('renders an empty blueprint', () => {
+    const wrapper = buildWrapper();
     const buttonWrapper = wrapper.find('button');
     buttonWrapper.trigger('click');
     expect(wrapper.vm.blueprint.length).toBe(1);
@@ -33,25 +36,45 @@ describe('Query builder', () => {
   });
 
   it('renders refinements', async () => {
-    const wrapper = mount(TestQueryBuilder, {
-      data() {
-        return {
-          blueprint: [],
-        };
-      },
-      propsData: {
-        conditions,
-      },
-    });
-
+    const wrapper = buildWrapper();
     const addAnOr = wrapper.find('button');
     addAnOr.trigger('click');
     expect(wrapper.vm.blueprint[0].input.count_refinement).toBeDefined();
-    const conditionOptions = wrapper.find('button');
-    conditionOptions.trigger('click');
+  });
+
+  it('changes refinement value', async () => {
+    const wrapper = buildWrapper();
+    const addAnOr = wrapper.find('button');
+    addAnOr.trigger('click');
+
     await Vue.nextTick();
+
     wrapper.find('input').setValue('123')
+
     await Vue.nextTick();
+
     expect(wrapper.vm.blueprint[0].input.count_refinement.value).toBe(123);
+  });
+
+  it('changes the refinement', async () => {
+    const wrapper = buildWrapper();
+
+    // add a criterion
+    const addAnOr = wrapper.find('button');
+    addAnOr.trigger('click');
+    await Vue.nextTick();
+
+    // initial loading of the criterion sets the initial refinement
+    expect(wrapper.vm.blueprint[0].input.count_refinement).toBeDefined();
+
+    // open the refinement condition choices
+    const refinementChoices = wrapper.find('[aria-label="Count Refinement"]');
+    refinementChoices.trigger('click');
+    await Vue.nextTick();
+
+    wrapper.find('[aria-label="Kaboom Refinement"]').trigger('click');
+    await Vue.nextTick();
+
+    expect(wrapper.vm.blueprint[0].input.count_refinement).not.toBeDefined();
   });
 });
