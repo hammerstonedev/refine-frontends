@@ -29,9 +29,13 @@ export default (id, props, context) => {
   }
 
   const updateInput = (updates, refinementId) => blueprint.updateInput(condition, updates, refinementId);
+  const switchRefinement = (oldRefinementId, newRefinementId) => {
+    blueprint.switchRefinement(condition, oldRefinementId, newRefinementId);
+  };
 
   provide('condition', condition);
   provide('updateInput', updateInput);
+  provide('switchRefinement', switchRefinement);
 
   // This is overriden by refinement components
   provide('refinementId', null);

@@ -61,7 +61,7 @@ class Blueprint {
     });
 
     this.blueprintChanged = () => {
-      // console.log(JSON.parse(JSON.stringify(this.blueprint)));
+      console.log(JSON.parse(JSON.stringify(this.blueprint)));
       if (onChange) {
         onChange([...this.blueprint]);
       }
@@ -195,6 +195,7 @@ class Blueprint {
       );
     }
     
+    this.blueprintChanged();
     return generatedCriterion;
   }
 
@@ -214,6 +215,18 @@ class Blueprint {
     return blueprint[previousPosition + 1];
   }
 
+  findRefinement(conditionId, findId) {
+    const { refinements } = this.findCondition(conditionId);
+
+    let result;
+    refinements.forEach((refinement) => {
+      if (refinement.id === findId) {
+        result = refinement 
+      }
+    });
+    return result;
+  }
+
   findCondition(conditionId) {
     let foundCondition = this.conditions[0];
 
@@ -224,6 +237,22 @@ class Blueprint {
     });
 
     return foundCondition;
+  }
+
+  switchRefinement({ uid, id }, oldRefinementId, newRefinementId) {
+    const nextRefinement = this.findRefinement(id, newRefinementId);
+    const criterion = this.findCriterion(uid);
+    const input = { ...criterion.input };
+
+    // Have to copy and swap out the input
+    // because deleting and adding properties is
+    // not observable by vue's reactivity system.
+    // https://vuejs.org/v2/guide/reactivity.html#For-Objects
+    delete input[oldRefinementId];
+    input[newRefinementId] = {
+      clause: nextRefinement.meta.clauses[0].id,
+    };
+    criterion.input = input;
   }
 
   updateInput({ uid }, updates, refinementId) {
@@ -239,10 +268,6 @@ class Blueprint {
         condition.input[key] = updates[key];
       }
     });
-
-    if (this.onChange) {
-      this.onChange([...this.blueprint]);
-    }
     this.blueprintChanged();
   }
 

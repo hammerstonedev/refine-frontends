@@ -2,7 +2,7 @@
   <div>
     <p>{{ refinements[0].meta }}</p>
   <selector 
-    @select-option="switchRefinement" 
+    @select-option="selectRefinement" 
     innerClass="mr-4"
   >
   <selector-option
@@ -14,12 +14,11 @@
   >
     <renderless-refinement 
       :id="id"
-      v-slot="{ updateRefinementInput }"
     >
       <clause
         :meta="meta"
         :input="input[id]"
-        @switch-clause="({ id: clause }) => updateRefinementInput({ clause })"
+        @switch-clause="({ id: clause }) => updateInput({ clause }, id)"
       />
     </renderless-refinement>
   </selector-option>
@@ -34,7 +33,7 @@ import Clause from './clause';
 
 export default {
   name: 'refinements',
-  inject: ['updateInput'],
+  inject: ['updateInput', 'switchRefinement'],
   components: {
     Clause,
     RenderlessRefinement,
@@ -51,15 +50,22 @@ export default {
       type: Object,
       default: () => { return {}; },
     },
-  },  
+  }, 
   methods: {
-    updateRefinementInput({ id: clause }) {
-      this.updateInput( { clause });
+    selectedRefinementId() {
+      let selectedId;
+      this.refinements.forEach(({ id }) => {
+        if (this.input[id]) {
+          selectedId = id;
+        }
+      });
+
+      return selectedId;
     },
-    switchRefinement: function ({ selectedOption: nextRefinement, previousOption }) {
-      // delete old put in new?
-      console.log(previousOption);
-      return nextRefinement;
+    
+    selectRefinement({ selectedOption }) {
+      const { id: nextId } = selectedOption;
+      this.switchRefinement(this.selectedRefinementId(), nextId);
     },
   },
 }

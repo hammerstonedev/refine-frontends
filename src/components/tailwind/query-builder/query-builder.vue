@@ -35,7 +35,7 @@
               "
               :conditionId="condition.id"
               :conditions="conditions"
-              v-bind="{ input: condition && { ...condition.input } }"
+              v-bind="{ input: condition && condition.input }"
             />           
           </renderless-condition>
         </div>

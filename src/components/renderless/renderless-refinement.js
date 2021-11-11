@@ -12,21 +12,9 @@ export default {
       refinementId: this.id,
     };
   },
-  methods: {
-    updateRefinementInput(updates) {
-      this.updateInput({
-        [this.id]: {
-          ...updates,
-        },
-      });
-    },
-  },
   render() {
     if (this.$scopedSlots?.default) {
-      const { updateRefinementInput } = this;
-      return this.$scopedSlots.default({
-        updateRefinementInput,
-      });
+      return this.$scopedSlots.default();
     }
   }
 };
