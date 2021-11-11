@@ -61,7 +61,7 @@ class Blueprint {
     });
 
     this.blueprintChanged = () => {
-      console.log(JSON.parse(JSON.stringify(this.blueprint)));
+      // console.log(JSON.parse(JSON.stringify(this.blueprint)));
       if (onChange) {
         onChange([...this.blueprint]);
       }

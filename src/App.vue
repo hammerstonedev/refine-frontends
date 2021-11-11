@@ -31,11 +31,11 @@
         </div>
         <div class="pt-4">
           <label>Age</label>
-          <numeric-condition id="age" value="32" class="pt-2" />
+          <numeric-condition id="age" :value="32" class="pt-2" />
         </div>
         <div class="pt-4">
           <label>Hotness</label>
-          <numeric-condition id="hotness" from="7" to="10" class="pt-2" />
+          <numeric-condition id="hotness" :from="7" :to="10" class="pt-2" />
         </div>
       </div>
     </query>

@@ -28,15 +28,15 @@
    defaultClauseOptions: {...numericClauseOptions},
    props: {
      value: {
-       type: String,
+       type: Number,
        required: false,
      },
      from: {
-       type: String,
+       type: Number,
        required: false,
      },
      to: {
-       type: String,
+       type: Number,
        required: false,
      }
    },
