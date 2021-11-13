@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <p>{{ refinements[0].meta }}</p>
   <selector 
     @select-option="selectRefinement" 
     innerClass="mr-4"
+    class="pt-4"
   >
   <selector-option
     v-for="{id, meta, display} in refinements"
@@ -23,7 +22,6 @@
     </renderless-refinement>
   </selector-option>
   </selector>
-  </div>
 </template>
 
 <script>

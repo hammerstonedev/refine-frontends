@@ -1,27 +1,9 @@
 <template>
   <div class="flex items-start py-2">
-    <!-- condition selector -->
-    <selector 
-      @select-option="switchCondition" 
-      innerClass="mr-4"
-    >
-      <selector-option
-        v-for="{ id, display, meta, refinements } in conditions"
-        :key="id"
-        :id="id"
-        :display="display"
-        :selected="conditionId === id"
-      >
-        <div>
-          <clause :input="input" :meta="meta" @switch-clause="switchClause" />
-          <refinements v-if="refinements && refinements.length > 0" :input="input" :refinements="refinements" />
-        </div>
-      </selector-option>
-    </selector>
     <button
       @click.prevent="$emit('remove-condition')"
       type="button"
-      class="inline-flex items-center py-1 px-3 text-gray-500 ml-auto"
+      class="inline-flex items-center justify-center py-1 px-3 text-gray-500 mr-3 h-9"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -36,6 +18,25 @@
         />
       </svg>
     </button>
+    <!-- condition selector -->
+    <selector 
+      @select-option="switchCondition" 
+      innerClass="mr-4"
+      class="pr-4 flex items-center"
+    >
+      <selector-option
+        v-for="{ id, display, meta, refinements } in conditions"
+        :key="id"
+        :id="id"
+        :display="display"
+        :selected="conditionId === id"
+      >
+        <div>
+          <clause :input="input" :meta="meta" @switch-clause="switchClause" />
+          <refinements v-if="refinements && refinements.length > 0" :input="input" :refinements="refinements" />
+        </div>
+      </selector-option>
+    </selector>    
   </div>
 </template>
 
