@@ -44,12 +44,13 @@
           class="
             background-transparent
             text-blue-600 text-xs
-            outline-none
-            focus:outline-none
             flex
             items-center
-            pt-3
+            py-1
+            px-3
+            mt-3
           "
+          tabindex="0"
           type="button"
         >
           <!-- Heroicon name: plus -->
