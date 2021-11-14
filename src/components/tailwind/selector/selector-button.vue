@@ -4,7 +4,7 @@
     type="button"
     aria-haspopup="listbox"
     :aria-expanded="isOpen"
-    :aria-label="display"
+    :aria-label="label()"
     class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
     ref="button"
     @click.prevent="$emit('toggle')"
@@ -49,6 +49,9 @@
      },
    },
    methods: {
+     label: function() {
+      return this.display ? `${this.display} Selected` : 'Choose an option'
+     },
      focus: function() {
        this.$refs.button.focus();
      },

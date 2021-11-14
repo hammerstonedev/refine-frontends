@@ -21,10 +21,10 @@
         <div v-for="criterion in group" :key="criterion.uid">
           <renderless-condition
             v-bind="conditionPropsFor(criterion)"
-            v-slot="{ updateInput, condition }"
+            v-slot="{ switchClause, condition }"
           >
             <criterion
-              @switch-clause="({ id: clause }) => updateInput({ clause })"
+              @switch-clause="({ id: clause }) => switchClause(clause)"
               @remove-condition="removeCriterion(criterion.position)"
               @switch-condition="
                 (nextCondition) =>

@@ -239,6 +239,19 @@ class Blueprint {
     return foundCondition;
   }
 
+  switchClause({ uid, id }, clause, refinementId) {
+    const { component } = this.findCondition(id);
+    const criterion = this.findCriterion(uid);
+
+    if (component === 'option-condition') {
+      criterion.input = {
+        clause,
+      };
+    } else {
+      this.updateInput({ uid }, { clause }, refinementId)
+    }
+  }
+
   switchRefinement({ uid, id }, oldRefinementId, newRefinementId) {
     const nextRefinement = this.findRefinement(id, newRefinementId);
     const criterion = this.findCriterion(uid);

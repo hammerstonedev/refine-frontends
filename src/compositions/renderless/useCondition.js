@@ -29,6 +29,7 @@ export default (id, props, context) => {
   }
 
   const updateInput = (updates, refinementId) => blueprint.updateInput(condition, updates, refinementId);
+  const switchClause = (clause) => blueprint.switchClause(condition, clause);
   const switchRefinement = (oldRefinementId, newRefinementId) => {
     blueprint.switchRefinement(condition, oldRefinementId, newRefinementId);
   };
@@ -57,7 +58,7 @@ export default (id, props, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({ clauses, condition, updateInput });
+      return context.slots.default({ clauses, condition, updateInput, switchClause });
     }
     return null;
   };

@@ -45,20 +45,6 @@ export default {
       return clause === "in" || clause === "nin";
     },
   },
-  created() {
-    const firstOption = this.meta.options[0];
-    const { id: firstOptionId } = firstOption;
-
-    // If switching to a single select option don't
-    // leave multiple selected options in the input,
-    // default to the first. Also if there are no
-    // selected options, add the first one to the input
-    // debatable whether this should be here or further
-    // up in the builder, e.g. insertCriterion method.
-    if (!this.isMulti && this.selected.length !== 1) {
-      this.$emit("input", { selected: [firstOptionId] });
-    }
-  },
   methods: {
     selectOption({ selectedOptions }) {
       const selected = selectedOptions.map(({ id }) => id);
@@ -69,13 +55,7 @@ export default {
       this.$emit("input", { selected });
     },
     isSelected(id) {
-      const firstOption = this.meta.options[0];
-      const { id: firstOptionId } = firstOption;
       let selected = false;
-
-      if (!this.isMulti && this.selected.length !== 1 && id === firstOptionId) {
-        return true;
-      }
 
       this.selected.forEach((selectedId) => {
         if (selectedId === id) {

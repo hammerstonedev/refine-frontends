@@ -40,7 +40,8 @@ describe('Option condition', () => {
     await Vue.nextTick();
 
     expect(wrapper.vm.blueprint[0].input.clause).toBe('in');
-    wrapper.find('[aria-label="Foo Selected"]').trigger('click');
+    wrapper.find('[aria-label="Choose an option"]').trigger('click');
+    wrapper.find('[aria-label="Foo"]').trigger('click');
     wrapper.find('[aria-label="Bar"]').trigger('click');
     await Vue.nextTick();
 
@@ -55,7 +56,7 @@ describe('Option condition', () => {
     expect(wrapper.vm.blueprint[0].input.selected.length).toBe(1);
   });
 
-  it('selects first option when switching to single select clause', async () => {
+  it('selects no options when switching to single select clause', async () => {
     const wrapper = buildWrapper();
     const addAnOr = wrapper.find('button');
     addAnOr.trigger('click');
@@ -68,16 +69,21 @@ describe('Option condition', () => {
     wrapper.find('[aria-label="Is One Of"]').trigger('click');
     await Vue.nextTick();
 
-    // Foo is selected by default by the Is clause as the first option
-    wrapper.find('[aria-label="Foo Selected"]').trigger('click');
+    wrapper.find('[aria-label="Choose an option"]').trigger('click');
     await Vue.nextTick();
 
-    // Also select Bar so two choices are selected
+    // Select Bar and Foo so two choices are selected
     wrapper.find('[aria-label="Bar"]').trigger('click');
+    wrapper.find('[aria-label="Foo"]').trigger('click');
     await Vue.nextTick();
 
-    // Now switch back to Is clause which should select only Foo
+    // Now switch back to Is clause which should select nothing
     wrapper.find('[aria-label="Is"]').trigger('click');
     await Vue.nextTick();
+
+    expect(wrapper.vm.blueprint[0].input.selected).not.toBeDefined();
+    // Two refinement dropdowns and the two dropdowns for the condition
+    // basically none of the options should be selected.
+    expect(wrapper.findAll('[aria-selected="true"]').length).toBe(4);
   });
 });
