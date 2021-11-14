@@ -14,7 +14,7 @@
   >
     <div class="font-sans">
       <div
-        class="bg-gray-50 p-4 mb-4 rounded"
+        class="bg-gray-50 p-4 mb-4 rounded border-l-2 border-gray-400"
         v-for="(group, index) in groupedBlueprint"
         :key="index"
       >

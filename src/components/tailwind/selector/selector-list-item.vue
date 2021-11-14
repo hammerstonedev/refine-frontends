@@ -9,6 +9,7 @@
     @mouseleave="$emit('mouseleave')"
     @click="$emit('click')"
     :aria-label="optionDisplay"
+    :aria-selected="selected"
   >
     <span
       class="font-normal block truncate"
