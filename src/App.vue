@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="w-max">
-      <query-builder :conditions="conditions" v-model="groupedBlueprint" class="p-4 w-100" />
+      <query-builder 
+        :errors="errors"
+        :conditions="conditions" 
+        v-model="groupedBlueprint" 
+        class="p-4 w-100" 
+      />
     </div>
     <div>{{ groupedBlueprint }}</div>
     <!-- 
@@ -569,6 +574,15 @@ export default {
     return {
       conditions,
       groupedBlueprint,
+      errors: {
+        0: [{ 
+            id: 23434, 
+            message: "You messed up big time",
+          }, {
+            id: 454534,
+            message: "Good luck with your life"
+          }]
+      },
     };
   },
   components: {

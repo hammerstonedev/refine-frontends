@@ -18,7 +18,7 @@
         v-for="(group, index) in groupedBlueprint"
         :key="index"
       >
-        <div v-for="criterion in group" :key="criterion.uid">
+        <div v-for="(criterion, index) in group" :key="criterion.uid">
           <renderless-condition
             v-bind="conditionPropsFor(criterion)"
             v-slot="{ switchClause, condition }"
@@ -35,6 +35,7 @@
               "
               :conditionId="condition.id"
               :conditions="conditions"
+              :errors="errors[index]"
               v-bind="{ input: condition && condition.input }"
             />           
           </renderless-condition>
@@ -120,6 +121,11 @@ export default {
     conditions: {
       required: true,
       type: Array,
+    },
+    errors: {
+      required: false,
+      type: Object,
+      default: () => { return {}; },
     },
   },
   methods: {
