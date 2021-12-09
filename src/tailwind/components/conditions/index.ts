@@ -10,8 +10,6 @@ export type ConditionComponentName =
   | "TextCondition";
 
 export interface BaseConditionProps {
+  criterion: CriterionBlueprintItem;
   condition: Condition;
-  blueprintItem: CriterionBlueprintItem;
 }
-
-export * from "./condition";

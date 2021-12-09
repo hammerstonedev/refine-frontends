@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { Blueprint, Conditions, GroupedBlueprint } from "../../../types";
-import { Condition } from "../conditions";
+import { Blueprint, Conditions, GroupedBlueprint } from "../../../types";
+import { CriterionGroup } from "../criterion-group";
+import { QueryBuilderProvider } from "./use-query-builder";
 
 export type QueryBuilderProps = {
   blueprint: Blueprint;
@@ -30,26 +31,32 @@ const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
   return groupedBlueprint;
 };
 
-export const QueryBuilder = ({ blueprint, conditions }: QueryBuilderProps) => {
-  const [groupedBlueprint, setGroupedBlueprint] = useState<GroupedBlueprint>(
-    () => groupBlueprintItems(blueprint)
+export const QueryBuilder = ({
+  blueprint: initialBlueprint,
+  conditions,
+}: QueryBuilderProps) => {
+  const [groupedBlueprint, setGroupedBlueprint] = useState(() =>
+    groupBlueprintItems(initialBlueprint)
   );
 
   return (
-    <div className="font-sans">
-      <div className="">
-        {groupedBlueprint.map((group, index) => (
-          <div key={index} className="bg-gray-50 p-4 mb-4 space-y-6 rounded">
-            {group.map((blueprintItem, index) => (
-              <Condition
-                key={index}
-                blueprintItem={blueprintItem}
-                conditions={conditions}
-              />
+    <>
+      <QueryBuilderProvider
+        value={{
+          groupedBlueprint,
+          updateGroupedBlueprint: setGroupedBlueprint,
+          conditions,
+        }}
+      >
+        <div className="font-sans">
+          <div className="">
+            {groupedBlueprint.map((criteria, index) => (
+              <CriterionGroup key={index} criteria={criteria} index={index} />
             ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </QueryBuilderProvider>
+      <pre className="text-xs">{JSON.stringify(groupedBlueprint, null, 2)}</pre>
+    </>
   );
 };

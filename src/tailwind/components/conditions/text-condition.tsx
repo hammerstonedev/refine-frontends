@@ -1,5 +1,5 @@
 import { BaseConditionProps } from ".";
-import { useSelectedClause } from "./useSelectedClause";
+import { useSelectedClause } from "./use-selected-clause";
 
 export interface TextConditionProps extends BaseConditionProps {}
 
