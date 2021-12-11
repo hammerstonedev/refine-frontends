@@ -23,7 +23,6 @@ export default {
     Selector,
     SelectorOption,
   },
-  inject: ["condition"],
   props: {
     selected: {
       type: Array,
@@ -37,12 +36,7 @@ export default {
   },
   computed: {
     isMulti: function () {
-      const { input } = this.condition;
-      const { clause } = input;
-
-      // these clause ids are for 'One Of' or "Not One Of"
-      // which requires a multi select
-      return clause === "in" || clause === "nin";
+      return this.meta.multiple === true;
     },
   },
   methods: {
