@@ -1,5 +1,5 @@
 <template>
-  <div class="py-3">
+  <div class="py-2">
     <ul class="list-disc list-inside pb-2">
       <li 
         class="pb-1 px-3 text-red-500" 

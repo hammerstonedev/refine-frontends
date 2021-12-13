@@ -4,7 +4,7 @@
       tabindex="-1"
       role="listbox"
       :aria-activedescendant="selectedOption ? createItemId(selectedOption.id) : ''"
-      class="max-h-60 rounded-md text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+      class="max-h-60 rounded-md text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none"
       :class="{ hidden: isClosed }"
       ref="listBox"
       @keydown.arrow-down.stop.prevent="$emit('highlight-next-option')"
