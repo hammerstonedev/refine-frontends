@@ -3,7 +3,7 @@
     <!-- clause selector -->
     <selector @select-option="switchClause" innerClass="mr-4">
       <selector-option
-        v-for="{ id: clauseId, display, component } in meta.clauses"
+        v-for="{ id: clauseId, display, component, meta: clauseMeta } in meta.clauses"
         :key="clauseId"
         :id="clauseId"
         :display="display"
@@ -13,7 +13,7 @@
           v-if="component"
           :is="component"
           v-bind="input"
-          :meta="meta"
+          :meta="clauseMeta"
           @input="setValue"
         />
       </selector-option>
