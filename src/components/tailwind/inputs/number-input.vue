@@ -33,9 +33,11 @@
      metaAttributes() {
        // A set of allowable attributes that can be passed
        // in from the outside, usually the backend.
-       return ['min', 'max', 'step'].reduce((carry, prop) => {
+       return ['min', 'max', 'step', 'placeholder'].reduce((carry, prop) => {
          if (Object.prototype.hasOwnProperty.call(this.meta, prop)) {
-           carry[prop] = this.meta[prop];
+           if (this.meta[prop] !== '') {
+            carry[prop] = this.meta[prop];
+           }
          }
 
          return carry;
