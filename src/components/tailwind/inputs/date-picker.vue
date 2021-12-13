@@ -69,7 +69,7 @@ export default {
       time: formatPropDate(date),
       hasError: false,
       inputClass:
-        "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+        "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border border-gray-300 rounded-md py-2 px-3",
       errorClass:
         "pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500",
     };
