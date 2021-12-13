@@ -35,7 +35,7 @@ export default {
     },
     meta: {
       type: Object,
-      requred: true,
+      required: true,
     },
   },
   methods: {
