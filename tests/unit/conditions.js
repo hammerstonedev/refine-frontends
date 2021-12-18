@@ -4,12 +4,15 @@ export default [
       component: "option-condition",
       display: "Option",
       meta: {
+        multiple: true,
         clauses: [
           {
             id: "in",
             component: "option-input",
             display: "Is One Of",
-            meta: [],
+            meta: {
+              multiple: true,
+            },
           },
           {
             id: "eq",
@@ -27,7 +30,9 @@ export default [
             id: "nin",
             component: "option-input",
             display: "Is Not One Of",
-            meta: [],
+            meta: {
+              multiple: true,
+            },
           },
           {
             id: "st",
