@@ -54,8 +54,8 @@ export default {
     },
     conditionPropsFor(condition) {
       const { id: conditionId, uid } = condition;
-      const { id, type, display } = this.conditionsLookup[conditionId];
-      return { id, type, display, uid };
+      const { id, type, display, meta } = this.conditionsLookup[conditionId];
+      return { id, type, display, uid, meta };
     },
   },
   render() {

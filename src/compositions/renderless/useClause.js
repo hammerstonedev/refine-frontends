@@ -1,7 +1,7 @@
 import { inject, onUnmounted } from '@vue/composition-api';
 
 export default (id, props, context) => {
-  const condition = inject('condition');
+  const criterion = inject('criterion');
   const updateInput = inject('updateInput');
   const refinementId = inject('refinementId');
   const builderModeActive = inject('builderModeActive');
@@ -9,14 +9,14 @@ export default (id, props, context) => {
     updateInput(input, refinementId);
   };
 
-  if (!condition) {
-    throw new Error('A clause must be used within a condition.');
+  if (!criterion) {
+    throw new Error('A clause must be used within a criterion.');
   }
 
   if (!builderModeActive) {
     updateInput({ clause: id }, refinementId);
     // eslint-disable-next-line no-unused-vars
-    const { clause, ...values } = condition.input;
+    const { clause, ...values } = criterion.input;
     if (Object.keys(props).length > 0 && Object.keys(values).length === 0) {
       updateInput({ ...props }, refinementId);
     }
@@ -27,7 +27,7 @@ export default (id, props, context) => {
       // only mark the clause as empty if when unmounting no other
       // clause has been selected. Mounting/unmounting happens in the
       // order that the components were rendered.
-      if (condition.input.clause === id) {
+      if (criterion.input.clause === id) {
         updateInput({ clause: undefined }, refinementId);
       }
     }
@@ -37,7 +37,7 @@ export default (id, props, context) => {
     if (context.slots.default) {
       return context.slots.default({
         setValue,
-        ...condition.input,
+        ...criterion.input,
       });
     }
     return null;

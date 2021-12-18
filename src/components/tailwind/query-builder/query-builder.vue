@@ -17,15 +17,15 @@
         <div class='refine-query-builder-condition' v-for="(criterion, index) in group" :key="criterion.uid">
           <renderless-condition
             v-bind="conditionPropsFor(criterion)"
-            v-slot="{ switchClause, condition }"
+            v-slot="{ switchClause, criterion: condition }"
           >
             <criterion
               @switch-clause="({ id: clause }) => switchClause(clause)"
-              @remove-condition="removeCriterion(criterion.position)"
+              @remove-condition="removeCriterion(condition.position)"
               @switch-condition="
                 (nextCondition) =>
                   replaceCriterion(
-                    criterion.position,
+                    condition.position,
                     conditionPropsFor(nextCondition)
                   )
               "
@@ -68,13 +68,13 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import VueCompositionAPI from '@vue/composition-api';
+  import Vue from 'vue';
+  import VueCompositionAPI from '@vue/composition-api';
 
-    Vue.use(VueCompositionAPI);
+  Vue.use(VueCompositionAPI);
 
 
-    import Criterion from "./criterion";
+import Criterion from "./criterion";
 import {
   RenderlessQueryBuilder,
   RenderlessCondition,

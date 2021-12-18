@@ -18,23 +18,24 @@ export default (id, props, context) => {
 
   // in builder mode we don't add/remove/update conditions on lifecycle methods
   // instead this behavior is delegated to the query builder.
-  let condition;
+  let criterion;
   if (!builderModeActive) {
-    condition = blueprint.addCriterion({
+    criterion = blueprint.addCriterion({
       id,
       depth: 0,
     });
   } else {
-    condition = blueprint.findCriterion(props.uid);
+    criterion = blueprint.findCriterion(props.uid);
   }
 
-  const updateInput = (updates, refinementId) => blueprint.updateInput(condition, updates, refinementId);
-  const switchClause = (clause) => blueprint.switchClause(condition, clause);
+  const updateInput = (updates, refinementId) => blueprint.updateInput(criterion, updates, refinementId);
+  const switchClause = (clause) => blueprint.switchClause(criterion, clause);
   const switchRefinement = (oldRefinementId, newRefinementId) => {
-    blueprint.switchRefinement(condition, oldRefinementId, newRefinementId);
+    blueprint.switchRefinement(criterion, oldRefinementId, newRefinementId);
   };
 
-  provide('condition', condition);
+  provide('criterion', criterion);
+  provide('criterionMeta', props.meta)
   provide('updateInput', updateInput);
   provide('switchRefinement', switchRefinement);
 
@@ -42,13 +43,18 @@ export default (id, props, context) => {
   provide('refinementId', null);
 
   onUnmounted(() => {
-    // Again, in builder mode adding/removing conditions
+    // Again, in builder mode adding/removing criterions
     // is relegated to the query builder.
     if(!builderModeActive) {
-      blueprint.removeCriterion(blueprint.indexOfCriterion(condition));
+      blueprint.removeCriterion(blueprint.indexOfCriterion(criterion));
     }
   });
 
+  // Renderless condition doesn't accept a criterion prop, this
+  // reference to props.condition is an outdated interface that is
+  // only used by the non builder mode components. 
+  // TODO: update non builder components to use the same props
+  // as renderless condition. (see conditionProps in mixins/condition.js)
   let clauses = null;
   if (props?.condition?.meta?.clauses) {
     clauses = props.condition.meta.clauses.map((clause) => {
@@ -58,7 +64,7 @@ export default (id, props, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({ clauses, condition, updateInput, switchClause });
+      return context.slots.default({ clauses, criterion, updateInput, switchClause });
     }
     return null;
   };

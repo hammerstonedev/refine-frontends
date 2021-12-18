@@ -15,6 +15,10 @@ export default {
       type: Number,
       required: true,
     },
+    meta: {
+      type: Object,
+      required: true,
+    },
   },
   setup(props, context) {
     return useCondition(props.id, props, context);
