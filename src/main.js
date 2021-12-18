@@ -3,7 +3,7 @@ import VueCompositionAPI from '@vue/composition-api';
 import './directives';
 import App from './App.vue';
 
-import './assets/styles/index.css';
+import './assets/styles/tailwind.css';
 
 Vue.use(VueCompositionAPI);
 
