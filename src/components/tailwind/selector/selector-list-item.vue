@@ -1,8 +1,8 @@
 <template>
   <li
     role="option"
-    class="cursor-pointer select-none relative py-2 pl-3 pr-9"
-    :class="{'text-white bg-indigo-600': isHighlighted, 'text-gray-900': !isHighlighted }"
+    class="refine-selector-list-item"
+    :class="{'refine-selector-list-item-highlighted': isHighlighted }"
     :key="optionId"
     ref="listItem"
     @mouseenter="$emit('mouseenter')"
@@ -12,20 +12,20 @@
     :aria-selected="selected"
   >
     <span
-      class="font-normal block truncate"
-      :class="{ 'font-semibold': selected }"
+      class="refine-selector-list-item-text"
+      :class="{ 'refine-selector-list-item-text-selected': selected }"
     >
       {{ optionDisplay }}
     </span>
 
     <span
-      :class="{ 'text-white': isHighlighted, 'text-indigo-600': !isHighlighted }"
-      class="absolute inset-y-0 right-0 flex items-center pr-4"
+      :class="{ 'refine-selector-list-item-icon-wrapper-highlighted': !isHighlighted }"
+      class="refine-selector-list-item-icon-wrapper"
     >
       <!-- Heroicon name: check -->
       <svg
         v-show="selected"
-        class="h-5 w-5"
+        class="refine-selector-list-item-icon"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"

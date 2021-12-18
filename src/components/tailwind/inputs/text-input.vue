@@ -1,6 +1,6 @@
 <template>
   <input
-    class="text-input"
+    class="refine-text-input"
     type="text"
     :value="value"
     @input="$emit('input', { value: $event.target.value })"

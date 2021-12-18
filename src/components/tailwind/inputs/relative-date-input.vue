@@ -1,8 +1,8 @@
 <template>
-  <div class="sm:items-center sm:flex gap-x-4">
+  <div class="refine-relative-date-wrapper">
     <div>
       <input
-        class="text-input"
+        class="number-input"
         type="number"
         name="days"
         :value="amount"

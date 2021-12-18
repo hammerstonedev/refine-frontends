@@ -1,11 +1,11 @@
 <template>
-  <div class="absolute mt-1 w-full rounded-md bg-white shadow-lg z-10">
+  <div class="refine-selector-listbox-wrapper">
     <ul
       tabindex="-1"
       role="listbox"
       :aria-activedescendant="selectedOption ? createItemId(selectedOption.id) : ''"
-      class="max-h-60 rounded-md text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none"
-      :class="{ hidden: isClosed }"
+      class="refine-selector-listbox"
+      :class="{ 'refine-selector-listbox-hidden': isClosed }"
       ref="listBox"
       @keydown.arrow-down.stop.prevent="$emit('highlight-next-option')"
       @keydown.arrow-up.stop.prevent="$emit('highlight-previous-option')"

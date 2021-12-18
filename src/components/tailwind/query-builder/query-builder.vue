@@ -12,13 +12,9 @@
       conditionPropsFor,
     }"
   >
-    <div class="font-sans">
-      <div
-        class="bg-gray-50 p-4 mb-4 rounded border-l-2 border-gray-400"
-        v-for="(group, index) in groupedBlueprint"
-        :key="index"
-      >
-        <div v-for="(criterion, index) in group" :key="criterion.uid">
+    <div class="refine-query-builder-wrapper">
+      <div class="refine-query-builder-condition-group" v-for="(group, index) in groupedBlueprint" :key="index">
+        <div class='refine-query-builder-condition' v-for="(criterion, index) in group" :key="criterion.uid">
           <renderless-condition
             v-bind="conditionPropsFor(criterion)"
             v-slot="{ switchClause, condition }"
@@ -42,15 +38,7 @@
         </div>
         <button
           @click="insertCriterion(group[group.length - 1].position)"
-          class="
-            background-transparent
-            text-blue-600 text-xs
-            flex
-            items-center
-            py-1
-            px-3
-            mt-3
-          "
+          class="refine-query-builder-and-button"
           tabindex="0"
           type="button"
         >
@@ -68,28 +56,10 @@
               clip-rule="evenodd"
             />
           </svg>
-          <span>And</span>
+          <span class='refine-query-builder-and-button-span'>And</span>
         </button>
       </div>
-      <button
-        @click="addGroup"
-        type="button"
-        class="
-          inline-flex
-          items-center
-          px-4
-          py-2
-          border border-transparent
-          text-sm
-          font-medium
-          rounded-md
-          text-indigo-700
-          bg-indigo-100
-          hover:bg-indigo-200
-          focus:outline-none
-          focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-        "
-      >
+      <button @click="addGroup" type="button" class="refine-query-builder-or-button">
         Add an 'Or'
       </button>
     </div>
@@ -98,7 +68,13 @@
 </template>
 
 <script>
-import Criterion from "./criterion";
+    import Vue from 'vue';
+    import VueCompositionAPI from '@vue/composition-api';
+
+    Vue.use(VueCompositionAPI);
+
+
+    import Criterion from "./criterion";
 import {
   RenderlessQueryBuilder,
   RenderlessCondition,

@@ -1,7 +1,7 @@
 <template>
   <renderless-clause v-bind="input" v-slot="{ setValue }">
     <!-- clause selector -->
-    <selector @select-option="switchClause" innerClass="mr-4">
+    <selector @select-option="switchClause" innerClass="clause-selector">
       <selector-option
         v-for="{ id: clauseId, display, component, meta: clauseMeta } in meta.clauses"
         :key="clauseId"

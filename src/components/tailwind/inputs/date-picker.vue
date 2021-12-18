@@ -11,7 +11,7 @@
       <svg
         v-if="!hasError"
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 text-gray-500"
+        class="refine-date-input-calendar-icon"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -23,7 +23,7 @@
       </svg>
       <svg
         v-if="hasError"
-        class="h-5 w-5 text-red-500"
+        class="refine-date-input-error-icon"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -52,7 +52,9 @@ export const formatPropDate = (date) => {
 };
 
 export const formatPickerDate = (date) => {
-  return format(parse(date, "MM/dd/yyyy", new Date()), "yyyy-MM-dd");
+  return date
+    ? format(parse(date, "MM/dd/yyyy", new Date()), "yyyy-MM-dd")
+    : null;
 };
 
 export default {
@@ -68,10 +70,8 @@ export default {
     return {
       time: formatPropDate(date),
       hasError: false,
-      inputClass:
-        "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border border-gray-300 rounded-md py-2 px-3",
-      errorClass:
-        "pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500",
+      inputClass: "refine-date-input",
+      errorClass: "refine-date-input-error",
     };
   },
   methods: {

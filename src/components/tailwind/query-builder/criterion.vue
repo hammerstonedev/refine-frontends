@@ -1,8 +1,8 @@
 <template>
   <div class="py-2">
-    <ul class="list-disc list-inside pb-2">
-      <li 
-        class="pb-1 px-3 text-red-500" 
+    <ul class="refine-criterion-errors">
+      <li
+        class="refine-criterion-error"
         v-for="error in errors"
         :key="error.id"
       >
@@ -14,7 +14,7 @@
       <button
         @click.prevent="$emit('remove-condition')"
         type="button"
-        class="inline-flex items-center justify-center py-1 px-3 text-gray-500 mr-3 h-9"
+        class="refine-criterion-remove-icon"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,8 +30,8 @@
         </svg>
       </button>
       <!-- condition selector -->
-      <selector 
-        @select-option="switchCondition" 
+      <selector
+        @select-option="switchCondition"
         innerClass="mr-4"
         class="pr-4 flex items-center"
       >
@@ -47,7 +47,7 @@
             <refinements v-if="refinements && refinements.length > 0" :input="input" :refinements="refinements" />
           </div>
         </selector-option>
-      </selector>    
+      </selector>
     </div>
   </div>
 </template>

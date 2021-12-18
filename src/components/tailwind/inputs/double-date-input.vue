@@ -1,7 +1,7 @@
 <template>
-  <div class="flex align-items">
+  <div class="refine-double-date-wrapper">
     <date-picker :date="date1" @input="updateFirstDate" />
-    <p class="px-3 self-center">and</p>
+    <p class='refine-double-number-joiner' v-if='joinWord'>{{ joinWord }}</p>
     <date-picker :date="date2" @input="updateSecondDate" />
   </div>
 </template>
@@ -10,13 +10,8 @@
 import DatePicker from "./date-picker";
 
 export default {
-  methods: {
-    updateFirstDate: function ({ date }) {
-      this.$emit("input", { date1: date });
-    },
-    updateSecondDate: function ({ date }) {
-      this.$emit("input", { date2: date });
-    },
+  components: {
+    DatePicker,
   },
   props: {
     date1: {
@@ -27,9 +22,27 @@ export default {
       type: String,
       required: false,
     },
+    meta: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {}
+      },
+    },
   },
-  components: {
-    DatePicker,
+  computed: {
+    joinWord() {
+      // @TODO Meta helper
+      return Object.prototype.hasOwnProperty.call(this.meta, 'joiner') ? this.meta.joiner : 'and';
+    }
+  },
+  methods: {
+    updateFirstDate: function ({ date }) {
+      this.$emit("input", { date1: date });
+    },
+    updateSecondDate: function ({ date }) {
+      this.$emit("input", { date2: date });
+    },
   },
 };
 </script>

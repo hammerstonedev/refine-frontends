@@ -1,6 +1,6 @@
 <template>
   <input
-    class="text-input"
+    class="refine-number-input"
     type="number"
     :value="currentValue"
     @input="handleInputChange"

@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-baseline space-x-3">
+  <div class="refine-double-number-wrapper">
     <number-input
       :meta='meta'
       :value="currentValue"
       @input="updateFirstValue"
     />
-    <span v-if='joinWord'>{{ joinWord }}</span>
+    <span class='refine-double-number-joiner' v-if='joinWord'>{{ joinWord }}</span>
     <number-input
       :meta='meta'
       :value="currentValue"
@@ -25,6 +25,7 @@
     },
     computed: {
       joinWord() {
+        // @TODO Meta helper
         return Object.prototype.hasOwnProperty.call(this.meta, 'joiner') ? this.meta.joiner : 'and';
       }
     },

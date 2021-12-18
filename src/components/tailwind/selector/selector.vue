@@ -12,10 +12,10 @@
       @select-option="$emit('select-option', arguments[0])"
       @deselect-option="$emit('deselect-option', arguments[0])"
     >
-      <div class="md:flex md:items-start">
+      <div class="refine-selector-wrapper">
         <!-- Select dropdown -->
         <div
-          class="relative sm:inline-block w-60"
+          class="refine-selector"
           :class="innerClass"
           :id="`listbox-${selectorId}`"
           v-click-away="actions.close"
@@ -66,7 +66,7 @@
           </selector-listbox>
         </div>
         <!-- Custom options -->
-        <div class="md:flex w-auto pt-4 md:pt-0">
+        <div class="refine-selector-custom-options-wrapper">
           <slot></slot>
         </div>
       </div>
