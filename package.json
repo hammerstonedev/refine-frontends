@@ -1,5 +1,9 @@
 {
   "name": "@hammerstone/vue2-query-builder",
+  "module": "./package.js",
+  "exports": {
+    ".": "./package.js"
+  },
   "version": "0.1.0",
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
@@ -9,7 +13,7 @@
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/vue-cli-service test:unit --runInBand",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.15",
     "core-js": "^3.6.5",
     "date-fns": "^2.20.1",
