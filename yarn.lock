@@ -6822,6 +6822,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash.camelcase@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
+  integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
@@ -10553,6 +10558,13 @@ webpack-chain@^6.4.0:
   dependencies:
     deepmerge "^1.5.2"
     javascript-stringify "^2.0.1"
+
+webpack-date-fns-externals@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/webpack-date-fns-externals/-/webpack-date-fns-externals-1.0.2.tgz#7a794c567018b1d928e9ecd800d855b4054bed6d"
+  integrity sha1-enlMVnAYsdko6ezYANhVtAVL7W0=
+  dependencies:
+    lodash.camelcase "^4.3.0"
 
 webpack-dev-middleware@^3.7.2:
   version "3.7.3"

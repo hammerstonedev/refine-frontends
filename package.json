@@ -30,7 +30,8 @@
     "eslint-plugin-vue": "^7.17.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue-cli-plugin-webpack-bundle-analyzer": "~4.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack-date-fns-externals": "^1.0.2"
   },
   "eslintConfig": {
     "root": true,
