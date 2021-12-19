@@ -5,7 +5,7 @@
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name query-builder src/package.js",
+    "build": "vue-cli-service build --target lib --name vue2-query-builder src/package.js",
     "test:unit": "vue-cli-service test:unit",
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/vue-cli-service test:unit --runInBand",
     "lint": "vue-cli-service lint"
