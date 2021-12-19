@@ -1,7 +1,6 @@
 {
-  "name": "query-builder",
+  "name": "@hammerstone/vue2-query-builder",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
     "serve": "vue-cli-service serve",
