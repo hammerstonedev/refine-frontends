@@ -14,11 +14,8 @@
           v-if="component"
           :is="component"
           v-bind="{...meta, ...clauseMeta, ...input}"
-          :conditionMeta="meta"
-          :clauseMeta="clauseMeta"
           @input="setValue"
         />
-        {{ clauseMeta }}
       </div>
       </selector-option>
     </selector>
