@@ -94,5 +94,3 @@ export default {
   },
 };
 </script>
-
-    Refinements

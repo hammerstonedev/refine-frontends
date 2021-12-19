@@ -1,11 +1,11 @@
 <template>
   <selector
-    :isMultiSelect="isMulti"
+    :isMultiSelect="multiple"
     @select-option="selectOption"
     @deselect-option="deselectOption"
   >
     <selector-option
-      v-for="{ id, display } in meta.options"
+      v-for="{ id, display } in options"
       :key="id"
       :id="id"
       :display="display"
@@ -23,20 +23,23 @@ export default {
     Selector,
     SelectorOption,
   },
+  created() {
+    console.log(this.multiple)
+  },
   props: {
     selected: {
       type: Array,
       required: false,
       default: () => [],
     },
-    meta: {
-      type: Object,
+    options: {
+      type: Array,
       required: true,
     },
-  },
-  computed: {
-    isMulti: function () {
-      return this.meta.multiple === true;
+    multiple: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   methods: {

@@ -64,7 +64,12 @@ export default (id, props, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({ clauses, criterion, updateInput, switchClause });
+      return context.slots.default({ 
+        clauses, 
+        criterion, 
+        updateInput, 
+        switchClause 
+      });
     }
     return null;
   };

@@ -52,8 +52,8 @@ export default {
     addGroup() {
       this.blueprintStore.addGroup();
     },
-    conditionPropsFor(condition) {
-      const { id: conditionId, uid } = condition;
+    conditionFor(criterion) {
+      const { id: conditionId, uid } = criterion;
       const { id, type, display, meta } = this.conditionsLookup[conditionId];
       return { id, type, display, uid, meta };
     },
@@ -63,7 +63,7 @@ export default {
       insertCriterion,
       addGroup,
       blueprintStore: blueprint,
-      conditionPropsFor,
+      conditionFor,
       replaceCriterion,
       removeCriterion,
     } = this;
@@ -73,7 +73,7 @@ export default {
         insertCriterion,
         addGroup,
         blueprint,
-        conditionPropsFor,
+        conditionFor,
         removeCriterion,
         replaceCriterion,
         groupedBlueprint: blueprint.groupedBlueprint(),

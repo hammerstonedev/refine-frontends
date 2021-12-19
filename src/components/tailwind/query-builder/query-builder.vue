@@ -9,30 +9,30 @@
       insertCriterion,
       addGroup,
       removeCriterion,
-      conditionPropsFor,
+      conditionFor,
     }"
   >
     <div class="refine-query-builder-wrapper">
       <div class="refine-query-builder-condition-group" v-for="(group, index) in groupedBlueprint" :key="index">
         <div class='refine-query-builder-condition' v-for="(criterion, index) in group" :key="criterion.uid">
           <renderless-condition
-            v-bind="conditionPropsFor(criterion)"
-            v-slot="{ switchClause, criterion: condition }"
+            v-bind="conditionFor(criterion)"
+            v-slot="{ switchClause }"
           >
             <criterion
               @switch-clause="({ id: clause }) => switchClause(clause)"
-              @remove-condition="removeCriterion(condition.position)"
+              @remove-condition="removeCriterion(criterion.position)"
               @switch-condition="
                 (nextCondition) =>
                   replaceCriterion(
-                    condition.position,
-                    conditionPropsFor(nextCondition)
+                    criterion.position,
+                    conditionFor(nextCondition)
                   )
               "
-              :conditionId="condition.id"
+              :conditionId="criterion.id"
               :conditions="conditions"
               :errors="errors[index]"
-              v-bind="{ input: condition && condition.input }"
+              :input="criterion.input"
             />           
           </renderless-condition>
         </div>
@@ -68,11 +68,9 @@
 </template>
 
 <script>
-  import Vue from 'vue';
-  import VueCompositionAPI from '@vue/composition-api';
-
-  Vue.use(VueCompositionAPI);
-
+import Vue from 'vue';
+import VueCompositionAPI from '@vue/composition-api';
+Vue.use(VueCompositionAPI);
 
 import Criterion from "./criterion";
 import {
