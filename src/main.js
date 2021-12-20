@@ -3,7 +3,7 @@ import VueCompositionAPI from '@vue/composition-api';
 import './directives';
 import App from './App.vue';
 
-import './assets/styles/tailwind.css';
+import './assets/styles/index.css';
 import "vue2-datepicker/index.css";
 
 Vue.use(VueCompositionAPI);
