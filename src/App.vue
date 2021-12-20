@@ -222,12 +222,13 @@ const conditions = [{
   component: "date-condition",
   display: "Date",
   meta: {
+    format: "YYYY/MM/DD",
     clauses: [
       {
         id: "eq",
         display: "Is Equal To",
         component: "date-input",
-        meta: { format: "YYYY/MM/DD" },
+        meta: {},
       },
       {
         id: "dne",
