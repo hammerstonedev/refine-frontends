@@ -227,7 +227,7 @@ const conditions = [{
         id: "eq",
         display: "Is Equal To",
         component: "date-input",
-        meta: {},
+        meta: { format: "YYYY/MM/DD" },
       },
       {
         id: "dne",

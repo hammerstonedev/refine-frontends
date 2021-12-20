@@ -1,6 +1,6 @@
 <template>
   <div class="refine-double-date-wrapper">
-    <date-picker :date="date1" @input="updateFirstDate" />
+    <date-picker :date="date1" @input="updateFirstDate" v-bind="$attrs" />
     <p class='refine-double-date-joiner' v-if='joinWord'>{{ joinWord }}</p>
     <date-picker :date="date2" @input="updateSecondDate" />
   </div>

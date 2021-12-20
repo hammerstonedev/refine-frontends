@@ -1,8 +1,9 @@
 <template>
   <date-picker
     v-model="time"
-    valueType="format"
-    format="MM/DD/YYYY"
+    :valueType="valueType"
+    :format="format"
+    v-bind="$attrs"
     @input="handleInput"
     @input-error="handleInputError"
     :input-class="hasError ? inputClass + errorClass : inputClass"
@@ -62,6 +63,16 @@ export default {
     date: {
       type: String,
       required: false,
+    },
+    valueType: {
+      type: String,
+      required: false,
+      default: 'format',
+    },
+    format: {
+      type: String,
+      required: false,
+      default: 'MM/DD/YYYY',
     },
   },
   data() {
