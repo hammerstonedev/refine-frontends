@@ -33,7 +33,7 @@
       <selector
         @select-option="switchCondition"
         innerClass="mr-4"
-        class="pr-4 flex items-center"
+        class="refine-condition-selector"
       >
         <selector-option
           v-for="{ id, display, meta, refinements } in conditions"
