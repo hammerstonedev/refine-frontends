@@ -23,9 +23,6 @@ export default {
     Selector,
     SelectorOption,
   },
-  created() {
-    console.log(this.multiple)
-  },
   props: {
     selected: {
       type: Array,
