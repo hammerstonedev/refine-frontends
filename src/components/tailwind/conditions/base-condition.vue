@@ -13,7 +13,7 @@
 </template>
 
 <script>
- import Selector from '@/components/tailwind/selector';
+ import Selector from '../../../components/tailwind/selector';
 
  export default {
    name: 'base-condition',

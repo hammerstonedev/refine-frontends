@@ -1,5 +1,5 @@
-import clausesConfig from '@/config/clauses-config';
-import useClauseOption from '@/compositions/tailwind/useClauseOption';
+import clausesConfig from '../../../config/clauses-config';
+import useClauseOption from '../../../compositions/tailwind/useClauseOption';
 import { clauseSelectedProp } from './mixins';
 import {
   Equals,
@@ -10,7 +10,7 @@ import {
   DoesNotEndWith,
   Contains,
   DoesNotContain,
-} from '@/components/tailwind/clauses/text';
+} from '../../../components/tailwind/clauses/text';
 
 const config = clausesConfig.text.reduce((clauses, { id, display, component }) => {
   return {

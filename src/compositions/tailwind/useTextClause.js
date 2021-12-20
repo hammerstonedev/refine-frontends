@@ -1,5 +1,5 @@
 import { h } from '@vue/composition-api';
-import BaseTextClause from '@/components/tailwind/clauses/text/base-text-clause';
+import BaseTextClause from '../../components/tailwind/clauses/text/base-text-clause';
 
 export default (
   props,

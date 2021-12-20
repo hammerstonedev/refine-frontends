@@ -1,6 +1,6 @@
-import { NumericCondition, TextCondition } from '@/components/tailwind/conditions';
-import useConditionOption from '@/compositions/tailwind/useConditionOption';
-import { optionProps } from '@/mixins';
+import { NumericCondition, TextCondition } from '../../../components/tailwind/conditions';
+import useConditionOption from '../../../compositions/tailwind/useConditionOption';
+import { optionProps } from '../../../mixins';
 
 const TextConditionOption = {
   name: 'text-condition-option',

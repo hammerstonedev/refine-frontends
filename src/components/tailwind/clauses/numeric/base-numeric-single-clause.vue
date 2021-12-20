@@ -15,7 +15,7 @@
 
 <script>
  import { numericSingleProps } from './mixins';
- import NumberInput from '@/components/tailwind/inputs/number-input'
+ import NumberInput from '../../../../components/tailwind/inputs/number-input'
 
  export default {
    name: 'base-numeric-single-clause',

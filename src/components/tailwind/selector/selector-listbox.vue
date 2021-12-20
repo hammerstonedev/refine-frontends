@@ -19,7 +19,7 @@
 </template>
 
 <script>
- import { uid } from '@/mixins';
+ import { uid } from '../../../mixins';
 
  export default {
    name: 'selector-listbox',

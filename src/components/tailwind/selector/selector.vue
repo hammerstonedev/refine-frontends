@@ -73,10 +73,10 @@
     </renderless-selector>
   </div>
 </template>
-
 <script>
-import RenderlessSelector from "@/components/renderless/selector";
-import { uid } from "@/mixins";
+
+import RenderlessSelector from "../../../components/renderless/selector";
+import { uid } from "../../../mixins";
 import SelectorButton from "./selector-button";
 import SelectorListbox from "./selector-listbox";
 import SelectorListItem from "./selector-list-item";

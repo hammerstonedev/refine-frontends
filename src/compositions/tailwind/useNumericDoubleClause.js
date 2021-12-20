@@ -1,5 +1,5 @@
 import { h } from '@vue/composition-api';
-import BaseNumericDoubleClause from '@/components/tailwind/clauses/numeric/base-numeric-double-clause';
+import BaseNumericDoubleClause from '../../components/tailwind/clauses/numeric/base-numeric-double-clause';
 
 export default (
   props,

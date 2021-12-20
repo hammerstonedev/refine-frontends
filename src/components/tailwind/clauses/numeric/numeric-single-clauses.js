@@ -1,6 +1,6 @@
 import { numericSingleProps } from './mixins';
-import useNumericSingleClause from '@/compositions/tailwind/useNumericSingleClause';
-import renderless from '@/components/renderless/clauses/numeric';
+import useNumericSingleClause from '../../../../compositions/tailwind/useNumericSingleClause';
+import renderless from '../../../../components/renderless/clauses/numeric';
 
 const IsEqualTo = {
   name: 'is-equal-to',

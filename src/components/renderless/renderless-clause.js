@@ -1,4 +1,4 @@
-import useClause from '@/compositions/renderless/useClause';
+import useClause from '../../compositions/renderless/useClause';
 
 export default {
   name: 'renderless-clause',

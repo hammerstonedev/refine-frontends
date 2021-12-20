@@ -1,4 +1,4 @@
-import useClause from '@/compositions/renderless/useClause';
+import useClause from '../../../compositions/renderless/useClause';
 
 export const createClause = (name, id, props) => {
   return {

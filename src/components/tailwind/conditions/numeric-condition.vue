@@ -18,9 +18,9 @@
 
 <script>
  import BaseCondition from './base-condition';
- import { conditionProps } from '@/mixins';
- import { NumericCondition as RenderlessNumericCondition } from '@/components/renderless/conditions';
- import * as numericClauseOptions from '@/components/tailwind/clause-options/numeric';
+ import { conditionProps } from '../../../mixins';
+ import { NumericCondition as RenderlessNumericCondition } from '../../../components/renderless/conditions';
+ import * as numericClauseOptions from '../../../components/tailwind/clause-options/numeric';
 
  export default {
    name: 'numeric-condition',

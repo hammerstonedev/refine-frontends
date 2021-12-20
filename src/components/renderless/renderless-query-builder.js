@@ -1,4 +1,4 @@
-import Blueprint from '@/stores/blueprint';
+import Blueprint from '../../stores/blueprint';
 
 export default {
   name: 'renderless-query-builder',

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { RenderlessClause } from "@/components/renderless";
+import { RenderlessClause } from "../../../components/renderless";
 import { Selector, SelectorOption } from "..";
 import * as inputs from "../inputs";
 

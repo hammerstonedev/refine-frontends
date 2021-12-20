@@ -1,5 +1,5 @@
 <script>
- import Blueprint from '@/stores/blueprint';
+ import Blueprint from '../../stores/blueprint';
 
  export default {
    props: {

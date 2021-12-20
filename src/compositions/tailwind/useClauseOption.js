@@ -1,5 +1,5 @@
 import { h } from '@vue/composition-api';
-import BaseClauseOption from '@/components/tailwind/clause-options/base-clause-option';
+import BaseClauseOption from '../../components/tailwind/clause-options/base-clause-option';
 
 export default (
   props,

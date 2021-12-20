@@ -1,5 +1,5 @@
-import useCondition from '@/compositions/renderless/useCondition';
-import { conditionProps } from '@/mixins/condition';
+import useCondition from '../../compositions/renderless/useCondition';
+import { conditionProps } from '../../mixins/condition';
 
 const TextCondition = {
   name: 'text-condition',

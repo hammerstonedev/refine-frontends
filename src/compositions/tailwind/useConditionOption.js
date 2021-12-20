@@ -1,5 +1,5 @@
 import { h } from '@vue/composition-api';
-import BaseConditionOption from '@/components/tailwind/condition-options/base-condition-option';
+import BaseConditionOption from '../../components/tailwind/condition-options/base-condition-option';
 
 export default (
   props,

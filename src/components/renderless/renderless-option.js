@@ -1,4 +1,4 @@
-import { optionProps } from '@/mixins';
+import { optionProps } from '../../mixins';
 
 export default {
   name: 'renderless-option',

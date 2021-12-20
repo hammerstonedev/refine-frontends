@@ -16,8 +16,8 @@
 </template>
 
 <script>
- import RenderlessOption from '@/components/renderless/renderless-option';
- import { optionProps } from '@/mixins';
+ import RenderlessOption from '../../../components/renderless/renderless-option';
+ import { optionProps } from '../../../mixins';
 
  export default {
    mixins: [optionProps],

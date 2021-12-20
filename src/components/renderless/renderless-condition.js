@@ -1,4 +1,4 @@
-import useCondition from '@/compositions/renderless/useCondition';
+import useCondition from '../../compositions/renderless/useCondition';
 
 export default {
   name: 'renderless-condition',

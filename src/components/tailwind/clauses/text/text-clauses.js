@@ -1,5 +1,5 @@
-import useTextClause from '@/compositions/tailwind/useTextClause.js';
-import renderless from '@/components/renderless/clauses/text';
+import useTextClause from '../../../../compositions/tailwind/useTextClause.js';
+import renderless from '../../../../components/renderless/clauses/text';
 
 const textClauseProps = {
   props: {

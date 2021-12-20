@@ -1,5 +1,5 @@
-import clausesConfig from '@/config/clauses-config';
-import useClauseOption from '@/compositions/tailwind/useClauseOption';
+import clausesConfig from '../../../config/clauses-config';
+import useClauseOption from '../../../compositions/tailwind/useClauseOption';
 import { clauseSelectedProp } from './mixins';
 import {
   IsEqualTo,
@@ -10,7 +10,7 @@ import {
   IsLessThanOrEqualTo,
   IsBetween,
   IsNotBetween
-} from '@/components/tailwind/clauses/numeric';
+} from '../../../components/tailwind/clauses/numeric';
 
 // Lookup by component name
 const config = clausesConfig.numeric.reduce((clauses, { id, display, component }) => {

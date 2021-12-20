@@ -9,8 +9,8 @@
 </template>
 
 <script>
- import { RenderlessOption } from '@/components/renderless';
- import { optionProps } from '@/mixins';
+ import { RenderlessOption } from '../../../components/renderless';
+ import { optionProps } from '../../../mixins';
 
  export default {
    name: 'selector-option',

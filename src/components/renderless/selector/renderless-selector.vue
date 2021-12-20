@@ -1,6 +1,6 @@
 <script>
 import Vue from "vue";
-import SelectorStore from "@/stores/selector";
+import SelectorStore from "../../../stores/selector";
 
 export default {
   name: "renderless-selector",

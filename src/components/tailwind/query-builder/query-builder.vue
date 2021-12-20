@@ -66,13 +66,12 @@
     <!-- wrapper div -->
   </renderless-query-builder>
 </template>
-
 <script>
 import Criterion from "./criterion";
 import {
   RenderlessQueryBuilder,
   RenderlessCondition,
-} from "@/components/renderless";
+} from "../../../components/renderless";
 
 export default {
   name: "query-builder",
