@@ -1,6 +1,9 @@
 {
-  "name": "@hammerstone/vue2-refine-query-builder",
+  "name": "@hammerstone/vue2-refine",
   "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
+  "keywords": ["hammerstone", "refine", "query builder", "query", "report builder"],
+  "homepage": "https://github.com/hammerstonedev/query-builder",
+  "access": "public",
   "files": [
     "/dist/*"
   ],
