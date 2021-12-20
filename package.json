@@ -8,6 +8,9 @@
     "query",
     "report builder"
   ],
+  "source": "src/package.js",
+  "main": "./dist/refine-vue2.cjs",
+  "module": "./dist/refine-vue2.esm.js",
   "homepage": "https://hammerstone.dev",
   "repository": "https://github.com/hammerstonedev/refine-vue2",
   "access": "public",
@@ -15,12 +18,11 @@
     "/dist/*",
     "/src/assets/*"
   ],
-  "main": "./dist/refine-vue2.umd.min.js",
   "version": "0.1.4",
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib src/package.js",
+    "build": "microbundle -f esm,cjs ",
     "test:unit": "vue-cli-service test:unit",
     "test:unit:debug": "node --inspect-brk ./node_modules/.bin/vue-cli-service test:unit --runInBand",
     "lint": "vue-cli-service lint"
@@ -77,5 +79,8 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "microbundle": "^0.14.2"
+  }
 }
