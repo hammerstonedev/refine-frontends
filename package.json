@@ -8,7 +8,7 @@
     "/dist/*"
   ],
   "main": "./dist/refine-vue2.umd.min.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
     "serve": "vue-cli-service serve",
