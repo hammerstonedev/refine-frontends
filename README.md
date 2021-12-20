@@ -4,7 +4,7 @@
 
 1. Install peer dependencies
     ```
-	yarn add @vue/composition-api date-fns vue2-datepicker
+	yarn add @vue/composition-api vue2-datepicker
     ```
 
 	(Also tailwind and tailwind/forms are required, see the tailwind docs to install https://tailwindcss.com/docs/installation)
