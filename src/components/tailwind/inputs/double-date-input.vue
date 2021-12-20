@@ -1,8 +1,8 @@
 <template>
   <div class="refine-double-date-wrapper">
     <date-picker :date="date1" @input="updateFirstDate" v-bind="$attrs" />
-    <p class='refine-double-date-joiner' v-if='joinWord'>{{ joinWord }}</p>
-    <date-picker :date="date2" @input="updateSecondDate" />
+    <p class='refine-double-date-joiner'>{{ joiner }}</p>
+    <date-picker :date="date2" @input="updateSecondDate" v-bind="$attrs" />
   </div>
 </template>
 
@@ -22,18 +22,10 @@ export default {
       type: String,
       required: false,
     },
-    meta: {
-      type: Object,
+    joiner: {
+      type: String,
       required: false,
-      default: () => {
-        return {}
-      },
-    },
-  },
-  computed: {
-    joinWord() {
-      // @TODO Meta helper
-      return Object.prototype.hasOwnProperty.call(this.meta, 'joiner') ? this.meta.joiner : 'and';
+      default: 'and'
     }
   },
   methods: {
