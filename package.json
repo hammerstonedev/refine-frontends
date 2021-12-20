@@ -1,5 +1,5 @@
 {
-  "name": "@hammerstone/vue2-refine",
+  "name": "@hammerstone/refine-vue2",
   "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
   "keywords": ["hammerstone", "refine", "query builder", "query", "report builder"],
   "homepage": "https://github.com/hammerstonedev/query-builder",
@@ -7,8 +7,8 @@
   "files": [
     "/dist/*"
   ],
-  "main": "./dist/vue2-query-builder.umd.min.js",
-  "version": "0.1.0",
+  "main": "./dist/refine-vue2.umd.min.js",
+  "version": "0.1.1",
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
     "serve": "vue-cli-service serve",
