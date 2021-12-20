@@ -42,7 +42,7 @@
    name: 'selector-list-item',
    props: {
      optionId: {
-       type: String,
+       type: [String, Number],
        required: true,
      },
      optionDisplay: {
