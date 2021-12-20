@@ -1,6 +1,9 @@
 const webpackDateFnsExternals = require('webpack-date-fns-externals');
 
 module.exports = {
+  css: {
+    extract: true
+  },
   configureWebpack: {
     output: {
       libraryExport: 'default'
