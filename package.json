@@ -1,7 +1,13 @@
 {
   "name": "@hammerstone/refine-vue2",
   "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
-  "keywords": ["hammerstone", "refine", "query builder", "query", "report builder"],
+  "keywords": [
+    "hammerstone",
+    "refine",
+    "query builder",
+    "query",
+    "report builder"
+  ],
   "homepage": "https://github.com/hammerstonedev/query-builder",
   "access": "public",
   "files": [
@@ -19,7 +25,6 @@
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.15",
-    "core-js": "^3.6.5",
     "date-fns": "^2.20.1",
     "vue": "^2.6.14",
     "vue2-datepicker": "^3.9.0"
@@ -34,11 +39,13 @@
     "@vue/composition-api": "^1.4.2",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "core-js": "^3.6.5",
     "date-fns": "^2.27.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.17.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue": "^2.6.14",
+    "vue-cli-plugin-webpack-bundle-analyzer": "^4.0.0",
     "vue-template-compiler": "^2.6.11",
     "vue2-datepicker": "^3.10.4",
     "webpack-date-fns-externals": "^1.0.2"
