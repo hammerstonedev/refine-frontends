@@ -4,7 +4,7 @@
     "/dist/*"
   ],
   "main": "./dist/vue2-query-builder.umd.min.js",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "scripts": {
     "serve-no-eslint": "vue-cli-service --skip-plugins @vue/cli-plugin-eslint serve",
     "serve": "vue-cli-service serve",
@@ -32,7 +32,6 @@
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.17.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "vue-cli-plugin-webpack-bundle-analyzer": "~4.0.0",
     "vue-template-compiler": "^2.6.11",
     "webpack-date-fns-externals": "^1.0.2"
   },
