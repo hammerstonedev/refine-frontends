@@ -41,7 +41,6 @@
 
 <script>
 import DatePicker from "vue2-datepicker";
-import "vue2-datepicker/index.css";
 import parse from "date-fns/parse";
 import format from "date-fns/format";
 
