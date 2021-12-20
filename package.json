@@ -8,10 +8,12 @@
     "query",
     "report builder"
   ],
-  "homepage": "https://github.com/hammerstonedev/query-builder",
+  "homepage": "https://hammerstone.dev",
+  "repository": "https://github.com/hammerstonedev/refine-vue2",
   "access": "public",
   "files": [
-    "/dist/*"
+    "/dist/*",
+    "/src/assets/*"
   ],
   "main": "./dist/refine-vue2.umd.min.js",
   "version": "0.1.2",
