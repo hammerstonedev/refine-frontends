@@ -1,7 +1,7 @@
 <template>
   <date-picker
     v-model="time"
-    :valueType="valueType"
+    value-type="YYYY-MM-DD"
     :format="format"
     v-bind="$attrs"
     @input="handleInput"
@@ -42,20 +42,6 @@
 
 <script>
 import DatePicker from "vue2-datepicker";
-import parse from "date-fns/parse";
-import format from "date-fns/format";
-
-export const formatPropDate = (date) => {
-  return date
-    ? format(parse(date, "yyyy-MM-dd", new Date()), "MM/dd/yyyy")
-    : null;
-};
-
-export const formatPickerDate = (date) => {
-  return date
-    ? format(parse(date, "MM/dd/yyyy", new Date()), "yyyy-MM-dd")
-    : null;
-};
 
 export default {
   components: { DatePicker },
@@ -64,11 +50,10 @@ export default {
       type: String,
       required: false,
     },
-    valueType: {
-      type: String,
-      required: false,
-      default: 'format',
-    },
+    // This is the format that is displayed to the end user, it
+    // has nothing to do with the format that ends up in the
+    // blueprint. The blueprint format is hardcoded in the
+    // template above, under the `value-type` key.
     format: {
       type: String,
       required: false,
@@ -78,7 +63,7 @@ export default {
   data() {
     const { date } = this;
     return {
-      time: formatPropDate(date),
+      time: date,
       hasError: false,
       inputClass: "refine-date-input",
       errorClass: "refine-date-input-error",
@@ -90,7 +75,7 @@ export default {
     },
     handleInput: function () {
       this.hasError = false;
-      this.$emit("input", { date: formatPickerDate(this.time) });
+      this.$emit("input", { date: this.time });
     },
   },
 };
