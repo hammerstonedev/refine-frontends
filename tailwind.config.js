@@ -1,9 +1,8 @@
 module.exports = {
-  purge: [
+  content: [
     './src/**/*.vue',
     './src/**/*.js',
   ],
   plugins: [
-    require('@tailwindcss/forms'),
   ]
 }

@@ -24,7 +24,7 @@
 
 <script>
 import { RenderlessClause } from "../../../components/renderless";
-import { Selector, SelectorOption } from "..";
+import { Selector, SelectorOption } from "../selector";
 import * as inputs from "../inputs";
 
 export default {

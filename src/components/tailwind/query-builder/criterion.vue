@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { Selector, SelectorOption } from "..";
+import { Selector, SelectorOption } from "../selector";
 import Clause from './clause';
 import Refinements from './refinements.vue';
 

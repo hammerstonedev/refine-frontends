@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import {Selector, SelectorOption} from "..";
+  import {Selector, SelectorOption} from "../selector";
   import {uid} from '../../../mixins';
 
   export default {

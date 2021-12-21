@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { Selector, SelectorOption } from "..";
+import { Selector, SelectorOption } from "../selector";
 import { RenderlessRefinement } from '../../renderless';
 import Clause from './clause';
 

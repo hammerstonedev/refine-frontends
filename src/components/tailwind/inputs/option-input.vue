@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Selector, SelectorOption } from "..";
+import { Selector, SelectorOption } from "../selector";
 
 export default {
   name: "option-input",
