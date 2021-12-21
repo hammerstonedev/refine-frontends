@@ -11,7 +11,6 @@ const criterion = ( id, depth, meta, refinements ) => {
   const [firstRefinement] = refinements || [];
 
   const condition = {
-    id,
     condition_id: id,
     depth,
     type: "criterion",
