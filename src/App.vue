@@ -50,20 +50,7 @@
 </template>
 
 <script>
-import {
-  TextCondition,
-  NumericCondition,
-  Query,
-  ConditionSelector,
-  TextConditionOption,
-  NumericConditionOption,
-  QueryBuilder,
-} from "./components/tailwind";
-
-import {
-  IsBetweenOption,
-  IsNotBetweenOption,
-} from "./components/tailwind/clause-options/numeric";
+import QueryBuilder from "./package.js";
 
 const groupedBlueprint = [];
 
@@ -587,14 +574,6 @@ export default {
     };
   },
   components: {
-    IsBetweenOption,
-    IsNotBetweenOption,
-    ConditionSelector,
-    TextConditionOption,
-    NumericConditionOption,
-    NumericCondition,
-    TextCondition,
-    Query,
     QueryBuilder,
   },
 };
