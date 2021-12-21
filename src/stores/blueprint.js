@@ -14,6 +14,7 @@ const criterion = ( id, depth, meta, refinements ) => {
     id,
     condition_id: id,
     depth,
+    type: "criterion",
     input: { 
       clause: meta?.clauses[0].id,
       ...( firstRefinement && { 
