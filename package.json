@@ -16,9 +16,9 @@
   "access": "public",
   "files": [
     "/dist/*",
-    "/src/assets/*"
+    "/src/**/*"
   ],
-  "version": "0.1.9",
+  "version": "0.1.10",
   "scripts": {
     "test": "jest ./tests",
     "build": "rollup --config rollup.config.js",
