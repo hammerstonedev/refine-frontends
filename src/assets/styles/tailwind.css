@@ -20,10 +20,14 @@
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
 }
 
-
 .refine-condition-selector {
     @apply pr-4 flex items-center;
 }
+
+.refine-clause-selector {
+    @apply mr-4;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Inputs
