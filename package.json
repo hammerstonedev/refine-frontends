@@ -8,6 +8,10 @@
     "query",
     "report builder"
   ],
+  "exports": {
+    "require": "./dist/refine-vue2.cjs",
+    "default": "./dist/refine-vue2.esm.js"
+  },
   "source": "src/package.js",
   "main": "./dist/refine-vue2.cjs",
   "module": "./dist/refine-vue2.esm.js",
@@ -18,7 +22,7 @@
     "/dist/*",
     "/src/assets/*"
   ],
-  "version": "0.1.5",
+  "version": "0.1.7",
   "scripts": {
     "test": "jest ./tests",
     "build": "rollup --config rollup.config.js",

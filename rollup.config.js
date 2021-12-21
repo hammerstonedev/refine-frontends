@@ -8,16 +8,23 @@ import pkg from './package.json';
 
 module.exports = {
   input: 'src/package.js',
+  external: [
+    'vue',
+    '@vue/composition-api',
+    'vue2-datepicker',
+  ],
   output: [
     {
         file: pkg.main,
         format: 'umd',
         name: 'refine-vue2',
+        sourcemap: true,
     },
     {
         file: pkg.module,
         format: 'es',
         name: 'refine-vue2',
+        sourcemap: true,
     },
   ],
   plugins: [
