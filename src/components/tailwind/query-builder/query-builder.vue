@@ -16,7 +16,7 @@
       <div class="refine-query-builder-condition-group" v-for="(group, index) in groupedBlueprint" :key="index">
         <div class='refine-query-builder-condition' v-for="(criterion, index) in group" :key="criterion.uid">
           <renderless-condition
-            v-bind="conditionFor(criterion)"
+            v-bind="conditionFor({id: criterion.condition_id, ...criterion})"
             v-slot="{ switchClause }"
           >
             <criterion
@@ -29,7 +29,7 @@
                     conditionFor(nextCondition)
                   )
               "
-              :conditionId="criterion.id"
+              :conditionId="criterion.condition_id"
               :conditions="conditions"
               :errors="errors[index]"
               :input="criterion.input"

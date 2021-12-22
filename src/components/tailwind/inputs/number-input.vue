@@ -10,7 +10,7 @@
 
 <script>
  export default {
-   name: 'number-input',
+   name: 'refine-number-input',
    data() {
      return {
        currentValue: this.value,

@@ -10,6 +10,7 @@
 import DatePicker from "./date-picker";
 
 export default {
+  name: 'refine-double-date-input',
   components: {
     DatePicker,
   },

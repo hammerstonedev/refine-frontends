@@ -6,6 +6,7 @@
 import DatePicker from "./date-picker";
 
 export default {
+  name: 'refine-date-input',
   props: {
     date1: {
       type: String,

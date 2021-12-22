@@ -33,6 +33,7 @@
   import {uid} from '../../../mixins';
 
   export default {
+    name: 'refine-date-input',
     components: {
       Selector,
       SelectorOption,

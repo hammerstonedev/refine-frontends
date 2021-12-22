@@ -18,7 +18,7 @@
 import { Selector, SelectorOption } from "../selector";
 
 export default {
-  name: "option-input",
+  name: "refine-option-input",
   components: {
     Selector,
     SelectorOption,
