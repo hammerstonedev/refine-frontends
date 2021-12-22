@@ -56,31 +56,31 @@ const groupedBlueprint = [];
 
 const conditions = [{
   id: "option",
-  component: "option-condition",
+  component: "refine-option-condition",
   display: "Option",
   meta: {
     clauses: [
       {
         id: "in",
-        component: "option-input",
+        component: "refine-option-input",
         display: "Is One Of",
         meta: { multiple: true },
       },
       {
         id: "eq",
-        component: "option-input",
+        component: "refine-option-input",
         display: "Is",
         meta: {},
       },
       {
         id: "dne",
-        component: "option-input",
+        component: "refine-option-input",
         display: "Is Not",
         meta: {},
       },
       {
         id: "nin",
-        component: "option-input",
+        component: "refine-option-input",
         display: "Is Not One Of",
         meta: { multiple: true },
       },
@@ -118,56 +118,55 @@ const conditions = [{
 },
 {
   id: "text",
-  component: "text-condition",
   display: "Text",
   meta: {
     clauses: [
       {
         id: "eq",
         display: "Equals",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "dne",
         display: "Does Not Equal",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "sw",
         display: "Starts With",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "ew",
         display: "Ends With",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "dsw",
         display: "Does Not Start With",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "dew",
         display: "Does Not End With",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "cont",
         display: "Contains",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
         id: "dcont",
         display: "Does Not Contain",
-        component: "text-input",
+        component: "refine-text-input",
         meta: {},
       },
       {
@@ -214,49 +213,49 @@ const conditions = [{
       {
         id: "eq",
         display: "Is Equal To",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "dne",
         display: "Is Not Equal To",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "lte",
         display: "Is On or Before",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "gte",
         display: "Is On or After",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "btwn",
         display: "Is Between",
-        component: "double-date-input",
+        component: "refine-double-date-input",
         meta: {},
       },
       {
         id: "gt",
         display: "Is More Than",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
         id: "exct",
         display: "Is Exactly",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
         id: "lt",
         display: "Is Less Than",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
@@ -282,49 +281,49 @@ const conditions = [{
       {
         id: "eq",
         display: "Is Equal To",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "dne",
         display: "Is Not Equal To",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "lte",
         display: "Is On or Before",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "gte",
         display: "Is On or After",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "btwn",
         display: "Is Between",
-        component: "double-date-input",
+        component: "refine-double-date-input",
         meta: {},
       },
       {
         id: "gt",
         display: "Is More Than",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
         id: "exct",
         display: "Is Exactly",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
         id: "lt",
         display: "Is Less Than",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
@@ -350,49 +349,49 @@ const conditions = [{
       {
         id: "eq",
         display: "Is Equal To",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "dne",
         display: "Is Not Equal To",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "lte",
         display: "Is On or Before",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "gte",
         display: "Is On or After",
-        component: "date-input",
+        component: "refine-date-input",
         meta: {},
       },
       {
         id: "btwn",
         display: "Is Between",
-        component: "double-date-input",
+        component: "refine-double-date-input",
         meta: {},
       },
       {
         id: "gt",
         display: "Is More Than",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
         id: "exct",
         display: "Is Exactly",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
         id: "lt",
         display: "Is Less Than",
-        component: "relative-date-input",
+        component: "refine-relative-date-input",
         meta: {},
       },
       {
@@ -418,49 +417,49 @@ const conditions = [{
       {
         id: "eq",
         display: "Is Equal To",
-        component: "number-input",
+        component: "refine-number-input",
         meta: {},
       },
       {
         id: "dne",
         display: "Is Not Equal To",
-        component: "number-input",
+        component: "refine-number-input",
         meta: {},
       },
       {
         id: "gt",
         display: "Is Greater Than",
-        component: "number-input",
+        component: "refine-number-input",
         meta: {},
       },
       {
         id: "gte",
         display: "Is Greater Than Or Equal To",
-        component: "number-input",
+        component: "refine-number-input",
         meta: {},
       },
       {
         id: "lt",
         display: "Is Less Than",
-        component: "number-input",
+        component: "refine-number-input",
         meta: {},
       },
       {
         id: "lte",
         display: "Is Less Than Or Equal To",
-        component: "number-input",
+        component: "refine-number-input",
         meta: {},
       },
       {
         id: "btwn",
         display: "Is Between",
-        component: "double-number-input",
+        component: "refine-double-number-input",
         meta: {},
       },
       {
         id: "nbtwn",
         display: "Is Not Between",
-        component: "double-number-input",
+        component: "refine-double-number-input",
         meta: {},
       },
       {
@@ -482,16 +481,16 @@ const conditions = [{
   "display": "Events.Name",
   "meta": {
     "clauses": [
-      { "id": "eq", "display": "Equals", "meta": {}, "component": "text-input" },
-      { "id": "dne", "display": "Does Not Equal", "meta": {}, "component": "text-input" },
-      { "id": "sw", "display": "Starts With", "meta": {}, "component": "text-input" },
-      { "id": "ew", "display": "Ends With", "meta": {}, "component": "text-input" },
-      { "id": "dsw", "display": "Does Not Start With", "meta": {}, "component": "text-input" },
-      { "id": "dew", "display": "Does Not End With", "meta": {}, "component": "text-input" },
-      { "id": "cont", "display": "Contains", "meta": {}, "component": "text-input" },
-      { "id": "dcont", "display": "Does Not Contain", "meta": {}, "component": "text-input" },
-      { "id": "st", "display": "Is Set", "meta": {}, "component": "text-input" },
-      { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "text-input" }
+      { "id": "eq", "display": "Equals", "meta": {}, "component": "refine-text-input" },
+      { "id": "dne", "display": "Does Not Equal", "meta": {}, "component": "refine-text-input" },
+      { "id": "sw", "display": "Starts With", "meta": {}, "component": "refine-text-input" },
+      { "id": "ew", "display": "Ends With", "meta": {}, "component": "refine-text-input" },
+      { "id": "dsw", "display": "Does Not Start With", "meta": {}, "component": "refine-text-input" },
+      { "id": "dew", "display": "Does Not End With", "meta": {}, "component": "refine-text-input" },
+      { "id": "cont", "display": "Contains", "meta": {}, "component": "refine-text-input" },
+      { "id": "dcont", "display": "Does Not Contain", "meta": {}, "component": "refine-text-input" },
+      { "id": "st", "display": "Is Set", "meta": {}, "component": "refine-text-input" },
+      { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "refine-text-input" }
     ]
   },
   "refinements": [
@@ -500,26 +499,26 @@ const conditions = [{
       "display": "Count Refinement",
       "meta": {
         "clauses": [
-          { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "number-input" },
-          { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "number-input" },
-          { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "number-input" },
+          { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "refine-number-input" },
+          { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "refine-number-input" },
+          { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "refine-number-input" },
           {
             "id": "gte",
             "display": "Is Greater Than Or Equal To",
             "meta": {}, 
-            "component": "number-input"
+            "component": "refine-number-input"
           },
           { "id": "lt", "display": "Is Less Than", "meta": {} },
           {
             "id": "lte",
             "display": "Is Less Than Or Equal To",
             "meta": {}, 
-            "component": "number-input"
+            "component": "refine-number-input"
           },
-          { "id": "btwn", "display": "Is Between", "meta": {}, "component": "number-input" },
-          { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "number-input" },
-          { "id": "st", "display": "Is Set", "meta": {}, "component": "number-input" },
-          { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "number-input" }
+          { "id": "btwn", "display": "Is Between", "meta": {}, "component": "refine-number-input" },
+          { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "refine-number-input" },
+          { "id": "st", "display": "Is Set", "meta": {}, "component": "refine-number-input" },
+          { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "refine-number-input" }
         ]
       },
       "refinements": []
@@ -528,26 +527,26 @@ const conditions = [{
       "display": "Kaboom Refinement",
       "meta": {
         "clauses": [
-          { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "number-input" },
-          { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "number-input" },
-          { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "number-input" },
+          { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "refine-number-input" },
+          { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "refine-number-input" },
+          { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "refine-number-input" },
           {
             "id": "gte",
             "display": "Is Greater Than Or Equal To",
             "meta": {}, 
-            "component": "number-input"
+            "component": "refine-number-input"
           },
           { "id": "lt", "display": "Is Less Than", "meta": {} },
           {
             "id": "lte",
             "display": "Is Less Than Or Equal To",
             "meta": {}, 
-            "component": "number-input"
+            "component": "refine-number-input"
           },
-          { "id": "btwn", "display": "Is Between", "meta": {}, "component": "number-input" },
-          { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "number-input" },
-          { "id": "st", "display": "Is Set", "meta": {}, "component": "number-input" },
-          { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "number-input" }
+          { "id": "btwn", "display": "Is Between", "meta": {}, "component": "refine-number-input" },
+          { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "refine-number-input" },
+          { "id": "st", "display": "Is Set", "meta": {}, "component": "refine-number-input" },
+          { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "refine-number-input" }
         ]
       },
       refinements: [],

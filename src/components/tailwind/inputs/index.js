@@ -1,27 +1,27 @@
-import DoubleNumberInput from './double-number-input';
-import NumberInput from './number-input';
-import TextInput from './text-input';
-import DateInput from './date-input';
-import DoubleDateInput from './double-date-input';
-import RelativeDateInput from './relative-date-input';
-import OptionInput from './option-input';
+import RefineDoubleNumberInput from './double-number-input';
+import RefineNumberInput from './number-input';
+import RefineTextInput from './text-input';
+import RefineDateInput from './date-input';
+import RefineDoubleDateInput from './double-date-input';
+import RefineRelativeDateInput from './relative-date-input';
+import RefineOptionInput from './option-input';
 
 export default {
-  DateInput,
-  DoubleDateInput,
-  DoubleNumberInput,
-  NumberInput,
-  OptionInput,
-  RelativeDateInput,
-  TextInput,
+  RefineDateInput,
+  RefineDoubleDateInput,
+  RefineDoubleNumberInput,
+  RefineNumberInput,
+  RefineOptionInput,
+  RefineRelativeDateInput,
+  RefineTextInput,
 };
 
 export {
-  DateInput,
-  DoubleDateInput,
-  DoubleNumberInput,
-  NumberInput,
-  OptionInput,
-  RelativeDateInput,
-  TextInput,
+  RefineDateInput,
+  RefineDoubleDateInput,
+  RefineDoubleNumberInput,
+  RefineNumberInput,
+  RefineOptionInput,
+  RefineRelativeDateInput,
+  RefineTextInput,
 };

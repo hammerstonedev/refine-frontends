@@ -18,6 +18,7 @@
   import NumberInput from './number-input';
 
   export default {
+    name: 'refine-double-number-input',
     data() {
       return {
         currentValue: this.value,

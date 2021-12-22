@@ -9,6 +9,7 @@
 
 <script>
  export default {
+   name: 'refine-text-input',
    props: {
      value: {
        type: String,
