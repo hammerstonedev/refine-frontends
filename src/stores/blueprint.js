@@ -240,10 +240,10 @@ class Blueprint {
   }
 
   switchClause({ uid, id }, clause, refinementId) {
-    const { component } = this.findCondition(id);
+    const { meta } = this.findCondition(id);
     const criterion = this.findCriterion(uid);
 
-    if (component === 'option-condition') {
+    if (Array.isArray(meta.options)) {
       criterion.input = {
         clause,
       };
