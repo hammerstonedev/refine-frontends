@@ -19,7 +19,7 @@ module.exports = {
         format: 'umd',
         name: 'refine-vue2',
         sourcemap: true,
-        exports: "named",
+        exports: "auto",
         globals: {
           'vue': 'Vue',
           '@vue/composition-api': 'VueCompositionAPI',
@@ -29,7 +29,7 @@ module.exports = {
     {
         file: pkg.module,
         format: 'es',
-        exports: "named",
+        exports: "auto",
         name: 'refine-vue2',
         sourcemap: true,
         plugins: [getBabelOutputPlugin({ 

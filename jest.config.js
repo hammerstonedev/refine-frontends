@@ -1,8 +1,9 @@
 const {defaults} = require('jest-config');
 
 module.exports = {
+  "testEnvironment": "jsdom",
   "transform": {
-    "^[^.]+.vue$": "rollup-jest",
+    "^.+\\.vue$": ["@vue/vue2-jest", "rollup-jest"],
     "\\.m?js$": "rollup-jest"
   },
   "moduleFileExtensions": [...defaults.moduleFileExtensions, 'vue'],

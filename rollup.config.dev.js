@@ -17,6 +17,7 @@ module.exports = {
     sourcemap: 'inline',
     name: 'App',
     plugins: [getBabelOutputPlugin()],
+    exports: 'auto',
   },
   plugins: [
     commonjs(),
