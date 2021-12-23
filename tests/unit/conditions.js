@@ -1,14 +1,14 @@
 export default [
     {
       id: "option",
-      component: "option-condition",
+      component:"refine-option-condition",
       display: "Option",
       meta: {
         multiple: true,
         clauses: [
           {
             id: "in",
-            component: "option-input",
+            component:"refine-option-input",
             display: "Is One Of",
             meta: {
               multiple: true,
@@ -16,19 +16,19 @@ export default [
           },
           {
             id: "eq",
-            component: "option-input",
+            component:"refine-option-input",
             display: "Is",
             meta: [],
           },
           {
             id: "dne",
-            component: "option-input",
+            component:"refine-option-input",
             display: "Is Not",
             meta: [],
           },
           {
             id: "nin",
-            component: "option-input",
+            component:"refine-option-input",
             display: "Is Not One Of",
             meta: {
               multiple: true,
@@ -69,26 +69,26 @@ export default [
         "display": "Count Refinement",
         "meta": {
           "clauses": [
-            { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "number-input" },
-            { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "number-input" },
-            { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "number-input" },
+            { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "refine-number-input" },
+            { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "refine-number-input" },
+            { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "refine-number-input" },
             {
               "id": "gte",
               "display": "Is Greater Than Or Equal To",
               "meta": {}, 
-              "component": "number-input"
+              "component": "refine-number-input"
             },
             { "id": "lt", "display": "Is Less Than", "meta": {} },
             {
               "id": "lte",
               "display": "Is Less Than Or Equal To",
               "meta": {}, 
-              "component": "number-input"
+              "component": "refine-number-input"
             },
-            { "id": "btwn", "display": "Is Between", "meta": {}, "component": "number-input" },
-            { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "number-input" },
-            { "id": "st", "display": "Is Set", "meta": {}, "component": "number-input" },
-            { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "number-input" }
+            { "id": "btwn", "display": "Is Between", "meta": {}, "component": "refine-number-input" },
+            { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "refine-number-input" },
+            { "id": "st", "display": "Is Set", "meta": {}, "component": "refine-number-input" },
+            { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "refine-number-input" }
           ]
         },
         "refinements": []
@@ -97,26 +97,26 @@ export default [
         "display": "Kaboom Refinement",
         "meta": {
           "clauses": [
-            { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "number-input" },
-            { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "number-input" },
-            { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "number-input" },
+            { "id": "eq", "display": "Is Equal To", "meta": {}, "component": "refine-number-input" },
+            { "id": "dne", "display": "Is Not Equal To", "meta": {}, "component": "refine-number-input" },
+            { "id": "gt", "display": "Is Greater Than", "meta": {}, "component": "refine-number-input" },
             {
               "id": "gte",
               "display": "Is Greater Than Or Equal To",
               "meta": {}, 
-              "component": "number-input"
+              "component": "refine-number-input"
             },
             { "id": "lt", "display": "Is Less Than", "meta": {} },
             {
               "id": "lte",
               "display": "Is Less Than Or Equal To",
               "meta": {}, 
-              "component": "number-input"
+              "component": "refine-number-input"
             },
-            { "id": "btwn", "display": "Is Between", "meta": {}, "component": "number-input" },
-            { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "number-input" },
-            { "id": "st", "display": "Is Set", "meta": {}, "component": "number-input" },
-            { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "number-input" }
+            { "id": "btwn", "display": "Is Between", "meta": {}, "component": "refine-number-input" },
+            { "id": "nbtwn", "display": "Is Not Between", "meta": {}, "component": "refine-number-input" },
+            { "id": "st", "display": "Is Set", "meta": {}, "component": "refine-number-input" },
+            { "id": "nst", "display": "Is Not Set", "meta": {}, "component": "refine-number-input" }
           ]
         },
         refinements: [],
@@ -124,56 +124,56 @@ export default [
     },
     {
       id: "text",
-      component: "text-condition",
+      component:"refine-text-condition",
       display: "Text",
       meta: {
         clauses: [
           {
             id: "eq",
             display: "Equals",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "dne",
             display: "Does Not Equal",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "sw",
             display: "Starts With",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "ew",
             display: "Ends With",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "dsw",
             display: "Does Not Start With",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "dew",
             display: "Does Not End With",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "cont",
             display: "Contains",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
             id: "dcont",
             display: "Does Not Contain",
-            component: "text-input",
+            component:"refine-text-input",
             meta: [],
           },
           {
@@ -192,7 +192,7 @@ export default [
     },
     {
       id: "bool",
-      component: "boolean-condition",
+      component:"refine-boolean-condition",
       display: "Bool",
       meta: {
         clauses: [
@@ -212,57 +212,57 @@ export default [
     },
     {
       id: "date",
-      component: "date-condition",
+      component:"refine-date-condition",
       display: "Date",
       meta: {
         clauses: [
           {
             id: "eq",
             display: "Is Equal To",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "dne",
             display: "Is Not Equal To",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "lte",
             display: "Is On or Before",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "gte",
             display: "Is On or After",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "btwn",
             display: "Is Between",
-            component: "double-date-input",
+            component:"refine-double-date-input",
             meta: [],
           },
           {
             id: "gt",
             display: "Is More Than",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
             id: "exct",
             display: "Is Exactly",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
   
             meta: [],
           },
           {
             id: "lt",
             display: "Is Less Than",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
@@ -281,56 +281,56 @@ export default [
     },
     {
       id: "date_with_time",
-      component: "date-condition",
+      component:"refine-date-condition",
       display: "Date With Time",
       meta: {
         clauses: [
           {
             id: "eq",
             display: "Is Equal To",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "dne",
             display: "Is Not Equal To",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "lte",
             display: "Is On or Before",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "gte",
             display: "Is On or After",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "btwn",
             display: "Is Between",
-            component: "double-date-input",
+            component:"refine-double-date-input",
             meta: [],
           },
           {
             id: "gt",
             display: "Is More Than",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
             id: "exct",
             display: "Is Exactly",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
             id: "lt",
             display: "Is Less Than",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
@@ -349,56 +349,56 @@ export default [
     },
     {
       id: "timestamp",
-      component: "date-condition",
+      component:"refine-date-condition",
       display: "Timestamp",
       meta: {
         clauses: [
           {
             id: "eq",
             display: "Is Equal To",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "dne",
             display: "Is Not Equal To",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "lte",
             display: "Is On or Before",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "gte",
             display: "Is On or After",
-            component: "date-input",
+            component:"refine-date-input",
             meta: [],
           },
           {
             id: "btwn",
             display: "Is Between",
-            component: "double-date-input",
+            component:"refine-double-date-input",
             meta: [],
           },
           {
             id: "gt",
             display: "Is More Than",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
             id: "exct",
             display: "Is Exactly",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
             id: "lt",
             display: "Is Less Than",
-            component: "relative-date-input",
+            component:"refine-relative-date-input",
             meta: [],
           },
           {
@@ -417,56 +417,56 @@ export default [
     },
     {
       id: "numeric",
-      component: "numeric-condition",
+      component:"refine-numeric-condition",
       display: "Numeric",
       meta: {
         clauses: [        
           {
             id: "eq",
             display: "Is Equal To",
-            component: "number-input",
+            component:"refine-number-input",
             meta: [],
           },
           {
             id: "dne",
             display: "Is Not Equal To",
-            component: "number-input",
+            component:"refine-number-input",
             meta: [],
           },
           {
             id: "gt",
             display: "Is Greater Than",
-            component: "number-input",
+            component:"refine-number-input",
             meta: [],
           },
           {
             id: "gte",
             display: "Is Greater Than Or Equal To",
-            component: "number-input",
+            component:"refine-number-input",
             meta: [],
           },
           {
             id: "lt",
             display: "Is Less Than",
-            component: "number-input",
+            component:"refine-number-input",
             meta: [],
           },
           {
             id: "lte",
             display: "Is Less Than Or Equal To",
-            component: "number-input",
+            component:"refine-number-input",
             meta: [],
           },
           {
             id: "btwn",
             display: "Is Between",
-            component: "double-number-input",
+            component:"refine-double-number-input",
             meta: [],
           },
           {
             id: "nbtwn",
             display: "Is Not Between",
-            component: "double-number-input",
+            component:"refine-double-number-input",
             meta: [],
           },
           {
