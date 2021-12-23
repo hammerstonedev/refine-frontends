@@ -1866,6 +1866,11 @@ autoprefixer@^10.4.0:
     picocolors "^1.0.0"
     postcss-value-parser "^4.1.0"
 
+babel-core@^7.0.0-bridge.0:
+  version "7.0.0-bridge.0"
+  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
+  integrity sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==
+
 babel-eslint@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
@@ -2207,11 +2212,6 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
-
-concat-merge@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/concat-merge/-/concat-merge-1.0.3.tgz#8f8e81e499700513e5866626fe27f446b3080e6e"
-  integrity sha512-VuEIlh5YcPYJohvBsZrQNzVjSG5Z0fcmiaiBfluY/2WAzY20HJF9YgPkGRVMYcljzGEKW+I++TX/2tsO/S+RSw==
 
 concat-with-sourcemaps@^1.1.0:
   version "1.1.0"
@@ -4841,13 +4841,6 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
-
-rollup-jest@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/rollup-jest/-/rollup-jest-1.1.3.tgz#b9c38a7fa75d7184582ab8f70b8d740c8e6a3b84"
-  integrity sha512-J0mPh51saVExJTVHZRUXX/qFVb9yBN1vZm3MH5Z3DJW+UPogR05O27yBRAE+GbyZM5QdT0SuSXWGq5pgppcYCw==
-  dependencies:
-    concat-merge "^1.0.2"
 
 rollup-plugin-livereload@^2.0.5:
   version "2.0.5"

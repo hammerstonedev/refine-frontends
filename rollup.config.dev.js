@@ -16,7 +16,10 @@ module.exports = {
     entryFileNames: 'App.js',
     sourcemap: 'inline',
     name: 'App',
-    plugins: [getBabelOutputPlugin()],
+    plugins: [getBabelOutputPlugin({ 
+      "plugins": ["@babel/plugin-transform-runtime"],
+      "presets": [["@babel/env", { "modules": "auto"}]] 
+    })],
     exports: 'auto',
   },
   plugins: [

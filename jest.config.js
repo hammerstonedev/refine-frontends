@@ -1,17 +1,13 @@
-const {defaults} = require('jest-config');
-
 module.exports = {
-  "testEnvironment": "jsdom",
-  "transform": {
-    "^.+\\.vue$": ["@vue/vue2-jest", "rollup-jest"],
-    "\\.m?js$": "rollup-jest"
+  testEnvironment: "jsdom",
+  transform: {
+    "^.+\\.vue$": ["babel-jest"],
   },
-  "moduleFileExtensions": [...defaults.moduleFileExtensions, 'vue'],
-  "moduleNameMapper": {
+  moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
     "\\.(css|less|sass|scss)$": "<rootDir>/config/CSSStub.js",
   },
-  "setupFiles": [
+  setupFiles: [
     "<rootDir>/tests/setup.js",
   ],
 }
