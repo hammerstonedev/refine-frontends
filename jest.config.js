@@ -1,9 +1,10 @@
 const {defaults} = require('jest-config');
 
 module.exports = {
+  testEnvironment: "jsdom",
   "transform": {
-    "^[^.]+.vue$": "rollup-jest",
-    "\\.m?js$": "rollup-jest"
+    "^[^.]+.vue$": "@vue/vue2-jest",
+    "\\.m?js$": "babel-jest"
   },
   "moduleFileExtensions": [...defaults.moduleFileExtensions, 'vue'],
   "moduleNameMapper": {
