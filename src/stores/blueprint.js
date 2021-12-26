@@ -1,10 +1,7 @@
-const getNextUid = (function() {
-  let uid = 0;
-  return () => {
-    uid = uid + 1;
-    return uid;
-  };
-})();
+let uid = 0;
+const getNextUid = function() {
+  return uid++;
+}
 
 const criterion = ( id, depth, meta, refinements ) => {
   const uid = getNextUid();
@@ -47,18 +44,14 @@ const and = function(depth) {
 
 class Blueprint {
   constructor(initialBlueprint, conditions, onChange) {
+    uid = 0;
+
     initialBlueprint = initialBlueprint || [];
     conditions = conditions || [];
 
     this.conditions = conditions;
 
-    this.blueprint = initialBlueprint.map((condition) => {
-      return {
-          ...condition,
-          id: condition.condition_id,
-          uid: getNextUid(),
-        };
-    });
+    this.blueprint = this.mapBlueprint(initialBlueprint);
 
     this.blueprintChanged = () => {
       // console.log(JSON.parse(JSON.stringify(this.blueprint)));
@@ -66,6 +59,23 @@ class Blueprint {
         onChange([...this.blueprint]);
       }
     };
+  }
+
+  mapBlueprint(blueprint)
+  {
+      return blueprint.map(condition => {
+          return {
+              ...condition,
+              id: condition.condition_id,
+              uid: getNextUid(),
+          };
+      })
+  }
+
+  updateBlueprint(newBlueprint) {
+      uid = 0;
+
+      this.blueprint = this.mapBlueprint(newBlueprint);
   }
 
   groupedBlueprint() {
