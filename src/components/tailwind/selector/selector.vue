@@ -81,6 +81,7 @@ import SelectorButton from "./selector-button";
 import SelectorListbox from "./selector-listbox";
 import SelectorListItem from "./selector-list-item";
 import MultiSelectorButton from './multi-selector-button.vue';
+import ClickAway from '../../../directives/click-away'
 
 export default {
   name: "selector",
@@ -110,6 +111,9 @@ export default {
     if (this.builderModeActive) {
       this.$refs.button.focus();
     }
+  },
+  directives: {
+    clickAway: new ClickAway()
   },
   methods: {
     isSelected(option, selectedOptions) {
