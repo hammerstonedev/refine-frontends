@@ -30,15 +30,29 @@ export default {
 
     return {
       conditionsLookup,
+      internalBlueprint: null,
       blueprintStore: new Blueprint(
         this.blueprint,
         this.conditions,
         (updatedBlueprint) => {
+          this.internalBlueprint = updatedBlueprint;
           this.$emit('change', updatedBlueprint);
         },
       ),
     };
   },
+    watch: {
+        blueprint: {
+            deep: true,
+            handler(newBlueprint) {
+                if (newBlueprint === this.internalBlueprint) {
+                    return;
+                }
+
+                this.blueprintStore.updateBlueprint(newBlueprint)
+            }
+        }
+    },
   methods: {
     replaceCriterion(previousPosition, newCriterion) {
       this.blueprintStore.replaceCriterion(previousPosition, newCriterion);
