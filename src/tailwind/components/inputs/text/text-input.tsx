@@ -1,4 +1,4 @@
-import { useInput } from "./use-input";
+import { useInput } from "../use-input";
 
 export const TextInput = () => {
   const { display, value, onChange } = useInput<string>();

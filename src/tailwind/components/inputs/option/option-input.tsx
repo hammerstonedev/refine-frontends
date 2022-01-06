@@ -1,4 +1,4 @@
-import { useInput, valueToArray } from "./use-input";
+import { useInput, valueToArray } from "../use-input";
 
 export const OptionInput = () => {
   const {

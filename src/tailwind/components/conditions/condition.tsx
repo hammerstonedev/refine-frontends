@@ -4,26 +4,13 @@ import type {
   CriterionBlueprintItem,
 } from "../../../types";
 import { useCriterion } from "../criterion";
-import {
-  InputComponentName,
-  TextInput,
-  NumberInput,
-  OptionInput,
-} from "../inputs";
+import inputComponents from "../inputs";
 import { InputProvider, valueToArray } from "../inputs/use-input";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 import { useSelectedClause } from "./use-selected-clause";
 
 export type ConditionProps = {
   condition: ConditionType;
-};
-
-const inputComponents: Partial<{
-  [inputName in InputComponentName]: () => JSX.Element;
-}> = {
-  TextInput,
-  NumberInput,
-  OptionInput,
 };
 
 export const Condition = ({ condition }: ConditionProps) => {
@@ -43,6 +30,10 @@ export const Condition = ({ condition }: ConditionProps) => {
 
     return null;
   }, [selectedClause?.component]);
+
+  if (!InputComponent) {
+    throw new Error(`Invalid component ${selectedClause?.component}.`);
+  }
 
   /**
    * When changing to a clause which doesn't have an input value,
@@ -110,7 +101,7 @@ export const Condition = ({ condition }: ConditionProps) => {
   };
 
   return (
-    <div className="flex space-x-2">
+    <div data-testid="refine-condition" className="flex space-x-2">
       <div>
         <select
           value={condition.id}
@@ -143,26 +134,23 @@ export const Condition = ({ condition }: ConditionProps) => {
         </select>
       </div>
       {hasInput && (
-        <>
-          {!!InputComponent && (
-            <InputProvider
-              value={{
-                display: selectedClause.display,
-                options: condition.meta.options,
-                value: criterion.input.value ?? "",
-                onChange: (value) =>
-                  criterion.update((criterion) => ({
-                    ...criterion,
-                    input: { ...criterion.input, value },
-                  })),
-                multiple: selectedClause.meta.multiple ?? false,
-              }}
-            >
-              <InputComponent />
-            </InputProvider>
-          )}
-          {!InputComponent && <div>{selectedClause?.component}</div>}
-        </>
+        <InputProvider
+          value={{
+            display: selectedClause.display,
+            options: condition.meta.options,
+            value: criterion.input.value ?? "",
+            onChange: (value) =>
+              criterion.update((criterion) => ({
+                ...criterion,
+                input: { ...criterion.input, value },
+              })),
+            multiple: selectedClause.meta.multiple ?? false,
+          }}
+        >
+          <div data-testid="refine-input">
+            <InputComponent />
+          </div>
+        </InputProvider>
       )}
     </div>
   );

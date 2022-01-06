@@ -6,9 +6,10 @@ import { QueryBuilderProvider } from "./use-query-builder";
 export type QueryBuilderProps = {
   blueprint: Blueprint;
   conditions: Conditions;
+  onChange?: (blueprint: GroupedBlueprint) => void;
 };
 
-const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
+export const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
   const groupedBlueprint: GroupedBlueprint = [];
   let currentGroupIndex = 0;
 
@@ -34,13 +35,31 @@ const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
 export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
+  onChange,
 }: QueryBuilderProps) => {
   const [groupedBlueprint, setGroupedBlueprint] = useState(() =>
     groupBlueprintItems(initialBlueprint)
   );
 
+  const updateGroupedBlueprint: typeof setGroupedBlueprint = (
+    groupedBlueprintOrUpdateFn
+  ) => {
+    setGroupedBlueprint((groupedBlueprint) => {
+      const updatedGroupedBlueprint =
+        typeof groupedBlueprintOrUpdateFn === "function"
+          ? groupedBlueprintOrUpdateFn(groupedBlueprint)
+          : groupedBlueprintOrUpdateFn;
+
+      if (onChange) {
+        onChange(updatedGroupedBlueprint);
+      }
+
+      return updatedGroupedBlueprint;
+    });
+  };
+
   const addGroup = () =>
-    setGroupedBlueprint((groupedBlueprint) => [
+    updateGroupedBlueprint((groupedBlueprint) => [
       ...groupedBlueprint,
       [
         {
@@ -53,14 +72,14 @@ export const QueryBuilder = ({
     ]);
 
   return (
-    <>
-      <QueryBuilderProvider
-        value={{
-          groupedBlueprint,
-          updateGroupedBlueprint: setGroupedBlueprint,
-          conditions,
-        }}
-      >
+    <QueryBuilderProvider
+      value={{
+        groupedBlueprint,
+        updateGroupedBlueprint,
+        conditions,
+      }}
+    >
+      <div data-testid="refine-query-builder">
         {groupedBlueprint.map((criteria, index) => (
           <CriterionGroup key={index} criteria={criteria} index={index} />
         ))}
@@ -71,8 +90,7 @@ export const QueryBuilder = ({
         >
           Add an 'Or'
         </button>
-      </QueryBuilderProvider>
-      <pre className="text-xs">{JSON.stringify(groupedBlueprint, null, 2)}</pre>
-    </>
+      </div>
+    </QueryBuilderProvider>
   );
 };

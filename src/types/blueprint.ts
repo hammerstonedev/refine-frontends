@@ -1,3 +1,19 @@
+interface BaseCriterionInput {
+  clause: string;
+}
+
+export interface BasicCriterionInput extends BaseCriterionInput {
+  value?: string | string[];
+}
+
+export interface RelativeDateCriterionInput extends BaseCriterionInput {
+  amount: number;
+  unit: string;
+  modifier: string;
+}
+
+export type CriterionInput = BasicCriterionInput | RelativeDateCriterionInput;
+
 interface BaseBlueprintItem {
   depth: number;
   type: string;
@@ -6,10 +22,7 @@ interface BaseBlueprintItem {
 export interface CriterionBlueprintItem extends BaseBlueprintItem {
   type: "criterion";
   condition_id: string;
-  input: {
-    clause: string;
-    value?: string | string[];
-  };
+  input: CriterionInput;
 }
 
 export interface ConjunctionBlueprintItem extends BaseBlueprintItem {

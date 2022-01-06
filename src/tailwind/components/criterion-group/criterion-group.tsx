@@ -84,7 +84,10 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
         removeCriterion,
       }}
     >
-      <div className="bg-gray-50 p-4 mb-4 space-y-6 rounded">
+      <div
+        data-testid="refine-criterion-group"
+        className="bg-gray-50 p-4 mb-4 space-y-6 rounded"
+      >
         {criteria.map((criterion, index) => (
           <Criterion key={index} index={index} />
         ))}

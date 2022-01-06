@@ -27,7 +27,10 @@ export const Criterion = ({ index }: CriterionProps) => {
 
   return (
     <CriterionProvider value={{ update, remove, ...criterion }}>
-      <div className="flex items-center space-x-3">
+      <div
+        data-testid="refine-criterion"
+        className="flex items-center space-x-3"
+      >
         <button
           className="inline-flex items-center justify-center py-1 px-3 text-gray-500"
           onClick={() => remove()}
