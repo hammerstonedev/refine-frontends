@@ -1,12 +1,12 @@
 <script>
-import Vue from "vue";
+import { reactive, nextTick } from "@vue/composition-api";
 import SelectorStore from "../../../stores/selector";
 
 export default {
   name: "renderless-selector",
   data() {
     return {
-      selector: Vue.observable(new SelectorStore()),
+      selector: reactive(new SelectorStore()),
       isClosed: true,
       highlightedOption: null,
     };
@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     nextTick() {
-      return Vue.nextTick().then(() => {
+      return nextTick().then(() => {
         return {
           actions: this.actions,
           ...this.state,

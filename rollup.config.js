@@ -15,18 +15,6 @@ module.exports = {
   ],
   output: [
     {
-        file: pkg.main,
-        format: 'umd',
-        name: 'refine-vue2',
-        sourcemap: true,
-        exports: "named",
-        globals: {
-          'vue': 'Vue',
-          '@vue/composition-api': 'VueCompositionAPI',
-          'vue2-datepicker': 'DatePicker',
-        },
-    },
-    {
         file: pkg.module,
         format: 'es',
         exports: "named",
