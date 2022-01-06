@@ -18,7 +18,7 @@
     "/dist/*",
     "/src/**/*"
   ],
-  "version": "0.1.18",
+  "version": "0.1.19",
   "scripts": {
     "test": "jest ./tests",
     "build": "rollup --config rollup.config.js",
