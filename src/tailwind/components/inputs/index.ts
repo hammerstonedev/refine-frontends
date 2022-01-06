@@ -13,10 +13,6 @@ export type InputComponentName =
   | "RelativeDateInput"
   | "TextInput";
 
-export interface BaseInputProps {
-  display: string;
-}
-
 export * from "./number-input";
 export * from "./option-input";
 export * from "./text-input";

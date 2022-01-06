@@ -39,6 +39,19 @@ export const QueryBuilder = ({
     groupBlueprintItems(initialBlueprint)
   );
 
+  const addGroup = () =>
+    setGroupedBlueprint((groupedBlueprint) => [
+      ...groupedBlueprint,
+      [
+        {
+          type: "criterion",
+          depth: 1,
+          condition_id: "option",
+          input: { clause: "eq" },
+        },
+      ],
+    ]);
+
   return (
     <>
       <QueryBuilderProvider
@@ -48,13 +61,16 @@ export const QueryBuilder = ({
           conditions,
         }}
       >
-        <div className="font-sans">
-          <div className="">
-            {groupedBlueprint.map((criteria, index) => (
-              <CriterionGroup key={index} criteria={criteria} index={index} />
-            ))}
-          </div>
-        </div>
+        {groupedBlueprint.map((criteria, index) => (
+          <CriterionGroup key={index} criteria={criteria} index={index} />
+        ))}
+        <button
+          type="button"
+          onClick={addGroup}
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Add an 'Or'
+        </button>
       </QueryBuilderProvider>
       <pre className="text-xs">{JSON.stringify(groupedBlueprint, null, 2)}</pre>
     </>

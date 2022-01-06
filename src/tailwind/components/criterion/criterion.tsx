@@ -47,7 +47,7 @@ export const Criterion = ({ index }: CriterionProps) => {
           </svg>
           <span className="sr-only">Remove Criterion</span>
         </button>
-        <Condition criterion={criterion} condition={condition} />
+        <Condition condition={condition} />
       </div>
     </CriterionProvider>
   );

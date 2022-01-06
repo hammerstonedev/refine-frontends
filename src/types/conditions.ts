@@ -16,12 +16,16 @@ export type Clause = {
   id: string;
   component?: InputComponentName;
   display: string;
-  meta: [];
+  meta: {
+    multiple?: boolean;
+  };
 };
+
 export type Option = {
   id: string;
   display: string;
 };
+
 export type Refinement = {};
 
 export type Conditions = Condition[];

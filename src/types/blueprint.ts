@@ -8,7 +8,7 @@ export interface CriterionBlueprintItem extends BaseBlueprintItem {
   condition_id: string;
   input: {
     clause: string;
-    value?: string;
+    value?: string | string[];
   };
 }
 
