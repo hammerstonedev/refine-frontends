@@ -2,7 +2,7 @@
   <div class="refine-relative-date-wrapper">
     <div>
       <input
-        class="number-input"
+        class="refine-number-input"
         type="number"
         name="days"
         :value="amount"
@@ -52,25 +52,18 @@
         type: String,
         required: false,
       },
-      meta: {
-        type: Object,
-        required: false,
-        default() {
-          return {}
-        }
-      }
+      units: {
+        type: Array,
+        required: true,
+      },
+      modifiers: {
+        type: Array,
+        required: true,
+      },
     },
     created() {
       const {modifier} = this;
       this.$emit('input', {modifier});
-    },
-    computed: {
-      units() {
-        return this.meta.units;
-      },
-      modifiers() {
-        return this.meta.modifiers;
-      }
     },
     methods: {
       id(seed) {
