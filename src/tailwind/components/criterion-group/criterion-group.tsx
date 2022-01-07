@@ -1,3 +1,4 @@
+import { getDefaultCriterion } from "..";
 import { CriterionBlueprintItem, GroupedBlueprint } from "../../../types";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
@@ -12,7 +13,7 @@ type CriterionGroupProps = {
 };
 
 export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
-  const { updateGroupedBlueprint } = useQueryBuilder();
+  const { conditions, updateGroupedBlueprint } = useQueryBuilder();
 
   const modify: CriterionGroupContext["modify"] = (payloadOrUpdateFn) => {
     updateGroupedBlueprint((groupedBlueprint) =>
@@ -65,12 +66,7 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
     });
 
   const addDefaultCriterion = () => {
-    addCriterion({
-      type: "criterion",
-      depth: 1,
-      condition_id: "option",
-      input: { clause: "eq" },
-    });
+    addCriterion(getDefaultCriterion(conditions));
   };
 
   return (
@@ -92,6 +88,7 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
           <Criterion key={index} index={index} />
         ))}
         <button
+          data-testid="refine-add-criterion"
           type="button"
           onClick={() => addDefaultCriterion()}
           className="background-transparent text-blue-600 text-xs flex items-center py-1 px-3 mt-3"

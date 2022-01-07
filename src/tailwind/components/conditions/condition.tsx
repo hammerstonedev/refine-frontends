@@ -31,10 +31,6 @@ export const Condition = ({ condition }: ConditionProps) => {
     return null;
   }, [selectedClause?.component]);
 
-  if (!InputComponent) {
-    throw new Error(`Invalid component ${selectedClause?.component}.`);
-  }
-
   /**
    * When changing to a clause which doesn't have an input value,
    * remove the input value.
@@ -147,9 +143,11 @@ export const Condition = ({ condition }: ConditionProps) => {
             multiple: selectedClause.meta.multiple ?? false,
           }}
         >
-          <div data-testid="refine-input">
-            <InputComponent />
-          </div>
+          {!!InputComponent && (
+            <div data-testid="refine-input">
+              <InputComponent />
+            </div>
+          )}
         </InputProvider>
       )}
     </div>

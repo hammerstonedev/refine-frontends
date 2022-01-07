@@ -32,6 +32,7 @@ export const Criterion = ({ index }: CriterionProps) => {
         className="flex items-center space-x-3"
       >
         <button
+          data-testid="refine-remove-criterion"
           className="inline-flex items-center justify-center py-1 px-3 text-gray-500"
           onClick={() => remove()}
         >

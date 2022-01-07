@@ -1,5 +1,10 @@
-import { useState } from "react";
-import { Blueprint, Conditions, GroupedBlueprint } from "../../../types";
+import { useEffect, useState } from "react";
+import {
+  Blueprint,
+  Conditions,
+  CriterionBlueprintItem,
+  GroupedBlueprint,
+} from "../../../types";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
 
@@ -32,6 +37,15 @@ export const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
   return groupedBlueprint;
 };
 
+export const getDefaultCriterion = (
+  conditions: Conditions
+): CriterionBlueprintItem => ({
+  type: "criterion",
+  depth: 1,
+  condition_id: conditions[0].id,
+  input: { clause: conditions[0].meta.clauses[0].id },
+});
+
 export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
@@ -41,41 +55,28 @@ export const QueryBuilder = ({
     groupBlueprintItems(initialBlueprint)
   );
 
-  const updateGroupedBlueprint: typeof setGroupedBlueprint = (
-    groupedBlueprintOrUpdateFn
-  ) => {
-    setGroupedBlueprint((groupedBlueprint) => {
-      const updatedGroupedBlueprint =
-        typeof groupedBlueprintOrUpdateFn === "function"
-          ? groupedBlueprintOrUpdateFn(groupedBlueprint)
-          : groupedBlueprintOrUpdateFn;
+  useEffect(() => {
+    if (onChange) {
+      onChange(groupedBlueprint);
+    }
+  }, [groupedBlueprint]);
 
-      if (onChange) {
-        onChange(updatedGroupedBlueprint);
-      }
+  const addGroup = () => {
+    const newCriterionGroup: CriterionBlueprintItem[] = [
+      getDefaultCriterion(conditions),
+    ];
 
-      return updatedGroupedBlueprint;
-    });
-  };
-
-  const addGroup = () =>
-    updateGroupedBlueprint((groupedBlueprint) => [
+    return setGroupedBlueprint((groupedBlueprint) => [
       ...groupedBlueprint,
-      [
-        {
-          type: "criterion",
-          depth: 1,
-          condition_id: "option",
-          input: { clause: "eq" },
-        },
-      ],
+      newCriterionGroup,
     ]);
+  };
 
   return (
     <QueryBuilderProvider
       value={{
         groupedBlueprint,
-        updateGroupedBlueprint,
+        updateGroupedBlueprint: setGroupedBlueprint,
         conditions,
       }}
     >
@@ -84,6 +85,7 @@ export const QueryBuilder = ({
           <CriterionGroup key={index} criteria={criteria} index={index} />
         ))}
         <button
+          data-testid="refine-add-criterion-group"
           type="button"
           onClick={addGroup}
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
