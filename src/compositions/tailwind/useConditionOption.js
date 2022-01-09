@@ -1,4 +1,4 @@
-import { h } from '@vue/composition-api';
+import { h } from 'vue-demi';
 import BaseConditionOption from '../../components/tailwind/condition-options/base-condition-option';
 
 export default (

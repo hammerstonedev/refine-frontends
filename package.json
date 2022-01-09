@@ -95,5 +95,7 @@
     "last 2 versions",
     "not dead"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "vue-demi": "^0.12.1"
+  }
 }

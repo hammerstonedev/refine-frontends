@@ -1,4 +1,4 @@
-import { h } from '@vue/composition-api';
+import { h } from 'vue-demi';
 import BaseClauseOption from '../../components/tailwind/clause-options/base-clause-option';
 
 export default (

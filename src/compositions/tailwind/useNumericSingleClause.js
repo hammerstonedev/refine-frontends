@@ -1,4 +1,4 @@
-import { h } from '@vue/composition-api';
+import { h } from 'vue-demi';
 import BaseNumericSingleClause from '../../components/tailwind/clauses/numeric/base-numeric-single-clause';
 
 export default (
