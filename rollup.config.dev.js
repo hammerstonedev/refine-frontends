@@ -2,24 +2,19 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import alias from '@rollup/plugin-alias';
 import vue from 'rollup-plugin-vue2';
-import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
-import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 
 module.exports = {
   input: 'src/main.js',
   output: {
-    format: 'es',
-    dir: 'example',
-    entryFileNames: 'App.js',
+    format: 'iife',
+    file: 'example/assets/refine-app.js',
     sourcemap: 'inline',
-    name: 'App',
-    plugins: [getBabelOutputPlugin()],
+    name: 'RefineApp',
   },
   plugins: [
-    commonjs(),
     vue(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
