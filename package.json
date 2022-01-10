@@ -1,32 +1,32 @@
 {
-  "name": "@hammerstone/refine-vue2",
-  "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
-  "keywords": [
-    "hammerstone",
-    "refine",
-    "query builder",
-    "query",
-    "report builder"
+  "name": "vue-word-highlighter",
+  "private": true,
+  "workspaces": [
+    "vue-word-highlighter",
+    "example",
+    "tests-vue3",
+    "tests-vue2"
   ],
-  "source": "src/package.js",
-  "main": "./dist/refine-vue2.cjs",
-  "module": "./dist/refine-vue2.esm.js",
-  "homepage": "https://hammerstone.dev",
-  "repository": "https://github.com/hammerstonedev/refine-vue2",
-  "access": "public",
-  "files": [
-    "/dist/*",
-    "/src/**/*"
-  ],
-  "version": "0.1.20",
   "scripts": {
-    "test": "jest ./tests",
-    "build": "rollup --config rollup.config.js",
-    "serve": "rollup -w --config rollup.config.dev.js"
+    "lint": "eslint '{vue-word-highlighter,example,tests-vue3,tests-vue2}/**/*.{js,ts,vue}'",
+    "lint:fix": "eslint --fix '{vue-word-highlighter,example,tests-vue3,tests-vue2}/**/*.{js,ts,vue}'",
+    "format": "prettier '{vue-word-highlighter,example,tests-vue3,tests-vue2}/**/*.{js,ts,vue}'",
+    "format:fix": "prettier --write '{vue-word-highlighter,example,tests-vue3,tests-vue2}/**/*.{js,ts,vue}'",
+    "prepare": "husky install",
+    "build:package": "yarn workspace vue-word-highlighter run build",
+    "release:package": "yarn workspace vue-word-highlighter run release",
+    "build:example": "yarn workspace example run build",
+    "dev:example": "yarn workspace example run dev",
+    "test:v2": "vue-demi-switch 2 vue2 && yarn workspace tests-vue2 run test",
+    "test:v3": "vue-demi-switch 3 && yarn workspace tests-vue3 run test",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "vue-demi": "0.12.0"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.4.2",
-    "vue": "^2.6.14 || >=3.0.0"
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
@@ -34,68 +34,45 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/plugin-transform-runtime": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "@rollup/plugin-alias": "^3.1.8",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-node-resolve": "^13.1.1",
-    "@rollup/plugin-replace": "^3.0.0",
-    "@vue/babel-preset-app": "^4.5.15",
-    "@vue/compiler-sfc": "^3.2.26",
-    "@vue/composition-api": "^1.4.2",
-    "@vue/test-utils": "^1.0.3",
-    "@vue/vue2-jest": "^27.0.0-alpha.4",
-    "autoprefixer": "^10.4.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.4.5",
-    "core-js": "^3.6.5",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^7.17.0",
-    "jest": "^27.4.5",
-    "postcss": "^8.4.5",
-    "rollup": "^2.61.1",
-    "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-serve": "^1.1.0",
-    "rollup-plugin-vue2": "^0.8.1",
-    "tailwindcss": "^3.0.7",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.11"
+    "@commitlint/cli": "14.1.0",
+    "@commitlint/config-conventional": "14.1.0",
+    "@types/node": "16.11.17",
+    "@typescript-eslint/eslint-plugin": "5.8.0",
+    "@typescript-eslint/parser": "5.8.0",
+    "@vue/composition-api": "1.4.2",
+    "eslint": "8.5.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-vue": "8.2.0",
+    "husky": "7.0.4",
+    "lint-staged": "11.2.6",
+    "prettier": "2.5.1",
+    "semantic-release": "18.0.0",
+    "vue": "3.1.5",
+    "vue2": "npm:vue@2.6.14"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {},
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
+  "lint-staged": {
+    "{vue-word-highlighter,example,tests-vue3,tests-vue2}/**/*.{js,ts,vue}": [
+      "yarn format:fix",
+      "yarn lint:fix"
     ]
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "dependencies": {
-    "vue-demi": "^0.12.1"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "feat", "fix", "docs", "style", "refactor", "test", "revert", "BREAKING CHANGE", "chore"
+        ]
+      ]
+    }
+  },
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kawamataryo/text-highlight.git"
   }
 }

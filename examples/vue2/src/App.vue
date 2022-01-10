@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import QueryBuilder from "./package.js";
+import QueryBuilder from "../../../query-builder/dist/";
 
 const groupedBlueprint = [];
 

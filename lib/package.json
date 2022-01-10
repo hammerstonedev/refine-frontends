@@ -1,0 +1,95 @@
+{
+  "name": "@hammerstone/refine-vue",
+  "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
+  "keywords": [
+    "hammerstone",
+    "refine",
+    "query builder",
+    "query",
+    "report builder"
+  ],
+  "source": "src/package.js",
+  "module": "./dist/refine-vue.esm.js",
+  "homepage": "https://hammerstone.dev",
+  "repository": "https://github.com/hammerstonedev/refine-vue2",
+  "access": "public",
+  "files": [
+    "/dist/*",
+    "/src/**/*"
+  ],
+  "version": "0.1.20",
+  "scripts": {
+    "test": "jest ./tests",
+    "build": "rollup --config rollup.config.js"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.4.2",
+    "vue": "^2.6.14 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@rollup/plugin-alias": "^3.1.8",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.1",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@vue/babel-preset-app": "^4.5.15",
+    "@vue/test-utils": "^1.0.3",
+    "@vue/compiler-sfc": "^3.1.0",
+    "autoprefixer": "^10.4.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.4.5",
+    "core-js": "^3.6.5",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^7.17.0",
+    "jest": "^27.4.5",
+    "postcss": "^8.4.5",
+    "rollup": "^2.61.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-vue": "^5.1.9",
+    "rollup-plugin-vue3": "npm:rollup-plugin-vue@^6.0.0",
+    "tailwindcss": "^3.0.7",
+    "vue": "^3.2.26"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "dependencies": {
+    "vue-demi": "^0.12.1"
+  }
+}
