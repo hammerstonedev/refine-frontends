@@ -534,7 +534,7 @@ export default {
       <query-builder 
         :errors="errors"
         :conditions="conditions" 
-        v-model="groupedBlueprint" 
+        v-model:blueprint="groupedBlueprint" 
         class="p-4 w-100" 
       />
     </div>
