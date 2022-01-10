@@ -32,8 +32,8 @@
    },
    render() {
      const { blueprintStore: blueprint } = this;
-     if (this.$scopedSlots?.default) {
-       return this.$scopedSlots.default({ blueprint });
+     if (this.$slots?.default) {
+       return this.$slots.default({ blueprint });
      }
      return null;
    },

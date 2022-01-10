@@ -135,8 +135,8 @@ export default {
     },
   },
   render() {
-    if (this.$scopedSlots?.default) {
-      return this.$scopedSlots.default({
+    if (this.$slots?.default) {
+      return this.$slots.default({
         actions: this.actions,
         ...this.state,
       });
