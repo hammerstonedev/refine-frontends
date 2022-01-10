@@ -10,9 +10,9 @@
   "dependencies": {
     "@vue/composition-api": "^1.4.3",
     "core-js": "^3.6.5",
-    "lib": "latest",
     "vue": "^2.6.11",
-    "vue-demi": "^0.12.1"
+    "vue-demi": "^0.12.1",
+    "@hammerstone/refine-vue": "^0.1.20"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

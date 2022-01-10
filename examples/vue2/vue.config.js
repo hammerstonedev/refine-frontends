@@ -1,4 +1,10 @@
-const path = require('path');
+module.exports = {
+  transpileDependencies: ['@hammerstone/refine-vue'],
+  chainWebpack: (config) => {
+    config.resolve.symlinks(false)
+  }
+}
+/*const path = require('path');
 
 module.exports = {
   configureWebpack: {
@@ -9,4 +15,4 @@ module.exports = {
       },
     },
   },
-};
+};*/
