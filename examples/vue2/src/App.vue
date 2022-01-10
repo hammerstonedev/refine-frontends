@@ -50,7 +50,8 @@
 </template>
 
 <script>
-import QueryBuilder from "../../../query-builder/dist/";
+import { QueryBuilder } from "../../../lib/dist/vue2/refine-vue.esm";
+import "../../../lib/dist/vue2/refine-vue.esm.css";
 
 const groupedBlueprint = [];
 

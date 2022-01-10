@@ -21,8 +21,8 @@
   "scripts": {
     "test": "jest ./tests",
     "build": "yarn run build:vue3 && yarn run build:vue2",
-    "build:vue2": "vue-demi-switch 2 && ROLLUP_VUE_VERSION=2 rollup --config rollup.config.js --file dist/vue2/refine-vue",
-    "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js --file dist/vue3/refine-vue"
+    "build:vue2": "vue-demi-switch 2 && ROLLUP_VUE_VERSION=2 rollup --config rollup.config.js --file dist/vue2/refine-vue.esm.js",
+    "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js --file dist/vue3/refine-vue.esm.js"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.4.2"
@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
-    "@babel/plugin-transform-runtime": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "@rollup/plugin-alias": "^3.1.8",
     "@rollup/plugin-babel": "^5.3.0",
@@ -55,8 +54,8 @@
     "rollup": "^2.61.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
     "rollup-plugin-vue": "^6.0.0",
+    "rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
     "tailwindcss": "^3.0.7",
     "vue-template-compiler": "^2.6.14"
   },
