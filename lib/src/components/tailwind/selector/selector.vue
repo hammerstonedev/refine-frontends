@@ -9,8 +9,8 @@
         highlightedOption,
         options,
       }"
-      @select-option="$emit('select-option', arguments[0])"
-      @deselect-option="$emit('deselect-option', arguments[0])"
+      @select-option="$emit('select-option', $event)"
+      @deselect-option="$emit('deselect-option', $event)"
     >
       <div class="refine-selector-wrapper">
         <!-- Select dropdown -->
@@ -28,7 +28,7 @@
             :selectedOptions="selectedOptions"
             @toggle="toggle(actions)"
             @open="open(actions)"
-            @deselect-option="deselectOption(...arguments, actions)"
+            @deselect-option="deselectOption($event, actions)"
             ref="button"
           />
           <selector-button
