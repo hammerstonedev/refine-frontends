@@ -25,6 +25,7 @@
     "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js --file dist/vue3/refine-vue.esm.js"
   },
   "peerDependencies": {
+    "vue": "vue@^3.0.0-0 || ^2.6.0",
     "@vue/composition-api": "^1.4.2"
   },
   "peerDependenciesMeta": {
@@ -37,7 +38,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.1",
     "@rollup/plugin-replace": "^3.0.0",
-    "@vue/compiler-sfc": "^3.1.0",
+    "@vue/compiler-sfc": "^3.0.0-0",
     "@vue/test-utils": "^1.0.3",
     "autoprefixer": "^10.4.0",
     "core-js": "^3.6.5",
