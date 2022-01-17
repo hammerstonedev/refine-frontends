@@ -36,7 +36,6 @@ module.exports = {
       contentBase: ['./example'],
     }),
     livereload({
-        watch: './example/*',
         exts: ['html', 'js', 'css', 'vue'],
     }),
   ],
