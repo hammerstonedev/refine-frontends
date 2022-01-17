@@ -83,6 +83,6 @@
     "not dead"
   ],
   "dependencies": {
-    "vue-demi": "latest"
+    "vue-demi": "^0.12.1"
   }
 }

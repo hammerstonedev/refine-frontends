@@ -457,7 +457,7 @@ __metadata:
     rollup-plugin-vue2: "npm:rollup-plugin-vue@^5.1.9"
     tailwindcss: ^3.0.7
     vue: ^2.6.0
-    vue-demi: latest
+    vue-demi: ^0.12.1
     vue-template-compiler: ^2.6.14
   peerDependencies:
     "@vue/composition-api": ^1.4.2
@@ -754,7 +754,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-alias@npm:^3.1.8, @rollup/plugin-alias@npm:^3.1.9":
+"@rollup/plugin-alias@npm:^3.1.8":
   version: 3.1.9
   resolution: "@rollup/plugin-alias@npm:3.1.9"
   dependencies:
@@ -6344,7 +6344,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.59.0, rollup@npm:^2.61.1":
+"rollup@npm:^2.59.0":
   version: 2.63.0
   resolution: "rollup@npm:2.63.0"
   dependencies:
@@ -6355,6 +6355,20 @@ __metadata:
   bin:
     rollup: dist/bin/rollup
   checksum: 23db16ea9d222ad5ae9620ba51d4f45c834927038c1e43d87f7dd3d240aa54422e51c2660437479af4b771e13f9529df236a3d43a3b9f4229bf241347d5f2c8f
+  languageName: node
+  linkType: hard
+
+"rollup@npm:^2.61.1":
+  version: 2.64.0
+  resolution: "rollup@npm:2.64.0"
+  dependencies:
+    fsevents: ~2.3.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    rollup: dist/bin/rollup
+  checksum: dc5b28538002ed635ea54af4c2ced05c52146322c61dbe0e84f294ee62e4f232a15760fdcef9bbeb742883edf9bf093ace5389bbdd816d18b9f5740555135180
   languageName: node
   linkType: hard
 
@@ -7160,7 +7174,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-vue-demi@latest:
+"vue-demi@npm:^0.12.1":
   version: 0.12.1
   resolution: "vue-demi@npm:0.12.1"
   peerDependencies:
@@ -7221,12 +7235,12 @@ vue-demi@latest:
   version: 0.0.0-use.local
   resolution: "vue2@workspace:examples/vue2"
   dependencies:
-    "@rollup/plugin-alias": ^3.1.9
     "@vue/composition-api": ^1.4.2
     rollup-plugin-livereload: ^2.0.5
     rollup-plugin-serve: ^1.1.0
     rollup-plugin-vue2: "npm:rollup-plugin-vue@^5.1.9"
     vue: ^2.6.0
+    vue-demi: ^0.12.1
     vue-template-compiler: ^2.6.14
   languageName: unknown
   linkType: soft
@@ -7238,7 +7252,7 @@ vue-demi@latest:
     "@vitejs/plugin-vue": ^2.0.0
     vite: ^2.7.2
     vue: ^3.0.0
-    vue-demi: latest
+    vue-demi: ^0.12.1
   languageName: unknown
   linkType: soft
 

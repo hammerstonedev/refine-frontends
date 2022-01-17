@@ -1,6 +1,5 @@
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
-import alias from '@rollup/plugin-alias';
 import vue from 'rollup-plugin-vue2';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
@@ -30,9 +29,6 @@ module.exports = {
     }),
     resolve({
       extensions: ['.js', '.vue'],
-    }),
-    alias({
-      "@": __dirname + '/src'
     }),
     serve({
       host: 'localhost',
