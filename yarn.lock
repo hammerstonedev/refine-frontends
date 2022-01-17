@@ -451,6 +451,7 @@ __metadata:
     jest: ^27.4.5
     postcss: ^8.4.5
     rollup: ^2.61.1
+    rollup-plugin-livereload: ^2.0.5
     rollup-plugin-postcss: ^4.0.2
     rollup-plugin-replace: ^2.2.0
     rollup-plugin-vue: ^6.0.0
