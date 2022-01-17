@@ -1,13 +1,13 @@
 {
   "name": "vue2",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "dev": "vue-demi-switch 2 && rollup --globals \"vue2:vue\" --config rollup.config.js"
+    "dev": "vue-demi-switch 2 && rollup --config rollup.config.js"
   },
   "dependencies": {
     "@vue/composition-api": "^1.4.2",
-    "vue": "^2.6.0",
-    "vue-demi": "latest"
+    "vue": "^2.6.0"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",

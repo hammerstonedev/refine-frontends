@@ -1,6 +1,7 @@
 {
   "name": "vue3",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vue-demi-switch 3 && vite"
   },

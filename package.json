@@ -2,6 +2,9 @@
   "private": true,
   "workspaces": {
     "packages": ["lib", "examples/*"],
-    "nohoist": ["**/vue-template-compiler", "**/vue-template-compiler/**"]
+    "nohoist": [
+      "**/vue", 
+      "**/vue/**"
+    ]
   }
 }
