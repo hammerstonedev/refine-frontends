@@ -2,6 +2,6 @@
   "private": true,
   "workspaces": {
     "packages": ["lib", "examples/*"],
-    "nohoist": ["**/rollup-plugin-vue2", "**/rollup-plugin-vue2/**"]
+    "nohoist": ["**/vue-template-compiler", "**/vue-template-compiler/**"]
   }
 }

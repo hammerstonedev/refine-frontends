@@ -3306,7 +3306,7 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-magic-string@>0.19, magic-string@^0.25.2, magic-string@^0.25.7:
+magic-string@^0.25.2, magic-string@^0.25.7:
   version "0.25.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
   integrity sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==
@@ -4324,16 +4324,6 @@ rollup-plugin-serve@^1.1.0:
     mime ">=2.4.6"
     opener "1"
 
-rollup-plugin-vue2@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-vue2/-/rollup-plugin-vue2-0.8.1.tgz#f42f0e86f1ebb1a2931efefa1b6fab703bf3f901"
-  integrity sha512-cvPM7Jn6SBrevNVryszkB9oRcok0Sa2kbp1rM/mtrQFWwLSaTXQOapdP0RFJlqRB9xgvxBpnFnPLYbp7F7cXgw==
-  dependencies:
-    magic-string ">0.19"
-    rollup-pluginutils "^1.5.2||2"
-    vue-template-compiler "2"
-    vue-template-es2015-compiler "1"
-
 "rollup-plugin-vue2@npm:rollup-plugin-vue@^5.1.9":
   version "5.1.9"
   resolved "https://registry.yarnpkg.com/rollup-plugin-vue/-/rollup-plugin-vue-5.1.9.tgz#8769cfdac5531c2d1970222b7887b883db37b866"
@@ -4358,7 +4348,7 @@ rollup-plugin-vue@^6.0.0:
     hash-sum "^2.0.0"
     rollup-pluginutils "^2.8.2"
 
-rollup-pluginutils@^1.5.2||2, rollup-pluginutils@^2.6.0, rollup-pluginutils@^2.8.2:
+rollup-pluginutils@^2.6.0, rollup-pluginutils@^2.8.2:
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
   integrity sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
@@ -4910,7 +4900,7 @@ vue-runtime-helpers@^1.1.2:
   resolved "https://registry.yarnpkg.com/vue-runtime-helpers/-/vue-runtime-helpers-1.1.2.tgz#446b7b820888ab0c5264d2c3a32468e72e4100f3"
   integrity sha512-pZfGp+PW/IXEOyETE09xQHR1CKkR9HfHZdnMD/FVLUNI+HxYTa82evx5WrF6Kz4s82qtqHvMZ8MZpbk2zT2E1Q==
 
-vue-template-compiler@2, vue-template-compiler@^2.6.14:
+vue-template-compiler@^2.6.14:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.6.14.tgz#a2f0e7d985670d42c9c9ee0d044fed7690f4f763"
   integrity sha512-ODQS1SyMbjKoO1JBJZojSw6FE4qnh9rIpUZn2EUT86FKizx9uH5z6uXiIrm4/Nb/gwxTi/o17ZDEGWAXHvtC7g==
@@ -4918,7 +4908,7 @@ vue-template-compiler@2, vue-template-compiler@^2.6.14:
     de-indent "^1.0.2"
     he "^1.1.0"
 
-vue-template-es2015-compiler@1, vue-template-es2015-compiler@^1.9.0:
+vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
