@@ -15,7 +15,9 @@ module.exports = {
     name: 'App',
   },
   plugins: [
-    vue(),
+    vue({    
+      needMap: false,
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.VUE_ENV': JSON.stringify('browser')
