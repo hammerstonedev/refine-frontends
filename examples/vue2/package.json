@@ -7,6 +7,6 @@
   "dependencies": {
     "vue2": "npm:vue@2",
     "@vue/composition-api": "^1.4.2",
-    "vue-demi": "^0.12.1"
+    "vue-demi": "latest"
   }
 }
