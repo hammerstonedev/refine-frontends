@@ -1,4 +1,7 @@
 {
   "private": true,
-  "workspaces": ["lib", "examples/*"]
+  "workspaces": {
+    "packages": ["lib", "examples/*"],
+    "nohoist": ["**/rollup-plugin-vue2", "**/rollup-plugin-vue2/**"]
+  }
 }

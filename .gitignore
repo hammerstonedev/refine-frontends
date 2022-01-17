@@ -1,8 +1,8 @@
 .DS_Store
 **/node_modules
 lib/dist
-/example/assets
-
+**/example/assets
+**/example/App.js
 # local env files
 .env.local
 .env.*.local

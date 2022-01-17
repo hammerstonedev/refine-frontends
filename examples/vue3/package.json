@@ -2,9 +2,7 @@
   "name": "vue3",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vue-demi-switch 3 && vite"
   },
   "dependencies": {
     "vue": "^3.0.0",

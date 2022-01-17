@@ -2,11 +2,17 @@
   "name": "vue2",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vue-demi-switch 2 vue2 && rollup --config rollup.config.js --file dist/vue2/refine-vue.esm.js"
+    "dev": "vue-demi-switch 2 && rollup --globals \"vue2:vue\" --config rollup.config.js"
   },
   "dependencies": {
-    "vue2": "npm:vue@2",
     "@vue/composition-api": "^1.4.2",
+    "vue": "^2.6.0",
     "vue-demi": "latest"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.9",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-vue2": "^0.8.1"
   }
 }

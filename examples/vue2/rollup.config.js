@@ -7,7 +7,7 @@ import postcss from 'rollup-plugin-postcss';
 import replace from '@rollup/plugin-replace';
 
 module.exports = {
-  input: 'src/main.js',
+  input: 'main.js',
   output: {
     format: 'iife',
     dir: 'example',
