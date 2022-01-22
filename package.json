@@ -1,8 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "lib",
-    "examples/*"
+    "examples/*",
+    "packages/*"
   ],
   "scripts": {
     "dev:vue2": "concurrently \"yarn workspace vue2 dev --watch\" \"yarn workspace @hammerstone/refine-vue build:vue2 --watch\"",
