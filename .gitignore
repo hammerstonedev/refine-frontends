@@ -1,6 +1,5 @@
 .DS_Store
 **/node_modules
-lib/dist
 **/example/App.js
 **/example/App.css
 # local env files
