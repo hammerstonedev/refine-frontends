@@ -61,7 +61,7 @@
               :ref="option.id"
               @mouseenter="actions.highlightOption(option)"
               @mouseleave="actions.highlightOption(null)"
-              @click="selectOption(option.id, actions)"
+              @selected="selectOption(option.id, actions)"
             />
           </selector-listbox>
         </div>

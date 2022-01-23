@@ -7,6 +7,7 @@
     ref="listItem"
     @mouseenter="$emit('mouseenter')"
     @mouseleave="$emit('mouseleave')"
+    @click="$emit('selected')"
     :aria-label="optionDisplay"
     :aria-selected="selected"
   >
