@@ -4,7 +4,7 @@ import {
   Conditions,
   CriterionBlueprintItem,
   GroupedBlueprint,
-} from "../../../types";
+} from "refine-types";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
 

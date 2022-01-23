@@ -1,0 +1,21 @@
+{
+  "name": "refine-fixtures",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "packageManager": "yarn@3.1.1",
+  "scripts": {
+    "build": "tsup src/index.ts --dts",
+    "dev": "tsup src/index.ts --watch --dts"
+  },
+  "devDependencies": {
+    "refine-types": "*",
+    "tsup": "^5.11.11",
+    "typescript": "^4.5.5"
+  }
+}

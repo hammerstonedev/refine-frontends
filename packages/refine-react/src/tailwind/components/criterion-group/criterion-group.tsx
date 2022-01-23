@@ -1,5 +1,5 @@
+import { CriterionBlueprintItem } from "refine-types";
 import { getDefaultCriterion } from "..";
-import { CriterionBlueprintItem, GroupedBlueprint } from "../../../types";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 import {

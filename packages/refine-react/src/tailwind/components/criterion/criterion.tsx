@@ -1,5 +1,4 @@
 import { CriterionContext } from ".";
-import { CriterionBlueprintItem } from "../../../types";
 import { Condition } from "../conditions/condition";
 import { useCondition } from "../conditions/use-condition";
 import { useCriterionGroup } from "../criterion-group/use-criterion-group";

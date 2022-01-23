@@ -1,5 +1,4 @@
-import type { Conditions, Blueprint } from "./types";
-import { groupBlueprintItems, QueryBuilder } from "./tailwind/components";
+import { Conditions, Blueprint } from "refine-types";
 import {
   booleanCondition,
   dateCondition,
@@ -7,7 +6,8 @@ import {
   numericCondition,
   optionCondition,
   textCondition,
-} from "../test/fixtures/conditions";
+} from "refine-fixtures";
+import { groupBlueprintItems, QueryBuilder } from "./tailwind/components";
 import { useState } from "react";
 
 const blueprint: Blueprint = [
