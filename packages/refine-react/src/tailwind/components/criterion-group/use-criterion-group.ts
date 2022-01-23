@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { CriterionBlueprintItem } from "../../../types";
+import { CriterionBlueprintItem } from "refine-types";
 
 export type CriterionGroupContext = {
   index: number;

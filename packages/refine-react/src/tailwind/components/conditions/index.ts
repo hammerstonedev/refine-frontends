@@ -1,4 +1,4 @@
-import type { Condition, CriterionBlueprintItem } from "../../../types";
+import type { Condition, CriterionBlueprintItem } from "refine-types";
 
 export type ConditionComponentName =
   | "BooleanCondition"

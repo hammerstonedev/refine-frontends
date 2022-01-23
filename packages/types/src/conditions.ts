@@ -1,9 +1,6 @@
-import { ConditionComponentName } from "../tailwind/components/conditions";
-import { InputComponentName } from "../tailwind/components/inputs";
-
 export type Condition = {
   id: string;
-  component: ConditionComponentName;
+  component: string;
   display: string;
   meta: {
     clauses: Clause[];
@@ -14,7 +11,7 @@ export type Condition = {
 
 export type Clause = {
   id: string;
-  component?: InputComponentName;
+  component?: string;
   display: string;
   meta: {
     multiple?: boolean;

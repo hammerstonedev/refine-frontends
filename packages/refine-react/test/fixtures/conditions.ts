@@ -1,4 +1,4 @@
-import { Condition } from "../../src/types/conditions";
+import { Condition } from "refine-types";
 
 export const optionCondition: Condition = {
   id: "option",

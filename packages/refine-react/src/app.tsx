@@ -1,4 +1,4 @@
-import type { Conditions, Blueprint } from "./types";
+import { Conditions, Blueprint } from "refine-types";
 import { groupBlueprintItems, QueryBuilder } from "./tailwind/components";
 import {
   booleanCondition,
