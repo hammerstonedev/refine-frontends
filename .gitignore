@@ -1,7 +1,7 @@
 .DS_Store
 **/node_modules
-**/example/App.js
-**/example/App.css
+**/public/App.js
+**/public/App.css
 # local env files
 .env.local
 .env.*.local
