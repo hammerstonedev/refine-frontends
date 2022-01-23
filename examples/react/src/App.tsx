@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { QueryBuilder, groupBlueprintItems } from "@hammerstone/refine-react";
 import { Condition, Blueprint } from "refine-types";
 import {
   booleanCondition,
@@ -7,8 +9,6 @@ import {
   optionCondition,
   textCondition,
 } from "refine-fixtures";
-import { groupBlueprintItems, QueryBuilder } from "./tailwind/components";
-import { useState } from "react";
 
 const blueprint: Blueprint = [
   {

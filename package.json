@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "dev:react": "concurrently \"yarn workspace react dev\" \"yarn workspace @hammerstone/refine-react dev\"",
     "dev:vue2": "concurrently \"yarn workspace vue2 dev --watch\" \"yarn workspace @hammerstone/refine-vue build:vue2 --watch\"",
     "dev:vue3": "yarn workspace vue3 dev"
   },
