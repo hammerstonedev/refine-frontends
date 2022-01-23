@@ -8853,6 +8853,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"refine-fixtures@*, refine-fixtures@workspace:packages/fixtures":
+  version: 0.0.0-use.local
+  resolution: "refine-fixtures@workspace:packages/fixtures"
+  dependencies:
+    refine-types: "*"
+    tsup: ^5.11.11
+    typescript: ^4.5.5
+  languageName: unknown
+  linkType: soft
+
 "refine-react@workspace:packages/refine-react":
   version: 0.0.0-use.local
   resolution: "refine-react@workspace:packages/refine-react"
@@ -8868,6 +8878,7 @@ __metadata:
     jest: ^27.4.7
     react: ^17.0.0
     react-dom: ^17.0.0
+    refine-fixtures: "*"
     refine-types: "*"
     typescript: ^4.3.2
     vite: ^2.6.0

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { booleanCondition } from "refine-fixtures";
 import { QueryBuilder } from "..";
-import { booleanCondition } from "../../../../test/fixtures/conditions";
 
 it("can add criterion groups", () => {
   render(<QueryBuilder blueprint={[]} conditions={[booleanCondition]} />);
