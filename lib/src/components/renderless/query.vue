@@ -32,6 +32,7 @@
    },
    render() {
      const { blueprintStore: blueprint } = this;
+      this.$scopedSlots = this.$scopedSlots || null;
      const defaultSlot = this.$scopedSlots?.default || this.$slots?.default;
 
      if (defaultSlot) {
