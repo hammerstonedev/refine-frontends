@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Blueprint,
-  Conditions,
+  Condition,
   CriterionBlueprintItem,
   GroupedBlueprint,
 } from "refine-types";
@@ -10,7 +10,7 @@ import { QueryBuilderProvider } from "./use-query-builder";
 
 export type QueryBuilderProps = {
   blueprint: Blueprint;
-  conditions: Conditions;
+  conditions: Condition[];
   onChange?: (blueprint: GroupedBlueprint) => void;
 };
 
@@ -38,7 +38,7 @@ export const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
 };
 
 export const getDefaultCriterion = (
-  conditions: Conditions
+  conditions: Condition[]
 ): CriterionBlueprintItem => ({
   type: "criterion",
   depth: 1,

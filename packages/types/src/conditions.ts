@@ -24,5 +24,3 @@ export type Option = {
 };
 
 export type Refinement = {};
-
-export type Conditions = Condition[];

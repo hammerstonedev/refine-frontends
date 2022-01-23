@@ -1533,6 +1533,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hammerstone/refine-react@workspace:packages/refine-react":
+  version: 0.0.0-use.local
+  resolution: "@hammerstone/refine-react@workspace:packages/refine-react"
+  dependencies:
+    "@babel/preset-env": ^7.16.7
+    "@babel/preset-react": ^7.16.7
+    "@babel/preset-typescript": ^7.16.7
+    "@testing-library/react": ^12.1.2
+    "@types/jest": ^27.4.0
+    "@types/react": ^17.0.0
+    jest: ^27.4.7
+    refine-fixtures: "*"
+    refine-types: "*"
+    tsup: ^5.11.11
+    typescript: ^4.5.5
+  peerDependencies:
+    react: ^17.0.2
+  languageName: unknown
+  linkType: soft
+
 "@hammerstone/refine-vue@workspace:packages/refine-vue":
   version: 0.0.0-use.local
   resolution: "@hammerstone/refine-vue@workspace:packages/refine-vue"
@@ -2128,7 +2148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.0":
+"@types/react-dom@npm:^17.0.10":
   version: 17.0.11
   resolution: "@types/react-dom@npm:17.0.11"
   dependencies:
@@ -2137,7 +2157,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.0":
+"@types/react@npm:*, @types/react@npm:^17.0.0, @types/react@npm:^17.0.33":
   version: 17.0.38
   resolution: "@types/react@npm:17.0.38"
   dependencies:
@@ -2187,7 +2207,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^1.0.0":
+"@vitejs/plugin-react@npm:^1.0.7":
   version: 1.1.4
   resolution: "@vitejs/plugin-react@npm:1.1.4"
   dependencies:
@@ -8784,7 +8804,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^17.0.0":
+"react-dom@npm:^17.0.2":
   version: 17.0.2
   resolution: "react-dom@npm:17.0.2"
   dependencies:
@@ -8811,7 +8831,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.0":
+"react@npm:^17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:
@@ -8820,6 +8840,20 @@ __metadata:
   checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
   languageName: node
   linkType: hard
+
+"react@workspace:examples/react":
+  version: 0.0.0-use.local
+  resolution: "react@workspace:examples/react"
+  dependencies:
+    "@types/react": ^17.0.33
+    "@types/react-dom": ^17.0.10
+    "@vitejs/plugin-react": ^1.0.7
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    typescript: ^4.4.4
+    vite: ^2.7.2
+  languageName: unknown
+  linkType: soft
 
 "readable-stream@npm:1.x >=1.1.9":
   version: 1.1.14
@@ -8860,28 +8894,6 @@ __metadata:
     refine-types: "*"
     tsup: ^5.11.11
     typescript: ^4.5.5
-  languageName: unknown
-  linkType: soft
-
-"refine-react@workspace:packages/refine-react":
-  version: 0.0.0-use.local
-  resolution: "refine-react@workspace:packages/refine-react"
-  dependencies:
-    "@babel/preset-env": ^7.16.7
-    "@babel/preset-react": ^7.16.7
-    "@babel/preset-typescript": ^7.16.7
-    "@testing-library/react": ^12.1.2
-    "@types/jest": ^27.4.0
-    "@types/react": ^17.0.0
-    "@types/react-dom": ^17.0.0
-    "@vitejs/plugin-react": ^1.0.0
-    jest: ^27.4.7
-    react: ^17.0.0
-    react-dom: ^17.0.0
-    refine-fixtures: "*"
-    refine-types: "*"
-    typescript: ^4.3.2
-    vite: ^2.6.0
   languageName: unknown
   linkType: soft
 
@@ -10254,7 +10266,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.3.2, typescript@npm:^4.5.5":
+"typescript@npm:^4.4.4, typescript@npm:^4.5.5":
   version: 4.5.5
   resolution: "typescript@npm:4.5.5"
   bin:
@@ -10264,7 +10276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.3.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.4.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>":
   version: 4.5.5
   resolution: "typescript@patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"
   bin:
@@ -10453,35 +10465,6 @@ __metadata:
   version: 1.1.2
   resolution: "vary@npm:1.1.2"
   checksum: ae0123222c6df65b437669d63dfa8c36cee20a504101b2fcd97b8bf76f91259c17f9f2b4d70a1e3c6bbcee7f51b28392833adb6b2770b23b01abec84e369660b
-  languageName: node
-  linkType: hard
-
-"vite@npm:^2.6.0":
-  version: 2.7.13
-  resolution: "vite@npm:2.7.13"
-  dependencies:
-    esbuild: ^0.13.12
-    fsevents: ~2.3.2
-    postcss: ^8.4.5
-    resolve: ^1.20.0
-    rollup: ^2.59.0
-  peerDependencies:
-    less: "*"
-    sass: "*"
-    stylus: "*"
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  peerDependenciesMeta:
-    less:
-      optional: true
-    sass:
-      optional: true
-    stylus:
-      optional: true
-  bin:
-    vite: bin/vite.js
-  checksum: 3d8780754974c5012b768b5394dce15a171e2f9e061f86517a9c934bfff02855439d411c6769efc0a1791f6c511e703e1ade8ac14a8030b0e62408af39eea456
   languageName: node
   linkType: hard
 
