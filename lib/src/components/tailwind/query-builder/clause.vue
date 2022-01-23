@@ -39,6 +39,7 @@ export default {
       required: true,
     },
   },
+  emits: ['switch-clause'],
   methods: {
     switchClause: function ({ selectedOption: nextClause }) {
       this.$emit("switch-clause", nextClause);

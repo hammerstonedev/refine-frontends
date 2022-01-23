@@ -99,6 +99,7 @@ export default {
       default: '',
     },
   },
+  emits: ['select-option', 'deselect-option'],
   computed: {
     selectorId() {
       return this.uid;

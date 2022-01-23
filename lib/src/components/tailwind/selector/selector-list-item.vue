@@ -60,6 +60,7 @@
        default: false,
      },
    },
+   emits: ['selected', 'mouseenter', 'mouseleave'],
    methods: {
      scrollIntoView: function() {
        this.$refs.listItem.scrollIntoView(false);

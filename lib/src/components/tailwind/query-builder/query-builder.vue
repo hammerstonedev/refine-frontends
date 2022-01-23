@@ -79,7 +79,7 @@ export default {
   name: "query-builder",
   model: {
     prop: "blueprint",
-    event: "change",
+    event: "update:blueprint",
   },
   emits: ['update:blueprint'],
   props: {
@@ -103,7 +103,7 @@ export default {
   methods: {
     onChange(newBlueprint) {
       // bubble up the change event.
-      this.$emit("change", newBlueprint);
+      this.$emit("update:blueprint", newBlueprint);
     },
   },
   created() {
