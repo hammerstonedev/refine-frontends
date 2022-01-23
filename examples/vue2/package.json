@@ -10,9 +10,12 @@
     "vue": "^2.6.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
+    "tailwind": "^4.0.0",
     "vue-demi": "^0.12.1",
     "vue-template-compiler": "^2.6.14"
   }
