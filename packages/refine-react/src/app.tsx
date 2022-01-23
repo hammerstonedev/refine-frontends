@@ -1,4 +1,4 @@
-import { Conditions, Blueprint } from "refine-types";
+import { Condition, Blueprint } from "refine-types";
 import {
   booleanCondition,
   dateCondition,
@@ -49,7 +49,7 @@ const blueprint: Blueprint = [
   },
 ];
 
-const conditions: Conditions = [
+const conditions: Condition[] = [
   optionCondition,
   booleanCondition,
   textCondition,

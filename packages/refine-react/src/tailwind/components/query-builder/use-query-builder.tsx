@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Conditions, GroupedBlueprint } from "refine-types";
+import { Condition, GroupedBlueprint } from "refine-types";
 
 export type QueryBuilderContext = {
   groupedBlueprint: GroupedBlueprint;
@@ -7,7 +7,7 @@ export type QueryBuilderContext = {
     (payload: GroupedBlueprint): void;
     (updateFn: (criterion: GroupedBlueprint) => GroupedBlueprint): void;
   };
-  conditions: Conditions;
+  conditions: Condition[];
 };
 
 export const QueryBuilderContext = createContext<QueryBuilderContext | null>(
