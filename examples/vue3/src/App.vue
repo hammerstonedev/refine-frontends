@@ -1,6 +1,6 @@
 <script>
-import { QueryBuilder } from '../../../lib/src/package';
-import "../../../lib/dist/vue2/refine-vue.esm.css";
+import { QueryBuilder } from '../../../packages/refine-vue/src/package';
+import "../../../packages/refine-vue/dist/vue2/refine-vue.esm.css";
 
 const groupedBlueprint = [];
 

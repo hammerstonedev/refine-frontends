@@ -50,9 +50,9 @@
 </template>
 
 <script>
-import { QueryBuilder } from "../../lib/dist/vue2/refine-vue.esm";
+import { QueryBuilder } from "../../packages/refine-vue/dist/vue2/refine-vue.esm";
 import './main.css';
-import "../../lib/dist/vue2/refine-vue.esm.css";
+import "../../packages/refine-vue/dist/vue2/refine-vue.esm.css";
 
 const groupedBlueprint = [];
 
