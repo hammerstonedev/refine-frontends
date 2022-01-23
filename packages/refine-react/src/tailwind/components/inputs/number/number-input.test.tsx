@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { numericCondition } from "refine-fixtures";
 import { QueryBuilder } from "../..";
-import { numericCondition } from "../../../../../test/fixtures/conditions";
 
 it("should render a number input", async () => {
   render(
