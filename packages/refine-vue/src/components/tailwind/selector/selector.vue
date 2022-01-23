@@ -61,7 +61,7 @@
               :ref="option.id"
               @mouseenter="actions.highlightOption(option)"
               @mouseleave="actions.highlightOption(null)"
-              @click="selectOption(option.id, actions)"
+              @selected="selectOption(option.id, actions)"
             />
           </selector-listbox>
         </div>
@@ -99,6 +99,7 @@ export default {
       default: '',
     },
   },
+  emits: ['select-option', 'deselect-option'],
   computed: {
     selectorId() {
       return this.uid;

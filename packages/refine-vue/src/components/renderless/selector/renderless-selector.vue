@@ -1,6 +1,7 @@
 <script>
 import { reactive, nextTick } from "vue-demi";
 import SelectorStore from "../../../stores/selector";
+import { isVue2 } from 'vue-demi';
 
 export default {
   name: "renderless-selector",
@@ -11,6 +12,7 @@ export default {
       highlightedOption: null,
     };
   },
+  emits: ['select-option', 'deselect-option'],
   provide() {
     return {
       selector: this.selector,
@@ -135,7 +137,13 @@ export default {
     },
   },
   render() {
-    const defaultSlot = this.$scopedSlots?.default || this.$slots?.default;
+    // This gets around a vue3 warning about scopedSlots being
+     // referenced but not defined. Vue3 uses $slots and vue2 uses
+     // $scopedSlots so this code allows us to work with both versions
+    let defaultSlot = this.$slots?.default;
+    if (isVue2) {
+      defaultSlot = this.$scopedSlots?.default
+    }     
 
     if (defaultSlot) {
       return defaultSlot({
