@@ -1,10 +1,11 @@
 <template>
-  <date-picker
-    v-model="time"
+  <component :is="DatePicker"
+    v-model:value="time"
     value-type="YYYY-MM-DD"
     :format="format"
     v-bind="$attrs"
     @input="handleInput"
+    @change="handleInput"
     @input-error="handleInputError"
     :input-class="hasError ? inputClass + errorClass : inputClass"
   >
@@ -37,14 +38,12 @@
         />
       </svg>
     </template>
-  </date-picker>
+  </component>
 </template>
 
 <script>
-import DatePicker from "vue2-datepicker";
-
 export default {
-  components: { DatePicker },
+  inject: ['DatePicker'],
   props: {
     date: {
       type: String,
@@ -73,7 +72,8 @@ export default {
     handleInputError: function () {
       this.hasError = true;
     },
-    handleInput: function () {
+    handleInput: function (...args) {
+      console.log(args);
       this.hasError = false;
       this.$emit("input", { date: this.time });
     },

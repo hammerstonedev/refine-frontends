@@ -6,7 +6,8 @@
     "dev": "vue-demi-switch 3 && vite"
   },
   "dependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-datepicker-next": "^1.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",

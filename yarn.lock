@@ -2583,6 +2583,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-format-parse@npm:^0.2.7":
+  version: 0.2.7
+  resolution: "date-format-parse@npm:0.2.7"
+  checksum: 1d83c5614bec21538cf0ef852e063ed78632bf8a13128f0d9178f5f75bfe2b7bfc11cf18472bacd87087125233aca3f566e277666aea46221d8af54749de78a6
+  languageName: node
+  linkType: hard
+
 "de-indent@npm:^1.0.2":
   version: 1.0.2
   resolution: "de-indent@npm:1.0.2"
@@ -8563,6 +8570,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vue-datepicker-next@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "vue-datepicker-next@npm:1.0.2"
+  dependencies:
+    date-format-parse: ^0.2.7
+    vue: ^3.0.0
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: f4d11643c9d03fcb80129ae11078dc21217547d94ac0844749ce38fadb1dbf30312bffbe6c554f94590031b7655c21fcc0a1e6eafaf1f4614c87ad3ed81aaa81
+  languageName: node
+  linkType: hard
+
 "vue-demi@npm:^0.12.1":
   version: 0.12.1
   resolution: "vue-demi@npm:0.12.1"
@@ -8620,6 +8639,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vue2-datepicker@npm:^3.10.4":
+  version: 3.10.4
+  resolution: "vue2-datepicker@npm:3.10.4"
+  dependencies:
+    date-format-parse: ^0.2.7
+  peerDependencies:
+    vue: ^2.5.0
+  checksum: 4de1a7dfa23347eb088db1ceb761f7b3f5d8f5407a9c967c96c1315c4729ec3d395c8685215c25953c8070e752704534048cf0f74fc4454d83b299ea136e0c70
+  languageName: node
+  linkType: hard
+
 "vue2@workspace:examples/vue2":
   version: 0.0.0-use.local
   resolution: "vue2@workspace:examples/vue2"
@@ -8634,6 +8664,7 @@ __metadata:
     vue: ^2.6.0
     vue-demi: ^0.12.1
     vue-template-compiler: ^2.6.14
+    vue2-datepicker: ^3.10.4
   languageName: unknown
   linkType: soft
 
@@ -8647,6 +8678,7 @@ __metadata:
     tailwind: ^4.0.0
     vite: ^2.7.2
     vue: ^3.0.0
+    vue-datepicker-next: ^1.0.2
     vue-demi: ^0.12.1
   languageName: unknown
   linkType: soft
