@@ -1,5 +1,5 @@
 <template>
-  <component :is="DatePicker"
+  <date-picker
     v-model:value="time"
     value-type="YYYY-MM-DD"
     :format="format"
@@ -38,12 +38,11 @@
         />
       </svg>
     </template>
-  </component>
+  </date-picker>
 </template>
 
 <script>
 export default {
-  inject: ['DatePicker'],
   props: {
     date: {
       type: String,
@@ -72,8 +71,7 @@ export default {
     handleInputError: function () {
       this.hasError = true;
     },
-    handleInput: function (...args) {
-      console.log(args);
+    handleInput: function () {
       this.hasError = false;
       this.$emit("input", { date: this.time });
     },
