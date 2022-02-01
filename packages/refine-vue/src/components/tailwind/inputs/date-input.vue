@@ -1,6 +1,6 @@
 <template>
-  <div @input="handleInput">
-    <date-picker :date="date1" v-bind="$attrs" />
+  <div>
+    <date-picker @input="handleInput" :date="date1" v-bind="$attrs" />
   </div>
 </template>
 
