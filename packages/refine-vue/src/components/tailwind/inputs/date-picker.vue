@@ -1,5 +1,5 @@
 <template>
-  <date-picker
+  <refine-date-picker
     v-model:value="time"
     value-type="YYYY-MM-DD"
     :format="format"
@@ -38,7 +38,7 @@
         />
       </svg>
     </template>
-  </date-picker>
+  </refine-date-picker>
 </template>
 
 <script>
