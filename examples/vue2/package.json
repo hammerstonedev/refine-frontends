@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "@vue/composition-api": "^1.4.2",
-    "vue": "^2.6.0"
+    "vue": "^2.6.0",
+    "vue2-datepicker": "^3.10.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

@@ -9,7 +9,7 @@ module.exports = {
   input: 'main.js',
   output: {
     format: 'iife',
-    dir: 'example',
+    dir: 'public',
     entryFileNames: 'App.js',
     sourcemap: 'inline',
     name: 'App',
@@ -35,7 +35,7 @@ module.exports = {
     serve({
       host: 'localhost',
       port: 8080,
-      contentBase: ['./example'],
+      contentBase: ['./public'],
     }),
     livereload({
         exts: ['html', 'js', 'css', 'vue'],

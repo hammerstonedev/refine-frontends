@@ -1,10 +1,11 @@
 <template>
-  <date-picker
-    v-model="time"
+  <refine-date-picker
+    v-model:value="time"
     value-type="YYYY-MM-DD"
     :format="format"
     v-bind="$attrs"
     @input="handleInput"
+    @change="handleInput"
     @input-error="handleInputError"
     :input-class="hasError ? inputClass + errorClass : inputClass"
   >
@@ -37,14 +38,11 @@
         />
       </svg>
     </template>
-  </date-picker>
+  </refine-date-picker>
 </template>
 
 <script>
-import DatePicker from "vue2-datepicker";
-
 export default {
-  components: { DatePicker },
   props: {
     date: {
       type: String,
