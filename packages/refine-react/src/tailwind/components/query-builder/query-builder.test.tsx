@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { booleanCondition } from "refine-fixtures";
+import { booleanCondition } from "refine-core/fixtures";
 import { QueryBuilder } from "..";
 
 it("can add criterion groups", () => {

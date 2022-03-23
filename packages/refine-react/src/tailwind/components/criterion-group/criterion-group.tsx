@@ -1,4 +1,4 @@
-import { CriterionBlueprintItem } from "refine-types";
+import { CriterionBlueprintItem } from "refine-core/types";
 import { getDefaultCriterion } from "..";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";

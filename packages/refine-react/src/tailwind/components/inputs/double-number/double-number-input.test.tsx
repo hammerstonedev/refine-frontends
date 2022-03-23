@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { numericCondition } from "refine-fixtures";
+import { numericCondition } from "refine-core/fixtures";
 import { QueryBuilder } from "../..";
 
 it("should render two number inputs", async () => {

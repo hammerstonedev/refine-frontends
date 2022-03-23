@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Option } from "refine-types";
+import { Option } from "refine-core/types";
 
 export type InputContext<Value = any> = {
   display: string;

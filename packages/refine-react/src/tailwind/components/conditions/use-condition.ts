@@ -1,4 +1,4 @@
-import { Condition } from "refine-types";
+import { Condition } from "refine-core/types";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 
 export const useCondition = (id: Condition["id"]) => {
