@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { CriterionBlueprintItem } from "refine-types";
+import { CriterionBlueprintItem } from "refine-core/types";
 
 export type CriterionContext = CriterionBlueprintItem & {
   update: (

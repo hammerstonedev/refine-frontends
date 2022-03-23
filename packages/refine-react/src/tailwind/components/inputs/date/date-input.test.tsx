@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { dateCondition } from "refine-fixtures";
+import { dateCondition } from "refine-core/fixtures";
 import { QueryBuilder } from "../..";
 
 it("should render a date input", async () => {

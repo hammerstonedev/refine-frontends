@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { optionCondition } from "refine-fixtures";
+import { optionCondition } from "refine-core/fixtures";
 import { QueryBuilder } from "../..";
 
 it("should render a select element", async () => {

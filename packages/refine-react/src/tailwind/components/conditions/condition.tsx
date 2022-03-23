@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import type {
   Condition as ConditionType,
   CriterionBlueprintItem,
-} from "refine-types";
+} from "refine-core/types";
 import { useCriterion } from "../criterion";
 import inputComponents from "../inputs";
 import { InputProvider, valueToArray } from "../inputs/use-input";

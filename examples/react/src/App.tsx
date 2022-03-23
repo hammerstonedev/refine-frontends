@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { QueryBuilder, groupBlueprintItems } from "@hammerstone/refine-react";
-import { Condition, Blueprint } from "refine-types";
+import type { Condition, Blueprint } from "refine-core/types"; // move to @hammerstone/refine-react
 import {
   booleanCondition,
   dateCondition,
@@ -8,7 +8,7 @@ import {
   numericCondition,
   optionCondition,
   textCondition,
-} from "refine-fixtures";
+} from "refine-core/fixtures";
 
 const blueprint: Blueprint = [
   {

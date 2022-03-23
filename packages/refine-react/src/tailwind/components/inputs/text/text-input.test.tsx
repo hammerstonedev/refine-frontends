@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { textCondition } from "refine-fixtures";
+import { textCondition } from "refine-core/fixtures";
 import { QueryBuilder } from "../..";
 
 it("should render a text input", async () => {

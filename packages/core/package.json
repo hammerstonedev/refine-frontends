@@ -1,0 +1,45 @@
+{
+  "name": "refine-core",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./fixtures": {
+      "require": "./dist/fixtures/index.cjs",
+      "import": "./dist/fixtures/index.mjs"
+    },
+    "./types": {
+      "require": "./dist/types/index.cjs",
+      "import": "./dist/types/index.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "fixtures": [
+        "dist/fixtures/index.d.ts"
+      ],
+      "types": [
+        "dist/types/index.d.ts"
+      ]
+    }
+  },
+  "packageManager": "yarn@3.1.1",
+  "scripts": {
+    "build": "tsup src/index.ts src/fixtures/index.ts src/types/index.ts --format esm,cjs --dts",
+    "dev": "yarn build --watch"
+  },
+  "devDependencies": {
+    "tsup": "^5.11.11",
+    "typescript": "^4.5.5"
+  }
+}

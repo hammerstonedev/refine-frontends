@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Condition } from "refine-types";
+import type { Condition } from "refine-core/types";
 
 export const useSelectedClause = (condition: Condition, clauseName: string) => {
   const selectedClause = useMemo(
