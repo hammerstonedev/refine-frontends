@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Blueprint,
   Condition,
-  CriterionBlueprintItem,
+  Criterion,
   GroupedBlueprint,
 } from "refine-core/types";
 import { CriterionGroup } from "../criterion-group";
@@ -37,9 +37,7 @@ export const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
   return groupedBlueprint;
 };
 
-export const getDefaultCriterion = (
-  conditions: Condition[]
-): CriterionBlueprintItem => ({
+export const getDefaultCriterion = (conditions: Condition[]): Criterion => ({
   type: "criterion",
   depth: 1,
   condition_id: conditions[0].id,
@@ -62,9 +60,7 @@ export const QueryBuilder = ({
   }, [groupedBlueprint]);
 
   const addGroup = () => {
-    const newCriterionGroup: CriterionBlueprintItem[] = [
-      getDefaultCriterion(conditions),
-    ];
+    const newCriterionGroup: Criterion[] = [getDefaultCriterion(conditions)];
 
     return setGroupedBlueprint((groupedBlueprint) => [
       ...groupedBlueprint,

@@ -1,11 +1,9 @@
 import { createContext, useContext } from "react";
-import { CriterionBlueprintItem } from "refine-core/types";
+import { Criterion } from "refine-core/types";
 
-export type CriterionContext = CriterionBlueprintItem & {
+export type CriterionContext = Criterion & {
   update: (
-    payloadOrUpdateFn:
-      | CriterionBlueprintItem
-      | ((payload: CriterionBlueprintItem) => CriterionBlueprintItem)
+    payloadOrUpdateFn: Criterion | ((payload: Criterion) => Criterion)
   ) => void;
   remove: () => void;
 };

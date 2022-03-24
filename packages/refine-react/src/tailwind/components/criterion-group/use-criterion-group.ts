@@ -1,24 +1,17 @@
 import { createContext, useContext } from "react";
-import { CriterionBlueprintItem } from "refine-core/types";
+import { Criterion } from "refine-core/types";
 
 export type CriterionGroupContext = {
   index: number;
-  criteria: CriterionBlueprintItem[];
+  criteria: Criterion[];
   modify: {
-    (payload: CriterionBlueprintItem[] | null): void;
-    (
-      updateFn: (
-        criteria: CriterionBlueprintItem[]
-      ) => CriterionBlueprintItem[] | null
-    ): void;
+    (payload: Criterion[] | null): void;
+    (updateFn: (criteria: Criterion[]) => Criterion[] | null): void;
   };
-  addCriterion: (payload: CriterionBlueprintItem) => void;
+  addCriterion: (payload: Criterion) => void;
   updateCriterion: {
-    (index: number, payload: CriterionBlueprintItem): void;
-    (
-      index: number,
-      updateFn: (criterion: CriterionBlueprintItem) => CriterionBlueprintItem
-    ): void;
+    (index: number, payload: Criterion): void;
+    (index: number, updateFn: (criterion: Criterion) => Criterion): void;
   };
   removeCriterion: (index: number) => void;
 };

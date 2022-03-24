@@ -19,27 +19,25 @@ interface BaseBlueprintItem {
   type: string;
 }
 
-export interface CriterionBlueprintItem extends BaseBlueprintItem {
+export interface Criterion extends BaseBlueprintItem {
   type: "criterion";
   condition_id: string;
   input: CriterionInput;
 }
 
-export interface ConjunctionBlueprintItem extends BaseBlueprintItem {
+export interface Conjunction extends BaseBlueprintItem {
   type: "conjunction";
   word: "and" | "or";
 }
 
-export type BlueprintItem = CriterionBlueprintItem | ConjunctionBlueprintItem;
+export type BlueprintItem = Criterion | Conjunction;
 
 export type Blueprint = BlueprintItem[];
 
-export type GroupedBlueprint = CriterionBlueprintItem[][];
+export type GroupedBlueprint = Criterion[][];
 
-export const isCriterionBlueprintItem = (
-  value: unknown
-): value is CriterionBlueprintItem => (value as any)?.type === "criterion";
+export const isCriterion = (value: unknown): value is Criterion =>
+  (value as any)?.type === "criterion";
 
-export const isConjunctionBlueprintItem = (
-  value: unknown
-): value is ConjunctionBlueprintItem => (value as any)?.type === "conjunction";
+export const isConjunction = (value: unknown): value is Conjunction =>
+  (value as any)?.type === "conjunction";

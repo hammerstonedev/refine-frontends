@@ -1,11 +1,11 @@
 import type {
   Blueprint,
   Condition,
-  ConjunctionBlueprintItem,
-  CriterionBlueprintItem,
+  Conjunction,
+  Criterion,
   Refinement,
 } from "types";
-import { isConjunctionBlueprintItem, isCriterionBlueprintItem } from "types";
+import { isConjunction, isCriterion } from "types";
 
 let uid = 0;
 const getNextUid = function () {
@@ -13,7 +13,7 @@ const getNextUid = function () {
 };
 
 const criterion = (
-  id: CriterionBlueprintItem["condition_id"],
+  id: Criterion["condition_id"],
   depth: number,
   meta?: Condition["meta"],
   refinements?: Refinement[]
@@ -60,12 +60,12 @@ const and = function (
   };
 };
 
-type InternalCriterion = CriterionBlueprintItem & {
-  id: CriterionBlueprintItem["condition_id"];
+type InternalCriterion = Criterion & {
+  id: Criterion["condition_id"];
   uid: number;
 };
 
-type InternalConjunction = ConjunctionBlueprintItem & {
+type InternalConjunction = Conjunction & {
   id: undefined;
   uid: number;
 };
@@ -102,7 +102,7 @@ export class BlueprintStore {
 
   public mapBlueprint(blueprint: Blueprint): InternalBlueprint {
     return blueprint.map((item) => {
-      if (isCriterionBlueprintItem(item)) {
+      if (isCriterion(item)) {
         return {
           ...item,
           id: item.condition_id,
@@ -135,7 +135,7 @@ export class BlueprintStore {
     groupedBlueprint.push([]);
 
     this.blueprint.forEach((piece, index) => {
-      if (isConjunctionBlueprintItem(piece)) {
+      if (isConjunction(piece)) {
         if (piece.word === "or") {
           groupedBlueprint.push([]);
         }
@@ -193,9 +193,8 @@ export class BlueprintStore {
     const previous = blueprint[position - 1];
     const next = blueprint[position + 1];
 
-    const nextIsOr = isConjunctionBlueprintItem(next) && next.word === "or";
-    const previousIsOr =
-      isConjunctionBlueprintItem(previous) && previous.word === "or";
+    const nextIsOr = isConjunction(next) && next.word === "or";
+    const previousIsOr = isConjunction(previous) && previous.word === "or";
 
     const nextIsRightParen = nextIsOr || !next;
     const previousIsLeftParen = previousIsOr || !previous;

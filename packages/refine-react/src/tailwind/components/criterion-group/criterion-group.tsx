@@ -1,4 +1,4 @@
-import { CriterionBlueprintItem } from "refine-core/types";
+import { Criterion } from "refine-core/types";
 import { getDefaultCriterion } from "..";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
@@ -9,7 +9,7 @@ import {
 
 type CriterionGroupProps = {
   index: number;
-  criteria: CriterionBlueprintItem[];
+  criteria: Criterion[];
 };
 
 export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
@@ -27,7 +27,7 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
 
           return criteria;
         })
-        .filter((value): value is CriterionBlueprintItem[] => value !== null)
+        .filter((value): value is Criterion[] => value !== null)
     );
   };
 

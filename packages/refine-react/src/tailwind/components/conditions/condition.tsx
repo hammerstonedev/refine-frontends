@@ -1,8 +1,5 @@
 import { useEffect, useMemo } from "react";
-import type {
-  Condition as ConditionType,
-  CriterionBlueprintItem,
-} from "refine-core/types";
+import type { Condition as ConditionType, Criterion } from "refine-core/types";
 import { useCriterion } from "../criterion";
 import inputComponents from "../inputs";
 import { InputProvider, valueToArray } from "../inputs/use-input";
@@ -87,10 +84,9 @@ export const Condition = ({ condition }: ConditionProps) => {
           (clause) => clause.id === criterion.input.clause
         );
 
-      const input: CriterionBlueprintItem["input"] =
-        selectedClauseIsValidForTargetCondition
-          ? criterion.input
-          : { clause: targetCondition.meta.clauses[0].id };
+      const input: Criterion["input"] = selectedClauseIsValidForTargetCondition
+        ? criterion.input
+        : { clause: targetCondition.meta.clauses[0].id };
 
       return { ...criterion, condition_id: targetCondition.id, input };
     });
