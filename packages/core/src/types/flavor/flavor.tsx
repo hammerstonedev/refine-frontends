@@ -8,7 +8,7 @@ import type {
 
 export type RefineRuntime = "vue" | "react";
 
-export type RefineOverrides<Runtime extends RefineRuntime> = {
+export type RefineFlavor<Runtime extends RefineRuntime> = {
   group: ClassOrClassName<Runtime> & {
     component: RefineComponent<"group", Runtime>;
 
@@ -86,14 +86,14 @@ export type RefineOverrides<Runtime extends RefineRuntime> = {
   };
 };
 
-export type AllVueRefineOverrides = RefineOverrides<"vue">;
-export type VueRefineOverrides = DeepPartial<AllVueRefineOverrides>;
+export type AllVueRefineFlavor = RefineFlavor<"vue">;
+export type VueRefineFlavor = DeepPartial<AllVueRefineFlavor>;
 
-export type AllReactRefineOverrides = RefineOverrides<"react">;
-export type ReactRefineOverrides = DeepPartial<AllReactRefineOverrides>;
+export type AllReactRefineFlavor = RefineFlavor<"react">;
+export type ReactRefineFlavor = DeepPartial<AllReactRefineFlavor>;
 
 export type RefineComponentName = ExtractComponentNames<
-  RefineOverrides<RefineRuntime>
+  RefineFlavor<RefineRuntime>
 >;
 
 export type RefineComponent<
