@@ -69,6 +69,23 @@ const App = () => {
         blueprint={blueprint}
         conditions={conditions}
         onChange={(groupedBlueprint) => setDebugBlueprint(groupedBlueprint)}
+        overrides={{
+          group: {
+            className: "group",
+            addCriterionButton: {
+              className: "add-critetion-button",
+              icon: {
+                component: (props) => <span>🚀</span>,
+              },
+            },
+          },
+          inputs: {
+            date: {
+              className: "date-input",
+              component: (props) => <span>📅</span>,
+            },
+          },
+        }}
       />
       <pre className="text-xs">{JSON.stringify(debugBlueprint, null, 2)}</pre>
     </div>
