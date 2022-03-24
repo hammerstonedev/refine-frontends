@@ -91,7 +91,6 @@ export class BlueprintStore {
     this.conditions = conditions;
 
     this.blueprint = this.mapBlueprint(initialBlueprint);
-    console.log(JSON.stringify(this.groupedBlueprint()));
 
     this.blueprintChanged = () => {
       // console.log(JSON.parse(JSON.stringify(this.blueprint)));
