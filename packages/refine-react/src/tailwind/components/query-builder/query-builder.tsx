@@ -4,7 +4,7 @@ import {
   Condition,
   CriterionBlueprintItem,
   GroupedBlueprint,
-  ReactRefineOverrides,
+  ReactRefineFlavor,
 } from "refine-core/types";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
@@ -13,7 +13,7 @@ export type QueryBuilderProps = {
   blueprint: Blueprint;
   conditions: Condition[];
   onChange?: (blueprint: GroupedBlueprint) => void;
-  overrides?: ReactRefineOverrides;
+  flavor?: ReactRefineFlavor;
 };
 
 export const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
@@ -52,7 +52,7 @@ export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
   onChange,
-  overrides,
+  flavor,
 }: QueryBuilderProps) => {
   const [groupedBlueprint, setGroupedBlueprint] = useState(() =>
     groupBlueprintItems(initialBlueprint)

@@ -69,7 +69,7 @@ const App = () => {
         blueprint={blueprint}
         conditions={conditions}
         onChange={(groupedBlueprint) => setDebugBlueprint(groupedBlueprint)}
-        overrides={{
+        flavor={{
           group: {
             className: "group",
             addCriterionButton: {
