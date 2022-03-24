@@ -86,11 +86,11 @@ export type RefineFlavor<Runtime extends RefineRuntime> = {
   };
 };
 
-export type AllVueRefineFlavor = RefineFlavor<"vue">;
-export type VueRefineFlavor = DeepPartial<AllVueRefineFlavor>;
+export type VueRefineFlavor = RefineFlavor<"vue">;
+export type PartialVueRefineFlavor = DeepPartial<AllVueRefineFlavor>;
 
-export type AllReactRefineFlavor = RefineFlavor<"react">;
-export type ReactRefineFlavor = DeepPartial<AllReactRefineFlavor>;
+export type ReactRefineFlavor = RefineFlavor<"react">;
+export type PartialReactRefineFlavor = DeepPartial<AllReactRefineFlavor>;
 
 export type RefineComponentName = ExtractComponentNames<
   RefineFlavor<RefineRuntime>
