@@ -1,4 +1,4 @@
-import type { RefineComponent } from ".";
+import type { RefineComponent, RefineRuntime } from ".";
 
 /**
  * Recurses through the RefineOverrides type and extracts all component names.
@@ -25,3 +25,13 @@ export type DeepPartial<Object extends object> = {
       : DeepPartial<Object[Key]>
     : Object[Key];
 };
+
+/**
+ * Adds `class: string` for Vue and `className: string` for React.
+ */
+export type ClassOrClassName<Runtime extends RefineRuntime> =
+  Runtime extends "vue"
+    ? { class: string }
+    : Runtime extends "react"
+    ? { className: string }
+    : never;

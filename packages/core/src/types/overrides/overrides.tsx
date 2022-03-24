@@ -1,4 +1,5 @@
 import type {
+  ClassOrClassName,
   DeepPartial,
   ExtractComponentNames,
   RefineReactComponent,
@@ -6,28 +7,6 @@ import type {
 } from ".";
 
 export type RefineRuntime = "vue" | "react";
-
-export type RefineComponentName = ExtractComponentNames<
-  RefineOverrides<RefineRuntime>
->;
-
-export type RefineComponent<
-  Name extends RefineComponentName,
-  Runtime extends RefineRuntime
-> = Runtime extends "vue"
-  ? RefineVueComponent<Name>
-  : Runtime extends "react"
-  ? RefineReactComponent<Name>
-  : never;
-
-/**
- * Adds `class: string` for Vue and `className: string` for React.
- */
-type ClassOrClassName<Runtime extends RefineRuntime> = Runtime extends "vue"
-  ? { class: string }
-  : Runtime extends "react"
-  ? { className: string }
-  : never;
 
 export type RefineOverrides<Runtime extends RefineRuntime> = {
   group: ClassOrClassName<Runtime> & {
@@ -112,3 +91,16 @@ export type VueRefineOverrides = DeepPartial<AllVueRefineOverrides>;
 
 export type AllReactRefineOverrides = RefineOverrides<"react">;
 export type ReactRefineOverrides = DeepPartial<AllReactRefineOverrides>;
+
+export type RefineComponentName = ExtractComponentNames<
+  RefineOverrides<RefineRuntime>
+>;
+
+export type RefineComponent<
+  Name extends RefineComponentName,
+  Runtime extends RefineRuntime
+> = Runtime extends "vue"
+  ? RefineVueComponent<Name>
+  : Runtime extends "react"
+  ? RefineReactComponent<Name>
+  : never;
