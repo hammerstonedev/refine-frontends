@@ -1,13 +1,28 @@
+import type {
+  Blueprint,
+  Condition,
+  ConjunctionBlueprintItem,
+  CriterionBlueprintItem,
+  Refinement,
+} from "types";
+import { isConjunctionBlueprintItem, isCriterionBlueprintItem } from "types";
+
 let uid = 0;
 const getNextUid = function () {
   return uid++;
 };
 
-const criterion = (id, depth, meta, refinements) => {
+const criterion = (
+  id: CriterionBlueprintItem["condition_id"],
+  depth: number,
+  meta?: Condition["meta"],
+  refinements?: Refinement[]
+): InternalCriterion => {
   const uid = getNextUid();
   const [firstRefinement] = refinements || [];
 
-  const condition = {
+  return {
+    id,
     condition_id: id,
     depth,
     type: "criterion",
@@ -21,30 +36,53 @@ const criterion = (id, depth, meta, refinements) => {
     },
     uid,
   };
-
-  return condition;
 };
 
-const or = function (depth) {
-  depth = depth === undefined ? 0 : depth;
+const or = function (depth: number = 0): InternalConjunction & { word: "or" } {
   return {
+    id: undefined,
     depth,
     type: "conjunction",
     word: "or",
+    uid: getNextUid(),
   };
 };
 
-const and = function (depth) {
-  depth = depth === undefined ? 1 : depth;
+const and = function (
+  depth: number = 1
+): InternalConjunction & { word: "and" } {
   return {
+    id: undefined,
     depth,
     type: "conjunction",
     word: "and",
+    uid: getNextUid(),
   };
 };
 
+type InternalCriterion = CriterionBlueprintItem & {
+  id: CriterionBlueprintItem["condition_id"];
+  uid: number;
+};
+
+type InternalConjunction = ConjunctionBlueprintItem & {
+  id: undefined;
+  uid: number;
+};
+
+type InternalBlueprint = Array<InternalCriterion | InternalConjunction>;
+
 export class BlueprintStore {
-  constructor(initialBlueprint, conditions, onChange) {
+  public conditions: Condition[];
+  public blueprint: InternalBlueprint;
+
+  public blueprintChanged: () => void;
+
+  public constructor(
+    initialBlueprint?: Blueprint,
+    conditions?: Condition[],
+    onChange?: (blueprint: Blueprint) => void
+  ) {
     uid = 0;
 
     initialBlueprint = initialBlueprint || [];
@@ -53,6 +91,7 @@ export class BlueprintStore {
     this.conditions = conditions;
 
     this.blueprint = this.mapBlueprint(initialBlueprint);
+    console.log(JSON.stringify(this.groupedBlueprint()));
 
     this.blueprintChanged = () => {
       // console.log(JSON.parse(JSON.stringify(this.blueprint)));
@@ -62,23 +101,31 @@ export class BlueprintStore {
     };
   }
 
-  mapBlueprint(blueprint) {
-    return blueprint.map((condition) => {
+  public mapBlueprint(blueprint: Blueprint): InternalBlueprint {
+    return blueprint.map((item) => {
+      if (isCriterionBlueprintItem(item)) {
+        return {
+          ...item,
+          id: item.condition_id,
+          uid: getNextUid(),
+        };
+      }
+
       return {
-        ...condition,
-        id: condition.condition_id,
+        ...item,
+        id: undefined,
         uid: getNextUid(),
       };
     });
   }
 
-  updateBlueprint(newBlueprint) {
+  public updateBlueprint(newBlueprint: Blueprint) {
     uid = 0;
 
     this.blueprint = this.mapBlueprint(newBlueprint);
   }
 
-  groupedBlueprint() {
+  public groupedBlueprint() {
     if (this.blueprint.length === 0) {
       return [];
     }
@@ -89,22 +136,24 @@ export class BlueprintStore {
     groupedBlueprint.push([]);
 
     this.blueprint.forEach((piece, index) => {
-      if (piece.word === "or") {
-        groupedBlueprint.push([]);
-      } else if (piece.word === "and") {
+      if (isConjunctionBlueprintItem(piece)) {
+        if (piece.word === "or") {
+          groupedBlueprint.push([]);
+        }
+
         return;
-      } else {
-        groupedBlueprint[groupedBlueprint.length - 1].push({
-          ...piece,
-          position: index,
-        });
       }
+
+      groupedBlueprint[groupedBlueprint.length - 1].push({
+        ...piece,
+        position: index,
+      });
     });
 
     return groupedBlueprint;
   }
 
-  indexOfCriterion({ uid }) {
+  public indexOfCriterion({ uid }: Pick<InternalCriterion, "uid">) {
     let index = -1;
     for (let i = 0; i < this.blueprint.length; i++) {
       if (this.blueprint[i].uid === uid) {
@@ -115,14 +164,17 @@ export class BlueprintStore {
     return index;
   }
 
-  replaceCriterion(previousIndex, nextCriterion) {
+  public replaceCriterion(
+    previousIndex: number,
+    nextCriterion: InternalCriterion
+  ) {
     const { meta, id, refinements } = this.findCondition(nextCriterion.id);
     const newCriterion = criterion(id, 1, meta, refinements);
     this.blueprint.splice(previousIndex, 1, newCriterion);
     this.blueprintChanged();
   }
 
-  removeCriterion(position) {
+  public removeCriterion(position: number) {
     /**
        To support 'groups' there is some complicated logic for deleting criterion.
 
@@ -142,8 +194,9 @@ export class BlueprintStore {
     const previous = blueprint[position - 1];
     const next = blueprint[position + 1];
 
-    const nextIsOr = next && next.word === "or";
-    const previousIsOr = previous && previous.word === "or";
+    const nextIsOr = isConjunctionBlueprintItem(next) && next.word === "or";
+    const previousIsOr =
+      isConjunctionBlueprintItem(previous) && previous.word === "or";
 
     const nextIsRightParen = nextIsOr || !next;
     const previousIsLeftParen = previousIsOr || !previous;
@@ -166,12 +219,12 @@ export class BlueprintStore {
     this.blueprintChanged();
   }
 
-  findCriterion(uid) {
+  public findCriterion(uid: number): InternalCriterion | undefined {
     const conditionIndex = this.indexOfCriterion({ uid });
-    return this.blueprint[conditionIndex];
+    return this.blueprint[conditionIndex] as InternalCriterion;
   }
 
-  addGroup() {
+  public addGroup() {
     const { blueprint, conditions } = this;
     const condition = conditions[0];
     const { meta, refinements } = condition;
@@ -184,7 +237,7 @@ export class BlueprintStore {
     this.blueprintChanged();
   }
 
-  addCriterion(newCriterion) {
+  public addCriterion(newCriterion: InternalCriterion) {
     const { id, depth } = newCriterion;
     const { blueprint } = this;
     const generatedCriterion = criterion(id, depth);
@@ -198,7 +251,7 @@ export class BlueprintStore {
     return generatedCriterion;
   }
 
-  insertCriterion(previousPosition) {
+  public insertCriterion(previousPosition: number) {
     const { blueprint, conditions } = this;
     const condition = conditions[0];
     const { meta, refinements } = condition;
@@ -214,10 +267,13 @@ export class BlueprintStore {
     return blueprint[previousPosition + 1];
   }
 
-  findRefinement(conditionId, findId) {
+  public findRefinement(
+    conditionId: InternalCriterion["condition_id"],
+    findId: Refinement["id"]
+  ): Refinement | undefined {
     const { refinements } = this.findCondition(conditionId);
 
-    let result;
+    let result: Refinement | undefined;
     refinements.forEach((refinement) => {
       if (refinement.id === findId) {
         result = refinement;
@@ -226,7 +282,7 @@ export class BlueprintStore {
     return result;
   }
 
-  findCondition(conditionId) {
+  public findCondition(conditionId: InternalCriterion["condition_id"]) {
     let foundCondition = this.conditions[0];
 
     this.conditions.forEach((condition) => {
@@ -238,7 +294,11 @@ export class BlueprintStore {
     return foundCondition;
   }
 
-  switchClause({ uid, id }, clause, refinementId) {
+  public switchClause(
+    { uid, id }: InternalCriterion,
+    clause: string,
+    refinementId: Refinement["id"]
+  ) {
     const { meta } = this.findCondition(id);
     const criterion = this.findCriterion(uid);
 
@@ -251,7 +311,11 @@ export class BlueprintStore {
     }
   }
 
-  switchRefinement({ uid, id }, oldRefinementId, newRefinementId) {
+  public switchRefinement(
+    { uid, id }: InternalCriterion,
+    oldRefinementId: Refinement["id"],
+    newRefinementId: Refinement["id"]
+  ) {
     const nextRefinement = this.findRefinement(id, newRefinementId);
     const criterion = this.findCriterion(uid);
     const input = { ...criterion.input };
@@ -267,7 +331,11 @@ export class BlueprintStore {
     criterion.input = input;
   }
 
-  updateInput({ uid }, updates, refinementId) {
+  public updateInput(
+    { uid }: Pick<InternalCriterion, "uid">,
+    updates: Partial<InternalCriterion["input"]>,
+    refinementId?: Refinement["id"]
+  ) {
     // Do the update iteratively on the input object to preserve it
     // as an observable to anything that references it. Swapping it out
     // means you can't pass it directly to anything you would always have

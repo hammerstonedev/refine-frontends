@@ -1,10 +1,19 @@
+import type { Option } from "types";
+
+type InternalOption = Option & {
+  nextOption: InternalOption | null;
+};
+
 export class SelectorStore {
-  constructor() {
+  public options: InternalOption[];
+  public selectedOptions: InternalOption[];
+
+  public constructor() {
     this.options = [];
     this.selectedOptions = [];
   }
 
-  registerOption(newOption) {
+  public registerOption(newOption: Option) {
     const { id: optionId } = newOption;
     for (var i = 0; i < this.options.length; i++) {
       const currentOption = this.options[i];
@@ -30,7 +39,7 @@ export class SelectorStore {
     this.options.push(currentOption);
   }
 
-  isSelected(optionId) {
+  public isSelected(optionId: InternalOption["id"]) {
     let isSelected = false;
     this.selectedOptions.forEach((option) => {
       if (option.id === optionId) {
@@ -40,7 +49,7 @@ export class SelectorStore {
     return isSelected;
   }
 
-  findOption(optionId) {
+  public findOption(optionId: InternalOption["id"]) {
     for (var i = 0; i < this.options.length; i++) {
       const currentOption = this.options[i];
       if (currentOption.id === optionId) {
@@ -50,7 +59,7 @@ export class SelectorStore {
     return null;
   }
 
-  toggleOption(optionId) {
+  public toggleOption(optionId: InternalOption["id"]) {
     if (this.isSelected(optionId)) {
       return this.deselectOption(optionId);
     } else {
@@ -58,11 +67,11 @@ export class SelectorStore {
     }
   }
 
-  clearSelectedOptions() {
+  public clearSelectedOptions() {
     this.selectedOptions.splice(0, this.selectedOptions.length);
   }
 
-  deselectOption(optionId) {
+  public deselectOption(optionId: InternalOption["id"]) {
     const deselectedOption = this.findOption(optionId);
 
     this.selectedOptions = this.selectedOptions.filter((option) => {

@@ -23,4 +23,11 @@ export type Option = {
   display: string;
 };
 
-export type Refinement = {};
+export type Refinement = {
+  id: string;
+  display: string;
+  meta?: {
+    clauses: Clause[];
+  };
+  refinements: Refinement[];
+};
