@@ -1,0 +1,114 @@
+import type {
+  DeepPartial,
+  ExtractComponentNames,
+  RefineReactComponent,
+  RefineVueComponent,
+} from ".";
+
+export type RefineRuntime = "vue" | "react";
+
+export type RefineComponentName = ExtractComponentNames<
+  RefineOverrides<RefineRuntime>
+>;
+
+export type RefineComponent<
+  Name extends RefineComponentName,
+  Runtime extends RefineRuntime
+> = Runtime extends "vue"
+  ? RefineVueComponent<Name>
+  : Runtime extends "react"
+  ? RefineReactComponent<Name>
+  : never;
+
+/**
+ * Adds `class: string` for Vue and `className: string` for React.
+ */
+type ClassOrClassName<Runtime extends RefineRuntime> = Runtime extends "vue"
+  ? { class: string }
+  : Runtime extends "react"
+  ? { className: string }
+  : never;
+
+export type RefineOverrides<Runtime extends RefineRuntime> = {
+  group: ClassOrClassName<Runtime> & {
+    component: RefineComponent<"group", Runtime>;
+
+    addCriterionButton: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"group.addCriterionButton", Runtime>;
+
+      icon: ClassOrClassName<Runtime> & {
+        component: RefineComponent<"group.addCriterionButton.icon", Runtime>;
+      };
+    };
+  };
+
+  addGroupButton: ClassOrClassName<Runtime> & {
+    component: RefineComponent<"addGroupButton", Runtime>;
+  };
+
+  criterion: ClassOrClassName<Runtime> & {
+    component: RefineComponent<"criterion", Runtime>;
+
+    removeCriterionButton: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"criterion.removeCriterionButton", Runtime>;
+
+      icon: {
+        component: RefineComponent<
+          "criterion.removeCriterionButton.icon",
+          Runtime
+        >;
+      };
+    };
+  };
+
+  condition: ClassOrClassName<Runtime> & {
+    component: RefineComponent<"condition", Runtime>;
+  };
+
+  clause: ClassOrClassName<Runtime> & {
+    component: RefineComponent<"clause", Runtime>;
+  };
+
+  inputs: {
+    date: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.date", Runtime>;
+    };
+
+    doubleDate: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.doubleDate", Runtime>;
+    };
+
+    number: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.number", Runtime>;
+    };
+
+    doubleNumber: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.doubleNumber", Runtime>;
+    };
+
+    option: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.option", Runtime>;
+    };
+
+    relativeDate: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.relativeDate", Runtime>;
+    };
+
+    text: ClassOrClassName<Runtime> & {
+      component: RefineComponent<"inputs.text", Runtime>;
+    };
+  };
+
+  /**
+   * Used in many places within the query builder, e.g. selecting a condition, selecting a clause.
+   */
+  select: ClassOrClassName<Runtime> & {
+    component: RefineComponent<"select", Runtime>;
+  };
+};
+
+export type AllVueRefineOverrides = RefineOverrides<"vue">;
+export type VueRefineOverrides = DeepPartial<AllVueRefineOverrides>;
+
+export type AllReactRefineOverrides = RefineOverrides<"react">;
+export type ReactRefineOverrides = DeepPartial<AllReactRefineOverrides>;
