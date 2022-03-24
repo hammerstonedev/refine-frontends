@@ -73,7 +73,7 @@ const App = () => {
           group: {
             className: "group",
             addCriterionButton: {
-              className: "add-critetion-button",
+              className: "add-criterion-button",
               icon: {
                 component: (props) => <span>🚀</span>,
               },
