@@ -1,7 +1,7 @@
 import type { RefineComponent, RefineRuntime } from ".";
 
 /**
- * Recurses through the RefineOverrides type and extracts all component names.
+ * Recurses through the RefineFlavor type and extracts all component names.
  */
 export type ExtractComponentNames<Structure extends object> = {
   [Key in keyof Structure]: Structure[Key] extends {
