@@ -1568,6 +1568,7 @@ __metadata:
     eslint-plugin-vue: ^7.17.0
     jest: ^27.4.5
     postcss: ^8.4.5
+    refine-core: "*"
     rollup: ^2.61.1
     rollup-plugin-livereload: ^2.0.5
     rollup-plugin-postcss: ^4.0.2

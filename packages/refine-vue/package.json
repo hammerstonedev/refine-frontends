@@ -84,6 +84,7 @@
     "not dead"
   ],
   "dependencies": {
+    "refine-core": "*",
     "vue-demi": "^0.12.1"
   }
 }

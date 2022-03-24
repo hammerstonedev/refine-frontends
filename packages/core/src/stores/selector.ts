@@ -1,4 +1,4 @@
-class Selector {
+export class SelectorStore {
   constructor() {
     this.options = [];
     this.selectedOptions = [];
@@ -9,7 +9,9 @@ class Selector {
     for (var i = 0; i < this.options.length; i++) {
       const currentOption = this.options[i];
       if (currentOption.id === optionId) {
-        throw new Error('An option with id ${optionId} has already been registered for this selector.');
+        throw new Error(
+          "An option with id ${optionId} has already been registered for this selector."
+        );
       }
     }
 
@@ -34,7 +36,7 @@ class Selector {
       if (option.id === optionId) {
         isSelected = true;
       }
-    })
+    });
     return isSelected;
   }
 
@@ -57,7 +59,7 @@ class Selector {
   }
 
   clearSelectedOptions() {
-    this.selectedOptions.splice(0, this.selectedOptions.length)
+    this.selectedOptions.splice(0, this.selectedOptions.length);
   }
 
   deselectOption(optionId) {
@@ -77,11 +79,9 @@ class Selector {
       this.selectedOptions.push(selectedOption);
     }
 
-    return { 
-      selectedOption, 
+    return {
+      selectedOption,
       selectedOptions: this.selectedOptions,
     };
   }
 }
-
-export default Selector;
