@@ -1,1 +1,1 @@
-export default "placeholder";
+export * from "./stores";

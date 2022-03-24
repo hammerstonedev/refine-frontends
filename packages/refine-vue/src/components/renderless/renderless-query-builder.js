@@ -1,4 +1,4 @@
-import Blueprint from '../../stores/blueprint';
+import { BlueprintStore } from 'refine-core';
 import { isVue2 } from 'vue-demi';
 export default {
   name: 'renderless-query-builder',
@@ -32,7 +32,7 @@ export default {
     return {
       conditionsLookup,
       internalBlueprint: null,
-      blueprintStore: new Blueprint(
+      blueprintStore: new BlueprintStore(
         this.blueprint,
         this.conditions,
         (updatedBlueprint) => {

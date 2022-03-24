@@ -1,5 +1,5 @@
 <script>
-  import Blueprint from '../../stores/blueprint';
+  import { BlueprintStore } from 'refine-core';
   import { isVue2 } from 'vue-demi';
   
   export default {
@@ -22,7 +22,7 @@
     },
     data() {
       return {
-        blueprintStore: new Blueprint(
+        blueprintStore: new BlueprintStore(
             this.blueprint,
             this.conditions,
             (updatedBlueprint) => {
