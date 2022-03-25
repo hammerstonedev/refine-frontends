@@ -3,6 +3,7 @@ import type {
   Condition,
   Conjunction,
   Criterion,
+  GroupedBlueprint,
   Refinement,
 } from "types";
 import { isConjunction, isCriterion } from "types";
@@ -73,8 +74,8 @@ type InternalConjunction = Conjunction & {
 type InternalBlueprint = Array<InternalCriterion | InternalConjunction>;
 
 export class BlueprintStore {
-  public conditions: Condition[];
-  public blueprint: InternalBlueprint;
+  private conditions: Condition[];
+  private blueprint: InternalBlueprint;
 
   public blueprintChanged: () => void;
 
@@ -118,6 +119,10 @@ export class BlueprintStore {
     });
   }
 
+  public getBlueprint(): Blueprint {
+    return this.blueprint.map(({ id, uid, ...item }) => item);
+  }
+
   public updateBlueprint(newBlueprint: Blueprint) {
     uid = 0;
 
@@ -129,7 +134,7 @@ export class BlueprintStore {
       return [];
     }
 
-    const groupedBlueprint = [];
+    const groupedBlueprint: GroupedBlueprint = [];
 
     // start with an empty group
     groupedBlueprint.push([]);
@@ -165,7 +170,7 @@ export class BlueprintStore {
 
   public replaceCriterion(
     previousIndex: number,
-    nextCriterion: InternalCriterion
+    nextCriterion: Pick<InternalCriterion, "id">
   ) {
     const { meta, id, refinements } = this.findCondition(nextCriterion.id);
     const newCriterion = criterion(id, 1, meta, refinements);
@@ -235,7 +240,7 @@ export class BlueprintStore {
     this.blueprintChanged();
   }
 
-  public addCriterion(newCriterion: InternalCriterion) {
+  public addCriterion(newCriterion: Pick<InternalCriterion, "id" | "depth">) {
     const { id, depth } = newCriterion;
     const { blueprint } = this;
     const generatedCriterion = criterion(id, depth);

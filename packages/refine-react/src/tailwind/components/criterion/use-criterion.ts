@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import { Criterion } from "refine-core/types";
+import { Criterion, GroupedBlueprint } from "refine-core/types";
 
-export type CriterionContext = Criterion & {
+export type CriterionContext = GroupedBlueprint[number][number] & {
   update: (
     payloadOrUpdateFn: Criterion | ((payload: Criterion) => Criterion)
   ) => void;

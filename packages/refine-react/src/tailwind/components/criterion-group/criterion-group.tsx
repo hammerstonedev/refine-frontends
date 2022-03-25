@@ -1,5 +1,4 @@
-import { Criterion } from "refine-core/types";
-import { getDefaultCriterion } from "..";
+import { Criterion as CriterionType } from "refine-core/types";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 import {
@@ -9,11 +8,13 @@ import {
 
 type CriterionGroupProps = {
   index: number;
-  criteria: Criterion[];
+  criteria: CriterionType[];
 };
 
 export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
-  const { conditions, updateGroupedBlueprint } = useQueryBuilder();
+  const { blueprint, groupedBlueprint, updateGroupedBlueprint } =
+    useQueryBuilder();
+  const group = groupedBlueprint[index];
 
   const modify: CriterionGroupContext["modify"] = (payloadOrUpdateFn) => {
     updateGroupedBlueprint((groupedBlueprint) =>
@@ -27,7 +28,7 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
 
           return criteria;
         })
-        .filter((value): value is Criterion[] => value !== null)
+        .filter((value): value is CriterionType[] => value !== null)
     );
   };
 
@@ -65,10 +66,6 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
       return updatedCriteria;
     });
 
-  const addDefaultCriterion = () => {
-    addCriterion(getDefaultCriterion(conditions));
-  };
-
   return (
     <CriterionGroupProvider
       value={{
@@ -90,7 +87,10 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
         <button
           data-testid="refine-add-criterion"
           type="button"
-          onClick={() => addDefaultCriterion()}
+          onClick={() => {
+            console.log("add criterion");
+            blueprint.insertCriterion(group[group.length - 1].position);
+          }}
           className="background-transparent text-blue-600 text-xs flex items-center py-1 px-3 mt-3"
         >
           <svg

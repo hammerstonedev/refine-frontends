@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
-import { Criterion } from "refine-core/types";
+import { Criterion, GroupedBlueprint } from "refine-core/types";
 
 export type CriterionGroupContext = {
   index: number;
-  criteria: Criterion[];
+  criteria: GroupedBlueprint[number];
   modify: {
     (payload: Criterion[] | null): void;
     (updateFn: (criteria: Criterion[]) => Criterion[] | null): void;
