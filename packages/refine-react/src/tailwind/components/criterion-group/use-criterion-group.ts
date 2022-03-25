@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { InternalCriterionWithPosition } from "refine-core/types";
+import type { InternalCriterionWithPosition } from "refine-core/types/internal";
 
 export type CriterionGroupContext = {
   index: number;

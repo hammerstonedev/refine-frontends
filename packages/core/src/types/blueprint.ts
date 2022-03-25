@@ -34,30 +34,8 @@ export type BlueprintItem = Criterion | Conjunction;
 
 export type Blueprint = BlueprintItem[];
 
-export type GroupedBlueprint = (Criterion & { position: number })[][];
-
 export const isCriterion = (value: unknown): value is Criterion =>
   (value as any)?.type === "criterion";
 
 export const isConjunction = (value: unknown): value is Conjunction =>
   (value as any)?.type === "conjunction";
-
-/**
- * The `BlueprintStore` modifies the some types as below:
- */
-
-export type InternalCriterion = Criterion & {
-  id: Criterion["condition_id"];
-  uid: number;
-};
-
-export type InternalCriterionWithPosition = InternalCriterion & {
-  position: number;
-};
-
-export type InternalConjunction = Conjunction & {
-  id: undefined;
-  uid: number;
-};
-
-export type InternalBlueprint = Array<InternalCriterion | InternalConjunction>;

@@ -1,13 +1,10 @@
-import type {
-  Blueprint,
-  Condition,
-  Criterion,
+import type { Blueprint, Condition, Criterion, Refinement } from "types";
+import {
   GroupedBlueprint,
   InternalBlueprint,
   InternalConjunction,
   InternalCriterion,
-  Refinement,
-} from "types";
+} from "types/internal";
 import { isConjunction, isCriterion } from "types";
 
 let uid = 0;

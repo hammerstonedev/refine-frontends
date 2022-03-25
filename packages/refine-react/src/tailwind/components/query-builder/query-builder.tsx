@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { Blueprint, Condition } from "refine-core/types";
+import type { Blueprint, Condition } from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";

@@ -1,6 +1,6 @@
 import { useState } from "react";
+import type { Condition, Blueprint } from "@hammerstone/refine-react";
 import { QueryBuilder } from "@hammerstone/refine-react";
-import type { Condition, Blueprint } from "refine-core/types"; // move to @hammerstone/refine-react
 import {
   booleanCondition,
   dateCondition,

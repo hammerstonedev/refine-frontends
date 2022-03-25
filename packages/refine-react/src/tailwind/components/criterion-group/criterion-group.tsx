@@ -1,4 +1,4 @@
-import { InternalCriterionWithPosition } from "refine-core/types";
+import type { InternalCriterionWithPosition } from "refine-core/types/internal";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 import { CriterionGroupProvider } from "./use-criterion-group";
