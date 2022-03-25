@@ -1,10 +1,5 @@
-import React, { useEffect, useReducer, useState } from "react";
-import {
-  Blueprint,
-  Condition,
-  Criterion,
-  GroupedBlueprint,
-} from "refine-core/types";
+import React, { useReducer, useState } from "react";
+import { Blueprint, Condition } from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
@@ -40,7 +35,6 @@ export const QueryBuilder = ({
       value={{
         blueprint: blueprint,
         groupedBlueprint: blueprint.groupedBlueprint(),
-        updateGroupedBlueprint: () => {},
         conditions,
       }}
     >

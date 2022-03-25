@@ -1,4 +1,3 @@
-import { CriterionContext } from ".";
 import { Condition } from "../conditions/condition";
 import { useCondition } from "../conditions/use-condition";
 import { useCriterionGroup } from "../criterion-group/use-criterion-group";
@@ -22,12 +21,17 @@ export const Criterion = ({ index }: CriterionProps) => {
 
   const condition = useCondition(criterion.condition_id);
 
-  const update: CriterionContext["update"] = (payloadOrUpdateFn) =>
-    group.updateCriterion(index, payloadOrUpdateFn);
-  const remove: CriterionContext["remove"] = () => group.removeCriterion(index);
-
   return (
-    <CriterionProvider value={{ update, remove, ...criterion }}>
+    <CriterionProvider
+      value={{
+        updateCondition: (conditionId) =>
+          blueprint.replaceCriterion(criterion.position, {
+            id: conditionId,
+          }),
+        updateInput: (input) => blueprint.updateInput(criterion, input),
+        ...criterion,
+      }}
+    >
       <div
         data-testid="refine-criterion"
         className="flex items-center space-x-3"

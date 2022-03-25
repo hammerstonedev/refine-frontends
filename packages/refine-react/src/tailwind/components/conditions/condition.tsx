@@ -11,7 +11,7 @@ export type ConditionProps = {
 };
 
 export const Condition = ({ condition }: ConditionProps) => {
-  const { blueprint, conditions } = useQueryBuilder();
+  const { conditions } = useQueryBuilder();
   const criterion = useCriterion();
   const selectedClause = useSelectedClause(condition, criterion.input.clause);
 
@@ -22,6 +22,7 @@ export const Condition = ({ condition }: ConditionProps) => {
       selectedClause.component &&
       selectedClause.component in inputComponents
     ) {
+      // @ts-expect-error
       return inputComponents[selectedClause.component];
     }
 
@@ -33,11 +34,7 @@ export const Condition = ({ condition }: ConditionProps) => {
       <div>
         <select
           value={condition.id}
-          onChange={(event) => {
-            blueprint.replaceCriterion(criterion.position, {
-              id: event.target.value,
-            });
-          }}
+          onChange={(event) => criterion.updateCondition(event.target.value)}
           className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           {conditions.map((condition) => (
@@ -50,11 +47,11 @@ export const Condition = ({ condition }: ConditionProps) => {
       <div>
         <select
           value={selectedClause.id}
-          onChange={(event) => {
-            blueprint.updateInput(criterion, {
+          onChange={(event) =>
+            criterion.updateInput({
               clause: event.target.value,
-            });
-          }}
+            })
+          }
           className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           {condition.meta.clauses.map((clause) => (
@@ -70,11 +67,7 @@ export const Condition = ({ condition }: ConditionProps) => {
             display: selectedClause.display,
             options: condition.meta.options,
             value: criterion.input.value ?? "",
-            onChange: (value) => {
-              blueprint.updateInput(criterion, {
-                value,
-              });
-            },
+            onChange: (value) => criterion.updateInput({ value }),
             multiple: selectedClause.meta.multiple ?? false,
           }}
         >

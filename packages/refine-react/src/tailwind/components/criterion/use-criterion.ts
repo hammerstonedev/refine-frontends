@@ -2,10 +2,8 @@ import { createContext, useContext } from "react";
 import { Criterion, GroupedBlueprint } from "refine-core/types";
 
 export type CriterionContext = GroupedBlueprint[number][number] & {
-  update: (
-    payloadOrUpdateFn: Criterion | ((payload: Criterion) => Criterion)
-  ) => void;
-  remove: () => void;
+  updateCondition: (conditionId: Criterion["condition_id"]) => void;
+  updateInput: (input: Partial<Criterion["input"]>) => void;
 };
 
 export const CriterionContext = createContext<CriterionContext | null>(null);

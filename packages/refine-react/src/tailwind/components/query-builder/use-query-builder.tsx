@@ -5,10 +5,6 @@ import { Condition, GroupedBlueprint } from "refine-core/types";
 export type QueryBuilderContext = {
   blueprint: BlueprintStore;
   groupedBlueprint: GroupedBlueprint;
-  updateGroupedBlueprint: {
-    (payload: GroupedBlueprint): void;
-    (updateFn: (criterion: GroupedBlueprint) => GroupedBlueprint): void;
-  };
   conditions: Condition[];
 };
 
