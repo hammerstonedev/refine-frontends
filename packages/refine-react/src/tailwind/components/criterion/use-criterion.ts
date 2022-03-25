@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import { Criterion, GroupedBlueprint } from "refine-core/types";
+import { Criterion, InternalCriterionWithPosition } from "refine-core/types";
 
-export type CriterionContext = GroupedBlueprint[number][number] & {
+export type CriterionContext = InternalCriterionWithPosition & {
   updateCondition: (conditionId: Criterion["condition_id"]) => void;
   updateInput: (input: Partial<Criterion["input"]>) => void;
 };

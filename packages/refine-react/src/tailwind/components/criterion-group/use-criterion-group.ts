@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
-import { GroupedBlueprint } from "refine-core/types";
+import { InternalCriterionWithPosition } from "refine-core/types";
 
 export type CriterionGroupContext = {
   index: number;
-  criteria: GroupedBlueprint[number];
+  criteria: InternalCriterionWithPosition[];
 };
 
 export const CriterionGroupContext =

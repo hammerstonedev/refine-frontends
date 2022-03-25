@@ -1,9 +1,11 @@
 import type {
   Blueprint,
   Condition,
-  Conjunction,
   Criterion,
   GroupedBlueprint,
+  InternalBlueprint,
+  InternalConjunction,
+  InternalCriterion,
   Refinement,
 } from "types";
 import { isConjunction, isCriterion } from "types";
@@ -60,18 +62,6 @@ const and = function (
     uid: getNextUid(),
   };
 };
-
-type InternalCriterion = Criterion & {
-  id: Criterion["condition_id"];
-  uid: number;
-};
-
-type InternalConjunction = Conjunction & {
-  id: undefined;
-  uid: number;
-};
-
-type InternalBlueprint = Array<InternalCriterion | InternalConjunction>;
 
 export class BlueprintStore {
   private conditions: Condition[];

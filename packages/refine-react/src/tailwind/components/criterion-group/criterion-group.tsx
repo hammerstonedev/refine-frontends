@@ -1,11 +1,11 @@
-import { GroupedBlueprint } from "refine-core/types";
+import { InternalCriterionWithPosition } from "refine-core/types";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 import { CriterionGroupProvider } from "./use-criterion-group";
 
 export type CriterionGroupProps = {
   index: number;
-  criteria: GroupedBlueprint[number];
+  criteria: InternalCriterionWithPosition[];
 };
 
 export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
