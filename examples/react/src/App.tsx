@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { QueryBuilder, groupBlueprintItems } from "@hammerstone/refine-react";
-import type { Condition, Blueprint } from "refine-core/types"; // move to @hammerstone/refine-react
+import type { Condition, Blueprint } from "@hammerstone/refine-react";
+import { QueryBuilder } from "@hammerstone/refine-react";
 import {
   booleanCondition,
   dateCondition,
@@ -59,16 +59,14 @@ const conditions: Condition[] = [
 ];
 
 const App = () => {
-  const [debugBlueprint, setDebugBlueprint] = useState(() =>
-    groupBlueprintItems(blueprint)
-  );
+  const [debugBlueprint, setDebugBlueprint] = useState(blueprint);
 
   return (
     <div>
       <QueryBuilder
         blueprint={blueprint}
         conditions={conditions}
-        onChange={(groupedBlueprint) => setDebugBlueprint(groupedBlueprint)}
+        onChange={(blueprint) => setDebugBlueprint(blueprint)}
       />
       <pre className="text-xs">{JSON.stringify(debugBlueprint, null, 2)}</pre>
     </div>

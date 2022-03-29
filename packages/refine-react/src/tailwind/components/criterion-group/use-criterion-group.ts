@@ -1,19 +1,9 @@
 import { createContext, useContext } from "react";
-import { Criterion } from "refine-core/types";
+import type { InternalCriterionWithPosition } from "refine-core/types/internal";
 
 export type CriterionGroupContext = {
   index: number;
-  criteria: Criterion[];
-  modify: {
-    (payload: Criterion[] | null): void;
-    (updateFn: (criteria: Criterion[]) => Criterion[] | null): void;
-  };
-  addCriterion: (payload: Criterion) => void;
-  updateCriterion: {
-    (index: number, payload: Criterion): void;
-    (index: number, updateFn: (criterion: Criterion) => Criterion): void;
-  };
-  removeCriterion: (index: number) => void;
+  criteria: InternalCriterionWithPosition[];
 };
 
 export const CriterionGroupContext =

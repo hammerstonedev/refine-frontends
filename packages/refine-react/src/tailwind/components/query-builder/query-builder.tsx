@@ -1,89 +1,51 @@
-import React, { useEffect, useState } from "react";
-import {
-  Blueprint,
-  Condition,
-  Criterion,
-  GroupedBlueprint,
-} from "refine-core/types";
+import React, { useReducer, useState } from "react";
+import type { Blueprint, Condition } from "refine-core/types";
+import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
 
 export type QueryBuilderProps = {
   blueprint: Blueprint;
   conditions: Condition[];
-  onChange?: (blueprint: GroupedBlueprint) => void;
+  onChange?: (blueprint: Blueprint) => void;
 };
 
-export const groupBlueprintItems = (blueprint: Blueprint): GroupedBlueprint => {
-  const groupedBlueprint: GroupedBlueprint = [];
-  let currentGroupIndex = 0;
+const useRerender = () => {
+  const [, rerender] = useReducer(() => null, null);
 
-  for (const item of blueprint) {
-    if (item.type === "conjunction") {
-      if (item.word === "or") {
-        currentGroupIndex++;
-      }
-    }
-
-    if (item.type === "criterion") {
-      if (!Array.isArray(groupedBlueprint[currentGroupIndex])) {
-        groupedBlueprint.push([]);
-      }
-
-      groupedBlueprint[currentGroupIndex].push(item);
-    }
-  }
-
-  return groupedBlueprint;
+  return rerender;
 };
-
-export const getDefaultCriterion = (conditions: Condition[]): Criterion => ({
-  type: "criterion",
-  depth: 1,
-  condition_id: conditions[0].id,
-  input: { clause: conditions[0].meta.clauses[0].id },
-});
 
 export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
   onChange,
 }: QueryBuilderProps) => {
-  const [groupedBlueprint, setGroupedBlueprint] = useState(() =>
-    groupBlueprintItems(initialBlueprint)
+  const rerender = useRerender();
+  const [blueprint] = useState(
+    () =>
+      new BlueprintStore(initialBlueprint, conditions, (blueprint) => {
+        onChange?.(blueprint);
+        rerender();
+      })
   );
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(groupedBlueprint);
-    }
-  }, [groupedBlueprint]);
-
-  const addGroup = () => {
-    const newCriterionGroup: Criterion[] = [getDefaultCriterion(conditions)];
-
-    return setGroupedBlueprint((groupedBlueprint) => [
-      ...groupedBlueprint,
-      newCriterionGroup,
-    ]);
-  };
 
   return (
     <QueryBuilderProvider
       value={{
-        groupedBlueprint,
-        updateGroupedBlueprint: setGroupedBlueprint,
+        blueprint: blueprint,
+        groupedBlueprint: blueprint.groupedBlueprint(),
         conditions,
       }}
     >
       <div data-testid="refine-query-builder">
-        {groupedBlueprint.map((criteria, index) => (
+        {blueprint.groupedBlueprint().map((criteria, index) => (
           <CriterionGroup key={index} criteria={criteria} index={index} />
         ))}
         <button
           data-testid="refine-add-criterion-group"
           type="button"
-          onClick={addGroup}
+          onClick={() => blueprint.addGroup()}
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Add an 'Or'

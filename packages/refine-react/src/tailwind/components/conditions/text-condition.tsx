@@ -3,14 +3,8 @@ import { useSelectedClause } from "./use-selected-clause";
 
 export interface TextConditionProps extends BaseConditionProps {}
 
-export const TextCondition = ({
-  condition,
-  blueprintItem,
-}: TextConditionProps) => {
-  const selectedClause = useSelectedClause(
-    condition,
-    blueprintItem.input.clause
-  );
+export const TextCondition = ({ condition, criterion }: TextConditionProps) => {
+  const selectedClause = useSelectedClause(condition, criterion.input.clause);
 
   const showThirdColumn = !!selectedClause?.component;
 

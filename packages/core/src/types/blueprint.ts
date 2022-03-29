@@ -34,8 +34,6 @@ export type BlueprintItem = Criterion | Conjunction;
 
 export type Blueprint = BlueprintItem[];
 
-export type GroupedBlueprint = Criterion[][];
-
 export const isCriterion = (value: unknown): value is Criterion =>
   (value as any)?.type === "criterion";
 

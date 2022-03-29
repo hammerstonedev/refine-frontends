@@ -1,11 +1,10 @@
 import { createContext, useContext } from "react";
-import { Criterion } from "refine-core/types";
+import type { Criterion } from "refine-core/types";
+import type { InternalCriterionWithPosition } from "refine-core/types/internal";
 
-export type CriterionContext = Criterion & {
-  update: (
-    payloadOrUpdateFn: Criterion | ((payload: Criterion) => Criterion)
-  ) => void;
-  remove: () => void;
+export type CriterionContext = InternalCriterionWithPosition & {
+  updateCondition: (conditionId: Criterion["condition_id"]) => void;
+  updateInput: (input: Partial<Criterion["input"]>) => void;
 };
 
 export const CriterionContext = createContext<CriterionContext | null>(null);
