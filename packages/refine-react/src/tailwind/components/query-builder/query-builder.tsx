@@ -8,6 +8,7 @@ export type QueryBuilderProps = {
   blueprint: Blueprint;
   conditions: Condition[];
   onChange?: (blueprint: Blueprint) => void;
+  errors: Array<{ id: number; message: string }>[];
 };
 
 const useRerender = () => {
@@ -19,6 +20,7 @@ const useRerender = () => {
 export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
+  errors = [],
   onChange,
 }: QueryBuilderProps) => {
   const rerender = useRerender();
@@ -36,6 +38,7 @@ export const QueryBuilder = ({
         blueprint: blueprint,
         groupedBlueprint: blueprint.groupedBlueprint(),
         conditions,
+        errors,
       }}
     >
       <div data-testid="refine-query-builder">

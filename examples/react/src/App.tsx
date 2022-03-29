@@ -66,6 +66,18 @@ const App = () => {
       <QueryBuilder
         blueprint={blueprint}
         conditions={conditions}
+        errors={[
+          [
+            {
+              id: 23434,
+              message: "You messed up big time",
+            },
+            {
+              id: 454534,
+              message: "Good luck with your life",
+            },
+          ],
+        ]}
         onChange={(blueprint) => setDebugBlueprint(blueprint)}
       />
       <pre className="text-xs">{JSON.stringify(debugBlueprint, null, 2)}</pre>
