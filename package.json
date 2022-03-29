@@ -1,96 +1,16 @@
 {
-  "name": "@hammerstone/refine-vue2",
-  "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
-  "keywords": [
-    "hammerstone",
-    "refine",
-    "query builder",
-    "query",
-    "report builder"
+  "private": true,
+  "workspaces": [
+    "examples/*",
+    "packages/*"
   ],
-  "source": "src/package.js",
-  "main": "./dist/refine-vue2.cjs",
-  "module": "./dist/refine-vue2.esm.js",
-  "homepage": "https://hammerstone.dev",
-  "repository": "https://github.com/hammerstonedev/refine-vue2",
-  "access": "public",
-  "files": [
-    "/dist/*",
-    "/src/**/*"
-  ],
-  "version": "0.1.20",
   "scripts": {
-    "test": "jest ./tests",
-    "build": "rollup --config rollup.config.js",
-    "serve": "rollup -w --config rollup.config.dev.js"
+    "dev:react": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-react dev\" \"yarn workspace react dev\"",
+    "dev:vue2": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue2 --watch\" \"yarn workspace vue2 dev --watch\" ",
+    "dev:vue3": "yarn workspace vue3 dev"
   },
-  "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-beta.15",
-    "vue": "^2.6.14",
-    "vue2-datepicker": "^3.9.0"
-  },
+  "packageManager": "yarn@3.1.1",
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/plugin-transform-runtime": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "@rollup/plugin-alias": "^3.1.8",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-node-resolve": "^13.1.1",
-    "@rollup/plugin-replace": "^3.0.0",
-    "@vue/babel-preset-app": "^4.5.15",
-    "@vue/compiler-sfc": "^3.2.26",
-    "@vue/composition-api": "^1.4.2",
-    "@vue/test-utils": "^1.0.3",
-    "@vue/vue2-jest": "^27.0.0-alpha.4",
-    "autoprefixer": "^10.4.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.4.5",
-    "core-js": "^3.6.5",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^7.17.0",
-    "jest": "^27.4.5",
-    "postcss": "^8.4.5",
-    "rollup": "^2.61.1",
-    "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-serve": "^1.1.0",
-    "rollup-plugin-vue2": "^0.8.1",
-    "tailwindcss": "^3.0.7",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.11",
-    "vue2-datepicker": "^3.10.4"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {},
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
-    ]
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "dependencies": {}
+    "concurrently": "^7.0.0"
+  }
 }

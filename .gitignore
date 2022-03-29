@@ -1,8 +1,7 @@
 .DS_Store
-node_modules
-/dist
-/example
-
+**/node_modules
+**/public/App.js
+**/public/App.css
 # local env files
 .env.local
 .env.*.local
@@ -21,3 +20,12 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
