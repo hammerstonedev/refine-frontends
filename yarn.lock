@@ -3870,6 +3870,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:^3.0.11":
+  version: 3.0.11
+  resolution: "csstype@npm:3.0.11"
+  checksum: 95e56abfe9ca219ae065acb4e43f61771a03170eed919127f558dfa168240867aba7629c8d98a201a0dd06d9a5ce82686f0570031c928516c61816adbc7c877f
+  languageName: node
+  linkType: hard
+
 "csstype@npm:^3.0.2":
   version: 3.0.10
   resolution: "csstype@npm:3.0.10"
@@ -8898,6 +8905,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "refine-core@workspace:packages/core"
   dependencies:
+    csstype: ^3.0.11
     tsup: ^5.11.11
     typescript: ^4.5.5
   languageName: unknown
