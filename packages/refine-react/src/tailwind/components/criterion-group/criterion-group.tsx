@@ -31,7 +31,9 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
         {!!errors && (
           <ul className="list-disc list-inside pb-2">
             {errors.map((error) => (
-              <li className="pb-1 px-3 text-red-500">{error.message}</li>
+              <li key={error.id} className="pb-1 px-3 text-red-500">
+                {error.message}
+              </li>
             ))}
           </ul>
         )}

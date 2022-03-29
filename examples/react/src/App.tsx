@@ -66,8 +66,8 @@ const App = () => {
       <QueryBuilder
         blueprint={blueprint}
         conditions={conditions}
-        errors={[
-          [
+        errors={{
+          0: [
             {
               id: 23434,
               message: "You messed up big time",
@@ -77,7 +77,7 @@ const App = () => {
               message: "Good luck with your life",
             },
           ],
-        ]}
+        }}
         flavor={{
           group: {
             className: "group",

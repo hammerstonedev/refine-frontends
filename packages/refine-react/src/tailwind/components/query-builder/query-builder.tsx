@@ -13,7 +13,7 @@ export type QueryBuilderProps = {
   conditions: Condition[];
   flavor?: PartialReactRefineFlavor;
   onChange?: (blueprint: Blueprint) => void;
-  errors: Array<{ id: number; message: string }>[];
+  errors: Record<number, Array<{ id: number; message: string }>>;
 };
 
 const useRerender = () => {
