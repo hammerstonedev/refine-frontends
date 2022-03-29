@@ -1,13 +1,10 @@
 import { createContext, useContext } from "react";
-import { CriterionBlueprintItem } from "refine-core/types";
+import type { Criterion } from "refine-core/types";
+import type { InternalCriterionWithPosition } from "refine-core/types/internal";
 
-export type CriterionContext = CriterionBlueprintItem & {
-  update: (
-    payloadOrUpdateFn:
-      | CriterionBlueprintItem
-      | ((payload: CriterionBlueprintItem) => CriterionBlueprintItem)
-  ) => void;
-  remove: () => void;
+export type CriterionContext = InternalCriterionWithPosition & {
+  updateCondition: (conditionId: Criterion["condition_id"]) => void;
+  updateInput: (input: Partial<Criterion["input"]>) => void;
 };
 
 export const CriterionContext = createContext<CriterionContext | null>(null);

@@ -1568,6 +1568,7 @@ __metadata:
     eslint-plugin-vue: ^7.17.0
     jest: ^27.4.5
     postcss: ^8.4.5
+    refine-core: "*"
     rollup: ^2.61.1
     rollup-plugin-livereload: ^2.0.5
     rollup-plugin-postcss: ^4.0.2
@@ -9258,6 +9259,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rollup@npm:^2.70.1":
+  version: 2.70.1
+  resolution: "rollup@npm:2.70.1"
+  dependencies:
+    fsevents: ~2.3.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    rollup: dist/bin/rollup
+  checksum: 06c62933e6e81a1c8c684d7d576e507081aabdb63cc0c91bca86b7348b66df03b77827068e4990b8b6c738bd3ef66dcc8c7ed7e0ea40b736068e7618f693133e
+  languageName: node
+  linkType: hard
+
 "root-workspace-0b6124@workspace:.":
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
@@ -10595,6 +10610,7 @@ __metadata:
     "@vue/composition-api": ^1.4.2
     autoprefixer: ^10.4.2
     postcss: ^8.4.5
+    rollup: ^2.70.1
     rollup-plugin-livereload: ^2.0.5
     rollup-plugin-serve: ^1.1.0
     rollup-plugin-vue2: "npm:rollup-plugin-vue@^5.1.9"

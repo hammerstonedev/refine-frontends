@@ -1,12 +1,11 @@
 import { createContext, useContext } from "react";
-import { Condition, GroupedBlueprint } from "refine-core/types";
+import { BlueprintStore } from "refine-core";
+import type { Condition } from "refine-core/types";
+import type { GroupedBlueprint } from "refine-core/types/internal";
 
 export type QueryBuilderContext = {
+  blueprint: BlueprintStore;
   groupedBlueprint: GroupedBlueprint;
-  updateGroupedBlueprint: {
-    (payload: GroupedBlueprint): void;
-    (updateFn: (criterion: GroupedBlueprint) => GroupedBlueprint): void;
-  };
   conditions: Condition[];
 };
 

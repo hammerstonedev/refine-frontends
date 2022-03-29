@@ -1,6 +1,6 @@
 <script>
 import { reactive, nextTick } from "vue-demi";
-import SelectorStore from "../../../stores/selector";
+import { SelectorStore } from "refine-core";
 import { isVue2 } from 'vue-demi';
 
 export default {
