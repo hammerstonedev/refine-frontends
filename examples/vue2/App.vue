@@ -4,11 +4,12 @@
       <query-builder
         :errors="errors"
         :conditions="conditions"
+        :flavor="flavor"
         v-model="groupedBlueprint"
         class="p-4 w-100"
       />
     </div>
-    <div>{{ groupedBlueprint }}</div>
+    <pre class="text-xs">{{ JSON.stringify(groupedBlueprint, null, 2) }}</pre>
     <!-- 
     <query>
       <div class="p-4">
@@ -50,6 +51,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue-demi';
 import { QueryBuilder } from '../../packages/refine-vue/dist/vue2/refine-vue.esm';
 import './main.css';
 import '../../packages/refine-vue/dist/vue2/refine-vue.esm.css';
@@ -565,6 +567,31 @@ export default {
     return {
       conditions,
       groupedBlueprint,
+      flavor: {
+        group: {
+          className: 'group',
+          addCriterionButton: {
+            className: 'add-criterion-button',
+            icon: {
+              component: defineComponent({
+                render(h) {
+                  return h('span', { class: '🚀' });
+                },
+              }),
+            },
+          },
+        },
+        inputs: {
+          date: {
+            className: 'date-input',
+            component: defineComponent({
+              render(h) {
+                return h('span', { class: '🚀' });
+              },
+            }),
+          },
+        },
+      },
       errors: {
         0: [
           {
