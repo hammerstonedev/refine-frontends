@@ -1,5 +1,9 @@
 import React, { useReducer, useState } from "react";
-import type { Blueprint, Condition } from "refine-core/types";
+import type {
+  Blueprint,
+  Condition,
+  PartialReactRefineFlavor,
+} from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
@@ -7,6 +11,7 @@ import { QueryBuilderProvider } from "./use-query-builder";
 export type QueryBuilderProps = {
   blueprint: Blueprint;
   conditions: Condition[];
+  flavor?: PartialReactRefineFlavor;
   onChange?: (blueprint: Blueprint) => void;
 };
 
@@ -20,6 +25,7 @@ export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
   onChange,
+  flavor,
 }: QueryBuilderProps) => {
   const rerender = useRerender();
   const [blueprint] = useState(

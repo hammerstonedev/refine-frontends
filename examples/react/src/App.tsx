@@ -66,6 +66,23 @@ const App = () => {
       <QueryBuilder
         blueprint={blueprint}
         conditions={conditions}
+        flavor={{
+          group: {
+            className: "group",
+            addCriterionButton: {
+              className: "add-criterion-button",
+              icon: {
+                component: (props) => <span>🚀</span>,
+              },
+            },
+          },
+          inputs: {
+            date: {
+              className: "date-input",
+              component: (props) => <span>📅</span>,
+            },
+          },
+        }}
         onChange={(blueprint) => setDebugBlueprint(blueprint)}
       />
       <pre className="text-xs">{JSON.stringify(debugBlueprint, null, 2)}</pre>
