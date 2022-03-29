@@ -63,8 +63,8 @@ export default {
     return {
       time: date,
       hasError: false,
-      inputClass: "refine-date-input",
-      errorClass: "refine-date-input-error",
+      inputClass: 'refine-date-input',
+      errorClass: 'refine-date-input-error',
     };
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
     },
     handleInput: function () {
       this.hasError = false;
-      this.$emit("input", { date: this.time });
+      this.$emit('input', { date: this.time });
     },
   },
 };

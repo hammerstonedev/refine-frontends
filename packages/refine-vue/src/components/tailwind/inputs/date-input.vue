@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DatePicker from "./date-picker";
+import DatePicker from './date-picker';
 
 export default {
   name: 'refine-date-input',
@@ -16,13 +16,12 @@ export default {
     },
   },
   components: {
-      DatePicker,
+    DatePicker,
   },
   methods: {
     handleInput: function ({ date }) {
-      this.$emit("input", { date1: date });
+      this.$emit('input', { date1: date });
     },
   },
 };
 </script>
-

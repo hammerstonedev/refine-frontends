@@ -9,30 +9,32 @@
         :display="display"
         :selected="input.clause === clauseId"
       >
-      <div>
-        <component
-          v-if="component"
-          :is="component"
-          v-bind="{...meta, ...clauseMeta, ...input}"
-          @input="setValue"
-        />
-      </div>
+        <div>
+          <component
+            v-if="component"
+            :is="component"
+            v-bind="{ ...meta, ...clauseMeta, ...input }"
+            @input="setValue"
+          />
+        </div>
       </selector-option>
     </selector>
   </renderless-clause>
 </template>
 
 <script>
-import { RenderlessClause } from "../../../components/renderless";
-import { Selector, SelectorOption } from "../selector";
-import * as inputs from "../inputs";
+import { RenderlessClause } from '../../../components/renderless';
+import { Selector, SelectorOption } from '../selector';
+import * as inputs from '../inputs';
 
 export default {
   name: 'clause',
   props: {
     input: {
       type: Object,
-      default: () => { return {}; },
+      default: () => {
+        return {};
+      },
     },
     meta: {
       type: Object,
@@ -42,7 +44,7 @@ export default {
   emits: ['switch-clause'],
   methods: {
     switchClause: function ({ selectedOption: nextClause }) {
-      this.$emit("switch-clause", nextClause);
+      this.$emit('switch-clause', nextClause);
     },
   },
   components: {
@@ -51,5 +53,5 @@ export default {
     Selector,
     ...inputs,
   },
-}
+};
 </script>

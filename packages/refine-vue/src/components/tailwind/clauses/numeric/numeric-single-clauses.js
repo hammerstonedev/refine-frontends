@@ -6,10 +6,7 @@ const IsEqualTo = {
   name: 'is-equal-to',
   mixins: [numericSingleProps],
   setup(props) {
-    return useNumericSingleClause(
-      props,
-      renderless.IsEqualTo,
-    );
+    return useNumericSingleClause(props, renderless.IsEqualTo);
   },
 };
 
@@ -17,10 +14,7 @@ const IsNotEqualTo = {
   name: 'is-not-equal-to',
   mixins: [numericSingleProps],
   setup(props) {
-    return useNumericSingleClause(
-      props,
-      renderless.IsNotEqualTo,
-    );
+    return useNumericSingleClause(props, renderless.IsNotEqualTo);
   },
 };
 
@@ -28,10 +22,7 @@ const IsGreaterThan = {
   name: 'is-greater-than',
   mixins: [numericSingleProps],
   setup(props) {
-    return useNumericSingleClause(
-      props,
-      renderless.IsGreaterThan,
-    );
+    return useNumericSingleClause(props, renderless.IsGreaterThan);
   },
 };
 
@@ -39,10 +30,7 @@ const IsGreaterThanOrEqualTo = {
   name: 'is-greater-than-or-equal-to',
   mixins: [numericSingleProps],
   setup(props) {
-    return useNumericSingleClause(
-      props,
-      renderless.IsGreaterThanOrEqualTo,
-    );
+    return useNumericSingleClause(props, renderless.IsGreaterThanOrEqualTo);
   },
 };
 
@@ -50,10 +38,7 @@ const IsLessThan = {
   name: 'is-less-than',
   mixins: [numericSingleProps],
   setup(props) {
-    return useNumericSingleClause(
-      props,
-      renderless.IsLessThan,
-    );
+    return useNumericSingleClause(props, renderless.IsLessThan);
   },
 };
 
@@ -61,10 +46,7 @@ const IsLessThanOrEqualTo = {
   name: 'is-less-than-or-equal-to',
   mixins: [numericSingleProps],
   setup(props) {
-    return useNumericSingleClause(
-      props,
-      renderless.IsLessThanOrEqualTo,
-    );
+    return useNumericSingleClause(props, renderless.IsLessThanOrEqualTo);
   },
 };
 

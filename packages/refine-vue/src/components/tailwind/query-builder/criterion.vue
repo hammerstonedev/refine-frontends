@@ -1,11 +1,7 @@
 <template>
   <div class="py-2">
     <ul class="refine-criterion-errors">
-      <li
-        class="refine-criterion-error"
-        v-for="error in errors"
-        :key="error.id"
-      >
+      <li class="refine-criterion-error" v-for="error in errors" :key="error.id">
         {{ error.message }}
       </li>
     </ul>
@@ -44,7 +40,11 @@
         >
           <div>
             <clause :input="input" :meta="meta" @switch-clause="switchClause" />
-            <refinements v-if="refinements && refinements.length > 0" :input="input" :refinements="refinements" />
+            <refinements
+              v-if="refinements && refinements.length > 0"
+              :input="input"
+              :refinements="refinements"
+            />
           </div>
         </selector-option>
       </selector>
@@ -53,12 +53,12 @@
 </template>
 
 <script>
-import { Selector, SelectorOption } from "../selector";
+import { Selector, SelectorOption } from '../selector';
 import Clause from './clause';
 import Refinements from './refinements.vue';
 
 export default {
-  name: "criterion",
+  name: 'criterion',
   props: {
     conditions: {
       required: true,
@@ -75,15 +75,17 @@ export default {
     errors: {
       type: Array,
       required: false,
-      default: () => { return []; },
+      default: () => {
+        return [];
+      },
     },
   },
   methods: {
     switchCondition: function ({ selectedOption: nextCondition }) {
-      this.$emit("switch-condition", nextCondition);
+      this.$emit('switch-condition', nextCondition);
     },
     switchClause: function (nextClause) {
-      this.$emit("switch-clause", nextClause);
+      this.$emit('switch-clause', nextClause);
     },
   },
   components: {

@@ -6,11 +6,7 @@ const TextConditionOption = {
   name: 'text-condition-option',
   mixins: [optionProps],
   setup(props, context) {
-    return useConditionOption(
-      props,
-      context,
-      TextCondition,
-    );
+    return useConditionOption(props, context, TextCondition);
   },
 };
 
@@ -18,15 +14,8 @@ const NumericConditionOption = {
   name: 'numeric-condition-option',
   mixins: [optionProps],
   setup(props, context) {
-    return useConditionOption(
-      props,
-      context,
-      NumericCondition,
-    );
+    return useConditionOption(props, context, NumericCondition);
   },
 };
 
-export {
-  TextConditionOption,
-  NumericConditionOption,
-};
+export { TextConditionOption, NumericConditionOption };

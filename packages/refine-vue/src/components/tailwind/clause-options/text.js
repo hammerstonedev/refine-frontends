@@ -23,12 +23,7 @@ const EqualsOption = {
   name: 'equals-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.Equals,
-      Equals,
-    );
+    return useClauseOption(props, context, config.Equals, Equals);
   },
 };
 
@@ -36,12 +31,7 @@ const DoesNotEqualOption = {
   name: 'does-not-equal-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.DoesNotEqual,
-      DoesNotEqual,
-    );
+    return useClauseOption(props, context, config.DoesNotEqual, DoesNotEqual);
   },
 };
 
@@ -49,12 +39,7 @@ const StartsWithOption = {
   name: 'starts-with-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.StartsWith,
-      StartsWith,
-    );
+    return useClauseOption(props, context, config.StartsWith, StartsWith);
   },
 };
 
@@ -62,12 +47,7 @@ const EndsWithOption = {
   name: 'ends-with-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.EndsWith,
-      EndsWith,
-    );
+    return useClauseOption(props, context, config.EndsWith, EndsWith);
   },
 };
 
@@ -75,12 +55,7 @@ const DoesNotStartWithOption = {
   name: 'does-not-start-with-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.DoesNotStartWith,
-      DoesNotStartWith,
-    );
+    return useClauseOption(props, context, config.DoesNotStartWith, DoesNotStartWith);
   },
 };
 
@@ -88,12 +63,7 @@ const DoesNotEndWithOption = {
   name: 'does-not-end-with-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.DoesNotEndWith,
-      DoesNotEndWith,
-    );
+    return useClauseOption(props, context, config.DoesNotEndWith, DoesNotEndWith);
   },
 };
 
@@ -101,12 +71,7 @@ const ContainsOption = {
   name: 'contains-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.Contains,
-      Contains,
-    );
+    return useClauseOption(props, context, config.Contains, Contains);
   },
 };
 
@@ -114,12 +79,7 @@ const DoesNotContainOption = {
   name: 'does-not-contain-option',
   mixins: [clauseSelectedProp],
   setup(props, context) {
-    return useClauseOption(
-      props,
-      context,
-      config.DoesNotContain,
-      DoesNotContain,
-    );
+    return useClauseOption(props, context, config.DoesNotContain, DoesNotContain);
   },
 };
 

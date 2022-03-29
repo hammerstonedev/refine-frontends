@@ -7,21 +7,23 @@ export default function () {
   */
   const handlers = {};
 
-  const bind = function(el, binding) {
-    const {value: handleClick} = binding;
+  const bind = function (el, binding) {
+    const { value: handleClick } = binding;
 
-    if (typeof (handleClick) !== 'function') {
-        throw new Error('The click-away directive expects a function/method as an argument.');
+    if (typeof handleClick !== 'function') {
+      throw new Error('The click-away directive expects a function/method as an argument.');
     }
 
     if (!el.id) {
-        throw new Error('The click-away directive requires the element it is bound to to have an id.');
+      throw new Error(
+        'The click-away directive requires the element it is bound to to have an id.'
+      );
     }
 
     const handler = (e) => {
-        if (!(el.contains(e.target))) {
-            handleClick();
-        }
+      if (!el.contains(e.target)) {
+        handleClick();
+      }
     };
 
     handlers[el.id] = handler;
@@ -30,7 +32,7 @@ export default function () {
     document.addEventListener('touchstart', handler);
   };
 
-  const unbind = function(el) {
+  const unbind = function (el) {
     document.removeEventListener('click', handlers[el.id]);
     document.removeEventListener('touchstart', handlers[el.id]);
     delete handlers[el.id];
@@ -40,6 +42,6 @@ export default function () {
     bind,
     beforeMount: bind,
     unbind,
-    unmount: unbind,      
-  }
+    unmount: unbind,
+  };
 }

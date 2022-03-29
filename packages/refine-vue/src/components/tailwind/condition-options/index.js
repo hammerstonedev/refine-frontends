@@ -1,9 +1,3 @@
-import {
-  TextConditionOption,
-  NumericConditionOption,
-} from './options';
+import { TextConditionOption, NumericConditionOption } from './options';
 
-export {
-  TextConditionOption,
-  NumericConditionOption,
-};
+export { TextConditionOption, NumericConditionOption };

@@ -15,10 +15,7 @@ const Equals = {
   name: 'equals',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.Equals,
-    );
+    return useTextClause(props, renderless.Equals);
   },
 };
 
@@ -26,10 +23,7 @@ const DoesNotEqual = {
   name: 'does-not-equal',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.DoesNotEqual,
-    );
+    return useTextClause(props, renderless.DoesNotEqual);
   },
 };
 
@@ -37,10 +31,7 @@ const StartsWith = {
   name: 'starts-with',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.StartsWith,
-    );
+    return useTextClause(props, renderless.StartsWith);
   },
 };
 
@@ -48,10 +39,7 @@ const EndsWith = {
   name: 'ends-with',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.EndsWith,
-    );
+    return useTextClause(props, renderless.EndsWith);
   },
 };
 
@@ -59,10 +47,7 @@ const DoesNotStartWith = {
   name: 'does-not-start-with',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.DoesNotStartWith,
-    );
+    return useTextClause(props, renderless.DoesNotStartWith);
   },
 };
 
@@ -70,10 +55,7 @@ const DoesNotEndWith = {
   name: 'does-not-end-with',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.DoesNotEndWith,
-    );
+    return useTextClause(props, renderless.DoesNotEndWith);
   },
 };
 
@@ -81,10 +63,7 @@ const Contains = {
   name: 'contains',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.Contains,
-    );
+    return useTextClause(props, renderless.Contains);
   },
 };
 
@@ -92,10 +71,7 @@ const DoesNotContain = {
   name: 'does-not-contain',
   mixins: [textClauseProps],
   setup(props) {
-    return useTextClause(
-      props,
-      renderless.DoesNotContain,
-    );
+    return useTextClause(props, renderless.DoesNotContain);
   },
 };
 

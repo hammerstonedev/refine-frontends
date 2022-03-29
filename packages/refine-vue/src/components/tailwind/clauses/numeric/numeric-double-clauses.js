@@ -6,10 +6,7 @@ const IsBetween = {
   name: 'is-between',
   mixins: [numericDoubleProps],
   setup(props) {
-    return useNumericDoubleClause(
-      props,
-      renderless.IsBetween,
-    );
+    return useNumericDoubleClause(props, renderless.IsBetween);
   },
 };
 
@@ -17,15 +14,8 @@ const IsNotBetween = {
   name: 'is-not-between',
   mixins: [numericDoubleProps],
   setup(props) {
-    return useNumericDoubleClause(
-      props,
-      renderless.IsNotBetween,
-    );
+    return useNumericDoubleClause(props, renderless.IsNotBetween);
   },
 };
 
-
-export {
-  IsBetween,
-  IsNotBetween,
-};
+export { IsBetween, IsNotBetween };

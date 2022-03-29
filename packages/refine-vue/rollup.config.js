@@ -14,33 +14,28 @@ if (process.env.ROLLUP_VUE_VERSION === '2') {
 
 module.exports = {
   input: 'src/package.js',
-  external: [
-    'vue',
-    '@vue/composition-api',
-    'vue2-datepicker',
-    'vue-demi',
-  ],
+  external: ['vue', '@vue/composition-api', 'vue2-datepicker', 'vue-demi'],
   output: [
     {
       format: 'es',
-      exports: "named",
+      exports: 'named',
       sourcemap: true,
     },
   ],
   plugins: [
     vuePlugin(),
     postcss({
-      extensions: [ '.css' ],
+      extensions: ['.css'],
       extract: true,
       config: {
-        path: './postcss.config.js'
+        path: './postcss.config.js',
       },
     }),
     resolve({
       extensions: ['.js', '.vue'],
     }),
     alias({
-      "@": __dirname + '/src'
+      '@': __dirname + '/src',
     }),
   ],
 };

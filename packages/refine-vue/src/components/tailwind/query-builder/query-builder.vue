@@ -14,10 +14,18 @@
       }"
     >
       <div class="refine-query-builder-wrapper">
-        <div class="refine-query-builder-condition-group" v-for="(group, index) in groupedBlueprint" :key="index">
-          <div class='refine-query-builder-condition' v-for="(criterion, index) in group" :key="criterion.uid">
+        <div
+          class="refine-query-builder-condition-group"
+          v-for="(group, index) in groupedBlueprint"
+          :key="index"
+        >
+          <div
+            class="refine-query-builder-condition"
+            v-for="(criterion, index) in group"
+            :key="criterion.uid"
+          >
             <renderless-condition
-              v-bind="conditionFor({id: criterion.condition_id, ...criterion})"
+              v-bind="conditionFor({ id: criterion.condition_id, ...criterion })"
               v-slot="{ switchClause }"
             >
               <criterion
@@ -25,16 +33,13 @@
                 @remove-condition="removeCriterion(criterion.position)"
                 @switch-condition="
                   (nextCondition) =>
-                    replaceCriterion(
-                      criterion.position,
-                      conditionFor(nextCondition)
-                    )
+                    replaceCriterion(criterion.position, conditionFor(nextCondition))
                 "
                 :conditionId="criterion.condition_id"
                 :conditions="conditions"
                 :errors="errors[index]"
                 :input="criterion.input"
-              />           
+              />
             </renderless-condition>
           </div>
           <button
@@ -57,7 +62,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <span class='refine-query-builder-and-button-span'>And</span>
+            <span class="refine-query-builder-and-button-span">And</span>
           </button>
         </div>
         <button @click="addGroup" type="button" class="refine-query-builder-or-button">
@@ -69,17 +74,14 @@
   </div>
 </template>
 <script>
-import Criterion from "./criterion";
-import {
-  RenderlessQueryBuilder,
-  RenderlessCondition,
-} from "../../../components/renderless";
+import Criterion from './criterion';
+import { RenderlessQueryBuilder, RenderlessCondition } from '../../../components/renderless';
 
 export default {
-  name: "query-builder",
+  name: 'query-builder',
   model: {
-    prop: "blueprint",
-    event: "update:blueprint",
+    prop: 'blueprint',
+    event: 'update:blueprint',
   },
   emits: ['update:blueprint'],
   props: {
@@ -97,20 +99,20 @@ export default {
     errors: {
       required: false,
       type: Object,
-      default: () => { return {}; },
+      default: () => {
+        return {};
+      },
     },
   },
   methods: {
     onChange(newBlueprint) {
       // bubble up the change event.
-      this.$emit("update:blueprint", newBlueprint);
+      this.$emit('update:blueprint', newBlueprint);
     },
   },
   created() {
     if (this.conditions.length === 0) {
-      throw new Error(
-        "You must provide at least one condition to the query builder."
-      );
+      throw new Error('You must provide at least one condition to the query builder.');
     }
   },
   components: {

@@ -1,14 +1,7 @@
 <template>
   <div>
     <renderless-selector
-      v-slot="{
-        actions,
-        isOpen,
-        isClosed,
-        selectedOptions,
-        highlightedOption,
-        options,
-      }"
+      v-slot="{ actions, isOpen, isClosed, selectedOptions, highlightedOption, options }"
       @select-option="$emit('select-option', $event)"
       @deselect-option="$emit('deselect-option', $event)"
     >
@@ -74,17 +67,16 @@
   </div>
 </template>
 <script>
-
-import RenderlessSelector from "../../../components/renderless/selector";
-import { uid } from "../../../mixins";
-import SelectorButton from "./selector-button";
-import SelectorListbox from "./selector-listbox";
-import SelectorListItem from "./selector-list-item";
+import RenderlessSelector from '../../../components/renderless/selector';
+import { uid } from '../../../mixins';
+import SelectorButton from './selector-button';
+import SelectorListbox from './selector-listbox';
+import SelectorListItem from './selector-list-item';
 import MultiSelectorButton from './multi-selector-button.vue';
-import ClickAway from '../../../directives/click-away'
+import ClickAway from '../../../directives/click-away';
 
 export default {
-  name: "selector",
+  name: 'selector',
   mixins: [uid],
   inject: ['builderModeActive'],
   props: {
@@ -114,7 +106,7 @@ export default {
     }
   },
   directives: {
-    clickAway: new ClickAway()
+    clickAway: new ClickAway(),
   },
   methods: {
     isSelected(option, selectedOptions) {
@@ -134,7 +126,7 @@ export default {
     async selectOption(optionId, actions) {
       const { clearOptions, selectOption, toggleOption } = actions;
       const { isMultiSelect } = this;
-      
+
       if (isMultiSelect) {
         toggleOption(optionId);
       } else {
@@ -151,7 +143,7 @@ export default {
     },
     async close({ close }) {
       const { isClosed } = await close();
-      if (isClosed) { 
+      if (isClosed) {
         this.$refs.button?.focus();
       }
     },
