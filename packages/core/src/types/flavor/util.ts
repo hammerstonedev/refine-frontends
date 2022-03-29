@@ -1,3 +1,4 @@
+import * as CSS from "csstype";
 import type { RefineComponent, RefineRuntime } from ".";
 
 /**
@@ -29,9 +30,8 @@ export type DeepPartial<Object extends object> = {
 /**
  * Adds `class: string` for Vue and `className: string` for React.
  */
-export type ClassOrClassName<Runtime extends RefineRuntime> =
-  Runtime extends "vue"
-    ? { class: string }
-    : Runtime extends "react"
-    ? { className: string }
-    : never;
+export type StylingProps<Runtime extends RefineRuntime> = Runtime extends "vue"
+  ? { class: string; style: string }
+  : Runtime extends "react"
+  ? { className: string; style: CSS.Properties }
+  : never;

@@ -1,5 +1,5 @@
 import type {
-  ClassOrClassName,
+  StylingProps,
   DeepPartial,
   ExtractComponentNames,
   RefineReactComponent,
@@ -9,26 +9,26 @@ import type {
 export type RefineRuntime = "vue" | "react";
 
 export type RefineFlavor<Runtime extends RefineRuntime> = {
-  group: ClassOrClassName<Runtime> & {
+  group: StylingProps<Runtime> & {
     component: RefineComponent<"group", Runtime>;
 
-    addCriterionButton: ClassOrClassName<Runtime> & {
+    addCriterionButton: StylingProps<Runtime> & {
       component: RefineComponent<"group.addCriterionButton", Runtime>;
 
-      icon: ClassOrClassName<Runtime> & {
+      icon: StylingProps<Runtime> & {
         component: RefineComponent<"group.addCriterionButton.icon", Runtime>;
       };
     };
   };
 
-  addGroupButton: ClassOrClassName<Runtime> & {
+  addGroupButton: StylingProps<Runtime> & {
     component: RefineComponent<"addGroupButton", Runtime>;
   };
 
-  criterion: ClassOrClassName<Runtime> & {
+  criterion: StylingProps<Runtime> & {
     component: RefineComponent<"criterion", Runtime>;
 
-    removeCriterionButton: ClassOrClassName<Runtime> & {
+    removeCriterionButton: StylingProps<Runtime> & {
       component: RefineComponent<"criterion.removeCriterionButton", Runtime>;
 
       icon: {
@@ -40,40 +40,40 @@ export type RefineFlavor<Runtime extends RefineRuntime> = {
     };
   };
 
-  condition: ClassOrClassName<Runtime> & {
+  condition: StylingProps<Runtime> & {
     component: RefineComponent<"condition", Runtime>;
   };
 
-  clause: ClassOrClassName<Runtime> & {
+  clause: StylingProps<Runtime> & {
     component: RefineComponent<"clause", Runtime>;
   };
 
   inputs: {
-    date: ClassOrClassName<Runtime> & {
+    date: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.date", Runtime>;
     };
 
-    doubleDate: ClassOrClassName<Runtime> & {
+    doubleDate: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.doubleDate", Runtime>;
     };
 
-    number: ClassOrClassName<Runtime> & {
+    number: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.number", Runtime>;
     };
 
-    doubleNumber: ClassOrClassName<Runtime> & {
+    doubleNumber: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.doubleNumber", Runtime>;
     };
 
-    option: ClassOrClassName<Runtime> & {
+    option: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.option", Runtime>;
     };
 
-    relativeDate: ClassOrClassName<Runtime> & {
+    relativeDate: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.relativeDate", Runtime>;
     };
 
-    text: ClassOrClassName<Runtime> & {
+    text: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.text", Runtime>;
     };
   };
@@ -81,16 +81,16 @@ export type RefineFlavor<Runtime extends RefineRuntime> = {
   /**
    * Used in many places within the query builder, e.g. selecting a condition, selecting a clause.
    */
-  select: ClassOrClassName<Runtime> & {
+  select: StylingProps<Runtime> & {
     component: RefineComponent<"select", Runtime>;
   };
 };
 
 export type VueRefineFlavor = RefineFlavor<"vue">;
-export type PartialVueRefineFlavor = DeepPartial<AllVueRefineFlavor>;
+export type PartialVueRefineFlavor = DeepPartial<VueRefineFlavor>;
 
 export type ReactRefineFlavor = RefineFlavor<"react">;
-export type PartialReactRefineFlavor = DeepPartial<AllReactRefineFlavor>;
+export type PartialReactRefineFlavor = DeepPartial<ReactRefineFlavor>;
 
 export type RefineComponentName = ExtractComponentNames<
   RefineFlavor<RefineRuntime>
