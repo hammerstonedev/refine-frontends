@@ -1,61 +1,63 @@
 <template>
-  <div class="py-2">
-    <ul class="refine-criterion-errors">
-      <li class="refine-criterion-error" v-for="error in errors" :key="error.id">
+  <refine-flavor as="div" component="criterion.wrapper">
+    <refine-flavor as="ul" component="criterion.errors" v-if="errors.length > 0">
+      <refine-flavor
+        as="li"
+        component="criterion.errors.error"
+        v-for="error in errors"
+        :key="error.id"
+      >
         {{ error.message }}
-      </li>
-    </ul>
+      </refine-flavor>
+    </refine-flavor>
 
-    <div class="flex items-start">
-      <button
-        @click.prevent="$emit('remove-condition')"
-        type="button"
-        class="refine-criterion-remove-icon"
+    <refine-flavor
+      as="button"
+      component="criterion.removeCriterionButton"
+      @click.prevent="$emit('remove-condition')"
+      type="button"
+    >
+      <refine-flavor
+        as="svg"
+        component="criterion.removeCriterionButton.icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-            clip-rule="evenodd"
+        <path
+          fill-rule="evenodd"
+          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+          clip-rule="evenodd"
+        />
+      </refine-flavor>
+    </refine-flavor>
+    <!-- condition selector -->
+    <selector @select-option="switchCondition">
+      <selector-option
+        v-for="{ id, display, meta, refinements } in conditions"
+        :key="id"
+        :id="id"
+        :display="display"
+        :selected="conditionId === id"
+      >
+        <div>
+          <clause :input="input" :meta="meta" @switch-clause="switchClause" />
+          <refinements
+            v-if="refinements && refinements.length > 0"
+            :input="input"
+            :refinements="refinements"
           />
-        </svg>
-      </button>
-      <!-- condition selector -->
-      <selector
-        @select-option="switchCondition"
-        innerClass="mr-4"
-        class="refine-condition-selector"
-      >
-        <selector-option
-          v-for="{ id, display, meta, refinements } in conditions"
-          :key="id"
-          :id="id"
-          :display="display"
-          :selected="conditionId === id"
-        >
-          <div>
-            <clause :input="input" :meta="meta" @switch-clause="switchClause" />
-            <refinements
-              v-if="refinements && refinements.length > 0"
-              :input="input"
-              :refinements="refinements"
-            />
-          </div>
-        </selector-option>
-      </selector>
-    </div>
-  </div>
+        </div>
+      </selector-option>
+    </selector>
+  </refine-flavor>
 </template>
 
 <script>
 import { Selector, SelectorOption } from '../selector';
 import Clause from './clause';
 import Refinements from './refinements.vue';
+import { RefineFlavor } from './refine-flavor';
 
 export default {
   name: 'criterion',
@@ -93,6 +95,7 @@ export default {
     Refinements,
     SelectorOption,
     Selector,
+    RefineFlavor,
   },
 };
 </script>
