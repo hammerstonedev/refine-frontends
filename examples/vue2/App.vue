@@ -1,13 +1,26 @@
 <template>
   <div>
-    <div class="w-max">
-      <query-builder
-        :errors="errors"
-        :conditions="conditions"
-        :flavor="flavor"
-        v-model="groupedBlueprint"
-        class="p-4 w-100"
-      />
+    <div class="p-4 space-y-8">
+      <div class="border">
+        <h3 class="px-4 py-2 italic bg-gray-100 w-full">Default flavor</h3>
+        <query-builder
+          :errors="errors"
+          :conditions="conditions"
+          :flavor="defaultFlavor"
+          v-model="groupedBlueprint"
+          class="p-4 w-100"
+        />
+      </div>
+      <div class="border">
+        <h3 class="px-4 py-2 italic bg-gray-100 w-full">Blanco flavor</h3>
+        <query-builder
+          :errors="errors"
+          :conditions="conditions"
+          :flavor="blancoFlavor"
+          v-model="groupedBlueprint"
+          class="p-4 w-100"
+        />
+      </div>
     </div>
     <pre class="text-xs">{{ JSON.stringify(groupedBlueprint, null, 2) }}</pre>
     <!-- 
@@ -51,10 +64,10 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue-demi';
 import { QueryBuilder } from '../../packages/refine-vue/dist/vue2/refine-vue.esm';
 import './main.css';
 import '../../packages/refine-vue/dist/vue2/refine-vue.esm.css';
+import { h, defineComponent } from 'vue-demi';
 
 const groupedBlueprint = [];
 
@@ -564,34 +577,200 @@ const conditions = [
 export default {
   name: 'App',
   data() {
-    return {
-      conditions,
-      groupedBlueprint,
-      flavor: {
-        group: {
-          className: 'group',
-          addCriterionButton: {
-            className: 'add-criterion-button',
-            icon: {
-              component: defineComponent({
-                render(h) {
-                  return h('span', { class: '🚀' });
-                },
-              }),
+    let blancoFlavor = {
+      inputs: {
+        date: {
+          component: defineComponent({
+            name: 'custom-date-picker',
+            setup() {
+              return () => {
+                return h('div', {}, 'custom-date-picker');
+              };
             },
-          },
+          }),
         },
-        inputs: {
-          date: {
-            className: 'date-input',
-            component: defineComponent({
-              render(h) {
-                return h('span', { class: '🚀' });
-              },
-            }),
+        number: {
+          component: defineComponent({
+            name: 'custom-number-input',
+            setup() {
+              return () => {
+                return h('input', {
+                  attrs: { type: 'number', placeholder: 'Custom number input' },
+                });
+              };
+            },
+          }),
+        },
+        text: {
+          component: defineComponent({
+            name: 'custom-text-input',
+            setup() {
+              return () => {
+                return h('input', {
+                  attrs: { type: 'text', placeholder: 'Custom text input' },
+                });
+              };
+            },
+          }),
+        },
+      },
+    };
+    let defaultFlavor = {
+      group: {
+        class: 'refine-query-builder-condition-group',
+        // TODO: Verify if we want this
+        wrapper: {
+          class: 'refine-query-builder-wrapper',
+        },
+        addCriterionButton: {
+          class: 'refine-query-builder-and-button',
+
+          // TODO: Verify if we want this
+          text: {
+            class: 'refine-query-builder-and-button-span',
           },
         },
       },
+      addGroupButton: {
+        class: 'refine-query-builder-or-button',
+      },
+      condition: {
+        class: 'refine-query-builder-condition',
+      },
+      criterion: {
+        class: '',
+        removeCriterionButton: {
+          class: 'refine-criterion-remove-icon',
+        },
+
+        // TODO: Verify if we want this
+        errors: {
+          class: 'refine-criterion-errors',
+          error: {
+            class: 'refine-criterion-error',
+          },
+        },
+      },
+      select: {
+        class: 'refine-selector',
+
+        // TODO: Verify if we want this
+        wrapper: {
+          class: 'refine-selector-wrapper',
+        },
+
+        // TODO: Verify if we want this
+        customOptions: {
+          class: '',
+          wrapper: {
+            class: 'refine-selector-custom-options-wrapper',
+          },
+        },
+
+        // TODO: Verify if we want this
+        listbox: {
+          class: 'refine-selector-listbox',
+          wrapper: {
+            class: 'refine-selector-listbox-wrapper',
+          },
+          item: {
+            class: (options) => {
+              return `refine-selector-list-item ${
+                options.isHighlighted && 'refine-selector-list-item-highlighted'
+              }`;
+            },
+
+            text: {
+              class: (options) =>
+                `refine-selector-list-item-text ${
+                  options.selected && 'refine-selector-list-item-text-selected'
+                }`,
+            },
+            icon: {
+              class: 'refine-selector-list-item-icon',
+              wrapper: {
+                class: (options) =>
+                  `refine-selector-list-item-icon-wrapper ${
+                    !options.isHighlighted && 'refine-selector-list-item-icon-wrapper-highlighted'
+                  }`,
+              },
+            },
+          },
+        },
+        button: {
+          class: 'refine-selector-button',
+          placeholder: {
+            class: 'refine-selector-button-placeholder',
+          },
+          selected: {
+            class: 'refine-selector-button-selected',
+          },
+          icon: {
+            class: 'refine-selector-button-icon',
+            wrapper: {
+              class: 'refine-selector-button-icon-wrapper',
+            },
+          },
+        },
+
+        multi: {
+          button: {
+            class: 'refine-multi-selector-button',
+            placeholder: {
+              class: 'refine-multi-selector-button-placeholder',
+            },
+            selected: {
+              class: 'refine-multi-selector-button-selected',
+            },
+            deselect: {
+              icon: {
+                class: 'refine-multi-selector-button-deselect-icon',
+                wrapper: {
+                  class: 'refine-multi-selector-button-deselect-icon-wrapper',
+                },
+              },
+            },
+            icon: {
+              class: 'refine-multi-selector-button-icon',
+              wrapper: {
+                class: 'refine-multi-selector-button-icon-wrapper',
+              },
+            },
+          },
+        },
+      },
+      inputs: {
+        date: {
+          double: {
+            wrapper: {
+              class: 'refine-double-date-wrapper',
+            },
+            joiner: {
+              class: 'refine-double-date-joiner',
+            },
+          },
+        },
+        number: {
+          class: 'refine-number-input',
+          double: {
+            wrapper: {
+              class: 'refine-double-number-wrapper',
+            },
+            joiner: {
+              class: 'refine-double-number-joiner',
+            },
+          },
+        },
+        text: {
+          class: 'refine-text-input',
+        },
+      },
+    };
+    return {
+      conditions,
+      groupedBlueprint,
+      defaultFlavor,
+      blancoFlavor,
       errors: {
         0: [
           {
