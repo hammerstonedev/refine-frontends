@@ -1,70 +1,69 @@
 <template>
-  <div>
-    <renderless-selector
-      v-slot="{ actions, isOpen, isClosed, selectedOptions, highlightedOption, options }"
-      @select-option="$emit('select-option', $event)"
-      @deselect-option="$emit('deselect-option', $event)"
-    >
-      <div class="refine-selector-wrapper">
-        <!-- Select dropdown -->
-        <div
-          class="refine-selector"
-          :class="innerClass"
-          :id="`listbox-${selectorId}`"
-          v-click-away="actions.close"
-          :aria-labelledby="buttonId"
+  <renderless-selector
+    v-slot="{ actions, isOpen, isClosed, selectedOptions, highlightedOption, options }"
+    @select-option="$emit('select-option', $event)"
+    @deselect-option="$emit('deselect-option', $event)"
+  >
+    <refine-flavor as="div" component="select.wrapper">
+      <!-- Select dropdown -->
+      <refine-flavor
+        as="div"
+        component="select"
+        :class="innerClass"
+        :id="`listbox-${selectorId}`"
+        v-click-away="actions.close"
+        :aria-labelledby="buttonId"
+      >
+        <multi-selector-button
+          v-if="isMultiSelect"
+          :id="buttonId"
+          :isOpen="isOpen"
+          :selectedOptions="selectedOptions"
+          @toggle="toggle(actions)"
+          @open="open(actions)"
+          @deselect-option="deselectOption($event, actions)"
+          ref="button"
+        />
+        <selector-button
+          v-else
+          :id="buttonId"
+          :isOpen="isOpen"
+          :display="selectedOptions[0] ? selectedOptions[0].display : ''"
+          @toggle="toggle(actions)"
+          @open="open(actions)"
+          ref="button"
+        />
+        <selector-listbox
+          :selectedOption="selectedOptions[0]"
+          :isClosed="isClosed"
+          ref="listBox"
+          @highlight-next-option="highlightNextOption(actions)"
+          @highlight-previous-option="highlightPreviousOption(actions)"
+          @select-option="selectOption(highlightedOption.id, actions)"
+          @close="close(actions)"
+          v-slot="{ createItemId }"
         >
-          <multi-selector-button
-            v-if="isMultiSelect"
-            :id="buttonId"
-            :isOpen="isOpen"
-            :selectedOptions="selectedOptions"
-            @toggle="toggle(actions)"
-            @open="open(actions)"
-            @deselect-option="deselectOption($event, actions)"
-            ref="button"
+          <selector-list-item
+            v-for="option in options"
+            :id="createItemId(option.id)"
+            :key="option.id"
+            :optionId="option.id"
+            :optionDisplay="option.display"
+            :selected="isSelected(option, selectedOptions)"
+            :isHighlighted="highlightedOption && option.id === highlightedOption.id"
+            :ref="option.id"
+            @mouseenter="actions.highlightOption(option)"
+            @mouseleave="actions.highlightOption(null)"
+            @selected="selectOption(option.id, actions)"
           />
-          <selector-button
-            v-else
-            :id="buttonId"
-            :isOpen="isOpen"
-            :display="selectedOptions[0] ? selectedOptions[0].display : ''"
-            @toggle="toggle(actions)"
-            @open="open(actions)"
-            ref="button"
-          />
-          <selector-listbox
-            :selectedOption="selectedOptions[0]"
-            :isClosed="isClosed"
-            ref="listBox"
-            @highlight-next-option="highlightNextOption(actions)"
-            @highlight-previous-option="highlightPreviousOption(actions)"
-            @select-option="selectOption(highlightedOption.id, actions)"
-            @close="close(actions)"
-            v-slot="{ createItemId }"
-          >
-            <selector-list-item
-              v-for="option in options"
-              :id="createItemId(option.id)"
-              :key="option.id"
-              :optionId="option.id"
-              :optionDisplay="option.display"
-              :selected="isSelected(option, selectedOptions)"
-              :isHighlighted="highlightedOption && option.id === highlightedOption.id"
-              :ref="option.id"
-              @mouseenter="actions.highlightOption(option)"
-              @mouseleave="actions.highlightOption(null)"
-              @selected="selectOption(option.id, actions)"
-            />
-          </selector-listbox>
-        </div>
-        <!-- Custom options -->
-        <div class="refine-selector-custom-options-wrapper">
-          <slot></slot>
-        </div>
-      </div>
-    </renderless-selector>
-  </div>
+        </selector-listbox>
+      </refine-flavor>
+      <!-- Custom options -->
+      <refine-flavor as="div" component="customOptions.wrapper">
+        <slot></slot>
+      </refine-flavor>
+    </refine-flavor>
+  </renderless-selector>
 </template>
 <script>
 import RenderlessSelector from '../../../components/renderless/selector';
@@ -74,6 +73,7 @@ import SelectorListbox from './selector-listbox';
 import SelectorListItem from './selector-list-item';
 import MultiSelectorButton from './multi-selector-button.vue';
 import ClickAway from '../../../directives/click-away';
+import { RefineFlavor } from '../../../components/tailwind/query-builder/refine-flavor';
 
 export default {
   name: 'selector',
@@ -102,7 +102,7 @@ export default {
   },
   mounted() {
     if (this.builderModeActive) {
-      this.$refs.button.focus();
+      this.$refs.button.$el.focus();
     }
   },
   directives: {
@@ -137,29 +137,29 @@ export default {
     },
     scrollIntoView(optionId) {
       if (optionId) {
-        const listItem = this.$refs[optionId][0];
+        const listItem = this.$refs[optionId][0].$el;
         listItem.scrollIntoView();
       }
     },
     async close({ close }) {
       const { isClosed } = await close();
       if (isClosed) {
-        this.$refs.button?.focus();
+        this.$refs.button?.$el?.focus();
       }
     },
     async open({ open }) {
       const { selectedOption } = await open();
-      this.$refs.listBox.focus();
+      this.$refs.listBox.$el.focus();
       this.scrollIntoView(selectedOption?.id);
     },
     async toggle({ toggle }) {
       const { isOpen, selectedOption } = await toggle();
 
       if (isOpen) {
-        this.$refs.listBox.focus();
+        this.$refs.listBox.$el.focus();
         this.scrollIntoView(selectedOption?.id);
       } else {
-        this.$refs.button.focus();
+        this.$refs.button.$el.focus();
       }
     },
     async highlightNextOption({ highlightNextOption }) {
@@ -177,6 +177,7 @@ export default {
     SelectorListItem,
     SelectorButton,
     SelectorListbox,
+    RefineFlavor,
   },
 };
 </script>
