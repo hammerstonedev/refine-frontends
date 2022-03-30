@@ -1,11 +1,12 @@
 <template>
-  <div class="refine-selector-listbox-wrapper">
-    <ul
+  <refine-flavor as="div" component="select.listbox.wrapper">
+    <refine-flavor
+      as="ul"
+      component="select.listbox"
       tabindex="-1"
       role="listbox"
       :aria-activedescendant="selectedOption ? createItemId(selectedOption.id) : ''"
-      class="refine-selector-listbox"
-      :class="{ 'refine-selector-listbox-hidden': isClosed }"
+      :flavorOptions="{ isClosed }"
       ref="listBox"
       @keydown.arrow-down.stop.prevent="$emit('highlight-next-option')"
       @keydown.arrow-up.stop.prevent="$emit('highlight-previous-option')"
@@ -14,12 +15,13 @@
       @keydown.tab.stop.prevent="$emit('close')"
     >
       <slot :createItemId="createItemId"></slot>
-    </ul>
-  </div>
+    </refine-flavor>
+  </refine-flavor>
 </template>
 
 <script>
 import { uid } from '../../../mixins';
+import { RefineFlavor } from '../../tailwind/query-builder/refine-flavor';
 
 export default {
   name: 'selector-listbox',
@@ -37,11 +39,14 @@ export default {
   },
   methods: {
     focus: function () {
-      this.$refs.listBox.focus();
+      this.$refs.listBox.$el.focus();
     },
     createItemId: function (optionId) {
       return `listbox-option-${this.uid}-${optionId}`;
     },
+  },
+  components: {
+    RefineFlavor,
   },
 };
 </script>
