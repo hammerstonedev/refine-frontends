@@ -1,82 +1,84 @@
 <template>
-  <div>
-    <renderless-query-builder
-      :blueprint="blueprint"
-      :conditions="conditions"
-      @change="onChange"
-      v-slot="{
-        groupedBlueprint,
-        replaceCriterion,
-        insertCriterion,
-        addGroup,
-        removeCriterion,
-        conditionFor,
-      }"
-    >
-      <div class="refine-query-builder-wrapper">
-        <div
-          class="refine-query-builder-condition-group"
-          v-for="(group, index) in groupedBlueprint"
-          :key="index"
+  <renderless-query-builder
+    :blueprint="blueprint"
+    :conditions="conditions"
+    @change="onChange"
+    v-slot="{
+      groupedBlueprint,
+      replaceCriterion,
+      insertCriterion,
+      addGroup,
+      removeCriterion,
+      conditionFor,
+    }"
+  >
+    <refine-flavor as="div" component="group.wrapper">
+      <refine-flavor
+        as="div"
+        component="group"
+        v-for="(group, index) in groupedBlueprint"
+        :key="index"
+      >
+        <refine-flavor
+          as="div"
+          component="condition"
+          v-for="(criterion, index) in group"
+          :key="criterion.uid"
         >
-          <div
-            class="refine-query-builder-condition"
-            v-for="(criterion, index) in group"
-            :key="criterion.uid"
+          <renderless-condition
+            v-bind="conditionFor({ id: criterion.condition_id, ...criterion })"
+            v-slot="{ switchClause }"
           >
-            <renderless-condition
-              v-bind="conditionFor({ id: criterion.condition_id, ...criterion })"
-              v-slot="{ switchClause }"
-            >
-              <criterion
-                @switch-clause="({ id: clause }) => switchClause(clause)"
-                @remove-condition="removeCriterion(criterion.position)"
-                @switch-condition="
-                  (nextCondition) =>
-                    replaceCriterion(criterion.position, conditionFor(nextCondition))
-                "
-                :conditionId="criterion.condition_id"
-                :conditions="conditions"
-                :errors="errors[index]"
-                :input="criterion.input"
-              />
-            </renderless-condition>
-          </div>
-          <button
-            @click="insertCriterion(group[group.length - 1].position)"
-            class="refine-query-builder-and-button"
-            tabindex="0"
-            type="button"
+            <criterion
+              @switch-clause="({ id: clause }) => switchClause(clause)"
+              @remove-condition="removeCriterion(criterion.position)"
+              @switch-condition="
+                (nextCondition) => replaceCriterion(criterion.position, conditionFor(nextCondition))
+              "
+              :conditionId="criterion.condition_id"
+              :conditions="conditions"
+              :errors="errors[index]"
+              :input="criterion.input"
+            />
+          </renderless-condition>
+        </refine-flavor>
+        <refine-flavor
+          as="button"
+          component="group.addCriterionButton"
+          @click="insertCriterion(group[group.length - 1].position)"
+          tabindex="0"
+          type="button"
+        >
+          <!-- Heroicon name: plus -->
+          <refine-flavor
+            as="svg"
+            component="group.addCriterionButton.icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
           >
-            <!-- Heroicon name: plus -->
-            <svg
-              class="h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <span class="refine-query-builder-and-button-span">And</span>
-          </button>
-        </div>
-        <button @click="addGroup" type="button" class="refine-query-builder-or-button">
-          Add an 'Or'
-        </button>
-      </div>
-      <!-- wrapper div -->
-    </renderless-query-builder>
-  </div>
+            <path
+              fill-rule="evenodd"
+              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+              clip-rule="evenodd"
+            />
+          </refine-flavor>
+          <refine-flavor as="span" component="group.addCriterionButton.text">And</refine-flavor>
+        </refine-flavor>
+      </refine-flavor>
+      <refine-flavor as="button" component="addGroupButton" @click="addGroup" type="button">
+        Add an 'Or'
+      </refine-flavor>
+    </refine-flavor>
+    <!-- wrapper div -->
+  </renderless-query-builder>
 </template>
 <script>
 import Criterion from './criterion';
 import { provideFlavor } from '../../../hooks/useFlavor';
 import { RenderlessQueryBuilder, RenderlessCondition } from '../../../components/renderless';
+import { RefineFlavor } from './refine-flavor';
 
 export default {
   name: 'query-builder',
@@ -128,6 +130,7 @@ export default {
   },
   components: {
     Criterion,
+    RefineFlavor,
     RenderlessCondition,
     RenderlessQueryBuilder,
   },
