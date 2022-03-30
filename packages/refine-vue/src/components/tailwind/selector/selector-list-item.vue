@@ -1,8 +1,9 @@
 <template>
-  <li
+  <refine-flavor
+    as="li"
+    component="select.listbox.item"
+    :flavorOptions="{ isHighlighted }"
     role="option"
-    class="refine-selector-list-item"
-    :class="{ 'refine-selector-list-item-highlighted': isHighlighted }"
     :key="optionId"
     ref="listItem"
     @mouseenter="$emit('mouseenter')"
@@ -11,21 +12,20 @@
     :aria-label="optionDisplay"
     :aria-selected="selected"
   >
-    <span
-      class="refine-selector-list-item-text"
-      :class="{ 'refine-selector-list-item-text-selected': selected }"
-    >
+    <refine-flavor as="span" component="select.listbox.item.text" :flavorOptions="{ selected }">
       {{ optionDisplay }}
-    </span>
+    </refine-flavor>
 
-    <span
-      :class="{ 'refine-selector-list-item-icon-wrapper-highlighted': !isHighlighted }"
-      class="refine-selector-list-item-icon-wrapper"
+    <refine-flavor
+      as="span"
+      component="select.listbox.item.icon.wrapper"
+      :flavorOptions="{ isHighlighted }"
     >
       <!-- Heroicon name: check -->
-      <svg
+      <refine-flavor
+        as="svg"
+        component="select.listbox.item.icon"
         v-show="selected"
-        class="refine-selector-list-item-icon"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -36,12 +36,14 @@
           d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
           clip-rule="evenodd"
         />
-      </svg>
-    </span>
-  </li>
+      </refine-flavor>
+    </refine-flavor>
+  </refine-flavor>
 </template>
 
 <script>
+import { RefineFlavor } from '../../tailwind/query-builder/refine-flavor';
+
 export default {
   name: 'selector-list-item',
   props: {
@@ -67,8 +69,11 @@ export default {
   emits: ['selected', 'mouseenter', 'mouseleave'],
   methods: {
     scrollIntoView: function () {
-      this.$refs.listItem.scrollIntoView(false);
+      this.$refs.listItem.$el.scrollIntoView(false);
     },
+  },
+  components: {
+    RefineFlavor,
   },
 };
 </script>
