@@ -75,6 +75,7 @@
 </template>
 <script>
 import Criterion from './criterion';
+import { provideFlavor } from '../../../hooks/useFlavor';
 import { RenderlessQueryBuilder, RenderlessCondition } from '../../../components/renderless';
 
 export default {
@@ -103,6 +104,13 @@ export default {
         return {};
       },
     },
+    flavor: {
+      required: false,
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   methods: {
     onChange(newBlueprint) {
@@ -114,6 +122,9 @@ export default {
     if (this.conditions.length === 0) {
       throw new Error('You must provide at least one condition to the query builder.');
     }
+  },
+  setup(props) {
+    provideFlavor(props.flavor);
   },
   components: {
     Criterion,
