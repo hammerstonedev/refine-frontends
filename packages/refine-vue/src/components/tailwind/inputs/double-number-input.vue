@@ -1,12 +1,15 @@
 <template>
-  <div class="refine-double-number-wrapper">
+  <refine-flavor as="div" component="inputs.number.double.wrapper">
     <number-input :meta="meta" :value="currentValue" @input="updateFirstValue" />
-    <span class="refine-double-number-joiner" v-if="joinWord">{{ joinWord }}</span>
+    <refine-flavor as="span" component="inputs.number.double.joiner" v-if="joinWord">{{
+      joinWord
+    }}</refine-flavor>
     <number-input :meta="meta" :value="currentValue" @input="updateSecondValue" />
-  </div>
+  </refine-flavor>
 </template>
 
 <script>
+import { RefineFlavor } from '../query-builder/refine-flavor';
 import NumberInput from './number-input';
 
 export default {
@@ -49,6 +52,7 @@ export default {
   },
   components: {
     NumberInput,
+    RefineFlavor,
   },
 };
 </script>
