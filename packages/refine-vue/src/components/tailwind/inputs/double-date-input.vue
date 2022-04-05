@@ -1,18 +1,20 @@
 <template>
-  <div class="refine-double-date-wrapper">
+  <refine-flavor as="div" component="inputs.date.double.wrapper">
     <date-picker :date="date1" @input="updateFirstDate" v-bind="$attrs" />
-    <p class="refine-double-date-joiner">{{ joiner }}</p>
+    <refine-flavor as="p" component="inputs.date.double.joiner">{{ joiner }}</refine-flavor>
     <date-picker :date="date2" @input="updateSecondDate" v-bind="$attrs" />
-  </div>
+  </refine-flavor>
 </template>
 
 <script>
+import { RefineFlavor } from '../query-builder/refine-flavor';
 import DatePicker from './date-picker';
 
 export default {
   name: 'refine-double-date-input',
   components: {
     DatePicker,
+    RefineFlavor,
   },
   props: {
     date1: {
