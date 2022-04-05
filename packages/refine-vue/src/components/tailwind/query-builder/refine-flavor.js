@@ -17,6 +17,7 @@ export const RefineFlavor = defineComponent({
       required: false,
     },
   },
+  inheritAttrs: false,
   setup(incomingProps, bindings) {
     const flavor = useFlavor(
       (flavor) => {
@@ -38,6 +39,7 @@ export const RefineFlavor = defineComponent({
       return h(
         resolvedFlavor.component,
         {
+          attrs: bindings.attrs,
           ...(isVue2 && { ...resolvedFlavor.props.value, props, on: bindings.listeners }),
           ...(isVue3 && { ...resolvedFlavor.props.value, ...props }),
         },
