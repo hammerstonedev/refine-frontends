@@ -1,6 +1,7 @@
 <template>
-  <input
-    class="refine-number-input"
+  <refine-flavor
+    as="input"
+    component="inputs.number"
     type="number"
     :value="currentValue"
     @input="handleInputChange"
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+import { RefineFlavor } from '../query-builder/refine-flavor';
 export default {
   name: 'refine-number-input',
   data() {
@@ -59,6 +61,9 @@ export default {
         this.$emit('input', { value: newValue });
       }
     },
+  },
+  components: {
+    RefineFlavor,
   },
 };
 </script>
