@@ -1,6 +1,7 @@
 <template>
-  <input
-    class="refine-text-input"
+  <refine-flavor
+    as="input"
+    component="inputs.text"
     type="text"
     :value="value"
     @input="$emit('input', { value: $event.target.value })"
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import { RefineFlavor } from '../query-builder/refine-flavor';
 export default {
   name: 'refine-text-input',
   props: {
@@ -16,6 +18,9 @@ export default {
       required: false,
       default: '',
     },
+  },
+  components: {
+    RefineFlavor,
   },
 };
 </script>
