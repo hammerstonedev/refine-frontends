@@ -24,10 +24,6 @@
   @apply pr-4 flex items-center;
 }
 
-.refine-clause-selector {
-  @apply mr-4;
-}
-
 /*
 |--------------------------------------------------------------------------
 | Inputs
@@ -160,7 +156,7 @@
 }
 
 .refine-selector-wrapper {
-  @apply md:flex md:items-start;
+  @apply md:flex md:items-start gap-4;
 }
 
 .refine-selector {
