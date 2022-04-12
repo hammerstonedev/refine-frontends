@@ -1,15 +1,6 @@
 <template>
-  <div class="refine-relative-date-wrapper">
-    <div>
-      <input
-        class="refine-number-input"
-        type="number"
-        name="days"
-        :value="amount"
-        @input="updateAmount"
-      />
-    </div>
-
+  <refine-flavor as="div" component="inputs.date.relative.wrapper">
+    <refine-flavor as="input" type="number" name="days" :value="amount" @input="updateAmount" />
     <selector @select-option="updateUnit">
       <selector-option
         v-for="unit in units"
@@ -27,18 +18,20 @@
         :display="modifier.display"
       />
     </selector>
-  </div>
+  </refine-flavor>
 </template>
 
 <script>
 import { Selector, SelectorOption } from '../selector';
 import { uid } from '../../../mixins';
+import { RefineFlavor } from '../query-builder/refine-flavor';
 
 export default {
   name: 'refine-date-input',
   components: {
     Selector,
     SelectorOption,
+    RefineFlavor,
   },
   mixins: [uid],
   props: {
