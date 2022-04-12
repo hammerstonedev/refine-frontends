@@ -14,7 +14,7 @@
 import BaseCondition from './base-condition';
 import { conditionProps } from '../../../mixins';
 import { TextCondition as RenderlessTextCondition } from '../../../components/renderless/conditions';
-import * as textClauseOptions from '../../../components/tailwind/clause-options/text';
+import * as textClauseOptions from '../../../components/base/clause-options/text';
 
 export default {
   name: 'text-condition',

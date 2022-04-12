@@ -10,7 +10,7 @@ import {
   DoesNotEndWith,
   Contains,
   DoesNotContain,
-} from '../../../components/tailwind/clauses/text';
+} from '../../../components/base/clauses/text';
 
 const config = clausesConfig.text.reduce((clauses, { id, display, component }) => {
   return {

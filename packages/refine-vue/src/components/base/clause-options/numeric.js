@@ -10,7 +10,7 @@ import {
   IsLessThanOrEqualTo,
   IsBetween,
   IsNotBetween,
-} from '../../../components/tailwind/clauses/numeric';
+} from '../../../components/base/clauses/numeric';
 
 // Lookup by component name
 const config = clausesConfig.numeric.reduce((clauses, { id, display, component }) => {

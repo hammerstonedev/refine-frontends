@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TextInput from '../../../../components/tailwind/inputs/text-input';
+import TextInput from '../../../../components/base/inputs/text-input';
 
 export default {
   name: 'base-numeric-single-clause',

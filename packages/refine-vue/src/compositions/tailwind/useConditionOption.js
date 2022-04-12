@@ -1,5 +1,5 @@
 import { h } from 'vue-demi';
-import BaseConditionOption from '../../components/tailwind/condition-options/base-condition-option';
+import BaseConditionOption from '../../components/base/condition-options/base-condition-option';
 
 export default (props, context, ConditionComponent) => {
   return () => {

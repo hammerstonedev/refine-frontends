@@ -12,7 +12,7 @@
 
 <script>
 import { numericDoubleProps } from './mixins';
-import NumberInput from '../../../../components/tailwind/inputs/number-input';
+import NumberInput from '../../../../components/base/inputs/number-input';
 
 export default {
   name: 'base-numeric-double-clause',

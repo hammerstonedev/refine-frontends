@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { RefineFlavor } from '../../tailwind/query-builder/refine-flavor';
+import { RefineFlavor } from '../../base/query-builder/refine-flavor';
 
 export default {
   name: 'selector-list-item',

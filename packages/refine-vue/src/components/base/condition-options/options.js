@@ -1,4 +1,4 @@
-import { NumericCondition, TextCondition } from '../../../components/tailwind/conditions';
+import { NumericCondition, TextCondition } from '../../../components/base/conditions';
 import useConditionOption from '../../../compositions/tailwind/useConditionOption';
 import { optionProps } from '../../../mixins';
 

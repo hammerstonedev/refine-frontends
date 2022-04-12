@@ -3,10 +3,10 @@
     <refine-flavor
       as="ul"
       component="select.listbox"
+      :flavorOptions="{ isClosed }"
       tabindex="-1"
       role="listbox"
       :aria-activedescendant="selectedOption ? createItemId(selectedOption.id) : ''"
-      :flavorOptions="{ isClosed }"
       ref="listBox"
       @keydown.arrow-down.stop.prevent="$emit('highlight-next-option')"
       @keydown.arrow-up.stop.prevent="$emit('highlight-previous-option')"
@@ -21,7 +21,7 @@
 
 <script>
 import { uid } from '../../../mixins';
-import { RefineFlavor } from '../../tailwind/query-builder/refine-flavor';
+import { RefineFlavor } from '../../base/query-builder/refine-flavor';
 
 export default {
   name: 'selector-listbox',

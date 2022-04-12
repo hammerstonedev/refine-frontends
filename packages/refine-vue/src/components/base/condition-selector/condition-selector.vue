@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Selector from '../../../components/tailwind/selector';
+import Selector from '../../../components/base/selector';
 
 export default {
   name: 'condition-selector',

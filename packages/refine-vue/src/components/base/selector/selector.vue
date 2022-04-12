@@ -73,7 +73,7 @@ import SelectorListbox from './selector-listbox';
 import SelectorListItem from './selector-list-item';
 import MultiSelectorButton from './multi-selector-button.vue';
 import ClickAway from '../../../directives/click-away';
-import { RefineFlavor } from '../../../components/tailwind/query-builder/refine-flavor';
+import { RefineFlavor } from '../../../components/base/query-builder/refine-flavor';
 
 export default {
   name: 'selector',

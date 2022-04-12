@@ -1,5 +1,5 @@
 import { h } from 'vue-demi';
-import BaseTextClause from '../../components/tailwind/clauses/text/base-text-clause';
+import BaseTextClause from '../../components/base/clauses/text/base-text-clause';
 
 export default (props, ClauseComponent) => {
   return () => {
