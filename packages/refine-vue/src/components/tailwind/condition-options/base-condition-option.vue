@@ -1,10 +1,8 @@
 <template>
   <renderless-option :id="id" :display="display" :selected="selected" v-bind="$attrs">
-    <div class="flex">
-      <component :is="ConditionComponent" :id="id">
-        <slot></slot>
-      </component>
-    </div>
+    <component :is="ConditionComponent" :id="id">
+      <slot></slot>
+    </component>
   </renderless-option>
 </template>
 

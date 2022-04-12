@@ -1,5 +1,5 @@
 <template>
-  <selector @select-option="selectRefinement" innerClass="mr-4" class="pt-4">
+  <selector @select-option="selectRefinement">
     <selector-option
       v-for="{ id, meta, display } in refinements"
       :key="id"

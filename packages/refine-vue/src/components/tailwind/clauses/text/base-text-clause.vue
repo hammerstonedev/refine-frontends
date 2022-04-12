@@ -1,8 +1,6 @@
 <template>
   <component :is="ClauseComponent" :value="value" v-slot="{ value, setValue }">
-    <div>
-      <text-input :value="value" @input="setValue" />
-    </div>
+    <text-input :value="value" @input="setValue" />
   </component>
 </template>
 

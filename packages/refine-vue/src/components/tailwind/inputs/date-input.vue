@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <date-picker @input="handleInput" :date="date1" v-bind="$attrs" />
-  </div>
+  <date-picker @input="handleInput" :date="date1" v-bind="$attrs" />
 </template>
 
 <script>

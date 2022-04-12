@@ -5,14 +5,8 @@
     :value2="to"
     v-slot="{ value1, value2, setValue }"
   >
-    <div class="sm:flex">
-      <div class="sm:mr-2">
-        <number-input :value="value1" @input="({ value }) => setValue({ value1: value })" />
-      </div>
-      <div class="pt-4 sm:pt-0">
-        <number-input :value="value2" @input="({ value }) => setValue({ value2: value })" />
-      </div>
-    </div>
+    <number-input :value="value1" @input="({ value }) => setValue({ value1: value })" />
+    <number-input :value="value2" @input="({ value }) => setValue({ value2: value })" />
   </component>
 </template>
 

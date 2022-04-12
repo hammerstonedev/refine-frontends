@@ -9,14 +9,12 @@
         :display="display"
         :selected="input.clause === clauseId"
       >
-        <div>
-          <component
-            v-if="component"
-            :is="component"
-            v-bind="{ ...meta, ...clauseMeta, ...input }"
-            @input="setValue"
-          />
-        </div>
+        <component
+          v-if="component"
+          :is="component"
+          v-bind="{ ...meta, ...clauseMeta, ...input }"
+          @input="setValue"
+        />
       </selector-option>
     </selector>
   </renderless-clause>
