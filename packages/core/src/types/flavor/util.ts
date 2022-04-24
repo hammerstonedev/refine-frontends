@@ -28,7 +28,8 @@ export type DeepPartial<Object extends object> = {
 };
 
 /**
- * Adds `class: string` for Vue and `className: string` for React.
+ * Adds `class: string` for Vue and `className: string` for React along
+ * with a `style` property.
  */
 export type StylingProps<Runtime extends RefineRuntime> = Runtime extends "vue"
   ? { class: string; style: string }
