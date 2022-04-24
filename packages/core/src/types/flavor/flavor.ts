@@ -8,215 +8,115 @@ import type {
 
 export type RefineRuntime = "vue" | "react";
 
+export type FlavorItem<
+  Name extends RefineComponentName,
+  Runtime extends RefineRuntime
+> = StylingProps<Runtime> & {
+  component: RefineComponent<Name, Runtime>;
+};
+
 export type RefineFlavor<Runtime extends RefineRuntime> = {
-  group: StylingProps<Runtime> & {
-    component: RefineComponent<"group", Runtime>;
+  group: FlavorItem<"group", Runtime> & {
+    wrapper: FlavorItem<"group.wrapper", Runtime>;
 
-    wrapper: StylingProps<Runtime> & {
-      component: RefineComponent<"group.wrapper", Runtime>;
-    };
-
-    addCriterionButton: StylingProps<Runtime> & {
-      component: RefineComponent<"group.addCriterionButton", Runtime>;
-
-      text: StylingProps<Runtime> & {
-        component: RefineComponent<"group.addCriterionButton.text", Runtime>;
-      };
-
-      icon: StylingProps<Runtime> & {
-        component: RefineComponent<"group.addCriterionButton.icon", Runtime>;
-      };
+    addCriterionButton: FlavorItem<"group.addCriterionButton", Runtime> & {
+      text: FlavorItem<"group.addCriterionButton.text", Runtime>;
+      icon: FlavorItem<"group.addCriterionButton.icon", Runtime>;
     };
   };
 
-  addGroupButton: StylingProps<Runtime> & {
-    component: RefineComponent<"addGroupButton", Runtime>;
-  };
+  addGroupButton: FlavorItem<"addGroupButton", Runtime>;
 
-  criterion: StylingProps<Runtime> & {
-    component: RefineComponent<"criterion", Runtime>;
-
-    removeCriterionButton: StylingProps<Runtime> & {
-      component: RefineComponent<"criterion.removeCriterionButton", Runtime>;
-
-      errors: StylingProps<Runtime> & {
-        component: RefineComponent<
-          "criterion.removeCriterionButton.errors",
+  criterion: FlavorItem<"criterion", Runtime> & {
+    removeCriterionButton: FlavorItem<
+      "criterion.removeCriterionButton",
+      Runtime
+    > & {
+      errors: FlavorItem<"criterion.removeCriterionButton.errors", Runtime> & {
+        error: FlavorItem<
+          "criterion.removeCriterionButton.errors.error",
           Runtime
         >;
-
-        error: StylingProps<Runtime> & {
-          component: RefineComponent<
-            "criterion.removeCriterionButton.errors.error",
-            Runtime
-          >;
-        };
       };
     };
   };
 
-  condition: StylingProps<Runtime> & {
-    component: RefineComponent<"condition", Runtime>;
-  };
+  condition: FlavorItem<"condition", Runtime>;
 
   inputs: {
     date: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.date", Runtime>;
 
-      double: StylingProps<Runtime> & {
-        component: RefineComponent<"inputs.date.double", Runtime>;
-
-        wrapper: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.date.double.wrapper", Runtime>;
-        };
-
-        joiner: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.date.double.joiner", Runtime>;
-        };
+      double: FlavorItem<"inputs.date.double", Runtime> & {
+        wrapper: FlavorItem<"inputs.date.double.wrapper", Runtime>;
+        joiner: FlavorItem<"inputs.date.double.joiner", Runtime>;
       };
 
-      relative: StylingProps<Runtime> & {
-        component: RefineComponent<"inputs.date.relative", Runtime>;
-
-        wrapper: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.date.relative.wrapper", Runtime>;
-        };
+      relative: FlavorItem<"inputs.date.relative", Runtime> & {
+        wrapper: FlavorItem<"inputs.date.relative.wrapper", Runtime>;
       };
 
-      calendar: StylingProps<Runtime> & {
-        component: RefineComponent<"inputs.date.calendar", Runtime>;
-
-        icon: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.date.calendar.icon", Runtime>;
-        };
+      calendar: FlavorItem<"inputs.date.calendar", Runtime> & {
+        icon: FlavorItem<"inputs.date.calendar.icon", Runtime>;
       };
 
-      error: StylingProps<Runtime> & {
-        component: RefineComponent<"inputs.date.error", Runtime>;
-
-        icon: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.date.error.icon", Runtime>;
-        };
+      error: FlavorItem<"inputs.date.error", Runtime> & {
+        icon: FlavorItem<"inputs.date.error.icon", Runtime>;
       };
     };
 
-    number: StylingProps<Runtime> & {
-      component: RefineComponent<"inputs.number", Runtime>;
-
-      double: StylingProps<Runtime> & {
-        component: RefineComponent<"inputs.number.double", Runtime>;
-
-        wrapper: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.number.double.wrapper", Runtime>;
-        };
-
-        joiner: StylingProps<Runtime> & {
-          component: RefineComponent<"inputs.number.double.joiner", Runtime>;
-        };
+    number: FlavorItem<"inputs.number", Runtime> & {
+      double: FlavorItem<"inputs.number.double", Runtime> & {
+        wrapper: FlavorItem<"inputs.number.double.wrapper", Runtime>;
+        joiner: FlavorItem<"inputs.number.double.joiner", Runtime>;
       };
     };
 
-    text: StylingProps<Runtime> & {
-      component: RefineComponent<"inputs.text", Runtime>;
-    };
+    text: FlavorItem<"inputs.text", Runtime>;
   };
 
   /**
    * Used in many places within the query builder, e.g. selecting a condition, selecting a clause.
    */
-  select: StylingProps<Runtime> & {
-    component: RefineComponent<"select", Runtime>;
+  select: FlavorItem<"select", Runtime> & {
+    wrapper: FlavorItem<"select.wrapper", Runtime>;
 
-    wrapper: StylingProps<Runtime> & {
-      component: RefineComponent<"select.wrapper", Runtime>;
+    customOptions: FlavorItem<"select.customOptions", Runtime> & {
+      wrapper: FlavorItem<"select.customOptions.wrapper", Runtime>;
     };
 
-    customOptions: StylingProps<Runtime> & {
-      wrapper: StylingProps<Runtime> & {
-        component: RefineComponent<"select.customOptions.wrapper", Runtime>;
-      };
-    };
+    listbox: FlavorItem<"select.listbox", Runtime> & {
+      wrapper: FlavorItem<"select.listbox.wrapper", Runtime>;
 
-    listbox: StylingProps<Runtime> & {
-      component: RefineComponent<"select.listbox", Runtime>;
-
-      wrapper: StylingProps<Runtime> & {
-        component: RefineComponent<"select.listbox.wrapper", Runtime>;
-      };
-
-      item: StylingProps<Runtime> & {
-        component: RefineComponent<"select.listbox.item", Runtime>;
-
-        text: StylingProps<Runtime> & {
-          component: RefineComponent<"select.listbox.item.text", Runtime>;
-        };
-
-        icon: StylingProps<Runtime> & {
-          component: RefineComponent<"select.listbox.item.icon", Runtime>;
-        };
+      item: FlavorItem<"select.listbox.item", Runtime> & {
+        text: FlavorItem<"select.listbox.item.text", Runtime>;
+        icon: FlavorItem<"select.listbox.item.icon", Runtime>;
       };
     };
 
-    button: StylingProps<Runtime> & {
-      component: RefineComponent<"select.button", Runtime>;
-
-      placeholder: StylingProps<Runtime> & {
-        component: RefineComponent<"select.button.placeholder", Runtime>;
-      };
-
-      selected: StylingProps<Runtime> & {
-        component: RefineComponent<"select.button.selected", Runtime>;
-      };
-
-      icon: StylingProps<Runtime> & {
-        component: RefineComponent<"select.button.icon", Runtime>;
-      };
+    button: FlavorItem<"select.button", Runtime> & {
+      placeholder: FlavorItem<"select.button.placeholder", Runtime>;
+      selected: FlavorItem<"select.button.selected", Runtime>;
+      icon: FlavorItem<"select.button.icon", Runtime>;
     };
 
-    multi: StylingProps<Runtime> & {
-      component: RefineComponent<"select.multi", Runtime>;
+    multi: FlavorItem<"select.multi", Runtime> & {
+      button: FlavorItem<"select.multi.button", Runtime> & {
+        placeholder: FlavorItem<"select.multi.button.placeholder", Runtime>;
 
-      button: StylingProps<Runtime> & {
-        component: RefineComponent<"select.multi.button", Runtime>;
+        selected: FlavorItem<"select.multi.button.selected", Runtime>;
 
-        placeholder: StylingProps<Runtime> & {
-          component: RefineComponent<
-            "select.multi.button.placeholder",
-            Runtime
-          >;
-        };
-
-        selected: StylingProps<Runtime> & {
-          component: RefineComponent<"select.multi.button.selected", Runtime>;
-        };
-
-        deslect: {
-          component: RefineComponent<"select.multi.button.deslect", Runtime>;
-
-          icon: StylingProps<Runtime> & {
-            component: RefineComponent<
-              "select.multi.button.deslect.icon",
-              Runtime
-            >;
-
-            wrapper: StylingProps<Runtime> & {
-              component: RefineComponent<
-                "select.multi.button.deslect.icon.wrapper",
-                Runtime
-              >;
-            };
-          };
-        };
-
-        icon: StylingProps<Runtime> & {
-          component: RefineComponent<"select.multi.button.icon", Runtime>;
-
-          wrapper: StylingProps<Runtime> & {
-            component: RefineComponent<
-              "select.multi.button.icon.wrapper",
+        deselect: FlavorItem<"select.multi.button.deselect", Runtime> & {
+          icon: FlavorItem<"select.multi.button.deselect.icon", Runtime> & {
+            wrapper: FlavorItem<
+              "select.multi.button.deselect.icon.wrapper",
               Runtime
             >;
           };
+        };
+
+        icon: FlavorItem<"select.multi.button.icon", Runtime> & {
+          wrapper: FlavorItem<"select.multi.button.icon.wrapper", Runtime>;
         };
       };
     };
