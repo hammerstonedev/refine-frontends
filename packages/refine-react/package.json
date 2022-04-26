@@ -9,10 +9,34 @@
   "files": [
     "dist/**"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./flavors/default": {
+      "require": "./dist/flavors/default.cjs",
+      "import": "./dist/flavors/default.mjs"
+    },
+    "./flavors/tailwind": {
+      "require": "./dist/flavors/tailwind.cjs",
+      "import": "./dist/flavors/tailwind.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "flavors/default": [
+        "dist/flavors/default.d.ts"
+      ],
+      "flavors/tailwind": [
+        "dist/flavors/tailwind.d.ts"
+      ]
+    }
+  },
   "packageManager": "yarn@3.1.1",
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "test": "jest --watch"
   },
   "peerDependencies": {

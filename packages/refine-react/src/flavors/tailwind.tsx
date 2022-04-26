@@ -1,6 +1,7 @@
+import React from "react";
 import type { PartialReactRefineFlavor } from "refine-core/types";
 
-export const tailwindFlavor: PartialReactRefineFlavor = {
+const tailwindFlavor: PartialReactRefineFlavor = {
   group: {
     className: "bg-gray-50 p-4 mb-4 space-y-6 rounded",
     wrapper: {},
@@ -122,3 +123,5 @@ export const tailwindFlavor: PartialReactRefineFlavor = {
     },
   },
 };
+
+export default tailwindFlavor;

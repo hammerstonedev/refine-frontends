@@ -1,6 +1,7 @@
+import React from "react";
 import type { ReactRefineFlavor } from "refine-core/types";
 
-export const defaultFlavor: ReactRefineFlavor = {
+const baseFlavor: ReactRefineFlavor = {
   group: {
     component: (props) => <div {...props} />,
 
@@ -262,3 +263,5 @@ export const defaultFlavor: ReactRefineFlavor = {
     },
   },
 };
+
+export default baseFlavor;

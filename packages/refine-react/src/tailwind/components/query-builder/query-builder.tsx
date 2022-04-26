@@ -1,16 +1,15 @@
 import React, { useMemo, useReducer } from "react";
-import merge from "deepmerge";
 import type {
   Blueprint,
   Condition,
   PartialReactRefineFlavor,
-  ReactRefineFlavor,
 } from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
 import { RefineFlavor } from "../../../components/refine-flavor";
-import { defaultFlavor } from "../../../flavors/default";
+import baseFlavor from "../../../flavors/base";
+import { extendFlavor } from "../../..";
 
 export type QueryBuilderProps = {
   blueprint: Blueprint;
@@ -42,7 +41,7 @@ export const QueryBuilder = ({
       }
     );
 
-    const flavor = merge(defaultFlavor, partialFlavor) as ReactRefineFlavor;
+    const flavor = extendFlavor(baseFlavor, partialFlavor);
 
     return { blueprint, flavor };
   }, []);
