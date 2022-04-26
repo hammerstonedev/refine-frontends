@@ -3,6 +3,7 @@ import type {
   Blueprint,
   Condition,
   PartialReactRefineFlavor,
+  ReactRefineFlavor,
 } from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
@@ -41,7 +42,7 @@ export const QueryBuilder = ({
       }
     );
 
-    const flavor = extendFlavor(baseFlavor, partialFlavor);
+    const flavor = extendFlavor(baseFlavor, partialFlavor) as ReactRefineFlavor;
 
     return { blueprint, flavor };
   }, []);

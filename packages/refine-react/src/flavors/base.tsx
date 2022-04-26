@@ -206,38 +206,38 @@ const baseFlavor: ReactRefineFlavor = {
       component: (props) => <input type="datetime-local" {...props} />,
 
       double: {
-        component: (props) => <span>implement me</span>,
+        component: (props) => <input type="datetime-local" {...props} />,
 
         wrapper: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <div {...props} />,
         },
 
         joiner: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <span {...props} />,
         },
       },
 
       relative: {
-        component: (props) => <span>implement me</span>,
+        component: (props) => <input type="datetime-local" {...props} />,
 
         wrapper: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <div {...props} />,
         },
       },
 
       calendar: {
-        component: (props) => <span>implement me</span>,
+        component: (props) => <span>TODO: implement me</span>,
 
         icon: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <span>TODO: implement me</span>,
         },
       },
 
       error: {
-        component: (props) => <span>implement me</span>,
+        component: (props) => <span>TODO: implement me</span>,
 
         icon: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <span>TODO: implement me</span>,
         },
       },
     },
@@ -246,14 +246,14 @@ const baseFlavor: ReactRefineFlavor = {
       component: (props) => <input type="number" {...props} />,
 
       double: {
-        component: (props) => <span>implement me</span>,
+        component: (props) => <input type="number" {...props} />,
 
         wrapper: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <div {...props} />,
         },
 
         joiner: {
-          component: (props) => <span>implement me</span>,
+          component: (props) => <span {...props} />,
         },
       },
     },

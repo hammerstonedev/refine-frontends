@@ -62,7 +62,7 @@ const capitalise = (string: string) => {
 };
 
 const INITIAL_FLAVOR = "tailwind";
-const INITIAL_BLUEPRINT = "basic";
+const INITIAL_BLUEPRINT = "kitchen sink";
 
 const App = () => {
   const [chosenFlavor, setChosenFlavor] = useState(

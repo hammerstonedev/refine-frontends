@@ -34,9 +34,9 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
         >
           <RefineFlavor<"group.addCriterionButton.icon"> name="group.addCriterionButton.icon">
             <svg
-              className="h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
+              style={{ width: "1.25rem", height: "1.25rem" }}
               fill="currentColor"
               aria-hidden="true"
             >

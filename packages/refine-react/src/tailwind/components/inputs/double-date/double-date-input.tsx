@@ -1,23 +1,29 @@
 import { useInput } from "../use-input";
+import { Label } from "../../../../components/label";
+import { RefineFlavor } from "../../../../components/refine-flavor";
 
 export const DoubleDateInput = () => {
+  // TODO: use separate value for each input
   const { display, value, onChange } = useInput<string>();
 
   return (
     <div>
-      <label className="sr-only">{display}</label>
-      <input
-        type="datetime-local"
-        className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
-      <input
-        type="datetime-local"
-        className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
+      <Label screenReaderOnly>{display}</Label>
+      <RefineFlavor<"inputs.date.double.wrapper"> name="inputs.date.double.wrapper">
+        <RefineFlavor<"inputs.date.double">
+          name="inputs.date.double"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
+        <RefineFlavor<"inputs.date.double.joiner"> name="inputs.date.double.joiner">
+          and
+        </RefineFlavor>
+        <RefineFlavor<"inputs.date.double">
+          name="inputs.date.double"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
+      </RefineFlavor>
     </div>
   );
 };

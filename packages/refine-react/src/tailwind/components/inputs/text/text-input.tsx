@@ -1,3 +1,4 @@
+import { Label } from "../../../../components/label";
 import { RefineFlavor } from "../../../../components/refine-flavor";
 import { useInput } from "../use-input";
 
@@ -6,7 +7,7 @@ export const TextInput = () => {
 
   return (
     <div>
-      <label className="sr-only">{display}</label>
+      <Label screenReaderOnly>{display}</Label>
       <RefineFlavor<"inputs.text">
         name="inputs.text"
         value={value}

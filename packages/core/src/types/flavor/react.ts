@@ -73,8 +73,9 @@ export type RefineReactComponentPropsMap = {
   select: {
     className?: string;
     style?: CSS.Properties;
-    value: string;
+    value: string | string[];
     onChange: React.ChangeEventHandler<HTMLSelectElement>;
+    multiple?: boolean;
   };
   "select.wrapper": {
     className?: string;
@@ -227,41 +228,26 @@ export type RefineReactComponentPropsMap = {
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
   };
-  /**
-   * TODO: Not implemented
-   */
   "inputs.date.double": {
     className?: string;
     style?: CSS.Properties;
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
   };
-  /**
-   * TODO: Not used in React implementation.
-   */
   "inputs.date.double.wrapper": {
     className?: string;
     style?: CSS.Properties;
   };
-  /**
-   * TODO: Not used in React implementation.
-   */
   "inputs.date.double.joiner": {
     className?: string;
     style?: CSS.Properties;
   };
-  /**
-   * TODO: Not implemented
-   */
   "inputs.date.relative": {
     className?: string;
     style?: CSS.Properties;
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
   };
-  /**
-   * TODO: Not used in React implementation.
-   */
   "inputs.date.relative.wrapper": {
     className?: string;
     style?: CSS.Properties;
@@ -301,23 +287,16 @@ export type RefineReactComponentPropsMap = {
     value: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
   };
-  /**
-   * TODO: Not implemented
-   */
   "inputs.number.double": {
     className?: string;
     style?: CSS.Properties;
+    value: string;
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
   };
-  /**
-   * TODO: Not used in React implementation.
-   */
   "inputs.number.double.wrapper": {
     className?: string;
     style?: CSS.Properties;
   };
-  /**
-   * TODO: Not used in React implementation.
-   */
   "inputs.number.double.joiner": {
     className?: string;
     style?: CSS.Properties;

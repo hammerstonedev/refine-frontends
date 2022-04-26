@@ -1,6 +1,9 @@
+import { Label } from "../../../../components/label";
+import { RefineFlavor } from "../../../../components/refine-flavor";
 import { useInput } from "../use-input";
 
 export const RelativeDateInput = () => {
+  // TODO: actually implement this
   const { display, value, onChange } = useInput<string>();
 
   const units: string[] = [];
@@ -8,23 +11,28 @@ export const RelativeDateInput = () => {
 
   return (
     <div>
-      <label className="sr-only">{display}</label>
-      <input
-        type="number"
-        className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
-      <select>
-        {units.map((unit) => (
-          <option></option>
-        ))}
-      </select>
-      <select>
-        {modifiers.map((modifier) => (
-          <option></option>
-        ))}
-      </select>
+      <Label screenReaderOnly>{display}</Label>
+      <RefineFlavor<"inputs.date.relative.wrapper"> name="inputs.date.relative.wrapper">
+        <RefineFlavor<"inputs.date.relative">
+          name="inputs.date.relative"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
+        <RefineFlavor<"select"> name="select" value="" onChange={() => {}}>
+          {units.map((unit) => (
+            <option key={unit} value={unit}>
+              {unit}
+            </option>
+          ))}
+        </RefineFlavor>
+        <RefineFlavor<"select"> name="select" value="" onChange={() => {}}>
+          {modifiers.map((modifier) => (
+            <option key={modifier} value={modifier}>
+              {modifier}
+            </option>
+          ))}
+        </RefineFlavor>
+      </RefineFlavor>
     </div>
   );
 };

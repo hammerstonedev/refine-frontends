@@ -1,6 +1,9 @@
 import React from "react";
 import type { PartialReactRefineFlavor } from "refine-core/types";
 
+const inputClassName =
+  "w-60 bg-white relative border border-gray-300 rounded-md shadow-sm pl-3 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm";
+
 const tailwindFlavor: PartialReactRefineFlavor = {
   group: {
     className: "bg-gray-50 p-4 mb-4 space-y-6 rounded",
@@ -32,12 +35,11 @@ const tailwindFlavor: PartialReactRefineFlavor = {
   },
 
   condition: {
-    className: "flex space-x-2",
+    className: "flex space-x-4",
   },
 
   select: {
-    className:
-      "bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+    className: inputClassName,
 
     wrapper: {},
 
@@ -84,17 +86,24 @@ const tailwindFlavor: PartialReactRefineFlavor = {
 
   inputs: {
     date: {
-      className:
-        "bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+      className: inputClassName,
 
       double: {
-        wrapper: {},
+        className: inputClassName,
+
+        wrapper: {
+          className: "flex items-baseline space-x-3",
+        },
 
         joiner: {},
       },
 
       relative: {
-        wrapper: {},
+        className: inputClassName,
+
+        wrapper: {
+          className: "flex items-baseline space-x-3",
+        },
       },
 
       calendar: {
@@ -107,19 +116,21 @@ const tailwindFlavor: PartialReactRefineFlavor = {
     },
 
     number: {
-      className:
-        "bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+      className: inputClassName,
 
       double: {
-        wrapper: {},
+        className: inputClassName,
+
+        wrapper: {
+          className: "flex items-baseline space-x-3",
+        },
 
         joiner: {},
       },
     },
 
     text: {
-      className:
-        "bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+      className: inputClassName,
     },
   },
 };

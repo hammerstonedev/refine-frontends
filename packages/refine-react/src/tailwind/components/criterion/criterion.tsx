@@ -1,3 +1,4 @@
+import { Label } from "../../../components/label";
 import { RefineFlavor } from "../../../components/refine-flavor";
 import { Condition } from "../conditions/condition";
 import { useCondition } from "../conditions/use-condition";
@@ -44,7 +45,7 @@ export const Criterion = ({ index }: CriterionProps) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
+            style={{ width: "1.25rem", height: "1.25rem" }}
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
@@ -55,7 +56,7 @@ export const Criterion = ({ index }: CriterionProps) => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="sr-only">Remove Criterion</span>
+          <Label screenReaderOnly>Remove Criterion</Label>
         </RefineFlavor>
         <Condition condition={condition} />
       </RefineFlavor>
