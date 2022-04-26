@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import type { Condition as ConditionType } from "refine-core/types";
+import { RefineFlavor } from "../../../components/refine-flavor";
 import { useCriterion } from "../criterion";
 import inputComponents from "../inputs";
 import { InputProvider } from "../inputs/use-input";
@@ -30,37 +31,37 @@ export const Condition = ({ condition }: ConditionProps) => {
   }, [selectedClause?.component]);
 
   return (
-    <div data-testid="refine-condition" className="flex space-x-2">
-      <div>
-        <select
+    <RefineFlavor<"condition"> name="condition" data-testid="refine-condition">
+      <RefineFlavor<"select.wrapper"> name="select.wrapper">
+        <RefineFlavor<"select">
+          name="select"
           value={condition.id}
           onChange={(event) => criterion.updateCondition(event.target.value)}
-          className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           {conditions.map((condition) => (
             <option key={condition.id} value={condition.id}>
               {condition.display}
             </option>
           ))}
-        </select>
-      </div>
-      <div>
-        <select
+        </RefineFlavor>
+      </RefineFlavor>
+      <RefineFlavor<"select.wrapper"> name="select.wrapper">
+        <RefineFlavor<"select">
+          name="select"
           value={selectedClause.id}
           onChange={(event) =>
             criterion.updateInput({
               clause: event.target.value,
             })
           }
-          className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           {condition.meta.clauses.map((clause) => (
             <option key={clause.id} value={clause.id}>
               {clause.display}
             </option>
           ))}
-        </select>
-      </div>
+        </RefineFlavor>
+      </RefineFlavor>
       {hasInput && (
         <InputProvider
           value={{
@@ -78,6 +79,6 @@ export const Condition = ({ condition }: ConditionProps) => {
           )}
         </InputProvider>
       )}
-    </div>
+    </RefineFlavor>
   );
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Condition, Blueprint } from "@hammerstone/refine-react";
-import { QueryBuilder } from "@hammerstone/refine-react";
+import { QueryBuilder, tailwindFlavor } from "@hammerstone/refine-react";
 import {
   booleanCondition,
   dateCondition,
@@ -66,23 +66,7 @@ const App = () => {
       <QueryBuilder
         blueprint={blueprint}
         conditions={conditions}
-        flavor={{
-          group: {
-            className: "group",
-            addCriterionButton: {
-              className: "add-criterion-button",
-              icon: {
-                component: (props) => <span>🚀</span>,
-              },
-            },
-          },
-          inputs: {
-            date: {
-              className: "date-input",
-              component: (props) => <span>📅</span>,
-            },
-          },
-        }}
+        flavor={tailwindFlavor}
         onChange={(blueprint) => setDebugBlueprint(blueprint)}
       />
       <pre className="text-xs">{JSON.stringify(debugBlueprint, null, 2)}</pre>

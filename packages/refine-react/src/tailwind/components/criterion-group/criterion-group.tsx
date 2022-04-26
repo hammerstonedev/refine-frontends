@@ -1,4 +1,5 @@
 import type { InternalCriterionWithPosition } from "refine-core/types/internal";
+import { RefineFlavor } from "../../../components/refine-flavor";
 import { Criterion } from "../criterion";
 import { useQueryBuilder } from "../query-builder/use-query-builder";
 import { CriterionGroupProvider } from "./use-criterion-group";
@@ -22,35 +23,35 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
         criteria,
       }}
     >
-      <div
-        data-testid="refine-criterion-group"
-        className="bg-gray-50 p-4 mb-4 space-y-6 rounded"
-      >
+      <RefineFlavor<"group"> name="group" data-testid="refine-criterion-group">
         {criteria.map((criterion, index) => (
           <Criterion key={index} index={index} />
         ))}
-        <button
+        <RefineFlavor<"group.addCriterionButton">
+          name="group.addCriterionButton"
           data-testid="refine-add-criterion"
-          type="button"
           onClick={() => addCriterion()}
-          className="background-transparent text-blue-600 text-xs flex items-center py-1 px-3 mt-3"
         >
-          <svg
-            className="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span>And</span>
-        </button>
-      </div>
+          <RefineFlavor<"group.addCriterionButton.icon"> name="group.addCriterionButton.icon">
+            <svg
+              className="h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </RefineFlavor>
+          <RefineFlavor<"group.addCriterionButton.text"> name="group.addCriterionButton.text">
+            And
+          </RefineFlavor>
+        </RefineFlavor>
+      </RefineFlavor>
     </CriterionGroupProvider>
   );
 };

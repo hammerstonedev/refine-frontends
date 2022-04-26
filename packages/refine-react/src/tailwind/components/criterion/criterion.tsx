@@ -1,3 +1,4 @@
+import { RefineFlavor } from "../../../components/refine-flavor";
 import { Condition } from "../conditions/condition";
 import { useCondition } from "../conditions/use-condition";
 import { useCriterionGroup } from "../criterion-group/use-criterion-group";
@@ -32,13 +33,13 @@ export const Criterion = ({ index }: CriterionProps) => {
         ...criterion,
       }}
     >
-      <div
+      <RefineFlavor<"criterion">
+        name="criterion"
         data-testid="refine-criterion"
-        className="flex items-center space-x-3"
       >
-        <button
+        <RefineFlavor<"criterion.removeCriterionButton">
+          name="criterion.removeCriterionButton"
           data-testid="refine-remove-criterion"
-          className="inline-flex items-center justify-center py-1 px-3 text-gray-500"
           onClick={() => blueprint.removeCriterion(criterion.position)}
         >
           <svg
@@ -55,9 +56,9 @@ export const Criterion = ({ index }: CriterionProps) => {
             />
           </svg>
           <span className="sr-only">Remove Criterion</span>
-        </button>
+        </RefineFlavor>
         <Condition condition={condition} />
-      </div>
+      </RefineFlavor>
     </CriterionProvider>
   );
 };

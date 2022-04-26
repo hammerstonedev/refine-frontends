@@ -1,12 +1,16 @@
-import React, { useReducer, useState } from "react";
+import React, { useMemo, useReducer } from "react";
+import merge from "deepmerge";
 import type {
   Blueprint,
   Condition,
   PartialReactRefineFlavor,
+  ReactRefineFlavor,
 } from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup } from "../criterion-group";
 import { QueryBuilderProvider } from "./use-query-builder";
+import { RefineFlavor } from "../../../components/refine-flavor";
+import { defaultFlavor } from "../../../flavors/default";
 
 export type QueryBuilderProps = {
   blueprint: Blueprint;
@@ -25,16 +29,23 @@ export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
   onChange,
-  flavor,
+  flavor: partialFlavor = {},
 }: QueryBuilderProps) => {
   const rerender = useRerender();
-  const [blueprint] = useState(
-    () =>
-      new BlueprintStore(initialBlueprint, conditions, (blueprint) => {
+  const { blueprint, flavor } = useMemo(() => {
+    const blueprint = new BlueprintStore(
+      initialBlueprint,
+      conditions,
+      (blueprint) => {
         onChange?.(blueprint);
         rerender();
-      })
-  );
+      }
+    );
+
+    const flavor = merge(defaultFlavor, partialFlavor) as ReactRefineFlavor;
+
+    return { blueprint, flavor };
+  }, []);
 
   return (
     <QueryBuilderProvider
@@ -42,20 +53,20 @@ export const QueryBuilder = ({
         blueprint: blueprint,
         groupedBlueprint: blueprint.groupedBlueprint(),
         conditions,
+        flavor,
       }}
     >
       <div data-testid="refine-query-builder">
         {blueprint.groupedBlueprint().map((criteria, index) => (
           <CriterionGroup key={index} criteria={criteria} index={index} />
         ))}
-        <button
+        <RefineFlavor<"addGroupButton">
+          name="addGroupButton"
           data-testid="refine-add-criterion-group"
-          type="button"
           onClick={() => blueprint.addGroup()}
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Add an 'Or'
-        </button>
+        </RefineFlavor>
       </div>
     </QueryBuilderProvider>
   );
