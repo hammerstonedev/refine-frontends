@@ -1,3 +1,3 @@
 export * from "refine-core/types";
-export * from "./tailwind";
-export * from "./utils";
+export * from "components/query-builder";
+export * from "utils";
