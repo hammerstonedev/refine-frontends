@@ -8,7 +8,7 @@ import type {
 
 export type RefineRuntime = "vue" | "react";
 
-export type FlavorItem<
+export type RefineFlavorItem<
   Name extends RefineComponentName,
   Runtime extends RefineRuntime
 > = StylingProps<Runtime> & {
@@ -16,107 +16,116 @@ export type FlavorItem<
 };
 
 export type RefineFlavor<Runtime extends RefineRuntime> = {
-  group: FlavorItem<"group", Runtime> & {
-    wrapper: FlavorItem<"group.wrapper", Runtime>;
+  group: RefineFlavorItem<"group", Runtime> & {
+    wrapper: RefineFlavorItem<"group.wrapper", Runtime>;
 
-    addCriterionButton: FlavorItem<"group.addCriterionButton", Runtime> & {
-      text: FlavorItem<"group.addCriterionButton.text", Runtime>;
-      icon: FlavorItem<"group.addCriterionButton.icon", Runtime>;
-    };
-  };
-
-  addGroupButton: FlavorItem<"addGroupButton", Runtime>;
-
-  criterion: FlavorItem<"criterion", Runtime> & {
-    removeCriterionButton: FlavorItem<
-      "criterion.removeCriterionButton",
+    addCriterionButton: RefineFlavorItem<
+      "group.addCriterionButton",
       Runtime
     > & {
-      errors: FlavorItem<"criterion.removeCriterionButton.errors", Runtime> & {
-        error: FlavorItem<
-          "criterion.removeCriterionButton.errors.error",
-          Runtime
-        >;
-      };
+      text: RefineFlavorItem<"group.addCriterionButton.text", Runtime>;
+      icon: RefineFlavorItem<"group.addCriterionButton.icon", Runtime>;
     };
   };
 
-  condition: FlavorItem<"condition", Runtime>;
+  addGroupButton: RefineFlavorItem<"addGroupButton", Runtime>;
+
+  criterion: RefineFlavorItem<"criterion", Runtime> & {
+    removeCriterionButton: RefineFlavorItem<
+      "criterion.removeCriterionButton",
+      Runtime
+    >;
+
+    errors: RefineFlavorItem<"criterion.errors", Runtime> & {
+      error: RefineFlavorItem<"criterion.errors.error", Runtime>;
+    };
+  };
+
+  condition: RefineFlavorItem<"condition", Runtime>;
 
   inputs: {
     date: StylingProps<Runtime> & {
       component: RefineComponent<"inputs.date", Runtime>;
 
-      double: FlavorItem<"inputs.date.double", Runtime> & {
-        wrapper: FlavorItem<"inputs.date.double.wrapper", Runtime>;
-        joiner: FlavorItem<"inputs.date.double.joiner", Runtime>;
+      double: RefineFlavorItem<"inputs.date.double", Runtime> & {
+        wrapper: RefineFlavorItem<"inputs.date.double.wrapper", Runtime>;
+        joiner: RefineFlavorItem<"inputs.date.double.joiner", Runtime>;
       };
 
-      relative: FlavorItem<"inputs.date.relative", Runtime> & {
-        wrapper: FlavorItem<"inputs.date.relative.wrapper", Runtime>;
+      relative: RefineFlavorItem<"inputs.date.relative", Runtime> & {
+        wrapper: RefineFlavorItem<"inputs.date.relative.wrapper", Runtime>;
       };
 
-      calendar: FlavorItem<"inputs.date.calendar", Runtime> & {
-        icon: FlavorItem<"inputs.date.calendar.icon", Runtime>;
+      calendar: RefineFlavorItem<"inputs.date.calendar", Runtime> & {
+        icon: RefineFlavorItem<"inputs.date.calendar.icon", Runtime>;
       };
 
-      error: FlavorItem<"inputs.date.error", Runtime> & {
-        icon: FlavorItem<"inputs.date.error.icon", Runtime>;
-      };
-    };
-
-    number: FlavorItem<"inputs.number", Runtime> & {
-      double: FlavorItem<"inputs.number.double", Runtime> & {
-        wrapper: FlavorItem<"inputs.number.double.wrapper", Runtime>;
-        joiner: FlavorItem<"inputs.number.double.joiner", Runtime>;
+      error: RefineFlavorItem<"inputs.date.error", Runtime> & {
+        icon: RefineFlavorItem<"inputs.date.error.icon", Runtime>;
       };
     };
 
-    text: FlavorItem<"inputs.text", Runtime>;
+    number: RefineFlavorItem<"inputs.number", Runtime> & {
+      double: RefineFlavorItem<"inputs.number.double", Runtime> & {
+        wrapper: RefineFlavorItem<"inputs.number.double.wrapper", Runtime>;
+        joiner: RefineFlavorItem<"inputs.number.double.joiner", Runtime>;
+      };
+    };
+
+    text: RefineFlavorItem<"inputs.text", Runtime>;
   };
 
   /**
    * Used in many places within the query builder, e.g. selecting a condition, selecting a clause.
    */
-  select: FlavorItem<"select", Runtime> & {
-    wrapper: FlavorItem<"select.wrapper", Runtime>;
+  select: RefineFlavorItem<"select", Runtime> & {
+    wrapper: RefineFlavorItem<"select.wrapper", Runtime>;
 
-    customOptions: FlavorItem<"select.customOptions", Runtime> & {
-      wrapper: FlavorItem<"select.customOptions.wrapper", Runtime>;
+    customOptions: RefineFlavorItem<"select.customOptions", Runtime> & {
+      wrapper: RefineFlavorItem<"select.customOptions.wrapper", Runtime>;
     };
 
-    listbox: FlavorItem<"select.listbox", Runtime> & {
-      wrapper: FlavorItem<"select.listbox.wrapper", Runtime>;
+    listbox: RefineFlavorItem<"select.listbox", Runtime> & {
+      wrapper: RefineFlavorItem<"select.listbox.wrapper", Runtime>;
 
-      item: FlavorItem<"select.listbox.item", Runtime> & {
-        text: FlavorItem<"select.listbox.item.text", Runtime>;
-        icon: FlavorItem<"select.listbox.item.icon", Runtime>;
+      item: RefineFlavorItem<"select.listbox.item", Runtime> & {
+        text: RefineFlavorItem<"select.listbox.item.text", Runtime>;
+        icon: RefineFlavorItem<"select.listbox.item.icon", Runtime>;
       };
     };
 
-    button: FlavorItem<"select.button", Runtime> & {
-      placeholder: FlavorItem<"select.button.placeholder", Runtime>;
-      selected: FlavorItem<"select.button.selected", Runtime>;
-      icon: FlavorItem<"select.button.icon", Runtime>;
+    button: RefineFlavorItem<"select.button", Runtime> & {
+      placeholder: RefineFlavorItem<"select.button.placeholder", Runtime>;
+      selected: RefineFlavorItem<"select.button.selected", Runtime>;
+      icon: RefineFlavorItem<"select.button.icon", Runtime>;
     };
 
-    multi: FlavorItem<"select.multi", Runtime> & {
-      button: FlavorItem<"select.multi.button", Runtime> & {
-        placeholder: FlavorItem<"select.multi.button.placeholder", Runtime>;
+    multi: RefineFlavorItem<"select.multi", Runtime> & {
+      button: RefineFlavorItem<"select.multi.button", Runtime> & {
+        placeholder: RefineFlavorItem<
+          "select.multi.button.placeholder",
+          Runtime
+        >;
 
-        selected: FlavorItem<"select.multi.button.selected", Runtime>;
+        selected: RefineFlavorItem<"select.multi.button.selected", Runtime>;
 
-        deselect: FlavorItem<"select.multi.button.deselect", Runtime> & {
-          icon: FlavorItem<"select.multi.button.deselect.icon", Runtime> & {
-            wrapper: FlavorItem<
+        deselect: RefineFlavorItem<"select.multi.button.deselect", Runtime> & {
+          icon: RefineFlavorItem<
+            "select.multi.button.deselect.icon",
+            Runtime
+          > & {
+            wrapper: RefineFlavorItem<
               "select.multi.button.deselect.icon.wrapper",
               Runtime
             >;
           };
         };
 
-        icon: FlavorItem<"select.multi.button.icon", Runtime> & {
-          wrapper: FlavorItem<"select.multi.button.icon.wrapper", Runtime>;
+        icon: RefineFlavorItem<"select.multi.button.icon", Runtime> & {
+          wrapper: RefineFlavorItem<
+            "select.multi.button.icon.wrapper",
+            Runtime
+          >;
         };
       };
     };
