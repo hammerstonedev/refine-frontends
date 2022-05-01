@@ -17,7 +17,11 @@ export const FlavorItem = <Name extends RefineComponentName>({
   const { component: Component, className, style } = useFlavorItem(name);
 
   return (
-    <Component {...props} className={className} style={style}>
+    <Component
+      {...props}
+      className={typeof className === "function" ? className({}) : className}
+      style={typeof style === "function" ? style({}) : style}
+    >
       {children}
     </Component>
   );

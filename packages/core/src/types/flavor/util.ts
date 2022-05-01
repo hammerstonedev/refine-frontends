@@ -31,8 +31,17 @@ export type DeepPartial<Object extends object> = {
  * Adds `class: string` for Vue and `className: string` for React along
  * with a `style` property.
  */
-export type StylingProps<Runtime extends RefineRuntime> = Runtime extends "vue"
-  ? { class?: string; style?: string }
+export type StylingProps<
+  Runtime extends RefineRuntime,
+  Options extends object = {}
+> = Runtime extends "vue"
+  ? {
+      class?: string | ((options: Options) => string);
+      style?: (options: Options) => string;
+    }
   : Runtime extends "react"
-  ? { className?: string; style?: CSS.Properties }
+  ? {
+      className?: string | ((options: Options) => string);
+      style?: CSS.Properties | ((options: Options) => CSS.Properties);
+    }
   : never;
