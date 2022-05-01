@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Condition, extendFlavor } from "@hammerstone/refine-react";
-import { QueryBuilder } from "@hammerstone/refine-react";
+import type { Condition } from "@hammerstone/refine-react";
+import { QueryBuilder, extendFlavor } from "@hammerstone/refine-react";
 import tailwindFlavor from "@hammerstone/refine-react/flavors/tailwind";
 import {
   basicBlueprint,
