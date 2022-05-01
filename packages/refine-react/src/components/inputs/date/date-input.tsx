@@ -9,7 +9,7 @@ export const DateInput = () => {
       <FlavorItem<"inputs.date">
         name="inputs.date"
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange({ value: event.target.value })}
       />
     </div>
   );

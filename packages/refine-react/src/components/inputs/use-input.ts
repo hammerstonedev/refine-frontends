@@ -1,13 +1,16 @@
 import { createContext, useContext } from "react";
-import type { Option } from "refine-core/types";
+import type { CriterionInput, Option } from "refine-core/types";
 
-export type InputContext<Value = any> = {
+/**
+ * If `Value` is an object it will be added to `InputContext` instead of
+ * adding a `value` property. Otherwise `value` will be set to `Value`.
+ */
+export type InputContext<Value = string> = {
   display: string;
-  value: Value;
-  onChange: (value: Value) => void;
+  onChange: (input: Partial<CriterionInput>) => void;
   options?: Option[];
   multiple?: boolean;
-};
+} & (Value extends object ? Value : { value: Value });
 
 export const InputContext = createContext<InputContext | null>(null);
 

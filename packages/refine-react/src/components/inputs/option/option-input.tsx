@@ -34,12 +34,12 @@ export const OptionInput = () => {
           const valueArray = valueToArray(value);
 
           if (valueArray.includes(event.target.value)) {
-            return onChange(
-              valueArray.filter((value) => value !== event.target.value)
-            );
+            return onChange({
+              value: valueArray.filter((value) => value !== event.target.value),
+            });
           }
 
-          return onChange([...valueArray, event.target.value]);
+          return onChange({ value: [...valueArray, event.target.value] });
         }}
         multiple={multiple}
       >

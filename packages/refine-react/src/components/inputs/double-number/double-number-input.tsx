@@ -1,8 +1,8 @@
 import { FlavorItem, Label, useInput } from "components";
 
 export const DoubleNumberInput = () => {
-  // TODO: use separate value for each input
-  const { display, value, onChange } = useInput<string>();
+  const { display, value1, value2, onChange } =
+    useInput<{ value1: string; value2: string }>();
 
   return (
     <div>
@@ -10,16 +10,16 @@ export const DoubleNumberInput = () => {
       <FlavorItem<"inputs.number.double.wrapper"> name="inputs.number.double.wrapper">
         <FlavorItem<"inputs.number.double">
           name="inputs.number.double"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
+          value={value1}
+          onChange={(event) => onChange({ value1: event.target.value })}
         />
         <FlavorItem<"inputs.number.double.joiner"> name="inputs.number.double.joiner">
           and
         </FlavorItem>
         <FlavorItem<"inputs.number.double">
           name="inputs.number.double"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
+          value={value2}
+          onChange={(event) => onChange({ value2: event.target.value })}
         />
       </FlavorItem>
     </div>

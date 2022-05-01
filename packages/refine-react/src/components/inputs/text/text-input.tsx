@@ -9,7 +9,7 @@ export const TextInput = () => {
       <FlavorItem<"inputs.text">
         name="inputs.text"
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange({ value: event.target.value })}
       />
     </div>
   );

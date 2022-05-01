@@ -14,7 +14,7 @@ export const RelativeDateInput = () => {
         <FlavorItem<"inputs.date.relative">
           name="inputs.date.relative"
           value={value}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event) => onChange({ value: event.target.value })}
         />
         <FlavorItem<"select"> name="select" value="" onChange={() => {}}>
           {units.map((unit) => (

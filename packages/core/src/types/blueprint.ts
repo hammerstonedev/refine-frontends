@@ -6,13 +6,27 @@ export interface BasicCriterionInput extends BaseCriterionInput {
   value?: string | string[];
 }
 
+export interface DoubleNumberInput extends BaseCriterionInput {
+  value1?: string;
+  value2?: string;
+}
+
+export interface DoubleDateInput extends BaseCriterionInput {
+  date1?: string;
+  date2?: string;
+}
+
 export interface RelativeDateCriterionInput extends BaseCriterionInput {
   amount: number;
   unit: string;
   modifier: string;
 }
 
-export type CriterionInput = BasicCriterionInput | RelativeDateCriterionInput;
+export type CriterionInput =
+  | BasicCriterionInput
+  | DoubleNumberInput
+  | DoubleDateInput
+  | RelativeDateCriterionInput;
 
 interface BaseBlueprintItem {
   depth: number;

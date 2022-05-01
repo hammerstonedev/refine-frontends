@@ -9,7 +9,7 @@ export const NumberInput = () => {
       <FlavorItem<"inputs.number">
         name="inputs.number"
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange({ value: event.target.value })}
       />
     </div>
   );

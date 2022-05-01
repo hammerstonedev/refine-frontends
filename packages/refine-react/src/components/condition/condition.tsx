@@ -71,7 +71,7 @@ export const Condition = ({ condition }: ConditionProps) => {
             options: condition.meta.options,
             // @ts-expect-error TODO: Fix this
             value: criterion.input.value ?? "",
-            onChange: (value) => criterion.updateInput({ value }),
+            onChange: (input) => criterion.updateInput(input),
             multiple: selectedClause.meta.multiple ?? false,
           }}
         >
