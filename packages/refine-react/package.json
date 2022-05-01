@@ -18,24 +18,22 @@
       "require": "./dist/flavors/default.cjs",
       "import": "./dist/flavors/default.mjs"
     },
-    "./flavors/tailwind": {
-      "require": "./dist/flavors/tailwind.cjs",
-      "import": "./dist/flavors/tailwind.mjs"
+    "./dist/flavors/default.css": {
+      "require": "./dist/flavors/default.css",
+      "import": "./dist/flavors/default.css"
     }
   },
   "typesVersions": {
     "*": {
       "flavors/default": [
         "dist/flavors/default.d.ts"
-      ],
-      "flavors/tailwind": [
-        "dist/flavors/tailwind.d.ts"
       ]
     }
   },
   "packageManager": "yarn@3.1.1",
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && yarn build:css",
+    "build:css": "node -r esbuild-register ./scripts/build-css.ts",
     "dev": "tsup --watch",
     "test": "jest --watch"
   },
@@ -49,8 +47,10 @@
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.0",
+    "esbuild-register": "^3.3.2",
     "jest": "^27.4.7",
     "refine-core": "*",
+    "tailwindcss": "^3.0.24",
     "tsup": "^5.11.11",
     "typescript": "^4.5.5"
   },

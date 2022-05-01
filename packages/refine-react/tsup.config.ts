@@ -1,11 +1,7 @@
 import { defineConfig } from "tsup";
-import path from "path";
-import fs from "fs";
+import { getFlavors } from "./scripts/get-flavors";
 
-const flavors = fs
-  .readdirSync(path.resolve(__dirname, "src/flavors"))
-  .filter((filename) => !filename.startsWith("index.ts"))
-  .map((filename) => `src/flavors/${filename}`);
+const flavors = getFlavors().map((flavor) => `src/flavors/${flavor}.tsx`);
 
 export default defineConfig({
   entry: ["src/index.ts", ...flavors],

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Condition } from "@hammerstone/refine-react";
 import { QueryBuilder, extendFlavor } from "@hammerstone/refine-react";
-import tailwindFlavor from "@hammerstone/refine-react/flavors/tailwind";
+import defaultFlavor from "@hammerstone/refine-react/flavors/default";
+import "@hammerstone/refine-react/dist/flavors/default.css";
 import {
   basicBlueprint,
   booleanCondition,
@@ -25,15 +26,15 @@ const conditions: Condition[] = [
 const flavors = [
   { name: "base", flavor: {} },
   {
-    name: "tailwind",
-    flavor: tailwindFlavor,
+    name: "default",
+    flavor: defaultFlavor,
   },
   {
-    name: "tailwind extended",
-    flavor: extendFlavor(tailwindFlavor, {
+    name: "extended",
+    flavor: extendFlavor(defaultFlavor, {
       group: {
         // Extend a className
-        className: [tailwindFlavor.group?.className, "text-red-500"].join(" "),
+        className: [defaultFlavor.group?.className, "text-red-500"].join(" "),
       },
       addGroupButton: {
         component: (props) => <button {...props}>Add an or!!!</button>,
