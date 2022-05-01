@@ -203,10 +203,10 @@ const baseFlavor: ReactRefineFlavor = {
 
   inputs: {
     date: {
-      component: (props) => <input type="datetime-local" {...props} />,
+      component: (props) => <input type="date" {...props} />,
 
       double: {
-        component: (props) => <input type="datetime-local" {...props} />,
+        component: (props) => <input type="date" {...props} />,
 
         wrapper: {
           component: (props) => <div {...props} />,
@@ -218,7 +218,7 @@ const baseFlavor: ReactRefineFlavor = {
       },
 
       relative: {
-        component: (props) => <input type="datetime-local" {...props} />,
+        component: (props) => <input type="date" {...props} />,
 
         wrapper: {
           component: (props) => <div {...props} />,
