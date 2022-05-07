@@ -115,6 +115,7 @@ export type RefineReactComponentPropsMap = {
   "select.listbox.item": {
     className?: string;
     style?: CSS.Properties;
+    value: string;
   };
   /**
    * TODO: Not used in React implementation.

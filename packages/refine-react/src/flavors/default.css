@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Common input styles */
-.refine-query-builder-select,
+.refine-query-builder-select-button,
 .refine-query-builder-inputs-date,
 .refine-query-builder-inputs-date-double,
 .refine-query-builder-inputs-date-relative,

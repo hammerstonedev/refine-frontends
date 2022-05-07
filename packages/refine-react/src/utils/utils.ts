@@ -15,3 +15,7 @@ export const valueToArray = (value: unknown): string[] => {
 
   return [];
 };
+
+export const removeDuplicates = (array: string[]): string[] => {
+  return [...new Set(array)];
+};
