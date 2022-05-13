@@ -57,6 +57,10 @@
   /* */
 }
 
+.refine-query-builder-select > div {
+  @apply relative;
+}
+
 .refine-query-builder-select-wrapper {
   /* */
 }
@@ -70,7 +74,19 @@
 }
 
 .refine-query-builder-select-listbox {
-  /* */
+  @apply z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm;
+}
+
+.refine-query-builder-select-listbox-transition-leave {
+  @apply transition ease-in duration-100;
+}
+
+.refine-query-builder-select-listbox-transition-leave-from {
+  @apply opacity-100;
+}
+
+.refine-query-builder-select-listbox-transition-leave-to {
+  @apply opacity-0;
 }
 
 .refine-query-builder-select-listbox-wrapper {
@@ -78,19 +94,27 @@
 }
 
 .refine-query-builder-select-listbox-item {
-  /* */
+  @apply relative cursor-default select-none py-2 pl-10 pr-4;
 }
 
 .refine-query-builder-select-listbox-item-text {
-  /* */
+  @apply block truncate;
 }
 
 .refine-query-builder-select-listbox-item-icon {
-  /* */
+  @apply absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600;
+}
+
+.refine-query-builder-select-listbox-item-icon > svg {
+  @apply h-5 w-5;
 }
 
 .refine-query-builder-select-button {
   /* */
+}
+
+.refine-query-builder-select-button > span {
+  @apply block truncate min-h-[1.25rem];
 }
 
 .refine-query-builder-select-button-placeholder {
@@ -102,7 +126,11 @@
 }
 
 .refine-query-builder-select-button-icon {
-  /* */
+  @apply pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2;
+}
+
+.refine-query-builder-select-button-icon > svg {
+  @apply h-5 w-5 text-gray-400;
 }
 
 .refine-query-builder-select-multi {

@@ -16,6 +16,13 @@ export const valueToArray = (value: unknown): string[] => {
   return [];
 };
 
+export const arrayToValue = (value: unknown): string => {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) return value[0];
+
+  return "";
+};
+
 export const removeDuplicates = (array: string[]): string[] => {
   return [...new Set(array)];
 };

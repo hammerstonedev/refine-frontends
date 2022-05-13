@@ -38,7 +38,7 @@ export const Condition = ({ condition }: ConditionProps) => {
         <FlavorItem<"select">
           name="select"
           value={condition.id}
-          onChange={(event) => criterion.updateCondition(event.target.value)}
+          onChange={(conditionId) => criterion.updateCondition(conditionId)}
         >
           <FlavorItem<"select.button"> name="select.button">
             {condition.display}
@@ -60,9 +60,9 @@ export const Condition = ({ condition }: ConditionProps) => {
         <FlavorItem<"select">
           name="select"
           value={selectedClause.id}
-          onChange={(event) =>
+          onChange={(clause) =>
             criterion.updateInput({
-              clause: event.target.value,
+              clause,
             })
           }
         >

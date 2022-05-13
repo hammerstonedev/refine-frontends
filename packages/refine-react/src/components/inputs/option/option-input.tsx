@@ -1,5 +1,5 @@
 import { FlavorItem, Label, useInput } from "components";
-import { removeDuplicates, valueToArray } from "utils";
+import { arrayToValue, removeDuplicates, valueToArray } from "utils";
 
 export const OptionInput = () => {
   const {
@@ -14,6 +14,8 @@ export const OptionInput = () => {
     throw new Error(`No options provided to OptionInput.`);
   }
 
+  console.log("value:", value);
+
   return (
     <div>
       <Label screenReaderOnly>{display}</Label>
@@ -21,30 +23,12 @@ export const OptionInput = () => {
         <FlavorItem<"select">
           name="select"
           value={multiple ? valueToArray(value) : value}
-          onChange={(event) => {
-            if (!multiple) return onChange({ value: event.target.value });
-
-            /**
-             * If multiple, onChange provides the value that was toggled so
-             * we need to add or remove it as needed.
-             */
-
-            /**
-             * Coerce to array to keep TypeScript happy.
-             */
-            const valueArray = valueToArray(value);
-
-            if (valueArray.includes(event.target.value)) {
-              return onChange({
-                value: valueArray.filter(
-                  (value) => value !== event.target.value
-                ),
-              });
+          onChange={(value) => {
+            if (multiple) {
+              return onChange({ value: valueToArray(value) });
             }
 
-            return onChange({
-              value: removeDuplicates([...valueArray, event.target.value]),
-            });
+            return onChange({ value: arrayToValue(value) });
           }}
           multiple={multiple}
         >

@@ -74,7 +74,7 @@ export type RefineReactComponentPropsMap = {
     className?: string;
     style?: CSS.Properties;
     value: string | string[];
-    onChange: React.ChangeEventHandler<HTMLSelectElement>;
+    onChange: (value: string | string[]) => void;
     multiple?: boolean;
   };
   "select.wrapper": {
