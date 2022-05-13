@@ -38,30 +38,48 @@ export const Condition = ({ condition }: ConditionProps) => {
         <FlavorItem<"select">
           name="select"
           value={condition.id}
-          onChange={(event) => criterion.updateCondition(event.target.value)}
+          onChange={(conditionId) => criterion.updateCondition(conditionId)}
         >
-          {conditions.map((condition) => (
-            <option key={condition.id} value={condition.id}>
-              {condition.display}
-            </option>
-          ))}
+          <FlavorItem<"select.button"> name="select.button">
+            {condition.display}
+          </FlavorItem>
+          <FlavorItem<"select.listbox"> name="select.listbox">
+            {conditions.map((condition) => (
+              <FlavorItem<"select.listbox.item">
+                key={condition.id}
+                name="select.listbox.item"
+                value={condition.id}
+              >
+                {condition.display}
+              </FlavorItem>
+            ))}
+          </FlavorItem>
         </FlavorItem>
       </FlavorItem>
       <FlavorItem<"select.wrapper"> name="select.wrapper">
         <FlavorItem<"select">
           name="select"
           value={selectedClause.id}
-          onChange={(event) =>
+          onChange={(clause) =>
             criterion.updateInput({
-              clause: event.target.value,
+              clause,
             })
           }
         >
-          {condition.meta.clauses.map((clause) => (
-            <option key={clause.id} value={clause.id}>
-              {clause.display}
-            </option>
-          ))}
+          <FlavorItem<"select.button"> name="select.button">
+            {selectedClause.display}
+          </FlavorItem>
+          <FlavorItem<"select.listbox"> name="select.listbox">
+            {condition.meta.clauses.map((clause) => (
+              <FlavorItem<"select.listbox.item">
+                key={clause.id}
+                name="select.listbox.item"
+                value={clause.id}
+              >
+                {clause.display}
+              </FlavorItem>
+            ))}
+          </FlavorItem>
         </FlavorItem>
       </FlavorItem>
       {hasInput && (

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import type { PartialReactRefineFlavor } from "refine-core/types";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { FlavorItem } from "components";
 
 const tailwindFlavor: PartialReactRefineFlavor = {
   group: {
@@ -33,6 +36,11 @@ const tailwindFlavor: PartialReactRefineFlavor = {
   },
 
   select: {
+    component: ({ onChange, children, ...props }) => (
+      <Listbox onChange={onChange} {...props} as="div">
+        <div>{children}</div>
+      </Listbox>
+    ),
     className: "refine-query-builder-select",
 
     wrapper: {},
@@ -42,21 +50,71 @@ const tailwindFlavor: PartialReactRefineFlavor = {
     },
 
     listbox: {
+      component: (props) => (
+        <Transition
+          as={Fragment}
+          leave="refine-query-builder-select-listbox-transition-leave"
+          leaveFrom="refine-query-builder-select-listbox-transition-leave-from"
+          leaveTo="refine-query-builder-select-listbox-transition-leave-to"
+        >
+          <Listbox.Options {...props} />
+        </Transition>
+      ),
+      className: "refine-query-builder-select-listbox",
       wrapper: {},
 
       item: {
-        text: {},
+        component: ({ children, ...props }) => (
+          <Listbox.Option {...props}>
+            {({ selected }) => (
+              <>
+                <FlavorItem<"select.listbox.item.text"> name="select.listbox.item.text">
+                  {children}
+                </FlavorItem>
+                {selected ? (
+                  <FlavorItem<"select.listbox.item.icon"> name="select.listbox.item.icon" />
+                ) : null}
+              </>
+            )}
+          </Listbox.Option>
+        ),
+        className: "refine-query-builder-select-listbox-item",
 
-        icon: {},
+        text: {
+          component: (props) => <span {...props} />,
+        },
+
+        icon: {
+          component: (props) => (
+            <span {...props}>
+              <CheckIcon aria-hidden="true" />
+            </span>
+          ),
+          className: "refine-query-builder-select-listbox-item-icon",
+        },
       },
     },
 
     button: {
+      component: ({ children, ...props }) => (
+        <Listbox.Button {...props}>
+          <span>{children}</span>
+        </Listbox.Button>
+      ),
+      className: "refine-query-builder-select-button",
+
       placeholder: {},
 
       selected: {},
 
-      icon: {},
+      icon: {
+        component: (props) => (
+          <span {...props}>
+            <SelectorIcon aria-hidden="true" />
+          </span>
+        ),
+        className: "refine-query-builder-select-button-icon",
+      },
     },
 
     multi: {

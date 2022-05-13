@@ -54,7 +54,9 @@ const baseFlavor: ReactRefineFlavor = {
   },
 
   select: {
-    component: (props) => <select {...props} />,
+    component: ({ onChange, ...props }) => (
+      <select {...props} onChange={(event) => onChange(event.target.value)} />
+    ),
 
     wrapper: {
       component: (props) => <div {...props} />,

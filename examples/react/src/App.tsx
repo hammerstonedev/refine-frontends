@@ -62,7 +62,7 @@ const capitalise = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-const INITIAL_FLAVOR = "tailwind";
+const INITIAL_FLAVOR = "default";
 const INITIAL_BLUEPRINT = "kitchen sink";
 
 const App = () => {
