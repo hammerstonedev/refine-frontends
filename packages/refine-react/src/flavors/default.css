@@ -10,7 +10,7 @@
 .refine-query-builder-inputs-number,
 .refine-query-builder-inputs-number-double,
 .refine-query-builder-inputs-text {
-  @apply w-60 bg-white relative border border-gray-300 rounded-md shadow-sm pl-3 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
+  @apply w-60 bg-white relative border border-gray-300 rounded-md shadow-sm pl-3 py-2 mr-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
 }
 
 .refine-query-builder-group {
@@ -34,6 +34,10 @@
 }
 
 .refine-query-builder-criterion {
+  @apply space-y-2;
+}
+
+.refine-query-builder-criterion-wrapper {
   @apply flex items-center space-x-3;
 }
 
@@ -42,7 +46,7 @@
 }
 
 .refine-query-builder-criterion-errors {
-  /* */
+  @apply ml-20 list-disc text-red-500;
 }
 
 .refine-query-builder-criterion-errors-error {

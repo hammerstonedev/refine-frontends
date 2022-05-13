@@ -45,6 +45,10 @@ export type RefineReactComponentPropsMap = {
     className?: string;
     style?: CSS.Properties;
   };
+  "criterion.wrapper": {
+    className?: string;
+    style?: CSS.Properties;
+  };
   "criterion.removeCriterionButton": {
     className?: string;
     style?: CSS.Properties;
