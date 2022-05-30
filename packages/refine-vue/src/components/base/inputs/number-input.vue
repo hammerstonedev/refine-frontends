@@ -20,7 +20,7 @@ export default {
   },
   props: {
     value: {
-      type: Number,
+      type: [Number, String],
       required: false,
     },
     meta: {
@@ -58,7 +58,7 @@ export default {
         this.currentValue = inputValue;
       } else {
         this.currentValue = newValue;
-        this.$emit('input', { value: newValue });
+        this.$emit('input', { value1: newValue });
       }
     },
   },
