@@ -1,6 +1,6 @@
 <template>
   <refine-flavor as="div" component="inputs.date.relative.wrapper">
-    <refine-flavor as="input" type="number" name="days" :value="amount" @input="updateAmount" />
+    <refine-flavor as="input" component='inputs.date.relative' type="number" name="days" :value="amount" @input="updateAmount" />
     <selector @select-option="updateUnit">
       <selector-option
         v-for="unit in units"
