@@ -87,7 +87,7 @@ export class BlueprintStore {
     };
   }
 
-  public mapBlueprint(blueprint: Blueprint): ({ input: CriterionInput; uid: string; depth: number; id: string; type: "criterion"; condition_id: string } | { uid: string; depth: number; id: undefined; type: "conjunction"; word: "and" | "or" })[] {
+  public mapBlueprint(blueprint: Blueprint): InternalBlueprint {
     return blueprint.map((item) => {
       if (isCriterion(item)) {
         return {
@@ -110,8 +110,6 @@ export class BlueprintStore {
   }
 
   public updateBlueprint(newBlueprint: Blueprint) {
-    uid = 0;
-
     this.blueprint = this.mapBlueprint(newBlueprint);
   }
 
@@ -208,7 +206,7 @@ export class BlueprintStore {
     this.blueprintChanged();
   }
 
-  public findCriterion(uid: number): InternalCriterion | undefined {
+  public findCriterion(uid: string): InternalCriterion | undefined {
     const conditionIndex = this.indexOfCriterion({ uid });
     return this.blueprint[conditionIndex] as InternalCriterion;
   }

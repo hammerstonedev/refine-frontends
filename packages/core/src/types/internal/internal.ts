@@ -15,7 +15,7 @@ export type InternalCriterionWithPosition = InternalCriterion & {
 
 export type InternalConjunction = Conjunction & {
   id: undefined;
-  uid: number;
+  uid: string;
 };
 
 export type InternalBlueprint = Array<InternalCriterion | InternalConjunction>;
