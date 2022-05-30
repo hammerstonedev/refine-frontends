@@ -7,9 +7,11 @@ import {
 } from "types/internal";
 import { isConjunction, isCriterion } from "types";
 
-let uid = 0;
 const getNextUid = function () {
-  return uid++;
+  const r1 = ~~(Math.random() * (10000) + 10000);
+  const r2 = ~~(Date.now() / 1000);
+
+  return `${r1}-${r2}`;
 };
 
 const criterion = (
@@ -18,7 +20,6 @@ const criterion = (
   meta?: Condition["meta"],
   refinements?: Refinement[]
 ): InternalCriterion => {
-  const uid = getNextUid();
   const [firstRefinement] = refinements || [];
 
   return {
@@ -34,7 +35,7 @@ const criterion = (
         },
       }),
     },
-    uid,
+    uid: getNextUid(),
   };
 };
 
@@ -71,8 +72,6 @@ export class BlueprintStore {
     conditions?: Condition[],
     onChange?: (blueprint: Blueprint) => void
   ) {
-    uid = 0;
-
     initialBlueprint = initialBlueprint || [];
     conditions = conditions || [];
 
@@ -88,7 +87,7 @@ export class BlueprintStore {
     };
   }
 
-  public mapBlueprint(blueprint: Blueprint): InternalBlueprint {
+  public mapBlueprint(blueprint: Blueprint): ({ input: CriterionInput; uid: string; depth: number; id: string; type: "criterion"; condition_id: string } | { uid: string; depth: number; id: undefined; type: "conjunction"; word: "and" | "or" })[] {
     return blueprint.map((item) => {
       if (isCriterion(item)) {
         return {
