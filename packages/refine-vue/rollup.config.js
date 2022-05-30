@@ -6,10 +6,12 @@ import postcss from 'rollup-plugin-postcss';
 
 let vuePlugin;
 if (process.env.ROLLUP_VUE_VERSION === '2') {
-  vuePlugin = vue2;
+  vuePlugin = vue2({
+    needMap: false
+  });
 } else {
   // don't even run vue3 build through babel
-  vuePlugin = vue;
+  vuePlugin = vue();
 }
 
 module.exports = {
@@ -23,7 +25,7 @@ module.exports = {
     },
   ],
   plugins: [
-    vuePlugin(),
+    vuePlugin,
     postcss({
       extensions: ['.css'],
       extract: true,
