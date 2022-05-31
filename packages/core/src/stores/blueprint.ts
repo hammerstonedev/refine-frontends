@@ -93,7 +93,7 @@ export class BlueprintStore {
         return {
           ...item,
           id: item.condition_id,
-          uid: getNextUid(),
+          uid: item?.uid || getNextUid(),
         };
       }
 
