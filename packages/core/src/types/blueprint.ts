@@ -20,6 +20,7 @@ interface BaseBlueprintItem {
 }
 
 export interface Criterion extends BaseBlueprintItem {
+  uid?: string;
   type: "criterion";
   condition_id: string;
   input: CriterionInput;

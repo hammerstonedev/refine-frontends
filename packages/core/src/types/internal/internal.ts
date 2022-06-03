@@ -6,7 +6,7 @@ import { Conjunction, Criterion } from "../blueprint";
 
 export type InternalCriterion = Criterion & {
   id: Criterion["condition_id"];
-  uid: number;
+  uid: string;
 };
 
 export type InternalCriterionWithPosition = InternalCriterion & {
@@ -15,7 +15,7 @@ export type InternalCriterionWithPosition = InternalCriterion & {
 
 export type InternalConjunction = Conjunction & {
   id: undefined;
-  uid: number;
+  uid: string;
 };
 
 export type InternalBlueprint = Array<InternalCriterion | InternalConjunction>;

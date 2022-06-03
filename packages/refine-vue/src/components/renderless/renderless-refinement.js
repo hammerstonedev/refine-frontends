@@ -1,4 +1,4 @@
-import { isVue2 } from "vue-demi";
+import { isVue2 } from 'vue-demi';
 export default {
   name: 'renderless-refinement',
   inject: ['updateInput'],
@@ -6,7 +6,7 @@ export default {
     id: {
       type: String,
       required: true,
-    }
+    },
   },
   provide() {
     return {
@@ -19,11 +19,11 @@ export default {
     // $scopedSlots so this code allows us to work with both versions
     let defaultSlot = this.$slots?.default;
     if (isVue2) {
-      defaultSlot = this.$scopedSlots?.default
+      defaultSlot = this.$scopedSlots?.default;
     }
 
     if (defaultSlot) {
       return defaultSlot();
     }
-  }
+  },
 };

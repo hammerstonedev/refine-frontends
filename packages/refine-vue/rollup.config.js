@@ -6,41 +6,38 @@ import postcss from 'rollup-plugin-postcss';
 
 let vuePlugin;
 if (process.env.ROLLUP_VUE_VERSION === '2') {
-  vuePlugin = vue2;
+  vuePlugin = vue2({
+    needMap: false
+  });
 } else {
   // don't even run vue3 build through babel
-  vuePlugin = vue;
+  vuePlugin = vue();
 }
 
 module.exports = {
   input: 'src/package.js',
-  external: [
-    'vue',
-    '@vue/composition-api',
-    'vue2-datepicker',
-    'vue-demi',
-  ],
+  external: ['vue', '@vue/composition-api', 'vue2-datepicker', 'vue-demi'],
   output: [
     {
       format: 'es',
-      exports: "named",
+      exports: 'named',
       sourcemap: true,
     },
   ],
   plugins: [
-    vuePlugin(),
+    vuePlugin,
     postcss({
-      extensions: [ '.css' ],
+      extensions: ['.css'],
       extract: true,
       config: {
-        path: './postcss.config.js'
+        path: './postcss.config.js',
       },
     }),
     resolve({
       extensions: ['.js', '.vue'],
     }),
     alias({
-      "@": __dirname + '/src'
+      '@': __dirname + '/src',
     }),
   ],
 };

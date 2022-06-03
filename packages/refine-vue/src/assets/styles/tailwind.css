@@ -1,31 +1,27 @@
 .refine-query-builder-wrapper {
-    /* */
+  /* */
 }
 
 .refine-query-builder-condition-group {
-    @apply p-4 mb-4 border-l-2 border-gray-400 rounded bg-gray-50;
+  @apply p-4 mb-4 border-l-2 border-gray-400 rounded bg-gray-50;
 }
 
 .refine-query-builder-and-button {
-    @apply flex items-center px-3 py-1 mt-3 text-xs text-blue-600;
+  @apply flex items-center px-3 py-1 mt-3 text-xs text-blue-600;
 }
 
 .refine-query-builder-and-button-span {
-    /* */
+  /* */
 }
 
 .refine-query-builder-or-button {
-    @apply inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md;
-    @apply hover:bg-indigo-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+  @apply inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md;
+  @apply hover:bg-indigo-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
 }
 
 .refine-condition-selector {
-    @apply pr-4 flex items-center;
-}
-
-.refine-clause-selector {
-    @apply mr-4;
+  @apply pr-4 flex items-center;
 }
 
 /*
@@ -34,155 +30,155 @@
 |--------------------------------------------------------------------------
 */
 .refine-date-input {
-    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm;
-    @apply focus:ring-indigo-500 focus:border-indigo-500
+  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm;
+  @apply focus:ring-indigo-500 focus:border-indigo-500;
 }
 
 .refine-date-input-calendar-icon {
-    @apply h-5 w-5 text-gray-500;
+  @apply h-5 w-5 text-gray-500;
 }
 
 .refine-date-input-error-icon {
-    @apply h-5 w-5 text-red-500;
+  @apply h-5 w-5 text-red-500;
 }
 
 .refine-date-input-error {
-    @apply pr-10 text-red-900 placeholder-red-300 border-red-300;
-    @apply focus:outline-none focus:ring-red-500 focus:border-red-500;
+  @apply pr-10 text-red-900 placeholder-red-300 border-red-300;
+  @apply focus:outline-none focus:ring-red-500 focus:border-red-500;
 }
 
 .refine-double-date-wrapper {
-    @apply flex items-baseline space-x-3;
+  @apply flex items-baseline space-x-3;
 }
 
 .refine-double-date-joiner {
-    /** **/
+  /** **/
 }
 
 .refine-double-number-wrapper {
-    @apply flex items-baseline space-x-3;
+  @apply flex items-baseline space-x-3;
 }
 
 .refine-double-number-joiner {
-    /** **/
+  /** **/
 }
 
-.refine-text-input, .refine-number-input {
-    @apply block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 w-60;
+.refine-text-input,
+.refine-number-input {
+  @apply block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 w-60;
 }
 
 .refine-relative-date-wrapper {
-    @apply sm:items-center sm:flex gap-x-4;
+  @apply sm:items-center sm:flex gap-x-4;
 }
 
 .refine-selector-button,
 .refine-multi-selector-button {
-    @apply relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default;
-    @apply focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500;
+  @apply relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default;
+  @apply focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500;
 }
 
 .refine-multi-selector-button {
-    /* @TODO is this multi only? */
-    @apply space-y-1;
+  /* @TODO is this multi only? */
+  @apply space-y-1;
 }
 
 .refine-selector-button-placeholder,
 .refine-multi-selector-button-placeholder {
-    @apply block text-gray-300 truncate select-none;
+  @apply block text-gray-300 truncate select-none;
 }
 
 .refine-selector-button-selected {
-    @apply block truncate;
+  @apply block truncate;
 }
 
 .refine-multi-selector-button-selected {
-    @apply inline-flex p-1 mr-1 border border-gray-300 rounded;
+  @apply inline-flex p-1 mr-1 border border-gray-300 rounded;
 }
 
 .refine-selector-button-icon-wrapper,
 .refine-multi-selector-button-icon-wrapper {
-    @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
+  @apply absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
 }
 
 .refine-multi-selector-button-deselect-icon-wrapper {
-    @apply flex items-center ml-1 text-gray-500 cursor-pointer;
+  @apply flex items-center ml-1 text-gray-500 cursor-pointer;
 }
 
 .refine-multi-selector-button-deselect-icon {
-    @apply w-4 h-4;
+  @apply w-4 h-4;
 }
 
 .refine-selector-button-icon,
 .refine-multi-selector-button-icon {
-    @apply w-5 h-5 text-gray-400;
+  @apply w-5 h-5 text-gray-400;
 }
 
 .refine-selector-list-item {
-    @apply relative py-2 pl-3 text-gray-900 cursor-pointer select-none pr-9;
+  @apply relative py-2 pl-3 text-gray-900 cursor-pointer select-none pr-9;
 }
 
 .refine-selector-list-item.refine-selector-list-item-highlighted {
-    @apply text-white bg-indigo-600;
+  @apply text-white bg-indigo-600;
 }
 
 .refine-selector-list-item-text {
-    @apply block font-normal truncate;
+  @apply block font-normal truncate;
 }
 
 .refine-selector-list-item-text.refine-selector-list-item-text-selected {
-    @apply font-semibold;
+  @apply font-semibold;
 }
 
 .refine-selector-list-item-icon-wrapper {
-    @apply absolute inset-y-0 right-0 flex items-center pr-4 text-white;
+  @apply absolute inset-y-0 right-0 flex items-center pr-4 text-white;
 }
 
 .refine-selector-list-item-icon-wrapper.refine-selector-list-item-icon-wrapper-highlighted {
-    @apply text-indigo-600;
+  @apply text-indigo-600;
 }
 
 .refine-selector-list-item-icon {
-    @apply w-5 h-5;
+  @apply w-5 h-5;
 }
 
 .refine-selector-listbox-wrapper {
-    @apply absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg;
+  @apply absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg;
 }
 
 .refine-selector-listbox {
-    @apply overflow-auto text-base rounded-md max-h-60 ring-1 ring-black ring-opacity-5;
-    @apply focus:outline-none;
+  @apply overflow-auto text-base rounded-md max-h-60 ring-1 ring-black ring-opacity-5;
+  @apply focus:outline-none;
 }
 
 .refine-selector-listbox-hidden {
-    @apply hidden;
+  @apply hidden;
 }
 
 .refine-selector-wrapper {
-    @apply md:flex md:items-start;
+  @apply md:flex md:items-start gap-4;
 }
 
 .refine-selector {
-    @apply relative sm:inline-block w-60;
+  @apply relative sm:inline-block w-60;
 }
 
 .refine-selector-custom-options-wrapper {
-    @apply w-auto pt-4 md:flex md:pt-0;
+  @apply w-auto pt-4 md:flex md:pt-0;
 }
 
 .refine-criterion {
-    @apply list-disc list-inside pb-2;
+  @apply list-disc list-inside pb-2;
 }
 
 .refine-criterion-errors {
-    @apply list-disc list-inside pb-2;
+  @apply list-disc list-inside pb-2;
 }
 
 .refine-criterion-error {
-    @apply pb-1 px-3 text-red-500;
+  @apply pb-1 px-3 text-red-500;
 }
 
-
 .refine-criterion-remove-icon {
-    @apply inline-flex items-center justify-center py-1 px-3 text-gray-500 mr-3 h-9;
+  @apply inline-flex items-center justify-center py-1 px-3 text-gray-500 mr-3 h-9;
 }

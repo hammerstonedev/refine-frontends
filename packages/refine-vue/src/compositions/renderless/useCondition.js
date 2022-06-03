@@ -28,14 +28,15 @@ export default (id, props, context) => {
     criterion = blueprint.findCriterion(props.uid);
   }
 
-  const updateInput = (updates, refinementId) => blueprint.updateInput(criterion, updates, refinementId);
+  const updateInput = (updates, refinementId) =>
+    blueprint.updateInput(criterion, updates, refinementId);
   const switchClause = (clause) => blueprint.switchClause(criterion, clause);
   const switchRefinement = (oldRefinementId, newRefinementId) => {
     blueprint.switchRefinement(criterion, oldRefinementId, newRefinementId);
   };
 
   provide('criterion', criterion);
-  provide('criterionMeta', props.meta)
+  provide('criterionMeta', props.meta);
   provide('updateInput', updateInput);
   provide('switchRefinement', switchRefinement);
 
@@ -45,14 +46,14 @@ export default (id, props, context) => {
   onUnmounted(() => {
     // Again, in builder mode adding/removing criterions
     // is relegated to the query builder.
-    if(!builderModeActive) {
+    if (!builderModeActive) {
       blueprint.removeCriterion(blueprint.indexOfCriterion(criterion));
     }
   });
 
   // Renderless condition doesn't accept a criterion prop, this
   // reference to props.condition is an outdated interface that is
-  // only used by the non builder mode components. 
+  // only used by the non builder mode components.
   // TODO: update non builder components to use the same props
   // as renderless condition. (see conditionProps in mixins/condition.js)
   let clauses = null;
@@ -64,11 +65,11 @@ export default (id, props, context) => {
 
   return () => {
     if (context.slots.default) {
-      return context.slots.default({ 
-        clauses, 
-        criterion, 
-        updateInput, 
-        switchClause 
+      return context.slots.default({
+        clauses,
+        criterion,
+        updateInput,
+        switchClause,
       });
     }
     return null;

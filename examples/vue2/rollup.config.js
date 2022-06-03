@@ -15,18 +15,18 @@ module.exports = {
     name: 'App',
   },
   plugins: [
-    vue({    
+    vue({
       needMap: false,
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
-      'process.env.VUE_ENV': JSON.stringify('browser')
+      'process.env.VUE_ENV': JSON.stringify('browser'),
     }),
     postcss({
-      extensions: [ '.css' ],
+      extensions: ['.css'],
       extract: true,
       config: {
-        path: './postcss.config.js'
+        path: './postcss.config.js',
       },
     }),
     resolve({
@@ -38,7 +38,7 @@ module.exports = {
       contentBase: ['./public'],
     }),
     livereload({
-        exts: ['html', 'js', 'css', 'vue'],
+      exts: ['html', 'js', 'css', 'vue'],
     }),
   ],
 };

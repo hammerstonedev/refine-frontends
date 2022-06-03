@@ -15,6 +15,9 @@ export type Clause = {
   display: string;
   meta: {
     multiple?: boolean;
+    // @TODO Dave: what's the real type here? And do we want to define *everything* possible?
+    units?: Array<any>;
+    modifiers?: Array<any>;
   };
 };
 
