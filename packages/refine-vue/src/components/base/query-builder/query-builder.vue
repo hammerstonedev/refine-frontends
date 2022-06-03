@@ -12,7 +12,45 @@
       conditionFor,
     }"
   >
-    <refine-flavor as="div" component="group.wrapper">
+    <!-- When there are no conditions, we need to show something reasonable instead of just "+ OR"-->
+    <refine-flavor
+      as="div"
+      component="emptyGroup"
+      v-bind="{ addGroup }"
+      :order="['button', 'default']"
+      v-if="groupedBlueprint.length === 0"
+    >
+      <template #button>
+        <refine-flavor
+          as="button"
+          component="emptyGroup.addCriterionButton"
+          @click="addGroup"
+          tabindex="0"
+          type="button"
+        >
+          <!-- Heroicon name: plus -->
+          <refine-flavor
+            as="svg"
+            component="emptyGroup.addCriterionButton.icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+              clip-rule="evenodd"
+            />
+          </refine-flavor>
+          <refine-flavor as="span" component="emptyGroup.addCriterionButton.text">
+            Add a new condition
+          </refine-flavor>
+        </refine-flavor>
+      </template>
+    </refine-flavor>
+
+    <refine-flavor v-else as="div" component="group.wrapper">
       <refine-flavor
         as="div"
         component="group"
@@ -22,7 +60,7 @@
         <refine-flavor
           as="div"
           component="condition"
-          v-for="(criterion, index) in group"
+          v-for="criterion in group"
           :key="criterion.uid"
         >
           <renderless-condition
@@ -37,34 +75,36 @@
               "
               :conditionId="criterion.condition_id"
               :conditions="conditions"
-              :errors="errors[index]"
+              :errors="errors[criterion.uid]"
               :input="criterion.input"
             />
           </renderless-condition>
         </refine-flavor>
-        <refine-flavor
-          as="button"
-          component="group.addCriterionButton"
-          @click="insertCriterion(group[group.length - 1].position)"
-          tabindex="0"
-          type="button"
-        >
-          <!-- Heroicon name: plus -->
+        <refine-flavor as="div" component="group.addCriterionButton.wrapper">
           <refine-flavor
-            as="svg"
-            component="group.addCriterionButton.icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
+            as="button"
+            component="group.addCriterionButton"
+            @click="insertCriterion(group[group.length - 1].position)"
+            tabindex="0"
+            type="button"
           >
-            <path
-              fill-rule="evenodd"
-              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-              clip-rule="evenodd"
-            />
+            <!-- Heroicon name: plus -->
+            <refine-flavor
+              as="svg"
+              component="group.addCriterionButton.icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd"
+              />
+            </refine-flavor>
+            <refine-flavor as="span" component="group.addCriterionButton.text"> And </refine-flavor>
           </refine-flavor>
-          <refine-flavor as="span" component="group.addCriterionButton.text">And</refine-flavor>
         </refine-flavor>
       </refine-flavor>
       <refine-flavor as="button" component="addGroupButton" @click="addGroup" type="button">
