@@ -8,6 +8,10 @@ export const RefineFlavor = defineComponent({
       type: String,
       default: 'div',
     },
+    order: {
+      type: Array,
+      default: () => ['default'],
+    },
     component: {
       type: String,
       required: true,
@@ -33,18 +37,28 @@ export const RefineFlavor = defineComponent({
     );
 
     return () => {
-      const props = omit(incomingProps, ['as', 'component']);
       const resolvedFlavor = flavor.value;
 
-      return h(
+      const order = resolvedFlavor.extra.value.order ?? incomingProps.order;
+      const props = omit(incomingProps, ['as', 'component', 'order']);
+      const slots = bindings.slots;
+
+      let el = h(
         resolvedFlavor.component,
         {
           attrs: bindings.attrs,
+          scopedSlots: slots,
           ...(isVue2 && { ...resolvedFlavor.props.value, props, on: bindings.listeners }),
           ...(isVue3 && { ...resolvedFlavor.props.value, ...props }),
         },
-        bindings.slots.default?.()
+        order.map((key) => slots?.[key]?.())
       );
+
+      if (resolvedFlavor.extra.value.wrap) {
+        return resolvedFlavor.extra.value.wrap(el);
+      }
+
+      return el;
     };
   },
 });
