@@ -1,14 +1,8 @@
 const inputClassName =
   'w-60 bg-white relative border border-gray-300 rounded-md shadow-sm pl-3 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500';
 
-import RefineEmptyGroup from '../components/base/inputs/refine-empty-group';
-import CustomTrash from '../components/base/inputs/custom-trash';
-
 const tailwindFlavor = {
   emptyGroup: {
-    component: RefineEmptyGroup,
-    order: ['button', 'default'],
-
     class: '',
 
     wrapper: {
@@ -57,9 +51,8 @@ const tailwindFlavor = {
       class: 'flex flex-wrap gap-x-2 gap-y-4',
     },
     removeCriterionButton: {
-      // component: CustomTrash,
       class:
-        'rounded-full bg-gray-200 w-10 h-10 text-gray-600 flex items-center justify-center mr-2',
+        'rounded-full bg-gray-200 w-10 h-10 text-gray-600 flex items-center justify-center ml-auto',
       icon: {
         class: 'h-5 w-5',
       },
