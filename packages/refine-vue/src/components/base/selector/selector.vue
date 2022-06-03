@@ -40,6 +40,7 @@
           @highlight-next-option="highlightNextOption(actions)"
           @highlight-previous-option="highlightPreviousOption(actions)"
           @select-option="selectOption(highlightedOption.id, actions)"
+          @buffer-changed="(value) => updateBuffer(value, options, actions)"
           @close="close(actions)"
           v-slot="{ createItemId }"
         >
@@ -109,6 +110,20 @@ export default {
     clickAway: new ClickAway(),
   },
   methods: {
+    updateBuffer(value, options, actions) {
+      if (!value) {
+        return;
+      }
+      const first = options.find((option) => {
+        return option.display.toLowerCase().includes(value);
+      });
+
+      if (first) {
+        actions.highlightOption(first);
+        this.scrollIntoView(first.id);
+      }
+    },
+
     isSelected(option, selectedOptions) {
       let selected = false;
 
@@ -132,7 +147,7 @@ export default {
       } else {
         clearOptions();
         selectOption(optionId);
-        this.close(actions);
+        await this.close(actions);
       }
     },
     scrollIntoView(optionId) {
@@ -149,17 +164,13 @@ export default {
     },
     async open({ open }) {
       const { selectedOption } = await open();
-      this.$refs.listBox.$el.focus();
       this.scrollIntoView(selectedOption?.id);
     },
     async toggle({ toggle }) {
       const { isOpen, selectedOption } = await toggle();
 
       if (isOpen) {
-        this.$refs.listBox.$el.focus();
         this.scrollIntoView(selectedOption?.id);
-      } else {
-        this.$refs.button.$el.focus();
       }
     },
     async highlightNextOption({ highlightNextOption }) {
