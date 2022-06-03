@@ -19,7 +19,7 @@ export default {
     };
   },
   props: {
-    value: {
+    value1: {
       type: [Number, String],
       required: false,
     },
