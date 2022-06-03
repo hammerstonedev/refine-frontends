@@ -30,4 +30,4 @@ pnpm-debug.log*
 !.yarn/sdks
 !.yarn/versions
 node_modules
-
+examples/vue2/public/*

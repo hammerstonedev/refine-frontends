@@ -4,15 +4,16 @@
       <div>
         Change Flavor
         <div v-for="flavor of flavors" :key="flavor.name" class="flex items-center space-x-2">
-          <label class='capitalize'>
-          <input
-            type="radio"
-            name="flavor"
-            :value="flavor"
-            :checked="flavor.name === chosenFlavor.name"
-            @change="chosenFlavor = flavor"
-          />
-          {{ flavor.name }}</label>
+          <label class="capitalize">
+            <input
+              type="radio"
+              name="flavor"
+              :value="flavor"
+              :checked="flavor.name === chosenFlavor.name"
+              @change="chosenFlavor = flavor"
+            />
+            {{ flavor.name }}</label
+          >
         </div>
       </div>
       <div>
@@ -22,27 +23,26 @@
           :key="blueprint.name"
           class="flex items-center space-x-2"
         >
-          <label class='capitalize'>
-          <input
-            type="radio"
-            name="blueprint"
-            :value="blueprint"
-            :checked="blueprint.name === chosenBlueprint.name"
-            @change="chosenBlueprint = blueprint"
-          />
-          {{ blueprint.name }}</label>
+          <label class="capitalize">
+            <input
+              type="radio"
+              name="blueprint"
+              :value="blueprint"
+              :checked="blueprint.name === chosenBlueprint.name"
+              @change="chosenBlueprint = blueprint"
+            />
+            {{ blueprint.name }}</label
+          >
         </div>
       </div>
     </div>
     <query-builder
       :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
-      :blueprint="chosenBlueprint.blueprint"
+      v-model:blueprint="chosenBlueprint.blueprint"
       :conditions="conditions"
       :errors="errors"
       :flavor="chosenFlavor.flavor"
-      @update:blueprint="(v) => (debugBlueprint = v)"
     />
-    <pre class="text-xs">{{ JSON.stringify(debugBlueprint, null, 2) }}</pre>
   </div>
 </template>
 
@@ -290,15 +290,15 @@ export default {
 
     let relativeDateBlueprint = [
       {
-        "id": "date",
-        "condition_id": "date",
-        "depth": 1,
-        "type": "criterion",
-        "input": {
-          "clause": "eq"
+        condition_id: 'date',
+        depth: 1,
+        type: 'criterion',
+        input: {
+          clause: 'eq',
+          date1: '2020-12-12',
         },
-        "uid": '12345'
-      }
+        uid: '12345',
+      },
     ];
 
     let flavors = [
@@ -314,9 +314,8 @@ export default {
       { name: 'relative date', blueprint: relativeDateBlueprint },
     ];
 
-    let chosenFlavor = flavors[2];// ref(flavors.find((f) => f.name === 'Tailwind'));
-    let chosenBlueprint = blueprints[0]; //ref(blueprints.find((b) => b.name === 'basic'));
-
+    let chosenFlavor = flavors[2]; // ref(flavors.find((f) => f.name === 'Tailwind'));
+    let chosenBlueprint = blueprints[3]; //ref(blueprints.find((b) => b.name === 'basic'));
 
     return {
       debugBlueprint: [],
@@ -325,18 +324,10 @@ export default {
       blueprints,
       chosenFlavor,
       chosenBlueprint,
-      errors: {},
-      serrors: {
-        0: [
-          {
-            id: 23434,
-            message: 'You messed up big time',
-          },
-          {
-            id: 454534,
-            message: 'Good luck with your life',
-          },
-        ],
+      errors: {
+        '12345.value': {
+          message: 'You messed up big time',
+        },
       },
     };
   },
