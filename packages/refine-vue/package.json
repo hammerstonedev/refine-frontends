@@ -1,6 +1,6 @@
 {
   "name": "@hammerstone/refine-vue",
-  "description": "A powerful, drop in query builder — fully integrated with Laravel. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
+  "description": "A powerful, drop in query builder — fully integrated with Laravel and Rails. See our Laravel backend at https://hammerstone.dev/refine/laravel/docs/main",
   "keywords": [
     "hammerstone",
     "refine",
@@ -11,7 +11,7 @@
   "source": "src/package.js",
   "module": "./dist/refine-vue.esm.js",
   "homepage": "https://hammerstone.dev",
-  "repository": "https://github.com/hammerstonedev/refine-vue2",
+  "repository": "https://github.com/hammerstonedev/refine-frontends",
   "access": "public",
   "files": [
     "/dist/*",
@@ -25,13 +25,16 @@
     "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js --file dist/vue3/refine-vue.esm.js"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.4.2",
     "vue": "*"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.4.2",
+    "vue-demi": "^0.12.1"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.8",
@@ -46,6 +49,7 @@
     "eslint-plugin-vue": "^7.17.0",
     "jest": "^27.4.5",
     "postcss": "^8.4.5",
+    "refine-core": "*",
     "rollup": "^2.61.1",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-postcss": "^4.0.2",
@@ -82,9 +86,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "dependencies": {
-    "refine-core": "*",
-    "vue-demi": "^0.12.1"
-  }
+  ]
 }
