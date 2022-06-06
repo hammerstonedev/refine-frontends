@@ -287,7 +287,6 @@ export default {
         },
       },
     };
-
     let relativeDateBlueprint = [
       {
         condition_id: 'date',
@@ -318,7 +317,6 @@ export default {
     let chosenBlueprint = blueprints[3]; //ref(blueprints.find((b) => b.name === 'basic'));
 
     return {
-      debugBlueprint: [],
       conditions,
       flavors,
       blueprints,
