@@ -36,18 +36,6 @@ export default {
       }),
     };
   },
-  watch: {
-    blueprint: {
-      deep: true,
-      handler(newBlueprint) {
-        if (newBlueprint === this.internalBlueprint) {
-          return;
-        }
-
-        this.blueprintStore.updateBlueprint(newBlueprint);
-      },
-    },
-  },
   methods: {
     replaceCriterion(previousPosition, newCriterion) {
       this.blueprintStore.replaceCriterion(previousPosition, newCriterion);
