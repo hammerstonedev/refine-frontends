@@ -1,548 +1,172 @@
+<template>
+  <div class="space-y-6">
+    <div class="flex space-x-24 bg-indigo-900 text-white p-4">
+      <div>
+        Change Flavor
+        <div v-for="flavor of flavors" :key="flavor.name" class="flex items-center space-x-2">
+          <label class="capitalize">
+            <input
+              type="radio"
+              name="flavor"
+              :value="flavor"
+              :checked="flavor.name === chosenFlavor.name"
+              @change="chosenFlavor = flavor"
+            />
+            {{ flavor.name }}</label
+          >
+        </div>
+      </div>
+      <div>
+        Change Blueprint
+        <div
+          v-for="blueprint of blueprints"
+          :key="blueprint.name"
+          class="flex items-center space-x-2"
+        >
+          <label class="capitalize">
+            <input
+              type="radio"
+              name="blueprint"
+              :value="blueprint"
+              :checked="blueprint.name === chosenBlueprint.name"
+              @change="chosenBlueprint = blueprint"
+            />
+            {{ blueprint.name }}</label
+          >
+        </div>
+      </div>
+      <div>
+        <button @click.prevent="reorderTailwind">Reorder Tailwind Criterion</button>
+        <br />
+        <button @click.prevent="customComponent">Custom Component</button>
+      </div>
+    </div>
+    <query-builder
+      :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
+      :errors="errors"
+      :conditions="conditions"
+      v-model:blueprint="chosenBlueprint.blueprint"
+      :flavor="chosenFlavor.flavor"
+    />
+  </div>
+</template>
+
 <script>
 import { QueryBuilder } from '../../../packages/refine-vue/src/package';
-import '../../../packages/refine-vue/dist/vue2/refine-vue.esm.css';
+import {
+  basicBlueprint,
+  booleanCondition,
+  dateCondition,
+  dateWithTimeCondition,
+  kitchenSinkBlueprint,
+  numericCondition,
+  optionCondition,
+  textCondition,
+} from '../../../packages/core/src/fixtures';
 
-const groupedBlueprint = [];
+import './index.css';
+import '../../../packages/refine-vue/dist/vue3/refine-vue.esm.css';
 
-const conditions = [
-  {
-    id: 'option',
-    component: 'refine-option-condition',
-    display: 'Option',
-    meta: {
-      clauses: [
-        {
-          id: 'in',
-          component: 'refine-option-input',
-          display: 'Is One Of',
-          meta: { multiple: true },
-        },
-        {
-          id: 'eq',
-          component: 'refine-option-input',
-          display: 'Is',
-          meta: {},
-        },
-        {
-          id: 'dne',
-          component: 'refine-option-input',
-          display: 'Is Not',
-          meta: {},
-        },
-        {
-          id: 'nin',
-          component: 'refine-option-input',
-          display: 'Is Not One Of',
-          meta: { multiple: true },
-        },
-        {
-          id: 'st',
-          display: 'Is Set',
-          meta: {},
-        },
-        {
-          id: 'nst',
-          display: 'Is Not Set',
-          meta: {},
-        },
-      ],
-      options: [
-        {
-          id: 'foo',
-          display: 'Foo',
-        },
-        {
-          id: 'bar',
-          display: 'Bar',
-        },
-        {
-          id: 'foo2',
-          display: 'Foo2',
-        },
-        {
-          id: 'bar2',
-          display: 'Bar2',
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'text',
-    display: 'Text',
-    meta: {
-      clauses: [
-        {
-          id: 'eq',
-          display: 'Equals',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'dne',
-          display: 'Does Not Equal',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'sw',
-          display: 'Starts With',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'ew',
-          display: 'Ends With',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'dsw',
-          display: 'Does Not Start With',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'dew',
-          display: 'Does Not End With',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'cont',
-          display: 'Contains',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'dcont',
-          display: 'Does Not Contain',
-          component: 'refine-text-input',
-          meta: {},
-        },
-        {
-          id: 'st',
-          display: 'Is Set',
-          meta: {},
-        },
-        {
-          id: 'nst',
-          display: 'Is Not Set',
-          meta: {},
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'bool',
-    component: 'boolean-condition',
-    display: 'Bool',
-    meta: {
-      clauses: [
-        {
-          id: 'true',
-          display: 'Is True',
-          meta: {},
-        },
-        {
-          id: 'false',
-          display: 'Is False',
-          meta: {},
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'date',
-    component: 'date-condition',
-    display: 'Date',
-    meta: {
-      format: 'YYYY/MM/DD',
-      clauses: [
-        {
-          id: 'eq',
-          display: 'Is Equal To',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'dne',
-          display: 'Is Not Equal To',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'lte',
-          display: 'Is On or Before',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'gte',
-          display: 'Is On or After',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'btwn',
-          display: 'Is Between',
-          component: 'refine-double-date-input',
-          meta: {},
-        },
-        {
-          id: 'gt',
-          display: 'Is More Than',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'exct',
-          display: 'Is Exactly',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'lt',
-          display: 'Is Less Than',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'st',
-          display: 'Is Set',
-          meta: {},
-        },
-        {
-          id: 'nst',
-          display: 'Is Not Set',
-          meta: {},
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'date_with_time',
-    component: 'date-condition',
-    display: 'Date With Time',
-    meta: {
-      clauses: [
-        {
-          id: 'eq',
-          display: 'Is Equal To',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'dne',
-          display: 'Is Not Equal To',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'lte',
-          display: 'Is On or Before',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'gte',
-          display: 'Is On or After',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'btwn',
-          display: 'Is Between',
-          component: 'refine-double-date-input',
-          meta: {},
-        },
-        {
-          id: 'gt',
-          display: 'Is More Than',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'exct',
-          display: 'Is Exactly',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'lt',
-          display: 'Is Less Than',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'st',
-          display: 'Is Set',
-          meta: {},
-        },
-        {
-          id: 'nst',
-          display: 'Is Not Set',
-          meta: {},
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'timestamp',
-    component: 'date-condition',
-    display: 'Timestamp',
-    meta: {
-      clauses: [
-        {
-          id: 'eq',
-          display: 'Is Equal To',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'dne',
-          display: 'Is Not Equal To',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'lte',
-          display: 'Is On or Before',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'gte',
-          display: 'Is On or After',
-          component: 'refine-date-input',
-          meta: {},
-        },
-        {
-          id: 'btwn',
-          display: 'Is Between',
-          component: 'refine-double-date-input',
-          meta: {},
-        },
-        {
-          id: 'gt',
-          display: 'Is More Than',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'exct',
-          display: 'Is Exactly',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'lt',
-          display: 'Is Less Than',
-          component: 'refine-relative-date-input',
-          meta: {},
-        },
-        {
-          id: 'st',
-          display: 'Is Set',
-          meta: {},
-        },
-        {
-          id: 'nst',
-          display: 'Is Not Set',
-          meta: {},
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'numeric',
-    component: 'numeric-condition',
-    display: 'Numeric',
-    meta: {
-      clauses: [
-        {
-          id: 'eq',
-          display: 'Is Equal To',
-          component: 'refine-number-input',
-          meta: {},
-        },
-        {
-          id: 'dne',
-          display: 'Is Not Equal To',
-          component: 'refine-number-input',
-          meta: {},
-        },
-        {
-          id: 'gt',
-          display: 'Is Greater Than',
-          component: 'refine-number-input',
-          meta: {},
-        },
-        {
-          id: 'gte',
-          display: 'Is Greater Than Or Equal To',
-          component: 'refine-number-input',
-          meta: {},
-        },
-        {
-          id: 'lt',
-          display: 'Is Less Than',
-          component: 'refine-number-input',
-          meta: {},
-        },
-        {
-          id: 'lte',
-          display: 'Is Less Than Or Equal To',
-          component: 'refine-number-input',
-          meta: {},
-        },
-        {
-          id: 'btwn',
-          display: 'Is Between',
-          component: 'refine-double-number-input',
-          meta: {},
-        },
-        {
-          id: 'nbtwn',
-          display: 'Is Not Between',
-          component: 'refine-double-number-input',
-          meta: {},
-        },
-        {
-          id: 'st',
-          display: 'Is Set',
-          meta: {},
-        },
-        {
-          id: 'nst',
-          display: 'Is Not Set',
-          meta: {},
-        },
-      ],
-    },
-    refinements: [],
-  },
-  {
-    id: 'events.name',
-    display: 'Events.Name',
-    meta: {
-      clauses: [
-        { id: 'eq', display: 'Equals', meta: {}, component: 'refine-text-input' },
-        { id: 'dne', display: 'Does Not Equal', meta: {}, component: 'refine-text-input' },
-        { id: 'sw', display: 'Starts With', meta: {}, component: 'refine-text-input' },
-        { id: 'ew', display: 'Ends With', meta: {}, component: 'refine-text-input' },
-        { id: 'dsw', display: 'Does Not Start With', meta: {}, component: 'refine-text-input' },
-        { id: 'dew', display: 'Does Not End With', meta: {}, component: 'refine-text-input' },
-        { id: 'cont', display: 'Contains', meta: {}, component: 'refine-text-input' },
-        { id: 'dcont', display: 'Does Not Contain', meta: {}, component: 'refine-text-input' },
-        { id: 'st', display: 'Is Set', meta: {}, component: 'refine-text-input' },
-        { id: 'nst', display: 'Is Not Set', meta: {}, component: 'refine-text-input' },
-      ],
-    },
-    refinements: [
-      {
-        id: 'count_refinement',
-        display: 'Count Refinement',
-        meta: {
-          clauses: [
-            { id: 'eq', display: 'Is Equal To', meta: {}, component: 'refine-number-input' },
-            { id: 'dne', display: 'Is Not Equal To', meta: {}, component: 'refine-number-input' },
-            { id: 'gt', display: 'Is Greater Than', meta: {}, component: 'refine-number-input' },
-            {
-              id: 'gte',
-              display: 'Is Greater Than Or Equal To',
-              meta: {},
-              component: 'refine-number-input',
-            },
-            { id: 'lt', display: 'Is Less Than', meta: {} },
-            {
-              id: 'lte',
-              display: 'Is Less Than Or Equal To',
-              meta: {},
-              component: 'refine-number-input',
-            },
-            { id: 'btwn', display: 'Is Between', meta: {}, component: 'refine-number-input' },
-            { id: 'nbtwn', display: 'Is Not Between', meta: {}, component: 'refine-number-input' },
-            { id: 'st', display: 'Is Set', meta: {}, component: 'refine-number-input' },
-            { id: 'nst', display: 'Is Not Set', meta: {}, component: 'refine-number-input' },
-          ],
-        },
-        refinements: [],
-      },
-      {
-        id: 'kaboom_refinement',
-        display: 'Kaboom Refinement',
-        meta: {
-          clauses: [
-            { id: 'eq', display: 'Is Equal To', meta: {}, component: 'refine-number-input' },
-            { id: 'dne', display: 'Is Not Equal To', meta: {}, component: 'refine-number-input' },
-            { id: 'gt', display: 'Is Greater Than', meta: {}, component: 'refine-number-input' },
-            {
-              id: 'gte',
-              display: 'Is Greater Than Or Equal To',
-              meta: {},
-              component: 'refine-number-input',
-            },
-            { id: 'lt', display: 'Is Less Than', meta: {} },
-            {
-              id: 'lte',
-              display: 'Is Less Than Or Equal To',
-              meta: {},
-              component: 'refine-number-input',
-            },
-            { id: 'btwn', display: 'Is Between', meta: {}, component: 'refine-number-input' },
-            { id: 'nbtwn', display: 'Is Not Between', meta: {}, component: 'refine-number-input' },
-            { id: 'st', display: 'Is Set', meta: {}, component: 'refine-number-input' },
-            { id: 'nst', display: 'Is Not Set', meta: {}, component: 'refine-number-input' },
-          ],
-        },
-        refinements: [],
-      },
-    ],
-  },
+import tailwindFlavor2 from '../../../packages/refine-vue/src/flavors/tailwind';
+
+let conditions = [
+  optionCondition,
+  textCondition,
+  booleanCondition,
+  dateCondition,
+  dateWithTimeCondition,
+  numericCondition,
 ];
 
 export default {
   name: 'App',
   data() {
-    return {
-      conditions,
-      groupedBlueprint,
-      errors: {
-        0: [
+    let flavors = [
+      {
+        name: 'Blank',
+        flavor: {},
+      },
+      {
+        name: 'Tailwind',
+        flavor: tailwindFlavor2,
+      },
+    ];
+
+    let relativeDateBlueprint = [
+      {
+        condition_id: 'date',
+        depth: 1,
+        type: 'criterion',
+        input: {
+          clause: 'btwn',
+          date1: '2020-12-12',
+        },
+        uid: '12345',
+      },
+    ];
+
+    let blueprints = [
+      { name: 'basic', blueprint: basicBlueprint },
+      { name: 'blank', blueprint: [] },
+      { name: 'kitchen sink', blueprint: kitchenSinkBlueprint },
+      { name: 'relative date', blueprint: relativeDateBlueprint },
+      {
+        name: 'fail',
+        blueprint: [
           {
-            id: 23434,
-            message: 'You messed up big time',
+            depth: 1,
+            type: 'criterion',
+            condition_id: 'date',
+            uid: '123',
+            input: {
+              clause: 'exct',
+            },
           },
           {
-            id: 454534,
-            message: 'Good luck with your life',
+            depth: 1,
+            type: 'criterion',
+            condition_id: 'date',
+            input: {
+              clause: 'btwn',
+            },
           },
         ],
+      },
+    ];
+
+    let chosenFlavor = flavors[1]; // ref(flavors.find((f) => f.name === 'Tailwind'));
+    let chosenBlueprint = blueprints[4]; //ref(blueprints.find((b) => b.name === 'basic'));
+
+    return {
+      conditions,
+      flavors,
+      blueprints,
+      chosenFlavor,
+      chosenBlueprint,
+      errors: {
+        '12345.value': {
+          message: 'You messed up big time',
+        },
       },
     };
   },
   components: {
     QueryBuilder,
   },
+  methods: {
+    reorderTailwind() {
+      let flavor = this.flavors.find((f) => f.name === 'Tailwind').flavor;
+
+      flavor.criterion.wrapper.order = ['remove', 'errors', 'selector'];
+
+      flavor.criterion.removeCriterionButton.class =
+        'rounded-full bg-gray-200 w-10 h-10 text-gray-600 flex items-center justify-center mr-2';
+    },
+    customComponent() {
+      let flavor = this.flavors.find((f) => f.name === 'Tailwind').flavor;
+
+      flavor.criterion.wrapper.component = 'custom-criterion-row';
+    },
+  },
 };
 </script>
-
-<template>
-  <div>
-    <div class="w-max">
-      <query-builder
-        :errors="errors"
-        :conditions="conditions"
-        v-model:blueprint="groupedBlueprint"
-        class="p-4 w-100"
-      />
-    </div>
-    <div>{{ groupedBlueprint }}</div>
-  </div>
-</template>
