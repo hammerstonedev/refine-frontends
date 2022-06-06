@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'vue-demi': path.resolve(__dirname, './node_modules/vue-demi/lib/index.mjs'),
+      './vue-demi-shim': path.resolve(__dirname, './node_modules/vue-demi/lib/index.mjs'),
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
   },
