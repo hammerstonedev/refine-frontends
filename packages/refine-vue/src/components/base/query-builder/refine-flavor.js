@@ -1,4 +1,11 @@
-import { h, defineComponent, isVue2, isVue3, computed } from 'vue-demi';
+import { h, defineComponent, isVue2, computed } from 'vue-demi';
+
+// vue-demi does not export resolveComponent, which is required when using
+// Vue3. If we just try to import it from vue-demi, rollup complains that
+// the export doesn't exist for the Vue2 build. In our Vue3 Vite config,
+// we override `vue-demi-shim` to point to the real vue-demi.
+import { resolveComponent } from './vue-demi-shim';
+
 import { useFlavor } from '../../../hooks/useFlavor';
 
 export const RefineFlavor = defineComponent({
@@ -38,21 +45,38 @@ export const RefineFlavor = defineComponent({
 
     return () => {
       const resolvedFlavor = flavor.value;
-
       const order = resolvedFlavor.extra.value.order ?? incomingProps.order;
       const props = omit(incomingProps, ['as', 'component', 'order']);
       const slots = bindings.slots;
 
-      let el = h(
-        resolvedFlavor.component,
-        {
-          attrs: bindings.attrs,
-          scopedSlots: slots,
-          ...(isVue2 && { ...resolvedFlavor.props.value, props, on: bindings.listeners }),
-          ...(isVue3 && { ...resolvedFlavor.props.value, ...props }),
-        },
-        order.map((key) => slots?.[key]?.())
-      );
+      let isComponent =
+        typeof resolvedFlavor.component === 'string' && resolvedFlavor.component.includes('-');
+
+      let orderedSlots = isComponent ? slots : order.map((key) => slots?.[key]?.());
+
+      let el = isVue2
+        ? h(
+            resolvedFlavor.component,
+            {
+              scopedSlots: slots,
+              attrs: bindings.attrs,
+              props,
+              on: bindings.listeners,
+              ...resolvedFlavor.props.value,
+            },
+            orderedSlots
+          )
+        : h(
+            // In Vue 3, globally registered components must be resolved before they can be used.
+            // https://vuejs.org/guide/extras/render-function.html#components
+            isComponent ? resolveComponent(resolvedFlavor.component) : resolvedFlavor.component,
+            {
+              ...bindings.attrs,
+              ...props,
+              ...resolvedFlavor.props.value,
+            },
+            orderedSlots
+          );
 
       if (resolvedFlavor.extra.value.wrap) {
         return resolvedFlavor.extra.value.wrap(el);
