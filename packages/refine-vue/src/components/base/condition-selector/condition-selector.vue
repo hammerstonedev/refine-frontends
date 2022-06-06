@@ -9,6 +9,7 @@ import Selector from '../../../components/base/selector';
 
 export default {
   name: 'condition-selector',
+  emits: ['select-condition'],
   methods: {
     selectOption(nextOption) {
       this.$emit('select-condition', nextOption);
