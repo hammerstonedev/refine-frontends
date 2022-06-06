@@ -18,6 +18,7 @@ export default {
       currentValue: this.value,
     };
   },
+  emits: ['input'],
   props: {
     value1: {
       type: [Number, String],

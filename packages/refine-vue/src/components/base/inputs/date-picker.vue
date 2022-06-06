@@ -63,6 +63,7 @@ export default {
       default: 'MM/DD/YYYY',
     },
   },
+  emits: ['input'],
   data() {
     const { date } = this;
     return {

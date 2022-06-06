@@ -16,6 +16,7 @@ export default {
     DatePicker,
     RefineFlavor,
   },
+  emits: ['input'],
   props: {
     date1: {
       type: String,

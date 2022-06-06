@@ -19,6 +19,7 @@ export default {
       default: '',
     },
   },
+  emits: ['input'],
   components: {
     RefineFlavor,
   },

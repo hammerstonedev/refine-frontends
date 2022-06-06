@@ -19,6 +19,7 @@ export default {
       currentValue: this.value,
     };
   },
+  emits: ['input'],
   computed: {
     joinWord() {
       // @TODO Meta helper

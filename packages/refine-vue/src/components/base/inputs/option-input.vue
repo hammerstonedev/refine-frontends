@@ -23,6 +23,7 @@ export default {
     Selector,
     SelectorOption,
   },
+  emits: ['input'],
   props: {
     selected: {
       type: Array,

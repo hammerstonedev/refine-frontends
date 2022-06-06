@@ -2,19 +2,14 @@
   <refine-flavor as="div" component="inputs.date.relative.wrapper">
     <refine-flavor
       as="input"
-      component='inputs.date.relative'
+      component="inputs.date.relative"
       type="number"
       name="amount"
       :value="amount"
       @input="updateAmount"
     />
     <selector @select-option="updateUnit">
-      <selector-option
-        v-for="unit in units"
-        :key="unit.id"
-        :id="unit.id"
-        :display="unit.display"
-      />
+      <selector-option v-for="unit in units" :key="unit.id" :id="unit.id" :display="unit.display" />
     </selector>
 
     <selector @select-option="updateModifier">
@@ -41,6 +36,7 @@ export default {
     RefineFlavor,
   },
   mixins: [uid],
+  emits: ['input'],
   props: {
     amount: {
       type: [String, Number],
@@ -76,7 +72,7 @@ export default {
       const amount = event.target.value;
       this.$emit('input', { amount });
     },
-    updateUnit: function({ selectedOptions }) {
+    updateUnit: function ({ selectedOptions }) {
       const selected = selectedOptions.map(({ id }) => id);
       this.$emit('input', { unit: selected[0] });
     },

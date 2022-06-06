@@ -13,6 +13,7 @@ export default {
       required: false,
     },
   },
+  emits: ['input'],
   components: {
     DatePicker,
   },
