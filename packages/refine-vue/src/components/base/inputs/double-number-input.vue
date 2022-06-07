@@ -1,10 +1,10 @@
 <template>
   <refine-flavor as="div" component="inputs.number.double.wrapper">
-    <number-input :meta="meta" :value="currentValue" @input="updateFirstValue" />
-    <refine-flavor as="span" component="inputs.number.double.joiner" v-if="joinWord">{{
-      joinWord
-    }}</refine-flavor>
-    <number-input :meta="meta" :value="currentValue" @input="updateSecondValue" />
+    <number-input :meta="meta" :value="value1" @input="updateFirstValue" />
+    <refine-flavor as="span" component="inputs.number.double.joiner" v-if="joinWord"
+      >{{ joinWord }}
+    </refine-flavor>
+    <number-input :meta="meta" :value="value2" @input="updateSecondValue" />
   </refine-flavor>
 </template>
 
@@ -27,11 +27,14 @@ export default {
     },
   },
   methods: {
-    updateFirstValue: function ({ value }) {
-      this.$emit('input', { value1: value });
+    updateFirstValue: function ({ value1 }) {
+      this.$emit('input', { value1: value1 });
     },
-    updateSecondValue: function ({ value }) {
-      this.$emit('input', { value2: value });
+
+    // The single number input always emits value1, here we
+    // remap it to value2 for the double number input.
+    updateSecondValue: function ({ value1 }) {
+      this.$emit('input', { value2: value1 });
     },
   },
   props: {
