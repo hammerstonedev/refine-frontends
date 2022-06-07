@@ -85,6 +85,9 @@ export class BlueprintStore {
         onChange([...this.blueprint]);
       }
     };
+
+    // We need to update the outside world after the blueprint has been mapped.
+    this.blueprintChanged();
   }
 
   public mapBlueprint(blueprint: Blueprint): InternalBlueprint {
