@@ -22,7 +22,8 @@
     "test": "jest ./tests",
     "build": "yarn run build:vue3 && yarn run build:vue2",
     "build:vue2": "vue-demi-switch 2 && ROLLUP_VUE_VERSION=2 rollup --config rollup.config.js --file dist/vue2/refine-vue.esm.js",
-    "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js --file dist/vue3/refine-vue.esm.js"
+    "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js --file dist/vue3/refine-vue.esm.js",
+    "release:vue2-dev": "yarn run build:vue2 && node ./bin/prepublish vue2 --dev && node ./bin/postpublish"
   },
   "peerDependencies": {
     "vue": "*"
@@ -47,6 +48,7 @@
     "core-js": "^3.6.5",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.17.0",
+    "fs-extra": "^10.1.0",
     "jest": "^27.4.5",
     "postcss": "^8.4.5",
     "refine-core": "*",
@@ -58,7 +60,8 @@
     "rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
     "tailwindcss": "^3.0.7",
     "vue": "^2.6.0",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "yargs": "^17.5.1"
   },
   "eslintConfig": {
     "root": true,
