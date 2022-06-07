@@ -51,6 +51,7 @@
         :flavor="chosenFlavor.flavor"
       />
     </div>
+    <pre class="text-xs">{{ chosenBlueprint.blueprint }}</pre>
   </div>
 </template>
 
@@ -119,23 +120,11 @@ export default {
           {
             depth: 1,
             type: 'criterion',
-            condition_id: 'date',
-            uid: '123',
-            input: {
-              clause: 'exct',
-            },
-          },
-          {
-            depth: 1,
-            type: 'conjunction',
-            word: 'and',
-          },
-          {
-            depth: 1,
-            type: 'criterion',
-            condition_id: 'date',
+            condition_id: 'numeric',
             input: {
               clause: 'btwn',
+              value1: 1,
+              value2: 5,
             },
           },
         ],
