@@ -7,7 +7,7 @@
   "scripts": {
     "dev:react": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-react dev\" \"yarn workspace react dev\"",
     "dev:vue2": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue2 --watch\" \"yarn workspace vue2 dev --watch\" ",
-    "dev:vue3": "yarn workspace vue3 dev"
+    "dev:vue3": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue3 --watch\" \"yarn workspace vue3 dev\" "
   },
   "prettier": {
     "printWidth": 100,
