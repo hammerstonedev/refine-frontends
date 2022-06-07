@@ -1,48 +1,53 @@
 <template>
-  <div class="space-y-6">
-    <div class="flex space-x-24 bg-indigo-900 text-white p-4">
-      <div>
-        Change Flavor
-        <div v-for="flavor of flavors" :key="flavor.name" class="flex items-center space-x-2">
-          <label class="capitalize">
-            <input
-              type="radio"
-              name="flavor"
-              :value="flavor"
-              :checked="flavor.name === chosenFlavor.name"
-              @change="chosenFlavor = flavor"
-            />
-            {{ flavor.name }}</label
+  <div>
+    <div class="bg-gray-800 text-white py-2 px-4 text-xl border-b border-gray-900">Vue 2</div>
+    <div class="space-y-6">
+      <div class="flex space-x-24 bg-indigo-900 text-white p-4">
+        <div>
+          Change Flavor
+          <div v-for="flavor of flavors" :key="flavor.name" class="flex items-center space-x-2">
+            <label class="capitalize">
+              <input
+                type="radio"
+                name="flavor"
+                :value="flavor"
+                :checked="flavor.name === chosenFlavor.name"
+                @change="chosenFlavor = flavor"
+              />
+              {{ flavor.name }}</label
+            >
+          </div>
+        </div>
+        <div>
+          Change Blueprint
+          <div
+            v-for="blueprint of blueprints"
+            :key="blueprint.name"
+            class="flex items-center space-x-2"
           >
+            <label class="capitalize">
+              <input
+                type="radio"
+                name="blueprint"
+                :value="blueprint"
+                :checked="blueprint.name === chosenBlueprint.name"
+                @change="chosenBlueprint = blueprint"
+              />
+              {{ blueprint.name }}</label
+            >
+          </div>
         </div>
       </div>
-      <div>
-        Change Blueprint
-        <div
-          v-for="blueprint of blueprints"
-          :key="blueprint.name"
-          class="flex items-center space-x-2"
-        >
-          <label class="capitalize">
-            <input
-              type="radio"
-              name="blueprint"
-              :value="blueprint"
-              :checked="blueprint.name === chosenBlueprint.name"
-              @change="chosenBlueprint = blueprint"
-            />
-            {{ blueprint.name }}</label
-          >
-        </div>
+      <div class="px-12">
+        <query-builder
+          :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
+          v-model:blueprint="chosenBlueprint.blueprint"
+          :conditions="conditions"
+          :errors="errors"
+          :flavor="chosenFlavor.flavor"
+        />
       </div>
     </div>
-    <query-builder
-      :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
-      v-model:blueprint="chosenBlueprint.blueprint"
-      :conditions="conditions"
-      :errors="errors"
-      :flavor="chosenFlavor.flavor"
-    />
   </div>
 </template>
 

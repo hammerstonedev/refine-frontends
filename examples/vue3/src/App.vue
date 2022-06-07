@@ -1,4 +1,5 @@
 <template>
+  <div class="bg-gray-800 text-white py-2 px-4 text-xl border-b border-gray-900">Vue 3</div>
   <div class="space-y-6">
     <div class="flex space-x-24 bg-indigo-900 text-white p-4">
       <div>
@@ -41,13 +42,15 @@
         <button @click.prevent="customComponent">Custom Component</button>
       </div>
     </div>
-    <query-builder
-      :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
-      :errors="errors"
-      :conditions="conditions"
-      v-model:blueprint="chosenBlueprint.blueprint"
-      :flavor="chosenFlavor.flavor"
-    />
+    <div class="px-12">
+      <query-builder
+        :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
+        :errors="errors"
+        :conditions="conditions"
+        v-model:blueprint="chosenBlueprint.blueprint"
+        :flavor="chosenFlavor.flavor"
+      />
+    </div>
   </div>
 </template>
 
@@ -62,7 +65,7 @@ import {
   numericCondition,
   optionCondition,
   textCondition,
-} from '../../../packages/core/src/fixtures';
+} from 'refine-core/fixtures';
 
 import './index.css';
 import '../../../packages/refine-vue/dist/vue3/refine-vue.esm.css';
@@ -121,6 +124,11 @@ export default {
             input: {
               clause: 'exct',
             },
+          },
+          {
+            depth: 1,
+            type: 'conjunction',
+            word: 'and',
           },
           {
             depth: 1,
