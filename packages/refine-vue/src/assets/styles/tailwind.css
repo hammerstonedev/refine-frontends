@@ -1,9 +1,0 @@
-.refine-date-input {
-  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm;
-  @apply focus:ring-indigo-500 focus:border-indigo-500;
-}
-
-.refine-date-input-error {
-  @apply pr-10 text-red-900 placeholder-red-300 border-red-300;
-  @apply focus:outline-none focus:ring-red-500 focus:border-red-500;
-}

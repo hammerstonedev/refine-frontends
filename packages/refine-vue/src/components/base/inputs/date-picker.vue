@@ -47,7 +47,14 @@
 
 <script>
 import { RefineFlavor } from '../query-builder/refine-flavor';
+import { getFlavorItem } from '../../../hooks/useFlavor';
+
 export default {
+  setup() {
+    let flavor = getFlavorItem('inputs.date.pickerInput');
+
+    return { flavor };
+  },
   props: {
     date: {
       type: String,
@@ -69,8 +76,8 @@ export default {
     return {
       time: date,
       hasError: false,
-      inputClass: 'refine-date-input',
-      errorClass: 'refine-date-input-error',
+      inputClass: this.flavor.props.value?.class,
+      errorClass: this.flavor.props.value?.class,
     };
   },
   methods: {

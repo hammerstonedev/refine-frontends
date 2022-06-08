@@ -6,6 +6,23 @@ export function provideFlavor(flavor) {
   provide(flavorContext, flavor);
 }
 
+export function getFlavorItem(pointer, flavorOptions) {
+  let flavor = useFlavor(
+    (flavor) => {
+      const parts = pointer.split('.');
+      let result = flavor;
+      for (const part of parts) {
+        result = result?.[part];
+      }
+      return result;
+    },
+    '',
+    computed(() => flavorOptions)
+  );
+
+  return flavor?.value;
+}
+
 export function useFlavor(resolve, defaultComponent, options = computed(() => ({}))) {
   const configuration = inject(flavorContext);
   const flavor = computed(() => resolve(configuration) ?? {});
