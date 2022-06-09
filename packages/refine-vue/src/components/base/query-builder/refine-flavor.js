@@ -72,6 +72,7 @@ export const RefineFlavor = defineComponent({
             isComponent ? resolveComponent(resolvedFlavor.component) : resolvedFlavor.component,
             {
               ...bindings.attrs,
+              'data-flavor': incomingProps.component,
               ...props,
               ...resolvedFlavor.props.value,
             },
