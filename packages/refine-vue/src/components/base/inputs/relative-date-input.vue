@@ -9,15 +9,22 @@
       @input="updateAmount"
     />
     <selector @select-option="updateUnit">
-      <selector-option v-for="unit in units" :key="unit.id" :id="unit.id" :display="unit.display" />
+      <selector-option
+        v-for="option in units"
+        :key="option.id"
+        :id="option.id"
+        :display="option.display"
+        :selected="option.id === unit"
+      />
     </selector>
 
     <selector @select-option="updateModifier">
       <selector-option
-        v-for="modifier in modifiers"
-        :key="modifier.id"
-        :id="modifier.id"
-        :display="modifier.display"
+        v-for="option in modifiers"
+        :key="option.id"
+        :id="option.id"
+        :selected="option.id === modifier"
+        :display="option.display"
       />
     </selector>
   </refine-flavor>
