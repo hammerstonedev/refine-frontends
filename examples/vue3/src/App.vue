@@ -71,7 +71,7 @@ import {
 import './index.css';
 import '../../../packages/refine-vue/dist/vue3/refine-vue.esm.css';
 
-import tailwindFlavor2 from '../../../packages/refine-vue/src/flavors/tailwind';
+import { tailwindFlavor, linearFlavor } from '../../../packages/refine-vue/src/flavors';
 
 let conditions = [
   optionCondition,
@@ -92,7 +92,11 @@ export default {
       },
       {
         name: 'Tailwind',
-        flavor: tailwindFlavor2,
+        flavor: tailwindFlavor,
+      },
+      {
+        name: 'Linear',
+        flavor: linearFlavor,
       },
     ];
 
@@ -115,7 +119,7 @@ export default {
       { name: 'kitchen sink', blueprint: kitchenSinkBlueprint },
       { name: 'relative date', blueprint: relativeDateBlueprint },
       {
-        name: 'fail',
+        name: 'working',
         blueprint: [
           {
             depth: 1,
@@ -126,12 +130,83 @@ export default {
               value1: 1,
               value2: 5,
             },
+            id: 'numeric',
+            uid: '16628-1654705554',
+          },
+          {
+            depth: 1,
+            type: 'conjunction',
+            word: 'and',
+            uid: '19820-1654734869',
+          },
+          {
+            id: 'option',
+            condition_id: 'option',
+            depth: 1,
+            type: 'criterion',
+            input: {
+              clause: 'in',
+              selected: ['foo', 'bar', 'foo2', 'bar2'],
+            },
+            uid: '19420-1654705557',
+          },
+          {
+            depth: 1,
+            type: 'conjunction',
+            word: 'and',
+            uid: '17772-1654734869',
+          },
+          {
+            id: 'date',
+            condition_id: 'date',
+            depth: 1,
+            type: 'criterion',
+            input: {
+              clause: 'gt',
+              modifier: 'ago',
+              unit: 'day',
+              amount: '3',
+            },
+            uid: '14575-1654709950',
+          },
+          {
+            depth: 1,
+            type: 'conjunction',
+            word: 'and',
+            uid: '15116-1654734881',
+          },
+          {
+            id: 'bool',
+            condition_id: 'bool',
+            depth: 1,
+            type: 'criterion',
+            input: {
+              clause: 'true',
+            },
+            uid: '10055-1654734883',
+          },
+          {
+            depth: 1,
+            type: 'conjunction',
+            word: 'and',
+            uid: '14743-1654734884',
+          },
+          {
+            id: 'option',
+            condition_id: 'option',
+            depth: 1,
+            type: 'criterion',
+            input: {
+              clause: 'in',
+              selected: ['foo', 'bar'],
+            },
+            uid: '15958-1654734884',
           },
         ],
       },
     ];
 
-    let chosenFlavor = flavors[1]; // ref(flavors.find((f) => f.name === 'Tailwind'));
+    let chosenFlavor = flavors[2]; // ref(flavors.find((f) => f.name === 'Tailwind'));
     let chosenBlueprint = blueprints[4]; //ref(blueprints.find((b) => b.name === 'basic'));
 
     return {
@@ -160,9 +235,7 @@ export default {
         'rounded-full bg-gray-200 w-10 h-10 text-gray-600 flex items-center justify-center mr-2';
     },
     customComponent() {
-      let flavor = this.flavors.find((f) => f.name === 'Tailwind').flavor;
-
-      flavor.criterion.wrapper.component = 'custom-criterion-row';
+      this.chosenFlavor.flavor.criterion.wrapper.component = 'custom-criterion-row';
     },
   },
 };
