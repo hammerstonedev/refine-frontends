@@ -67,11 +67,6 @@ export default {
     },
   },
   emits: ['selected', 'mouseenter', 'mouseleave'],
-  methods: {
-    scrollIntoView: function () {
-      this.$refs.listItem.$el.scrollIntoView(false);
-    },
-  },
   components: {
     RefineFlavor,
   },
