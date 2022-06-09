@@ -153,7 +153,11 @@ export default {
     scrollIntoView(optionId) {
       if (optionId) {
         const listItem = this.$refs[optionId][0].$el;
-        listItem.scrollIntoView();
+        listItem.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start',
+        });
       }
     },
     async close({ close }) {
