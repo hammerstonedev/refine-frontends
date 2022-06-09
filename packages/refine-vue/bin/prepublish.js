@@ -24,6 +24,7 @@ pkg = {
   name: `@hammerstone/refine-${library}${development ? '-dev' : ''}`,
   version: '0.1.' + ~~(Date.now() / 1000),
   module: `./dist/${library}/refine-vue.esm.js`,
+  main: `./dist/${library}/refine-vue.cjs`,
 };
 
 writeFileSync('./package.json', JSON.stringify(pkg, null, 2));
