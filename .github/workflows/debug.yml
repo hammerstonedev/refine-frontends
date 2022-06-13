@@ -14,7 +14,8 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
-          scope: '@hammerstone'
       - run: yarn install --immutable
       - run: echo "PACKAGE_VERSION=$(git describe --match vue/* --tags)" >> $GITHUB_ENV
       - run: yarn run release:vue-prod
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
