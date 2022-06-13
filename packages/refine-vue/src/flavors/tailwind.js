@@ -27,7 +27,7 @@ const tailwindFlavor = {
   },
 
   group: {
-    class: 'flex flex-col gap-4 bg-gray-100 px-4 py-8 rounded-lg border-l-4',
+    class: 'flex flex-col gap-4 bg-gray-100 px-4 py-8 rounded-lg border-l-4 overflow-hidden',
     wrapper: {
       class: 'space-y-4',
     },
@@ -71,7 +71,7 @@ const tailwindFlavor = {
   },
 
   select: {
-    class: 'relative sm:inline-block w-60',
+    class: ' sm:inline-block w-60',
     wrapper: {
       class: 'flex items-start gap-4',
     },
@@ -85,11 +85,11 @@ const tailwindFlavor = {
       class: (options) => {
         return options.isClosed
           ? 'hidden'
-          : 'overflow-auto text-base rounded-md max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none';
+          : 'text-base rounded-md max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none';
       },
 
       wrapper: {
-        class: 'absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg',
+        class: 'overflow-hidden absolute z-10 mt-1 bg-white rounded-md shadow-lg',
       },
 
       item: {
