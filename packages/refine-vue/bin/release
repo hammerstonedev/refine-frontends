@@ -9,6 +9,7 @@ fi
 
 set -x
 
+npm whoami
 
 yarn run build:vue2
 node ./bin/prepublish.js vue2 --"$1"
