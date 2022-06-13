@@ -1,8 +1,9 @@
 name: Test
-on:
-  push:
-    tags:
-      - 'vue/*'
+on: [ push, pull_request ]
+#on:
+#  push:
+#    tags:
+#      - 'vue/*'
 jobs:
   build:
     runs-on: ubuntu-latest
