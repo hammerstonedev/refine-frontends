@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#set -e
+
+
+set -x
+
+git describe --tags
+git describe --match "vue/*" --tags
+
+git describe --exact-match --tags
+git describe --exact-match --match "vue/*" --tags
+
+git describe --exact-match --tags $(git log -n1 --pretty='%h')
+git describe --exact-match --match "vue/*" --tags $(git log -n1 --pretty='%h')
