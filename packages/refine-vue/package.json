@@ -21,7 +21,6 @@
   "version": "0.1.20",
   "scripts": {
     "test": "jest ./tests",
-    "tags": "./bin/tags",
     "build": "yarn run build:vue3 && yarn run build:vue2",
     "build:vue2": "vue-demi-switch 2 && ROLLUP_VUE_VERSION=2 rollup --config rollup.config.js",
     "build:vue3": "vue-demi-switch 3 && ROLLUP_VUE_VERSION=3 rollup --config rollup.config.js",
