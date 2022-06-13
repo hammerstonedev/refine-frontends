@@ -1,19 +1,36 @@
-#name: Publish to NPM
-#on:
-#  release:
-#    types: [ created ]
-#jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v2
-#        with:
-#          node-version: '12.x'
-#          registry-url: 'https://registry.npmjs.org'
-#      - run: npm install --also=dev
-#      - run: npm install tailwindcss
-#      - run: npm run build
-#      - run: npm publish --access=public
+name: Publish to NPM
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Check Vue version
+        run: echo "PACKAGE_VERSION=$(git describe --match vue/* --tags)" >> $GITHUB_ENV
+
+      - name: Publish Vue to NPM
+        run: yarn run release:vue-prod
+        if: env.PACKAGE_VERSION != ''
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+#       @TODO: Check with Dave
+#      - name: Check React version
+#        run: echo "PACKAGE_VERSION=$(git describe --match react/* --tags)" >> $GITHUB_ENV
+#
+#      - name: Publish React to NPM
+#        run: yarn run release:vue-prod
+#        if: env.PACKAGE_VERSION != ''
 #        env:
 #          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

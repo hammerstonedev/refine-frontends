@@ -19,9 +19,7 @@ if (production) {
   version = process.env.PACKAGE_VERSION;
 
   if (!version.startsWith('vue/')) {
-    // Debug
-    version = 'vue/0.2.3';
-    // throw new Error(`"${version}" does not start with "vue/"`);
+    throw new Error(`"${version}" does not start with "vue/"`);
   }
 
   version = version.replace('vue/', '');
