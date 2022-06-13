@@ -1,14 +1,28 @@
-let { writeFileSync, copySync, pathExistsSync } = require('fs-extra');
-let pkg = require('../package.json');
-
+const { writeFileSync, copySync, pathExistsSync } = require('fs-extra');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const argv = yargs(hideBin(process.argv)).argv;
+
+let pkg = require('../package.json');
 let library = argv._[0];
 let development = argv.dev;
+let production = argv.prod;
 
-if (!development) {
-  throw new Error('Dev only for now');
+if (!development && !production) {
+  throw new Error('Unknown environment.');
+}
+
+let version = '0.1.' + ~~(Date.now() / 1000);
+
+if (production) {
+  // Populated by GitHub actions
+  version = process.env.PACKAGE_VERSION;
+
+  if (!version.startsWith('vue/')) {
+    throw new Error(`"${version}" does not start with "vue/"`);
+  }
+
+  version = version.replace('vue/', '');
 }
 
 if (pathExistsSync('./package.backup.json')) {
@@ -17,12 +31,10 @@ if (pathExistsSync('./package.backup.json')) {
 
 copySync('./package.json', './package.backup.json');
 
-writeFileSync('./package2.json', JSON.stringify(pkg, null, 2));
-
 pkg = {
   ...pkg,
   name: `@hammerstone/refine-${library}${development ? '-dev' : ''}`,
-  version: '0.1.' + ~~(Date.now() / 1000),
+  version: version,
   module: `./dist/${library}/refine-vue.esm.js`,
   main: `./dist/${library}/refine-vue.cjs`,
 };
