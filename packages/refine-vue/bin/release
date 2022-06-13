@@ -9,14 +9,13 @@ fi
 
 set -x
 
-pwd
-ls
-#yarn run build:vue2
-#node ./bin/prepublish.js vue2 --"$1"
-#npm publish --access public
-#node ./bin/postpublish.js vue2 --"$1"
-#
-#yarn run build:vue3
-#node ./bin/prepublish.js vue3 --"$1"
-#npm publish --access public
-#node ./bin/postpublish.js vue3 --"$1"
+
+yarn run build:vue2
+node ./bin/prepublish.js vue2 --"$1"
+npm publish --access public
+node ./bin/postpublish.js vue2 --"$1"
+
+yarn run build:vue3
+node ./bin/prepublish.js vue3 --"$1"
+npm publish --access public
+node ./bin/postpublish.js vue3 --"$1"
