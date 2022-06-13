@@ -9,7 +9,8 @@
     "dev:vue2": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue2 --watch\" \"yarn workspace vue2 dev --watch\" ",
     "dev:vue3": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue3 --watch\" \"yarn workspace vue3 dev\" ",
     "release:vue-dev": "yarn workspace @hammerstone/refine-vue release:dev",
-    "release:vue-prod": "yarn workspace @hammerstone/refine-vue release:prod"
+    "release:vue-prod": "yarn workspace @hammerstone/refine-vue release:prod",
+    "debug-tags": "yarn workspace @hammerstone/refine-vue tags"
   },
   "prettier": {
     "printWidth": 100,
