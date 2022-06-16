@@ -52,7 +52,9 @@ const baseFlavor: ReactRefineFlavor = {
   },
 
   select: {
-    component: (props) => <select {...props} />,
+    component: ({ onChange, ...props }) => (
+      <select {...props} onChange={(event) => onChange(event.target.value)} />
+    ),
 
     wrapper: {
       component: (props) => <div {...props} />,
@@ -216,7 +218,7 @@ const baseFlavor: ReactRefineFlavor = {
       },
 
       relative: {
-        component: (props) => <input type="date" {...props} />,
+        component: (props) => <input type="number" {...props} />,
 
         wrapper: {
           component: (props) => <div {...props} />,

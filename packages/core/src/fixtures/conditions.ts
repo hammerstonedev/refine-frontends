@@ -197,19 +197,52 @@ export const dateCondition: Condition = {
         id: "gt",
         display: "Is More Than",
         component: "RelativeDateInput",
-        meta: {},
+        meta: {
+          units: [
+            { id: "day", display: "Days" },
+            { id: "week", display: "Weeks" },
+            { id: "month", display: "Months" },
+            { id: "year", display: "Years" },
+          ],
+          modifiers: [
+            { id: "ago", display: "Ago" },
+            { id: "from_now", display: "From Now" },
+          ],
+        },
       },
       {
         id: "exct",
         display: "Is Exactly",
         component: "RelativeDateInput",
-        meta: {},
+        meta: {
+          units: [
+            { id: "day", display: "Days" },
+            { id: "week", display: "Weeks" },
+            { id: "month", display: "Months" },
+            { id: "year", display: "Years" },
+          ],
+          modifiers: [
+            { id: "ago", display: "Ago" },
+            { id: "from_now", display: "From Now" },
+          ],
+        },
       },
       {
         id: "lt",
         display: "Is Less Than",
         component: "RelativeDateInput",
-        meta: {},
+        meta: {
+          units: [
+            { id: "day", display: "Days" },
+            { id: "week", display: "Weeks" },
+            { id: "month", display: "Months" },
+            { id: "year", display: "Years" },
+          ],
+          modifiers: [
+            { id: "ago", display: "Ago" },
+            { id: "from_now", display: "From Now" },
+          ],
+        },
       },
       {
         id: "st",
@@ -266,19 +299,52 @@ export const dateWithTimeCondition: Condition = {
         id: "gt",
         display: "Is More Than",
         component: "RelativeDateInput",
-        meta: {},
+        meta: {
+          units: [
+            { id: "day", display: "Days" },
+            { id: "week", display: "Weeks" },
+            { id: "month", display: "Months" },
+            { id: "year", display: "Years" },
+          ],
+          modifiers: [
+            { id: "ago", display: "Ago" },
+            { id: "from_now", display: "From Now" },
+          ],
+        },
       },
       {
         id: "exct",
         display: "Is Exactly",
         component: "RelativeDateInput",
-        meta: {},
+        meta: {
+          units: [
+            { id: "day", display: "Days" },
+            { id: "week", display: "Weeks" },
+            { id: "month", display: "Months" },
+            { id: "year", display: "Years" },
+          ],
+          modifiers: [
+            { id: "ago", display: "Ago" },
+            { id: "from_now", display: "From Now" },
+          ],
+        },
       },
       {
         id: "lt",
         display: "Is Less Than",
         component: "RelativeDateInput",
-        meta: {},
+        meta: {
+          units: [
+            { id: "day", display: "Days" },
+            { id: "week", display: "Weeks" },
+            { id: "month", display: "Months" },
+            { id: "year", display: "Years" },
+          ],
+          modifiers: [
+            { id: "ago", display: "Ago" },
+            { id: "from_now", display: "From Now" },
+          ],
+        },
       },
       {
         id: "st",

@@ -17,7 +17,7 @@ export interface DoubleDateInput extends BaseCriterionInput {
 }
 
 export interface RelativeDateCriterionInput extends BaseCriterionInput {
-  amount: number;
+  amount: string;
   unit: string;
   modifier: string;
 }

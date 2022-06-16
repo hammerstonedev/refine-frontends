@@ -78,7 +78,7 @@ export type RefineReactComponentPropsMap = {
     className?: string;
     style?: CSS.Properties;
     value: string | string[];
-    onChange: React.ChangeEventHandler<HTMLSelectElement>;
+    onChange: (value: string | string[]) => void;
     multiple?: boolean;
   };
   "select.wrapper": {
@@ -119,6 +119,7 @@ export type RefineReactComponentPropsMap = {
   "select.listbox.item": {
     className?: string;
     style?: CSS.Properties;
+    value: string;
   };
   /**
    * TODO: Not used in React implementation.
