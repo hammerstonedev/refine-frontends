@@ -101,15 +101,17 @@ const App = () => {
         <div>
           Change Blueprint
           {blueprints.map((blueprint, index) => (
-            <div key={blueprint.name} className="flex items-center space-x-2">
-              <input
-                type="radio"
-                name="blueprint"
-                value={blueprint.name}
-                checked={blueprint.name === chosenBlueprint.name}
-                onChange={(event) => setChosenBlueprint(blueprints[index])}
-              />
-              <label>{capitalise(blueprint.name)}</label>
+            <div key={blueprint.name}>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="blueprint"
+                  value={blueprint.name}
+                  checked={blueprint.name === chosenBlueprint.name}
+                  onChange={(event) => setChosenBlueprint(blueprints[index])}
+                />
+                <span>{capitalise(blueprint.name)}</span>
+              </label>
             </div>
           ))}
         </div>
