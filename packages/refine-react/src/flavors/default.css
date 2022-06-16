@@ -97,6 +97,10 @@
   @apply relative cursor-default select-none py-2 pl-10 pr-4;
 }
 
+.refine-query-builder-select-listbox-item-active {
+  @apply bg-gray-100;
+}
+
 .refine-query-builder-select-listbox-item-text {
   @apply block truncate;
 }

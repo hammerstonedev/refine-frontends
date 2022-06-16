@@ -64,17 +64,27 @@ const tailwindFlavor: PartialReactRefineFlavor = {
       wrapper: {},
 
       item: {
-        component: ({ children, ...props }) => (
+        component: ({ children, className, ...props }) => (
           <Listbox.Option {...props}>
-            {({ selected }) => (
-              <>
+            {({ active, selected }) => (
+              <div
+                className={[
+                  className,
+                  active && "refine-query-builder-select-listbox-item-active",
+                ]
+                  .filter<string>(
+                    (className: unknown): className is string =>
+                      typeof className === "string"
+                  )
+                  .join(" ")}
+              >
                 <FlavorItem<"select.listbox.item.text"> name="select.listbox.item.text">
                   {children}
                 </FlavorItem>
                 {selected ? (
                   <FlavorItem<"select.listbox.item.icon"> name="select.listbox.item.icon" />
                 ) : null}
-              </>
+              </div>
             )}
           </Listbox.Option>
         ),
