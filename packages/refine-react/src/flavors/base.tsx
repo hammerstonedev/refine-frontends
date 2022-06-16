@@ -220,7 +220,7 @@ const baseFlavor: ReactRefineFlavor = {
       },
 
       relative: {
-        component: (props) => <input type="date" {...props} />,
+        component: (props) => <input type="number" {...props} />,
 
         wrapper: {
           component: (props) => <div {...props} />,

@@ -190,7 +190,7 @@
 }
 
 .refine-query-builder-inputs-date-relative-wrapper {
-  @apply flex items-baseline space-x-3;
+  @apply flex space-x-3;
 }
 
 .refine-query-builder-inputs-date-calendar {

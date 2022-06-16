@@ -15,6 +15,8 @@ export type Clause = {
   display: string;
   meta: {
     multiple?: boolean;
+    units?: Array<{ id: string; display: string }>;
+    modifiers?: Array<{ id: string; display: string }>;
   };
 };
 
