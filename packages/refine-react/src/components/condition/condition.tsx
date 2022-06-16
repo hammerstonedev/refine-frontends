@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { Condition as ConditionType } from "refine-core/types";
 import {
+  ClauseProvider,
   inputComponents,
   useCriterion,
   FlavorItem,
@@ -33,73 +34,75 @@ export const Condition = ({ condition }: ConditionProps) => {
   }, [selectedClause?.component]);
 
   return (
-    <FlavorItem<"condition"> name="condition" data-testid="refine-condition">
-      <FlavorItem<"select.wrapper"> name="select.wrapper">
-        <FlavorItem<"select">
-          name="select"
-          value={condition.id}
-          onChange={(conditionId) => criterion.updateCondition(conditionId)}
-        >
-          <FlavorItem<"select.button"> name="select.button">
-            {condition.display}
-          </FlavorItem>
-          <FlavorItem<"select.listbox"> name="select.listbox">
-            {conditions.map((condition) => (
-              <FlavorItem<"select.listbox.item">
-                key={condition.id}
-                name="select.listbox.item"
-                value={condition.id}
-              >
-                {condition.display}
-              </FlavorItem>
-            ))}
-          </FlavorItem>
-        </FlavorItem>
-      </FlavorItem>
-      <FlavorItem<"select.wrapper"> name="select.wrapper">
-        <FlavorItem<"select">
-          name="select"
-          value={selectedClause.id}
-          onChange={(clause) =>
-            criterion.updateInput({
-              clause,
-            })
-          }
-        >
-          <FlavorItem<"select.button"> name="select.button">
-            {selectedClause.display}
-          </FlavorItem>
-          <FlavorItem<"select.listbox"> name="select.listbox">
-            {condition.meta.clauses.map((clause) => (
-              <FlavorItem<"select.listbox.item">
-                key={clause.id}
-                name="select.listbox.item"
-                value={clause.id}
-              >
-                {clause.display}
-              </FlavorItem>
-            ))}
+    <ClauseProvider value={selectedClause}>
+      <FlavorItem<"condition"> name="condition" data-testid="refine-condition">
+        <FlavorItem<"select.wrapper"> name="select.wrapper">
+          <FlavorItem<"select">
+            name="select"
+            value={condition.id}
+            onChange={(conditionId) => criterion.updateCondition(conditionId)}
+          >
+            <FlavorItem<"select.button"> name="select.button">
+              {condition.display}
+            </FlavorItem>
+            <FlavorItem<"select.listbox"> name="select.listbox">
+              {conditions.map((condition) => (
+                <FlavorItem<"select.listbox.item">
+                  key={condition.id}
+                  name="select.listbox.item"
+                  value={condition.id}
+                >
+                  {condition.display}
+                </FlavorItem>
+              ))}
+            </FlavorItem>
           </FlavorItem>
         </FlavorItem>
+        <FlavorItem<"select.wrapper"> name="select.wrapper">
+          <FlavorItem<"select">
+            name="select"
+            value={selectedClause.id}
+            onChange={(clause) =>
+              criterion.updateInput({
+                clause,
+              })
+            }
+          >
+            <FlavorItem<"select.button"> name="select.button">
+              {selectedClause.display}
+            </FlavorItem>
+            <FlavorItem<"select.listbox"> name="select.listbox">
+              {condition.meta.clauses.map((clause) => (
+                <FlavorItem<"select.listbox.item">
+                  key={clause.id}
+                  name="select.listbox.item"
+                  value={clause.id}
+                >
+                  {clause.display}
+                </FlavorItem>
+              ))}
+            </FlavorItem>
+          </FlavorItem>
+        </FlavorItem>
+        {hasInput && (
+          <InputProvider
+            value={{
+              display: selectedClause.display,
+              options: condition.meta.options,
+              // @ts-expect-error TODO: Fix this
+              value: criterion.input.value ?? "",
+              onChange: (input) => criterion.updateInput(input),
+              multiple: selectedClause.meta.multiple ?? false,
+            }}
+          >
+            {!!InputComponent && (
+              <div data-testid="refine-input">
+                <InputComponent />
+              </div>
+            )}
+          </InputProvider>
+        )}
       </FlavorItem>
-      {hasInput && (
-        <InputProvider
-          value={{
-            display: selectedClause.display,
-            options: condition.meta.options,
-            // @ts-expect-error TODO: Fix this
-            value: criterion.input.value ?? "",
-            onChange: (input) => criterion.updateInput(input),
-            multiple: selectedClause.meta.multiple ?? false,
-          }}
-        >
-          {!!InputComponent && (
-            <div data-testid="refine-input">
-              <InputComponent />
-            </div>
-          )}
-        </InputProvider>
-      )}
-    </FlavorItem>
+    </ClauseProvider>
   );
 };
