@@ -30,21 +30,19 @@ const baseFlavor: ReactRefineFlavor = {
   criterion: {
     component: (props) => <div {...props} />,
 
+    wrapper: {
+      component: (props) => <div {...props} />,
+    },
+
     removeCriterionButton: {
       component: (props) => <button type="button" {...props} />,
     },
 
-    /**
-     * TODO: Not used in React implementation.
-     */
     errors: {
-      component: (props) => null,
+      component: (props) => <ul {...props} />,
 
-      /**
-       * TODO: Not used in React implementation.
-       */
       error: {
-        component: (props) => null,
+        component: (props) => <li {...props} />,
       },
     },
   },

@@ -22,12 +22,20 @@ const tailwindFlavor: PartialReactRefineFlavor = {
   criterion: {
     className: "refine-query-builder-criterion",
 
+    wrapper: {
+      className: "refine-query-builder-criterion-wrapper",
+    },
+
     removeCriterionButton: {
       className: "refine-query-builder-criterion-remove-criterion-button",
     },
 
     errors: {
-      error: {},
+      className: "refine-query-builder-criterion-errors",
+
+      error: {
+        className: "refine-query-builder-criterion-errors-error",
+      },
     },
   },
 
