@@ -31,6 +31,8 @@ export type RefineFlavor<Runtime extends RefineRuntime> = {
   addGroupButton: RefineFlavorItem<"addGroupButton", Runtime>;
 
   criterion: RefineFlavorItem<"criterion", Runtime> & {
+    wrapper: RefineFlavorItem<"criterion.wrapper", Runtime>;
+
     removeCriterionButton: RefineFlavorItem<
       "criterion.removeCriterionButton",
       Runtime

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Condition } from "@hammerstone/refine-react";
+import type { Condition, RefineErrors } from "@hammerstone/refine-react";
 import { QueryBuilder, extendFlavor } from "@hammerstone/refine-react";
 import defaultFlavor from "@hammerstone/refine-react/flavors/default";
 import "@hammerstone/refine-react/dist/flavors/default.css";
@@ -22,6 +22,8 @@ const conditions: Condition[] = [
   dateWithTimeCondition,
   numericCondition,
 ];
+
+const errors: RefineErrors = { 2: [{ id: 1234, message: "Test error!" }] };
 
 const flavors = [
   { name: "base", flavor: {} },
@@ -118,6 +120,7 @@ const App = () => {
         key={`${chosenFlavor.name}-${chosenBlueprint.name}`}
         blueprint={chosenBlueprint.blueprint}
         conditions={conditions}
+        errors={errors}
         flavor={chosenFlavor.flavor}
         onChange={(blueprint) => setDebugBlueprint(blueprint)}
       />

@@ -4,6 +4,7 @@ import type {
   Condition,
   PartialReactRefineFlavor,
   ReactRefineFlavor,
+  RefineErrors,
 } from "refine-core/types";
 import { BlueprintStore } from "refine-core";
 import { CriterionGroup, FlavorItem, QueryBuilderProvider } from "components";
@@ -13,6 +14,7 @@ import baseFlavor from "flavors/base";
 export type QueryBuilderProps = {
   blueprint: Blueprint;
   conditions: Condition[];
+  errors?: RefineErrors;
   flavor?: PartialReactRefineFlavor;
   onChange?: (blueprint: Blueprint) => void;
 };
@@ -26,6 +28,7 @@ const useRerender = () => {
 export const QueryBuilder = ({
   blueprint: initialBlueprint,
   conditions,
+  errors = {},
   onChange,
   flavor: partialFlavor = {},
 }: QueryBuilderProps) => {
@@ -51,6 +54,7 @@ export const QueryBuilder = ({
         blueprint: blueprint,
         groupedBlueprint: blueprint.groupedBlueprint(),
         conditions,
+        errors,
         flavor,
       }}
     >
