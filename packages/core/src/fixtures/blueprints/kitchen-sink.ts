@@ -11,6 +11,11 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "option",
     input: {
@@ -19,11 +24,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "option",
     input: {
       clause: "dne",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -35,11 +50,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "option",
     input: {
       clause: "st",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -51,6 +76,11 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "text",
     input: {
@@ -59,11 +89,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "text",
     input: {
       clause: "dne",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -75,11 +115,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "text",
     input: {
       clause: "ew",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -91,11 +141,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "text",
     input: {
       clause: "dew",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -107,11 +167,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "text",
     input: {
       clause: "dcont",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -123,11 +193,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "text",
     input: {
       clause: "nst",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -139,6 +219,11 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "bool",
     input: {
@@ -147,11 +232,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date",
     input: {
       clause: "eq",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -163,11 +258,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date",
     input: {
       clause: "lte",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -179,6 +284,11 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date",
     input: {
@@ -187,11 +297,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date",
     input: {
       clause: "gt",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -203,11 +323,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date",
     input: {
       clause: "lt",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -219,11 +349,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date",
     input: {
       clause: "nst",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -235,11 +375,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date_with_time",
     input: {
       clause: "dne",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -251,11 +401,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date_with_time",
     input: {
       clause: "gte",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -267,11 +427,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date_with_time",
     input: {
       clause: "gt",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -283,11 +453,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date_with_time",
     input: {
       clause: "lt",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -299,11 +479,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "date_with_time",
     input: {
       clause: "nst",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -315,11 +505,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "numeric",
     input: {
       clause: "dne",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -331,11 +531,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "numeric",
     input: {
       clause: "gte",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -347,6 +557,11 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "numeric",
     input: {
@@ -355,11 +570,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "numeric",
     input: {
       clause: "btwn",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
@@ -371,11 +596,21 @@ export const kitchenSinkBlueprint: Blueprint = [
   },
   {
     depth: 1,
+    type: "conjunction",
+    word: "and",
+  },
+  {
+    depth: 1,
     type: "criterion",
     condition_id: "numeric",
     input: {
       clause: "st",
     },
+  },
+  {
+    depth: 1,
+    type: "conjunction",
+    word: "and",
   },
   {
     depth: 1,
