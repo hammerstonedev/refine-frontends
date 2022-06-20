@@ -25,12 +25,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-#       @TODO: Check with Dave
-#      - name: Check React version
-#        run: echo "PACKAGE_VERSION=$(git describe --match react/* --tags)" >> $GITHUB_ENV
-#
-#      - name: Publish React to NPM
-#        run: yarn run release:vue-prod
-#        if: env.PACKAGE_VERSION != ''
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+     - name: Check React version
+       run: echo "PACKAGE_VERSION=$(git describe --match react/* --tags)" >> $GITHUB_ENV
+
+     - name: Publish React to NPM
+       run: yarn run release:react-prod
+       if: env.PACKAGE_VERSION != ''
+       env:
+         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

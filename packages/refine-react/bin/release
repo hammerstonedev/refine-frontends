@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" != "dev" ] && [ "$1" != "prod" ]; then
+  echo "The first argument must be 'dev' or 'prod'."
+  exit
+fi
+
+set -x
+
+yarn run build
+node ./bin/prepublish.js react --"$1"
+npm publish --access public
+node ./bin/postpublish.js react --"$1"

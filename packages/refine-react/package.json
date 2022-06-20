@@ -35,7 +35,9 @@
     "build": "tsup && yarn build:css",
     "build:css": "node -r esbuild-register ./scripts/build-css.ts",
     "dev": "tsup --watch",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "release:dev": "./bin/release dev",
+    "release:prod": "./bin/release prod"
   },
   "peerDependencies": {
     "react": "^17.0.2"
