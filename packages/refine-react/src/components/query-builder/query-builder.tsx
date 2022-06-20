@@ -20,7 +20,7 @@ export type QueryBuilderProps = {
 };
 
 const useRerender = () => {
-  const [, rerender] = useReducer(() => null, null);
+  const [, rerender] = useReducer((x) => x + 1, 0);
 
   return rerender;
 };
