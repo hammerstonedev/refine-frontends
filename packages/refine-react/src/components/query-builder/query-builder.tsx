@@ -26,8 +26,8 @@ const useRerender = () => {
 };
 
 export const QueryBuilder = ({
-  blueprint: initialBlueprint,
-  conditions,
+  blueprint: initialBlueprint = [],
+  conditions = [],
   errors = {},
   onChange,
   flavor: partialFlavor = {},
