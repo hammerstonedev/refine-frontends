@@ -9,8 +9,6 @@ export const OptionInput = () => {
     throw new Error(`No options provided to OptionInput.`);
   }
 
-  console.log('value:', value);
-
   return (
     <div>
       <Label screenReaderOnly>{display}</Label>
