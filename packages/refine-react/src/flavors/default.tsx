@@ -1,46 +1,46 @@
-import React, { Fragment } from "react";
-import type { PartialReactRefineFlavor } from "refine-core/types";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import { FlavorItem } from "components";
+import React, { Fragment } from 'react';
+import type { PartialReactRefineFlavor } from 'refine-core/types';
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import { FlavorItem } from 'components';
 
-const tailwindFlavor: PartialReactRefineFlavor = {
+const defaultFlavor: PartialReactRefineFlavor = {
   group: {
-    className: "refine-query-builder-group",
+    className: 'refine-query-builder-group',
     wrapper: {},
 
     addCriterionButton: {
-      className: "refine-query-builder-group-add-criterion-button",
+      className: 'refine-query-builder-group-add-criterion-button',
       text: {},
     },
   },
 
   addGroupButton: {
-    className: "refine-query-builder-add-group-button",
+    className: 'refine-query-builder-add-group-button',
   },
 
   criterion: {
-    className: "refine-query-builder-criterion",
+    className: 'refine-query-builder-criterion',
 
     wrapper: {
-      className: "refine-query-builder-criterion-wrapper",
+      className: 'refine-query-builder-criterion-wrapper',
     },
 
     removeCriterionButton: {
-      className: "refine-query-builder-criterion-remove-criterion-button",
+      className: 'refine-query-builder-criterion-remove-criterion-button',
     },
 
     errors: {
-      className: "refine-query-builder-criterion-errors",
+      className: 'refine-query-builder-criterion-errors',
 
       error: {
-        className: "refine-query-builder-criterion-errors-error",
+        className: 'refine-query-builder-criterion-errors-error',
       },
     },
   },
 
   condition: {
-    className: "refine-query-builder-condition",
+    className: 'refine-query-builder-condition',
   },
 
   select: {
@@ -49,7 +49,7 @@ const tailwindFlavor: PartialReactRefineFlavor = {
         <div>{children}</div>
       </Listbox>
     ),
-    className: "refine-query-builder-select",
+    className: 'refine-query-builder-select',
 
     wrapper: {},
 
@@ -68,7 +68,7 @@ const tailwindFlavor: PartialReactRefineFlavor = {
           <Listbox.Options {...props} />
         </Transition>
       ),
-      className: "refine-query-builder-select-listbox",
+      className: 'refine-query-builder-select-listbox',
       wrapper: {},
 
       item: {
@@ -76,27 +76,23 @@ const tailwindFlavor: PartialReactRefineFlavor = {
           <Listbox.Option {...props}>
             {({ active, selected }) => (
               <div
-                className={[
-                  className,
-                  active && "refine-query-builder-select-listbox-item-active",
-                ]
+                className={[className, active && 'refine-query-builder-select-listbox-item-active']
                   .filter<string>(
-                    (className: unknown): className is string =>
-                      typeof className === "string"
+                    (className: unknown): className is string => typeof className === 'string'
                   )
-                  .join(" ")}
+                  .join(' ')}
               >
-                <FlavorItem<"select.listbox.item.text"> name="select.listbox.item.text">
+                <FlavorItem<'select.listbox.item.text'> name="select.listbox.item.text">
                   {children}
                 </FlavorItem>
                 {selected ? (
-                  <FlavorItem<"select.listbox.item.icon"> name="select.listbox.item.icon" />
+                  <FlavorItem<'select.listbox.item.icon'> name="select.listbox.item.icon" />
                 ) : null}
               </div>
             )}
           </Listbox.Option>
         ),
-        className: "refine-query-builder-select-listbox-item",
+        className: 'refine-query-builder-select-listbox-item',
 
         text: {
           component: (props) => <span {...props} />,
@@ -108,7 +104,7 @@ const tailwindFlavor: PartialReactRefineFlavor = {
               <CheckIcon aria-hidden="true" />
             </span>
           ),
-          className: "refine-query-builder-select-listbox-item-icon",
+          className: 'refine-query-builder-select-listbox-item-icon',
         },
       },
     },
@@ -119,7 +115,7 @@ const tailwindFlavor: PartialReactRefineFlavor = {
           <span>{children}</span>
         </Listbox.Button>
       ),
-      className: "refine-query-builder-select-button",
+      className: 'refine-query-builder-select-button',
 
       placeholder: {},
 
@@ -131,7 +127,7 @@ const tailwindFlavor: PartialReactRefineFlavor = {
             <SelectorIcon aria-hidden="true" />
           </span>
         ),
-        className: "refine-query-builder-select-button-icon",
+        className: 'refine-query-builder-select-button-icon',
       },
     },
 
@@ -156,23 +152,23 @@ const tailwindFlavor: PartialReactRefineFlavor = {
 
   inputs: {
     date: {
-      className: "refine-query-builder-inputs-date",
+      className: 'refine-query-builder-inputs-date',
 
       double: {
-        className: "refine-query-builder-inputs-date-double",
+        className: 'refine-query-builder-inputs-date-double',
 
         wrapper: {
-          className: "refine-query-builder-inputs-date-double-wrapper",
+          className: 'refine-query-builder-inputs-date-double-wrapper',
         },
 
         joiner: {},
       },
 
       relative: {
-        className: "refine-query-builder-inputs-date-relative",
+        className: 'refine-query-builder-inputs-date-relative',
 
         wrapper: {
-          className: "refine-query-builder-inputs-date-relative-wrapper",
+          className: 'refine-query-builder-inputs-date-relative-wrapper',
         },
       },
 
@@ -186,13 +182,13 @@ const tailwindFlavor: PartialReactRefineFlavor = {
     },
 
     number: {
-      className: "refine-query-builder-inputs-number",
+      className: 'refine-query-builder-inputs-number',
 
       double: {
-        className: "refine-query-builder-inputs-number-double",
+        className: 'refine-query-builder-inputs-number-double',
 
         wrapper: {
-          className: "refine-query-builder-inputs-number-double-wrapper",
+          className: 'refine-query-builder-inputs-number-double-wrapper',
         },
 
         joiner: {},
@@ -200,9 +196,9 @@ const tailwindFlavor: PartialReactRefineFlavor = {
     },
 
     text: {
-      className: "refine-query-builder-inputs-text",
+      className: 'refine-query-builder-inputs-text',
     },
   },
 };
 
-export default tailwindFlavor;
+export default defaultFlavor;
