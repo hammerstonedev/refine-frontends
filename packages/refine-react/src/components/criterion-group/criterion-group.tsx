@@ -1,10 +1,6 @@
-import type { InternalCriterionWithPosition } from "refine-core/types/internal";
-import {
-  Criterion,
-  CriterionGroupProvider,
-  FlavorItem,
-  useQueryBuilder,
-} from "components";
+import React from 'react';
+import type { InternalCriterionWithPosition } from 'refine-core/types/internal';
+import { Criterion, CriterionGroupProvider, FlavorItem, useQueryBuilder } from 'components';
 
 export type CriterionGroupProps = {
   index: number;
@@ -15,8 +11,7 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
   const { blueprint, groupedBlueprint } = useQueryBuilder();
   const group = groupedBlueprint[index];
 
-  const addCriterion = () =>
-    blueprint.insertCriterion(group[group.length - 1].position);
+  const addCriterion = () => blueprint.insertCriterion(group[group.length - 1].position);
 
   return (
     <CriterionGroupProvider
@@ -25,20 +20,20 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
         criteria,
       }}
     >
-      <FlavorItem<"group"> name="group" data-testid="refine-criterion-group">
+      <FlavorItem<'group'> name="group" data-testid="refine-criterion-group">
         {criteria.map((criterion, index) => (
           <Criterion key={index} index={index} />
         ))}
-        <FlavorItem<"group.addCriterionButton">
+        <FlavorItem<'group.addCriterionButton'>
           name="group.addCriterionButton"
           data-testid="refine-add-criterion"
           onClick={() => addCriterion()}
         >
-          <FlavorItem<"group.addCriterionButton.icon"> name="group.addCriterionButton.icon">
+          <FlavorItem<'group.addCriterionButton.icon'> name="group.addCriterionButton.icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
-              style={{ width: "1.25rem", height: "1.25rem" }}
+              style={{ width: '1.25rem', height: '1.25rem' }}
               fill="currentColor"
               aria-hidden="true"
             >
@@ -49,7 +44,7 @@ export const CriterionGroup = ({ index, criteria }: CriterionGroupProps) => {
               />
             </svg>
           </FlavorItem>
-          <FlavorItem<"group.addCriterionButton.text"> name="group.addCriterionButton.text">
+          <FlavorItem<'group.addCriterionButton.text'> name="group.addCriterionButton.text">
             And
           </FlavorItem>
         </FlavorItem>

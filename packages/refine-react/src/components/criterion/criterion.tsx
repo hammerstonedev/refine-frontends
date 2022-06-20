@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Condition,
   CriterionProvider,
@@ -6,7 +7,7 @@ import {
   useCondition,
   useCriterionGroup,
   useQueryBuilder,
-} from "components";
+} from 'components';
 
 export type CriterionProps = {
   index: number;
@@ -19,9 +20,7 @@ export const Criterion = ({ index }: CriterionProps) => {
   const errors = allErrors[criterion.uid] ?? [];
 
   if (!criterion) {
-    throw new Error(
-      `Could not find criterion index ${index} in group index ${group.index}.`
-    );
+    throw new Error(`Could not find criterion index ${index} in group index ${group.index}.`);
   }
 
   const condition = useCondition(criterion.condition_id);
@@ -37,16 +36,16 @@ export const Criterion = ({ index }: CriterionProps) => {
         ...criterion,
       }}
     >
-      <FlavorItem<"criterion"> name="criterion" data-testid="refine-criterion">
-        <FlavorItem<"criterion.wrapper"> name="criterion.wrapper">
-          <FlavorItem<"criterion.removeCriterionButton">
+      <FlavorItem<'criterion'> name="criterion" data-testid="refine-criterion">
+        <FlavorItem<'criterion.wrapper'> name="criterion.wrapper">
+          <FlavorItem<'criterion.removeCriterionButton'>
             name="criterion.removeCriterionButton"
             data-testid="refine-remove-criterion"
             onClick={() => blueprint.removeCriterion(criterion.position)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              style={{ width: "1.25rem", height: "1.25rem" }}
+              style={{ width: '1.25rem', height: '1.25rem' }}
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
@@ -61,12 +60,9 @@ export const Criterion = ({ index }: CriterionProps) => {
           </FlavorItem>
           <Condition condition={condition} />
         </FlavorItem>
-        <FlavorItem<"criterion.errors"> name="criterion.errors">
+        <FlavorItem<'criterion.errors'> name="criterion.errors">
           {errors.map((error) => (
-            <FlavorItem<"criterion.errors.error">
-              key={error.id}
-              name="criterion.errors.error"
-            >
+            <FlavorItem<'criterion.errors.error'> key={error.id} name="criterion.errors.error">
               {error.message}
             </FlavorItem>
           ))}

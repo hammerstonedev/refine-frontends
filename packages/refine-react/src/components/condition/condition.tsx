@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import type { Condition as ConditionType } from "refine-core/types";
+import React, { useMemo } from 'react';
+import type { Condition as ConditionType } from 'refine-core/types';
 import {
   ClauseProvider,
   inputComponents,
@@ -8,7 +8,7 @@ import {
   InputProvider,
   useQueryBuilder,
   useSelectedClause,
-} from "components";
+} from 'components';
 
 export type ConditionProps = {
   condition: ConditionType;
@@ -22,10 +22,7 @@ export const Condition = ({ condition }: ConditionProps) => {
   const hasInput = !!selectedClause?.component;
 
   const InputComponent = useMemo(() => {
-    if (
-      selectedClause.component &&
-      selectedClause.component in inputComponents
-    ) {
+    if (selectedClause.component && selectedClause.component in inputComponents) {
       // @ts-expect-error
       return inputComponents[selectedClause.component];
     }
@@ -35,19 +32,17 @@ export const Condition = ({ condition }: ConditionProps) => {
 
   return (
     <ClauseProvider value={selectedClause}>
-      <FlavorItem<"condition"> name="condition" data-testid="refine-condition">
-        <FlavorItem<"select.wrapper"> name="select.wrapper">
-          <FlavorItem<"select">
+      <FlavorItem<'condition'> name="condition" data-testid="refine-condition">
+        <FlavorItem<'select.wrapper'> name="select.wrapper">
+          <FlavorItem<'select'>
             name="select"
             value={condition.id}
             onChange={(conditionId) => criterion.updateCondition(conditionId)}
           >
-            <FlavorItem<"select.button"> name="select.button">
-              {condition.display}
-            </FlavorItem>
-            <FlavorItem<"select.listbox"> name="select.listbox">
+            <FlavorItem<'select.button'> name="select.button">{condition.display}</FlavorItem>
+            <FlavorItem<'select.listbox'> name="select.listbox">
               {conditions.map((condition) => (
-                <FlavorItem<"select.listbox.item">
+                <FlavorItem<'select.listbox.item'>
                   key={condition.id}
                   name="select.listbox.item"
                   value={condition.id}
@@ -58,8 +53,8 @@ export const Condition = ({ condition }: ConditionProps) => {
             </FlavorItem>
           </FlavorItem>
         </FlavorItem>
-        <FlavorItem<"select.wrapper"> name="select.wrapper">
-          <FlavorItem<"select">
+        <FlavorItem<'select.wrapper'> name="select.wrapper">
+          <FlavorItem<'select'>
             name="select"
             value={selectedClause.id}
             onChange={(clause) =>
@@ -68,12 +63,10 @@ export const Condition = ({ condition }: ConditionProps) => {
               })
             }
           >
-            <FlavorItem<"select.button"> name="select.button">
-              {selectedClause.display}
-            </FlavorItem>
-            <FlavorItem<"select.listbox"> name="select.listbox">
+            <FlavorItem<'select.button'> name="select.button">{selectedClause.display}</FlavorItem>
+            <FlavorItem<'select.listbox'> name="select.listbox">
               {condition.meta.clauses.map((clause) => (
-                <FlavorItem<"select.listbox.item">
+                <FlavorItem<'select.listbox.item'>
                   key={clause.id}
                   name="select.listbox.item"
                   value={clause.id}
@@ -90,7 +83,7 @@ export const Condition = ({ condition }: ConditionProps) => {
               display: selectedClause.display,
               options: condition.meta.options,
               // @ts-expect-error TODO: Fix this
-              value: criterion.input.value ?? "",
+              value: criterion.input.value ?? '',
               onChange: (input) => criterion.updateInput(input),
               multiple: selectedClause.meta.multiple ?? false,
             }}
