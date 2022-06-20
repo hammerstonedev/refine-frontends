@@ -5,4 +5,4 @@ export default {
     // in both vue2 and vue3
     app.component('refine-date-picker', DatePicker);
   },
-}
+};

@@ -1,10 +1,10 @@
 <script>
-import { reactive, nextTick } from "vue-demi";
-import { SelectorStore } from "refine-core";
+import { reactive, nextTick } from 'vue-demi';
+import { SelectorStore } from 'refine-core';
 import { isVue2 } from 'vue-demi';
 
 export default {
-  name: "renderless-selector",
+  name: 'renderless-selector',
   data() {
     return {
       selector: reactive(new SelectorStore()),
@@ -97,9 +97,7 @@ export default {
     },
     toggleOption(optionId) {
       const { selector, highlightOption } = this;
-      const { 
-        selectedOption, 
-         } = selector.toggleOption(optionId);
+      const { selectedOption } = selector.toggleOption(optionId);
       if (selectedOption) {
         this.selectOption(optionId);
       } else {
@@ -107,14 +105,14 @@ export default {
       }
       return highlightOption(selector.findOption(optionId));
     },
-    clearOptions(){
+    clearOptions() {
       this.selector.clearSelectedOptions();
     },
     deselectOption(optionId) {
-      this.$emit("deselect-option", this.selector.deselectOption(optionId));
+      this.$emit('deselect-option', this.selector.deselectOption(optionId));
     },
     selectOption(optionId) {
-      this.$emit("select-option", this.selector.selectOption(optionId));
+      this.$emit('select-option', this.selector.selectOption(optionId));
     },
     highlightOption(option) {
       this.highlightedOption = option;
@@ -138,12 +136,12 @@ export default {
   },
   render() {
     // This gets around a vue3 warning about scopedSlots being
-     // referenced but not defined. Vue3 uses $slots and vue2 uses
-     // $scopedSlots so this code allows us to work with both versions
+    // referenced but not defined. Vue3 uses $slots and vue2 uses
+    // $scopedSlots so this code allows us to work with both versions
     let defaultSlot = this.$slots?.default;
     if (isVue2) {
-      defaultSlot = this.$scopedSlots?.default
-    }     
+      defaultSlot = this.$scopedSlots?.default;
+    }
 
     if (defaultSlot) {
       return defaultSlot({

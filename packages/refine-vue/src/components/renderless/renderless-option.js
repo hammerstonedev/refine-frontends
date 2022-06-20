@@ -6,7 +6,7 @@ export default {
   inject: ['selector'],
   mixins: [optionProps],
   computed: {
-    isSelected: function() {
+    isSelected: function () {
       const { selector, id } = this;
       return selector.isSelected(id);
     },
@@ -30,7 +30,7 @@ export default {
     // $scopedSlots so this code allows us to work with both versions
     let defaultSlot = this.$slots?.default;
     if (isVue2) {
-      defaultSlot = this.$scopedSlots?.default
+      defaultSlot = this.$scopedSlots?.default;
     }
 
     if (defaultSlot && isSelected) {

@@ -7,9 +7,11 @@ import {
 } from "types/internal";
 import { isConjunction, isCriterion } from "types";
 
-let uid = 0;
 const getNextUid = function () {
-  return uid++;
+  const r1 = ~~(Math.random() * (10000) + 10000);
+  const r2 = ~~(Date.now() / 1000);
+
+  return `${r1}-${r2}`;
 };
 
 const criterion = (
@@ -18,7 +20,6 @@ const criterion = (
   meta?: Condition["meta"],
   refinements?: Refinement[]
 ): InternalCriterion => {
-  const uid = getNextUid();
   const [firstRefinement] = refinements || [];
 
   return {
@@ -34,7 +35,7 @@ const criterion = (
         },
       }),
     },
-    uid,
+    uid: getNextUid(),
   };
 };
 
@@ -71,8 +72,6 @@ export class BlueprintStore {
     conditions?: Condition[],
     onChange?: (blueprint: Blueprint) => void
   ) {
-    uid = 0;
-
     initialBlueprint = initialBlueprint || [];
     conditions = conditions || [];
 
@@ -86,6 +85,9 @@ export class BlueprintStore {
         onChange([...this.blueprint]);
       }
     };
+
+    // We need to update the outside world after the blueprint has been mapped.
+    this.blueprintChanged();
   }
 
   public mapBlueprint(blueprint: Blueprint): InternalBlueprint {
@@ -94,7 +96,7 @@ export class BlueprintStore {
         return {
           ...item,
           id: item.condition_id,
-          uid: getNextUid(),
+          uid: item?.uid || getNextUid(),
         };
       }
 
@@ -111,8 +113,6 @@ export class BlueprintStore {
   }
 
   public updateBlueprint(newBlueprint: Blueprint) {
-    uid = 0;
-
     this.blueprint = this.mapBlueprint(newBlueprint);
   }
 
@@ -209,7 +209,7 @@ export class BlueprintStore {
     this.blueprintChanged();
   }
 
-  public findCriterion(uid: number): InternalCriterion | undefined {
+  public findCriterion(uid: string): InternalCriterion | undefined {
     const conditionIndex = this.indexOfCriterion({ uid });
     return this.blueprint[conditionIndex] as InternalCriterion;
   }
