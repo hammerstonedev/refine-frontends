@@ -5,13 +5,15 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:react": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-react dev\" \"yarn workspace react dev\"",
+    "dev:react": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-react dev\" \"yarn workspace react-example dev\"",
     "dev:vue2": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue2 --watch\" \"yarn workspace vue2 dev --watch\" ",
     "dev:vue3": "concurrently \"yarn workspace refine-core dev\" \"yarn workspace @hammerstone/refine-vue build:vue3 --watch\" \"yarn workspace vue3 dev\" ",
+    "build:react": "yarn workspace refine-core build && yarn workspace @hammerstone/refine-react build",
     "release:vue-dev": "yarn workspace refine-core build && yarn workspace @hammerstone/refine-vue release:dev",
     "release:vue-prod": "yarn workspace refine-core build && yarn workspace @hammerstone/refine-vue release:prod",
-    "release:react-dev": "yarn workspace refine-core build && yarn workspace @hammerstone/refine-react release:dev",
-    "release:react-prod": "yarn workspace refine-core build && yarn workspace @hammerstone/refine-react release:prod"
+    "release:react-dev": "yarn build:react release:dev",
+    "release:react-prod": "yarn workspace refine-core build && yarn workspace @hammerstone/refine-react release:prod",
+    "test:e2e:run:react": "start-server-and-test 'yarn build:react && yarn workspace react-example dev' http-get://localhost:3000 'cd tests && cypress run'"
   },
   "prettier": {
     "printWidth": 100,
@@ -21,7 +23,10 @@
   },
   "packageManager": "yarn@3.1.1",
   "devDependencies": {
+    "@testing-library/cypress": "^8.0.3",
     "concurrently": "^7.0.0",
-    "prettier": "^2.6.1"
+    "cypress": "^10.2.0",
+    "prettier": "^2.6.1",
+    "start-server-and-test": "^1.14.0"
   }
 }
