@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import type { Blueprint, Condition, RefineErrors } from '@hammerstone/refine-react';
-import { QueryBuilder, extendFlavor } from '@hammerstone/refine-react';
-import defaultFlavor from '@hammerstone/refine-react/flavors/default';
-import '@hammerstone/refine-react/dist/flavors/default.css';
+import { useEffect, useState } from "react";
+import type { Blueprint, Condition, RefineErrors } from "@hammerstone/refine-react";
+import { QueryBuilder, extendFlavor } from "@hammerstone/refine-react";
+import defaultFlavor from "@hammerstone/refine-react/flavors/default";
+import "@hammerstone/refine-react/dist/flavors/default.css";
 import {
   basicBlueprint,
   booleanCondition,
@@ -12,7 +12,7 @@ import {
   numericCondition,
   optionCondition,
   textCondition,
-} from 'refine-core/fixtures';
+} from "refine-core/fixtures";
 
 const conditions: Condition[] = [
   optionCondition,
@@ -23,20 +23,20 @@ const conditions: Condition[] = [
   numericCondition,
 ];
 
-const errors: RefineErrors = { 2: [{ id: 1234, message: 'Test error!' }] };
+const errors: RefineErrors = { 2: [{ id: 1234, message: "Test error!" }] };
 
 const flavors = [
-  { name: 'base', flavor: {} },
+  { name: "base", flavor: {} },
   {
-    name: 'default',
+    name: "default",
     flavor: defaultFlavor,
   },
   {
-    name: 'extended',
+    name: "extended",
     flavor: extendFlavor(defaultFlavor, {
       group: {
         // Extend a className
-        className: [defaultFlavor.group?.className, 'text-red-500'].join(' '),
+        className: [defaultFlavor.group?.className, "text-red-500"].join(" "),
       },
       addGroupButton: {
         component: (props) => <button {...props}>Add an or!!!</button>,
@@ -48,7 +48,7 @@ const flavors = [
 const searchParams = new URL(window.location.href).searchParams;
 
 const blueprintFromUrl: Blueprint = (() => {
-  const blueprintParam = searchParams.get('blueprint');
+  const blueprintParam = searchParams.get("blueprint");
 
   if (blueprintParam) {
     try {
@@ -61,19 +61,19 @@ const blueprintFromUrl: Blueprint = (() => {
 
 const blueprints = [
   {
-    name: 'custom',
+    name: "custom",
     blueprint: blueprintFromUrl,
   },
   {
-    name: 'basic',
+    name: "basic",
     blueprint: basicBlueprint,
   },
   {
-    name: 'blank',
+    name: "blank",
     blueprint: [],
   },
   {
-    name: 'kitchen sink',
+    name: "kitchen sink",
     blueprint: kitchenSinkBlueprint,
   },
 ];
@@ -82,16 +82,16 @@ const capitalise = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-const INITIAL_FLAVOR = 'default';
-const INITIAL_BLUEPRINT = 'kitchen sink';
+const INITIAL_FLAVOR = "default";
+const INITIAL_BLUEPRINT = "kitchen sink";
 
 const App = () => {
   const [chosenFlavor, setChosenFlavor] = useState(
     () => flavors.find((flavor) => flavor.name === INITIAL_FLAVOR) ?? flavors[0]
   );
   const [chosenBlueprint, setChosenBlueprint] = useState(() => {
-    if (searchParams.has('blueprint')) {
-      return blueprints.find((blueprint) => blueprint.name === 'custom')!;
+    if (searchParams.has("blueprint")) {
+      return blueprints.find((blueprint) => blueprint.name === "custom")!;
     }
 
     return blueprints.find((blueprint) => blueprint.name === INITIAL_BLUEPRINT) ?? blueprints[0];
