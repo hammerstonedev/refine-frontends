@@ -25,6 +25,25 @@ const useRerender = () => {
   return rerender;
 };
 
+/**
+ * Wraps a callback such that it won't be called on the first render.
+ */
+const useDeferredCallback = (
+  onChange: QueryBuilderProps['onChange']
+): NonNullable<QueryBuilderProps['onChange']> => {
+  const isFirstRenderRef = useRef<boolean>(true);
+
+  // `useCallback` so that the function will have a stable identify across renders.
+  return useCallback((blueprint: Blueprint) => {
+    if (isFirstRenderRef.current) {
+      isFirstRenderRef.current = false;
+      return;
+    }
+
+    onChange?.(blueprint);
+  }, []);
+};
+
 export const QueryBuilder = ({
   blueprint: initialBlueprint = [],
   conditions = [],
@@ -33,15 +52,13 @@ export const QueryBuilder = ({
   flavor: partialFlavor = {},
 }: QueryBuilderProps) => {
   const rerender = useRerender();
+
+  const deferredOnChange = useDeferredCallback(onChange);
   const { blueprint, flavor } = useMemo(() => {
-    const blueprint = new BlueprintStore(
-      initialBlueprint,
-      conditions,
-      (blueprint) => {
-        onChange?.(blueprint);
-        rerender();
-      }
-    );
+    const blueprint = new BlueprintStore(initialBlueprint, conditions, (blueprint) => {
+      deferredOnChange(blueprint);
+      rerender();
+    });
 
     const flavor = extendFlavor(baseFlavor, partialFlavor) as ReactRefineFlavor;
 
