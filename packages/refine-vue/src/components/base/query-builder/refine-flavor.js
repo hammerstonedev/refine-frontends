@@ -40,7 +40,16 @@ export const RefineFlavor = defineComponent({
         return result;
       },
       computed(() => incomingProps.as),
-      computed(() => incomingProps.flavorOptions)
+      computed(() => {
+        // Originally we only passed "flavorOptions" through to the flavor `class`
+        // function, but it makes more sense to send them all. So now we combine
+        // them and pass them all through.
+        // @TODO It might make sense to get rid of flavorOptions altogether?
+        return {
+          ...(bindings.attrs ?? {}),
+          ...(incomingProps.flavorOptions ?? {}),
+        }
+      })
     );
 
     return () => {

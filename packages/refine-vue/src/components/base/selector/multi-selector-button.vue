@@ -1,6 +1,6 @@
 <template>
   <refine-flavor
-    as="div"
+    as="button"
     component="select.multi.button"
     :id="id"
     aria-haspopup="listbox"
