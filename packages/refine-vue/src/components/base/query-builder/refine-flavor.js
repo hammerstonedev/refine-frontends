@@ -59,7 +59,8 @@ export const RefineFlavor = defineComponent({
             resolvedFlavor.component,
             {
               scopedSlots: slots,
-              attrs: bindings.attrs,
+              attrs: { ...bindings.attrs, 'data-flavor': incomingProps.component },
+
               props,
               on: bindings.listeners,
               ...resolvedFlavor.props.value,
