@@ -51,62 +51,65 @@
     </refine-flavor>
 
     <refine-flavor v-else as="div" component="group.wrapper">
-      <refine-flavor
-        as="div"
-        component="group"
-        v-for="(group, index) in groupedBlueprint"
-        :key="index"
-      >
+      <template v-for="(group, index) in groupedBlueprint">
         <refine-flavor
           as="div"
-          component="condition"
-          v-for="criterion in group"
-          :key="criterion.uid"
+          component="group"
+          :key="index"
         >
-          <renderless-condition
-            v-bind="conditionFor({ id: criterion.condition_id, ...criterion })"
-            v-slot="{ switchClause }"
-          >
-            <criterion
-              @switch-clause="({ id: clause }) => switchClause(clause)"
-              @remove-condition="removeCriterion(criterion.position)"
-              @switch-condition="
-                (nextCondition) => replaceCriterion(criterion.position, conditionFor(nextCondition))
-              "
-              :conditionId="criterion.condition_id"
-              :conditions="conditions"
-              :errors="errors[criterion.uid]"
-              :input="criterion.input"
-            />
-          </renderless-condition>
-        </refine-flavor>
-        <refine-flavor as="div" component="group.addCriterionButton.wrapper">
           <refine-flavor
-            as="button"
-            component="group.addCriterionButton"
-            @click="insertCriterion(group[group.length - 1].position)"
-            tabindex="0"
-            type="button"
+            as='div'
+            component='condition'
+            v-for='criterion in group'
+            :key='criterion.uid'
           >
-            <!-- Heroicon name: plus -->
-            <refine-flavor
-              as="svg"
-              component="group.addCriterionButton.icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
+            <renderless-condition
+              v-bind='conditionFor({ id: criterion.condition_id, ...criterion })'
+              v-slot='{ switchClause }'
             >
-              <path
-                fill-rule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clip-rule="evenodd"
+              <criterion
+                @switch-clause="({ id: clause }) => switchClause(clause)"
+                @remove-condition="removeCriterion(criterion.position)"
+                @switch-condition="
+                  (nextCondition) => replaceCriterion(criterion.position, conditionFor(nextCondition))
+              "
+                :conditionId="criterion.condition_id"
+                :conditions="conditions"
+                :errors="errors[criterion.uid]"
+                :input="criterion.input"
               />
+            </renderless-condition>
+          </refine-flavor>
+          <refine-flavor as="div" component="group.addCriterionButton.wrapper">
+            <refine-flavor
+              as='button'
+              component='group.addCriterionButton'
+              @click='insertCriterion(group[group.length - 1].position)'
+              tabindex='0'
+              type='button'
+            >
+              <!-- Heroicon name: plus -->
+              <refine-flavor
+                as='svg'
+                component='group.addCriterionButton.icon'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+                aria-hidden='true'
+              >
+                <path
+                  fill-rule='evenodd'
+                  d='M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z'
+                  clip-rule='evenodd'
+                />
+              </refine-flavor>
+              <refine-flavor as='span' component='group.addCriterionButton.text'> And</refine-flavor>
             </refine-flavor>
-            <refine-flavor as="span" component="group.addCriterionButton.text"> And </refine-flavor>
           </refine-flavor>
         </refine-flavor>
-      </refine-flavor>
+        <!-- Divider between groups. Blank by default, but used in Nova. -->
+        <refine-flavor as='template' component='group.divider' :index='(index+1)' :total='groupedBlueprint.length' :key='`separator-${index}`' />
+      </template>
       <refine-flavor as="button" component="addGroupButton" @click="addGroup" type="button">
         Add an 'Or'
       </refine-flavor>
