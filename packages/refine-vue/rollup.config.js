@@ -2,7 +2,6 @@ import alias from '@rollup/plugin-alias';
 import vue from 'rollup-plugin-vue';
 import vue2 from 'rollup-plugin-vue2';
 import resolve from '@rollup/plugin-node-resolve';
-import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 
 let vueVersion = process.env.ROLLUP_VUE_VERSION;
