@@ -1,5 +1,6 @@
 import { BlueprintStore } from 'refine-core';
 import { isVue2 } from 'vue-demi';
+
 export default {
   name: 'renderless-query-builder',
   emits: ['change'],
@@ -35,6 +36,21 @@ export default {
         this.$emit('change', updatedBlueprint);
       }),
     };
+  },
+  watch: {
+    // We have to watch the blueprint because it may be updated
+    // programmatically from the outside. This happens in
+    // Nova when a page is loaded with a stable ID.
+    blueprint: {
+      deep: true,
+      handler(newBlueprint) {
+        if (newBlueprint === this.internalBlueprint) {
+          return;
+        }
+
+        this.blueprintStore.updateBlueprint(newBlueprint);
+      },
+    },
   },
   methods: {
     replaceCriterion(previousPosition, newCriterion) {
