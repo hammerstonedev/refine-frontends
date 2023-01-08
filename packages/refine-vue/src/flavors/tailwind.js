@@ -172,9 +172,8 @@ const tailwindFlavor = {
 
   inputs: {
     date: {
-      pickerInput: {
-        class: `${inputBase} ${inputFocus} block w-full pl-3 py-2 pr-0`,
-      },
+      class: `${inputBase} ${inputFocus} h-9 py-5 px-2 leading-normal box-border`,
+
       relative: {
         class: `${inputClassName} mr-4`,
 

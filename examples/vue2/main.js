@@ -1,15 +1,18 @@
 import Vue from 'vue';
 import VueCompositionAPI from '@vue/composition-api';
 import App from './App.vue';
-import { DatePickerPlugin } from '../../packages/refine-vue/dist/vue2/refine-vue.esm';
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+import { RefinePlugin } from '../../packages/refine-vue/dist/vue2/refine-vue.esm';
 import CustomCriterionRow from './custom-criterion-row';
+import CustomDivider from './custom-divider';
 
-Vue.use(DatePickerPlugin, { DatePicker });
+Vue.use(RefinePlugin, {
+  showLocators: true,
+});
+
 Vue.use(VueCompositionAPI);
 
 Vue.component('custom-criterion-row', CustomCriterionRow);
+Vue.component('custom-divider', CustomDivider);
 
 Vue.config.productionTip = false;
 

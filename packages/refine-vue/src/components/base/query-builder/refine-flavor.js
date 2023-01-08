@@ -1,12 +1,12 @@
 import { h, defineComponent, isVue2, computed } from 'vue-demi';
+import { useFlavor } from '../../../hooks/useFlavor';
+import Config from './../../../plugins/config';
 
 // vue-demi does not export resolveComponent, which is required when using
 // Vue3. If we just try to import it from vue-demi, rollup complains that
 // the export doesn't exist for the Vue2 build. In our Vue3 Vite config,
 // we override `vue-demi-shim` to point to the real vue-demi.
 import { resolveComponent } from './vue-demi-shim';
-
-import { useFlavor } from '../../../hooks/useFlavor';
 
 export const RefineFlavor = defineComponent({
   name: 'RefineFlavor',
@@ -29,7 +29,10 @@ export const RefineFlavor = defineComponent({
     },
   },
   inheritAttrs: false,
+
   setup(incomingProps, bindings) {
+    let showLocators = Config.get('showLocators');
+
     const flavor = useFlavor(
       (flavor) => {
         const parts = incomingProps.component.split('.');
@@ -48,8 +51,8 @@ export const RefineFlavor = defineComponent({
         return {
           ...(bindings.attrs ?? {}),
           ...(incomingProps.flavorOptions ?? {}),
-        }
-      })
+        };
+      }),
     );
 
     return () => {
@@ -65,29 +68,32 @@ export const RefineFlavor = defineComponent({
 
       let el = isVue2
         ? h(
-            resolvedFlavor.component,
-            {
-              scopedSlots: slots,
-              attrs: { ...bindings.attrs, 'data-flavor': incomingProps.component },
-
-              props,
-              on: bindings.listeners,
-              ...resolvedFlavor.props.value,
-            },
-            orderedSlots
-          )
-        : h(
-            // In Vue 3, globally registered components must be resolved before they can be used.
-            // https://vuejs.org/guide/extras/render-function.html#components
-            isComponent ? resolveComponent(resolvedFlavor.component) : resolvedFlavor.component,
-            {
+          resolvedFlavor.component,
+          {
+            scopedSlots: slots,
+            attrs: {
+              ...(showLocators && { 'data-locator': incomingProps.component }),
               ...bindings.attrs,
-              'data-flavor': incomingProps.component,
-              ...props,
-              ...resolvedFlavor.props.value,
             },
-            orderedSlots
-          );
+
+            props,
+            on: bindings.listeners,
+            ...resolvedFlavor.props.value,
+          },
+          orderedSlots,
+        )
+        : h(
+          // In Vue 3, globally registered components must be resolved before they can be used.
+          // https://vuejs.org/guide/extras/render-function.html#components
+          isComponent ? resolveComponent(resolvedFlavor.component) : resolvedFlavor.component,
+          {
+            ...(showLocators && { 'data-locator': incomingProps.component }),
+            ...bindings.attrs,
+            ...props,
+            ...resolvedFlavor.props.value,
+          },
+          orderedSlots,
+        );
 
       if (resolvedFlavor.extra.value.wrap) {
         return resolvedFlavor.extra.value.wrap(el);

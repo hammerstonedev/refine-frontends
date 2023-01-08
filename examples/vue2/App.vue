@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div class="bg-gray-800 text-white py-2 px-4 text-xl border-b border-gray-900">Vue 2</div>
-    <div class="space-y-6">
-      <div class="flex space-x-24 bg-indigo-900 text-white p-4">
+    <div class='bg-gray-800 text-white py-2 px-4 text-xl border-b border-gray-900'>Vue 2</div>
+    <div class='space-y-6'>
+      <div class='flex space-x-24 bg-indigo-900 text-white p-4'>
         <div>
           Change Flavor
-          <div v-for="flavor of flavors" :key="flavor.name" class="flex items-center space-x-2">
-            <label class="capitalize">
+          <div v-for='flavor of flavors' :key='flavor.name' class='flex items-center space-x-2'>
+            <label class='capitalize'>
               <input
-                type="radio"
-                name="flavor"
-                :value="flavor"
-                :checked="flavor.name === chosenFlavor.name"
-                @change="chosenFlavor = flavor"
+                type='radio'
+                name='flavor'
+                :value='flavor'
+                :checked='flavor.name === chosenFlavor.name'
+                @change='chosenFlavor = flavor'
               />
               {{ flavor.name }}</label
             >
@@ -21,31 +21,31 @@
         <div>
           Change Blueprint
           <div
-            v-for="blueprint of blueprints"
-            :key="blueprint.name"
-            class="flex items-center space-x-2"
+            v-for='blueprint of blueprints'
+            :key='blueprint.name'
+            class='flex items-center space-x-2'
           >
-            <label class="capitalize">
+            <label class='capitalize'>
               <input
-                type="radio"
-                name="blueprint"
-                :value="blueprint"
-                :checked="blueprint.name === chosenBlueprint.name"
-                @change="chosenBlueprint = blueprint"
+                type='radio'
+                name='blueprint'
+                :value='blueprint'
+                :checked='blueprint.name === chosenBlueprint.name'
+                @change='chosenBlueprint = blueprint'
               />
               {{ blueprint.name }}</label
             >
           </div>
         </div>
       </div>
-      <div class="px-12">
+      <div class='px-12'>
         <query-builder
-          :key="`${chosenFlavor.name}-${chosenBlueprint.name}`"
-          v-model:blueprint="chosenBlueprint.blueprint"
-          :conditions="conditions"
-          :errors="errors"
-          :flavor="chosenFlavor.flavor"
+          v-model:blueprint='chosenBlueprint.blueprint'
+          :conditions='conditions'
+          :errors='errors'
+          :flavor='chosenFlavor.flavor'
         />
+        <pre>{{ chosenBlueprint.blueprint }}</pre>
       </div>
     </div>
   </div>
@@ -64,11 +64,18 @@ import {
   textCondition,
 } from 'refine-core/fixtures';
 import './main.css';
-import '../../packages/refine-vue/dist/vue2/refine-vue.esm.css';
 
 import { h, ref, defineComponent } from 'vue-demi';
 
 import tailwindFlavor2 from './../../packages/refine-vue/src/flavors/tailwind';
+
+// Group divider (for nova)
+tailwindFlavor2.group.divider = {
+  component: 'custom-divider',
+  class(options) {
+    console.log(options);
+  },
+};
 
 let conditions = [
   optionCondition,
@@ -328,11 +335,31 @@ export default {
       chosenFlavor,
       chosenBlueprint,
       errors: {
-        '12345.value': {
-          message: 'You messed up big time',
-        },
+        '12345': [
+          'You messed up big time'
+        ],
       },
     };
+  },
+  mounted() {
+    let nbew = [{
+      condition_id: 'date',
+      depth: 1,
+      type: 'criterion',
+      input: {
+        clause: 'eq',
+        date1: '2022-12-12',
+      },
+      uid: 'asdfasdf',
+    }];
+
+    this.$nextTick(() => {
+      // this.chosenBlueprint = Object.assign({}, JSON.parse(JSON.stringify(this.chosenBlueprint)), { blueprint: nbew })
+      this.chosenBlueprint = Object.assign({}, { blueprint: nbew })
+    })
+
+    // this.$set(this.chosenBlueprint, 'blueprint', nbew)
+    // this.chosenBlueprint = chosen;
   },
   components: {
     QueryBuilder,
