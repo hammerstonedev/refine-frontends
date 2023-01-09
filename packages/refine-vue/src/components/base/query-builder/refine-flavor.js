@@ -40,6 +40,15 @@ export const RefineFlavor = defineComponent({
         for (const part of parts) {
           result = result?.[part];
         }
+
+        // If you just want to set the class on an element, you can
+        // use a string instead of an object with a "class" key.
+        if (typeof result === 'string') {
+          result = {
+            class: result,
+          };
+        }
+
         return result;
       },
       computed(() => incomingProps.as),
