@@ -81,12 +81,7 @@ const tailwindFlavor = {
 
         icon: {
           class: 'w-5 h-5',
-          wrapper: {
-            class: (options) =>
-              `absolute inset-y-0 right-0 flex items-center pr-4 ${
-                !options.isHighlighted ? 'text-blue-600' : 'text-white'
-              }`,
-          },
+          wrapper: (options) => `absolute inset-y-0 right-0 flex items-center pr-4 ${!options.isHighlighted ? 'text-blue-600' : 'text-white'}`,
         },
       },
     },
