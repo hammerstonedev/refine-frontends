@@ -28,6 +28,7 @@
     "release:prod": "./bin/release prod"
   },
   "peerDependencies": {
+    "@vue/composition-api": "^1.4.2",
     "vue": "*"
   },
   "peerDependenciesMeta": {
@@ -36,8 +37,7 @@
     }
   },
   "dependencies": {
-    "@vue/composition-api": "^1.4.2",
-    "vue-demi": "^0.12.1"
+    "vue-demi": "^0.13.11"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.8",
@@ -55,6 +55,7 @@
     "postcss": "^8.4.5",
     "refine-core": "*",
     "rollup": "^2.61.1",
+    "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-replace": "^2.2.0",

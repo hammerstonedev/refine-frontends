@@ -3,6 +3,7 @@ import vue from 'rollup-plugin-vue';
 import vue2 from 'rollup-plugin-vue2';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
+import analyze from 'rollup-plugin-analyzer'
 
 let vueVersion = process.env.ROLLUP_VUE_VERSION;
 let isVue2 = vueVersion === '2';
@@ -57,6 +58,9 @@ module.exports = {
     },
   ],
   plugins: [
+    // analyze({
+    //   summaryOnly: true
+    // }),
     vueDemiShim,
     vuePlugin,
     // postcss({

@@ -1566,7 +1566,6 @@ __metadata:
     "@rollup/plugin-node-resolve": ^13.1.1
     "@rollup/plugin-replace": ^3.0.0
     "@vue/compiler-sfc": ^3.0.0-0
-    "@vue/composition-api": ^1.4.2
     "@vue/test-utils": ^1.0.3
     autoprefixer: ^10.4.0
     core-js: ^3.6.5
@@ -1577,6 +1576,7 @@ __metadata:
     postcss: ^8.4.5
     refine-core: "*"
     rollup: ^2.61.1
+    rollup-plugin-analyzer: ^4.0.0
     rollup-plugin-livereload: ^2.0.5
     rollup-plugin-postcss: ^4.0.2
     rollup-plugin-replace: ^2.2.0
@@ -1585,10 +1585,11 @@ __metadata:
     rollup-plugin-vue2: "npm:rollup-plugin-vue@^5.1.9"
     tailwindcss: ^3.0.7
     vue: ^2.6.0
-    vue-demi: ^0.12.1
+    vue-demi: ^0.13.11
     vue-template-compiler: ^2.6.14
     yargs: ^17.5.1
   peerDependencies:
+    "@vue/composition-api": ^1.4.2
     vue: "*"
   peerDependenciesMeta:
     "@vue/composition-api":
@@ -9343,6 +9344,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rollup-plugin-analyzer@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "rollup-plugin-analyzer@npm:4.0.0"
+  checksum: 72f794f79efe4f620674a48949be9f64dc3cbf601c52ff90ae7cbeaacb604b86bb34321695d0f8f320e5c0b47880022849d92c51d231e1b32c6757a2c627be5e
+  languageName: node
+  linkType: hard
+
 "rollup-plugin-livereload@npm:^2.0.5":
   version: 2.0.5
   resolution: "rollup-plugin-livereload@npm:2.0.5"
@@ -10841,6 +10849,22 @@ __metadata:
     vue-demi-fix: bin/vue-demi-fix.js
     vue-demi-switch: bin/vue-demi-switch.js
   checksum: d39a43e765e5bc34cf5b378ccff53a521e824f8c55aae6a9163c294364e8af593c5331b3b3b1b679b28096a3142abed5aed07e2dfb581c96f2eba88a176666f2
+  languageName: node
+  linkType: hard
+
+"vue-demi@npm:^0.13.11":
+  version: 0.13.11
+  resolution: "vue-demi@npm:0.13.11"
+  peerDependencies:
+    "@vue/composition-api": ^1.0.0-rc.1
+    vue: ^3.0.0-0 || ^2.6.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+  bin:
+    vue-demi-fix: bin/vue-demi-fix.js
+    vue-demi-switch: bin/vue-demi-switch.js
+  checksum: 0fbe9bf8ab7fe498ffa2bbd0cfc8f6f43a6bbaa5eda3e20ef1b70dca7c8b0ddb216a7ff2f632b694fe0735805638975abb441c621ec0bd2e6d4656353f316c15
   languageName: node
   linkType: hard
 
