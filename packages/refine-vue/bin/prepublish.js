@@ -12,7 +12,7 @@ if (!development && !production) {
   throw new Error('Unknown environment.');
 }
 
-let version = '0.1.' + ~~(Date.now() / 1000);
+let version = '1.0.' + ~~(Date.now() / 1000);
 
 if (production) {
   // Populated by GitHub actions

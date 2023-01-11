@@ -5,6 +5,7 @@ import RefineDateInput from './date-input';
 import RefineDoubleDateInput from './double-date-input';
 import RefineRelativeDateInput from './relative-date-input';
 import RefineOptionInput from './option-input';
+import RefineNativeDatePicker from './native-date-picker'
 
 export default {
   RefineDateInput,
@@ -14,6 +15,7 @@ export default {
   RefineOptionInput,
   RefineRelativeDateInput,
   RefineTextInput,
+  RefineNativeDatePicker,
 };
 
 export {
@@ -24,4 +26,5 @@ export {
   RefineOptionInput,
   RefineRelativeDateInput,
   RefineTextInput,
+  RefineNativeDatePicker,
 };

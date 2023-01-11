@@ -6,9 +6,9 @@
           as="li"
           component="criterion.errors.error"
           v-for="error in errors"
-          :key="error.id"
+          :key="error"
         >
-          {{ error.message }}
+          {{ error }}
         </refine-flavor>
       </refine-flavor>
     </template>

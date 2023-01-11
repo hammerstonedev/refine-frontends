@@ -69,7 +69,7 @@ import {
 } from 'refine-core/fixtures';
 
 import './index.css';
-import '../../../packages/refine-vue/dist/vue3/refine-vue.esm.css';
+// import '../../../packages/refine-vue/dist/vue3/refine-vue.esm.css';
 
 import { tailwindFlavor, linearFlavor } from '../../../packages/refine-vue/src/flavors';
 
@@ -107,7 +107,7 @@ export default {
         type: 'criterion',
         input: {
           clause: 'btwn',
-          date1: '2020-12-12',
+          date1: '2020-12-01',
         },
         uid: '12345',
       },
@@ -206,8 +206,8 @@ export default {
       },
     ];
 
-    let chosenFlavor = flavors[2]; // ref(flavors.find((f) => f.name === 'Tailwind'));
-    let chosenBlueprint = blueprints[4]; //ref(blueprints.find((b) => b.name === 'basic'));
+    let chosenFlavor = flavors[1]; // ref(flavors.find((f) => f.name === 'Tailwind'));
+    let chosenBlueprint = blueprints[3]; //ref(blueprints.find((b) => b.name === 'basic'));
 
     return {
       conditions,
