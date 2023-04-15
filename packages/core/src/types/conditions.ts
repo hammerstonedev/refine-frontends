@@ -21,7 +21,7 @@ export type Clause = {
 };
 
 export type Option = {
-  id: string;
+  id: string | number;
   display: string;
 };
 

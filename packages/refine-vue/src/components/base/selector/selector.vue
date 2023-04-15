@@ -52,7 +52,7 @@
             :optionDisplay="option.display"
             :selected="isSelected(option, selectedOptions)"
             :isHighlighted="highlightedOption && option.id === highlightedOption.id"
-            :ref="option.id"
+            :ref="'opt-' + option.id"
             @mouseenter="actions.highlightOption(option)"
             @mouseleave="actions.highlightOption(null)"
             @selected="selectOption(option.id, actions)"
@@ -152,7 +152,7 @@ export default {
     },
     scrollIntoView(optionId) {
       if (optionId) {
-        const listItem = this.$refs[optionId][0].$el;
+        const listItem = this.$refs['opt-' + optionId][0].$el;
         listItem.scrollIntoView({
           behavior: 'smooth',
           block: 'nearest',
