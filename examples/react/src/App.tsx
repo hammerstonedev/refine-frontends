@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Condition, RefineErrors } from "@hammerstone/refine-react";
+import type { Blueprint, Condition, RefineErrors } from "@hammerstone/refine-react";
 import { QueryBuilder, extendFlavor } from "@hammerstone/refine-react";
 import defaultFlavor from "@hammerstone/refine-react/flavors/default";
 import "@hammerstone/refine-react/dist/flavors/default.css";
@@ -45,7 +45,25 @@ const flavors = [
   },
 ];
 
+const searchParams = new URL(window.location.href).searchParams;
+
+const blueprintFromUrl: Blueprint = (() => {
+  const blueprintParam = searchParams.get("blueprint");
+
+  if (blueprintParam) {
+    try {
+      return JSON.parse(blueprintParam);
+    } catch {}
+  }
+
+  return [];
+})();
+
 const blueprints = [
+  {
+    name: "custom",
+    blueprint: blueprintFromUrl,
+  },
   {
     name: "basic",
     blueprint: basicBlueprint,
@@ -71,16 +89,20 @@ const App = () => {
   const [chosenFlavor, setChosenFlavor] = useState(
     () => flavors.find((flavor) => flavor.name === INITIAL_FLAVOR) ?? flavors[0]
   );
-  const [chosenBlueprint, setChosenBlueprint] = useState(
-    () =>
-      blueprints.find((blueprint) => blueprint.name === INITIAL_BLUEPRINT) ??
-      blueprints[0]
-  );
+  const [chosenBlueprint, setChosenBlueprint] = useState(() => {
+    if (searchParams.has("blueprint")) {
+      return blueprints.find((blueprint) => blueprint.name === "custom")!;
+    }
+
+    return blueprints.find((blueprint) => blueprint.name === INITIAL_BLUEPRINT) ?? blueprints[0];
+  });
   const [debugBlueprint, setDebugBlueprint] = useState(blueprints[0].blueprint);
 
   useEffect(() => {
-    setDebugBlueprint(chosenBlueprint.blueprint);
-  }, [chosenBlueprint.name]);
+    if (chosenBlueprint) {
+      setDebugBlueprint(chosenBlueprint.blueprint);
+    }
+  }, [chosenBlueprint?.name]);
 
   return (
     <div className="space-y-6">
